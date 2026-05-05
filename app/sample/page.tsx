@@ -164,6 +164,7 @@ export default function Sample() {
           transform:
             "perspective(1100px) rotateX(7deg) scale(1.12)",
           transformOrigin: "50% 50%",
+          zIndex: -1,
         }}
       />
 
