@@ -281,43 +281,93 @@ function PanelOperatives() {
   );
 }
 
-function PanelMissions() {
-  const missions = [
-    { id: "M-01", target: "REISNER, A.", state: "DELIVERED" },
-    { id: "M-02", target: "BRUNEAU, M.", state: "DELIVERED" },
-    { id: "M-03", target: "ALTMAN, S.", state: "OPEN" },
-    { id: "M-04", target: "MUSK, E.", state: "QUEUED" },
-    { id: "M-05", target: "PICHAI, S.", state: "QUEUED" },
-  ];
+function TaskTile({
+  num,
+  title,
+  body,
+  locked,
+}: {
+  num: string;
+  title?: string;
+  body?: string;
+  locked: boolean;
+}) {
   return (
-    <ScreenFrame
-      topLeft="missions // open letters"
-      topRight="● live"
-      bottomLeft="2 delivered"
-      bottomRight="3 in queue"
+    <div
+      className="relative border border-blue-400/35 bg-blue-950/15 aspect-square overflow-hidden"
+      style={{ boxShadow: "inset 0 0 25px rgba(59,130,246,0.15)" }}
     >
-      <div className="absolute inset-0 pt-7 pb-7 px-3 flex flex-col justify-around font-mono text-[10px] sm:text-[11px]">
-        {missions.map((m) => (
-          <div key={m.id} className="flex items-center justify-between border-b border-blue-400/15 py-1">
-            <div className="flex items-center gap-2 min-w-0">
-              <span className="text-blue-300/55 tabular-nums shrink-0">{m.id}</span>
-              <span className="text-blue-100 tracking-wider truncate">{m.target}</span>
-            </div>
-            <span
-              className={`tracking-wider shrink-0 ml-2 ${
-                m.state === "DELIVERED"
-                  ? "text-emerald-300"
-                  : m.state === "OPEN"
-                    ? "text-amber-300"
-                    : "text-blue-300/55"
-              }`}
-            >
-              {m.state}
-            </span>
-          </div>
-        ))}
+      <div className="absolute top-2 left-3 right-3 flex justify-between text-[9px] sm:text-[10px] font-mono tracking-[0.2em] uppercase text-blue-300/75 z-10">
+        <span>task {num}</span>
+        <span className={locked ? "text-red-400" : "text-cyan-300"}>
+          {locked ? "● locked" : "● open"}
+        </span>
       </div>
-    </ScreenFrame>
+
+      {!locked && (
+        <div className="absolute inset-0 pt-9 pb-3 px-3 sm:px-4 flex flex-col">
+          <p
+            className="text-blue-100 font-mono text-xs sm:text-sm tracking-[0.2em] uppercase"
+            style={{
+              textShadow:
+                "0 0 10px rgba(96,165,250,0.7), 0 0 22px rgba(59,130,246,0.4)",
+            }}
+          >
+            {title}
+          </p>
+          <p className="text-blue-200/85 text-[11px] sm:text-xs leading-relaxed mt-3 font-mono">
+            {body}
+          </p>
+        </div>
+      )}
+
+      {locked && (
+        <svg
+          viewBox="0 0 100 100"
+          className="absolute inset-0 w-full h-full"
+          style={{
+            filter:
+              "drop-shadow(0 0 6px rgba(220,38,38,0.7)) drop-shadow(0 0 14px rgba(127,29,29,0.5))",
+          }}
+        >
+          <circle
+            cx="50"
+            cy="50"
+            r="34"
+            fill="none"
+            stroke="#dc2626"
+            strokeWidth="5"
+            opacity="0.9"
+          />
+          <line
+            x1="26"
+            y1="26"
+            x2="74"
+            y2="74"
+            stroke="#dc2626"
+            strokeWidth="5"
+            strokeLinecap="round"
+            opacity="0.9"
+          />
+        </svg>
+      )}
+    </div>
+  );
+}
+
+function TaskRow() {
+  return (
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+      <TaskTile
+        num="01"
+        title="recruit one"
+        body="one person. they point a parked domain at us, OR buy an $11 and park it on us. either gets them in."
+        locked={false}
+      />
+      <TaskTile num="02" locked={true} />
+      <TaskTile num="03" locked={true} />
+      <TaskTile num="04" locked={true} />
+    </div>
   );
 }
 
@@ -527,21 +577,21 @@ export function WarRoomShell() {
           </div>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
-          {unlocked ? (
-            <>
+        {unlocked ? (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
               <PanelOperatives />
-              <PanelMissions />
               <PanelNetwork />
-            </>
-          ) : (
-            <>
-              <ScreenRadar />
-              <ScreenContinental />
-              <ScreenInbound />
-            </>
-          )}
-        </div>
+            </div>
+            <TaskRow />
+          </>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
+            <ScreenRadar />
+            <ScreenContinental />
+            <ScreenInbound />
+          </div>
+        )}
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
           {unlocked ? (
