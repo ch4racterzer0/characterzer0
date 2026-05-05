@@ -16,12 +16,8 @@ export default function YourSphere() {
         </p>
 
         <p>
-          host it <span className="text-blue-100">here</span> and you live on a
-          free subdomain &mdash;{" "}
-          <span className="font-mono text-blue-200/90 tracking-wide">
-            you.characterzer0.com
-          </span>
-          . under our roof, fully connected.
+          host it <span className="text-blue-100">here</span> and we&rsquo;ll
+          take care of it &mdash; under our roof, fully connected.
         </p>
 
         <p>
@@ -32,6 +28,15 @@ export default function YourSphere() {
 
         <p className="italic text-blue-100/60">
           either way, the anspach is yours. say the word.
+        </p>
+
+        <p className="pt-2">
+          <a
+            href="/sample"
+            className="inline-block text-blue-200 hover:text-blue-100 underline underline-offset-4 tracking-[0.2em] uppercase text-sm"
+          >
+            see a sample anspach &rarr;
+          </a>
         </p>
       </div>
     </main>
