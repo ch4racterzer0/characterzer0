@@ -21,7 +21,10 @@ export default function Home() {
               To rush and never waste the day&rdquo;
             </span>
           </p>
-          <LinkTile label="The Creator" href="/creator" large />
+          <div className="flex flex-row items-center gap-3 sm:gap-6">
+            <LinkTile label="The Creator" href="/creator" large />
+            <LinkTile label="Mission" href="/mission" large />
+          </div>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-10 w-full max-w-md sm:w-auto sm:max-w-none">
