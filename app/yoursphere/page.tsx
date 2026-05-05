@@ -22,8 +22,9 @@ export default function YourSphere() {
         </p>
 
         <p>
-          there&rsquo;s no contacting us. you can drop a note in the hole, with
-          anything you want to say, and we will read it.
+          i don&rsquo;t accept emails. i&rsquo;m not going to find you on any
+          social. you can drop a note in the hole, with anything you want to
+          say, and i will check it.
         </p>
 
         <p>

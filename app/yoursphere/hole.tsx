@@ -57,7 +57,7 @@ export function TheHole() {
     return (
       <div className="space-y-3">
         <p className="italic text-blue-200/80 text-base border-l-2 border-blue-400/40 pl-4">
-          dropped. we&rsquo;ll read it.
+          dropped. i&rsquo;ll check it.
         </p>
         <button
           type="button"
