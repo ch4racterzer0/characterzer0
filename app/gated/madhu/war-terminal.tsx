@@ -35,6 +35,7 @@ export function WarTerminal() {
   const [charIdx, setCharIdx] = useState(0);
   const [done, setDone] = useState(false);
   const [cursorOn, setCursorOn] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
     if (done) return;
@@ -66,34 +67,59 @@ export function WarTerminal() {
   }, []);
 
   return (
-    <div className="font-mono text-blue-300 text-sm sm:text-base leading-relaxed whitespace-pre-wrap min-h-[16rem]">
-      {SCRIPT.slice(0, lineIdx).map((l, i) => {
-        const isPunch = i === PUNCHLINE_INDEX;
-        return (
-          <div
-            key={i}
-            className={isPunch ? PUNCHLINE_CLASS : ""}
-            style={isPunch ? PUNCHLINE_STYLE : undefined}
-          >
-            {l || " "}
-            {isPunch && done && (
-              <span
-                className={`ml-1 ${cursorOn ? "opacity-100" : "opacity-0"}`}
-              >
-                ▮
-              </span>
-            )}
-          </div>
-        );
-      })}
-
-      {!done && lineIdx <= PUNCHLINE_INDEX && (
-        <div
-          className={lineIdx === PUNCHLINE_INDEX ? PUNCHLINE_CLASS : ""}
-          style={lineIdx === PUNCHLINE_INDEX ? PUNCHLINE_STYLE : undefined}
+    <div className="relative">
+      {done && (
+        <button
+          type="button"
+          onClick={() => setCollapsed((c) => !c)}
+          aria-label={collapsed ? "expand terminal" : "collapse terminal"}
+          className="absolute -top-7 right-0 sm:-top-8 font-mono text-blue-300/60 hover:text-blue-100 text-[10px] sm:text-[11px] tracking-[0.25em] uppercase border border-blue-400/30 hover:border-blue-300/60 px-2 py-0.5 rounded transition-colors"
         >
-          {SCRIPT[lineIdx].slice(0, charIdx) || " "}
-          <span className={cursorOn ? "opacity-100" : "opacity-0"}>▮</span>
+          {collapsed ? "[ + expand ]" : "[ − collapse ]"}
+        </button>
+      )}
+
+      {collapsed ? (
+        <div
+          className={PUNCHLINE_CLASS + " min-h-[3rem]"}
+          style={PUNCHLINE_STYLE}
+        >
+          SHALL WE PLAY A GAME?
+          <span className={`ml-1 ${cursorOn ? "opacity-100" : "opacity-0"}`}>
+            ▮
+          </span>
+        </div>
+      ) : (
+        <div className="font-mono text-blue-300 text-sm sm:text-base leading-relaxed whitespace-pre-wrap min-h-[16rem]">
+          {SCRIPT.slice(0, lineIdx).map((l, i) => {
+            const isPunch = i === PUNCHLINE_INDEX;
+            return (
+              <div
+                key={i}
+                className={isPunch ? PUNCHLINE_CLASS : ""}
+                style={isPunch ? PUNCHLINE_STYLE : undefined}
+              >
+                {l || " "}
+                {isPunch && done && (
+                  <span
+                    className={`ml-1 ${cursorOn ? "opacity-100" : "opacity-0"}`}
+                  >
+                    ▮
+                  </span>
+                )}
+              </div>
+            );
+          })}
+
+          {!done && lineIdx <= PUNCHLINE_INDEX && (
+            <div
+              className={lineIdx === PUNCHLINE_INDEX ? PUNCHLINE_CLASS : ""}
+              style={lineIdx === PUNCHLINE_INDEX ? PUNCHLINE_STYLE : undefined}
+            >
+              {SCRIPT[lineIdx].slice(0, charIdx) || " "}
+              <span className={cursorOn ? "opacity-100" : "opacity-0"}>▮</span>
+            </div>
+          )}
         </div>
       )}
     </div>
