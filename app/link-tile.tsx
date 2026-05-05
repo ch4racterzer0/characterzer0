@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 export function LinkTile({
   label,
@@ -42,6 +43,9 @@ export function LinkTile({
     ? "0 0 45px rgba(59, 130, 246, 0.50), 0 0 90px rgba(59, 130, 246, 0.25), 0 18px 38px -10px rgba(59, 130, 246, 0.45), inset 0 1px 0 rgba(147, 197, 253, 0.40)"
     : "0 0 30px rgba(59, 130, 246, 0.40), 0 0 60px rgba(59, 130, 246, 0.18), 0 12px 28px -10px rgba(59, 130, 246, 0.40), inset 0 1px 0 rgba(147, 197, 253, 0.35)";
 
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   const locked = !!password && !unlocked;
 
   function handleSubmit(e: React.FormEvent) {
@@ -80,7 +84,7 @@ export function LinkTile({
         </span>
       </button>
 
-      {open && (
+      {open && mounted && createPortal(
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8"
           role="dialog"
@@ -153,7 +157,8 @@ export function LinkTile({
               />
             )}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

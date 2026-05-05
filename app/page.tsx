@@ -21,16 +21,16 @@ export default function Home() {
         <div
           className="flex flex-col items-center gap-4 sm:gap-10"
           style={{
-            transform: "rotateX(14deg)",
+            transform: "rotateX(7deg)",
             transformStyle: "preserve-3d",
           }}
         >
           <LyricRotator />
           <div className="flex flex-row items-center gap-3 sm:gap-6">
-            <div style={{ transform: "rotateY(10deg)" }}>
+            <div style={{ transform: "rotateY(5deg)" }}>
               <LinkTile label="Creators" href="/creator" large />
             </div>
-            <div style={{ transform: "rotateY(-10deg)" }}>
+            <div style={{ transform: "rotateY(-5deg)" }}>
               <LinkTile label="Mission" href="/mission" large />
             </div>
           </div>
@@ -40,20 +40,20 @@ export default function Home() {
         <div
           className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-10 w-full max-w-md sm:w-auto sm:max-w-none"
           style={{
-            transform: "rotateX(8deg)",
+            transform: "rotateX(4deg)",
             transformStyle: "preserve-3d",
           }}
         >
-          <div style={{ transform: "rotateY(18deg)" }}>
+          <div style={{ transform: "rotateY(9deg)" }}>
             <LinkTile label="Current Targets" href="/currenttarget" />
           </div>
-          <div style={{ transform: "rotateY(6deg)" }}>
+          <div style={{ transform: "rotateY(3deg)" }}>
             <LinkTile label="Current Assets" href="/currentassets" />
           </div>
-          <div style={{ transform: "rotateY(-6deg)" }}>
+          <div style={{ transform: "rotateY(-3deg)" }}>
             <LinkTile label="WIP" href="/wip" />
           </div>
-          <div style={{ transform: "rotateY(-18deg)" }}>
+          <div style={{ transform: "rotateY(-9deg)" }}>
             <LinkTile label="Your Own Anspach" href="/yoursphere" />
           </div>
         </div>
