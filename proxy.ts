@@ -8,6 +8,14 @@ export function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
+  const cz0Sub = host.match(/^([a-z0-9-]+)\.characterzer0\.com$/i);
+  if (cz0Sub && cz0Sub[1] !== "www") {
+    const sub = cz0Sub[1];
+    const url = request.nextUrl.clone();
+    url.pathname = `/${sub}${path === "/" ? "" : path}`;
+    return NextResponse.rewrite(url);
+  }
+
   const thedelosSub = host.match(/^([a-z0-9-]+)\.thedelos\.com$/i);
   if (thedelosSub && thedelosSub[1] !== "www") {
     const sub = thedelosSub[1];
