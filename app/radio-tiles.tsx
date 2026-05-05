@@ -112,13 +112,6 @@ export function FigureWithTilesDesktop() {
         priority
         sizes="(max-width: 640px) 50vw, 30vw"
         className="h-[28vh] w-auto"
-        style={{
-          WebkitMaskImage:
-            "radial-gradient(ellipse 62% 70% at 50% 48%, #000 45%, rgba(0,0,0,0.85) 62%, rgba(0,0,0,0.45) 80%, rgba(0,0,0,0) 100%)",
-          maskImage:
-            "radial-gradient(ellipse 62% 70% at 50% 48%, #000 45%, rgba(0,0,0,0.85) 62%, rgba(0,0,0,0.45) 80%, rgba(0,0,0,0) 100%)",
-          filter: "blur(0.4px) drop-shadow(0 0 28px rgba(59,130,246,0.18))",
-        }}
       />
       <div className="hidden sm:block">
         <RadioTile label="READY" />
