@@ -205,7 +205,9 @@ export default function Sample() {
         />
       </div>
 
-      <FigureWithTilesDesktop />
+      <div className="feathered-figure">
+        <FigureWithTilesDesktop />
+      </div>
 
       <a
         href="/yoursphere"
