@@ -14,11 +14,12 @@ export default function Home() {
           password="yiswmt"
           large
         />
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-10 mt-2 sm:mt-4">
-          <LinkTile label="Current Target" href="/currenttarget" />
-          <LinkTile label="Current Assets" href="/currentassets" />
-          <LinkTile label="WIP" href="/wip" />
-        </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-10">
+        <LinkTile label="Current Target" href="/currenttarget" />
+        <LinkTile label="Current Assets" href="/currentassets" />
+        <LinkTile label="WIP" href="/wip" />
       </div>
 
       <Image

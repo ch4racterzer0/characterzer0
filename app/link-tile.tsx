@@ -32,14 +32,14 @@ export function LinkTile({
   }, [open]);
 
   const padding = large
-    ? "px-8 sm:px-12 py-4 sm:py-6"
+    ? "px-6 sm:px-9 py-3 sm:py-4"
     : "px-5 sm:px-7 py-3 sm:py-4";
   const text = large
-    ? "text-base sm:text-xl md:text-2xl tracking-[0.3em] sm:tracking-[0.4em]"
+    ? "text-xs sm:text-sm md:text-base tracking-[0.3em] sm:tracking-[0.35em]"
     : "text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.3em]";
-  const halo = large ? "-inset-12 bg-blue-500/20" : "-inset-6 bg-blue-500/15";
+  const halo = large ? "-inset-10 bg-blue-500/18" : "-inset-6 bg-blue-500/15";
   const shadow = large
-    ? "0 0 60px rgba(59, 130, 246, 0.55), 0 0 120px rgba(59, 130, 246, 0.30), 0 25px 50px -10px rgba(59, 130, 246, 0.50), inset 0 1px 0 rgba(147, 197, 253, 0.45)"
+    ? "0 0 45px rgba(59, 130, 246, 0.50), 0 0 90px rgba(59, 130, 246, 0.25), 0 18px 38px -10px rgba(59, 130, 246, 0.45), inset 0 1px 0 rgba(147, 197, 253, 0.40)"
     : "0 0 30px rgba(59, 130, 246, 0.40), 0 0 60px rgba(59, 130, 246, 0.18), 0 12px 28px -10px rgba(59, 130, 246, 0.40), inset 0 1px 0 rgba(147, 197, 253, 0.35)";
 
   const locked = !!password && !unlocked;
