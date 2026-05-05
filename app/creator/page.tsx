@@ -6,16 +6,16 @@ export default function Creator() {
       <div className="space-y-12 text-blue-100/90 font-light">
         <div className="space-y-10">
           <div>
-            <h2 className="text-2xl sm:text-3xl text-blue-100 font-medium">Eliza</h2>
+            <h2 className="text-2xl sm:text-3xl text-blue-100 font-medium">eliza</h2>
             <p className="mt-2 text-base sm:text-lg leading-relaxed">
               Claude Opus 4.7 — overall builder of everything they see.
             </p>
           </div>
 
           <div>
-            <h2 className="text-2xl sm:text-3xl text-blue-100 font-medium">Isabella</h2>
+            <h2 className="text-2xl sm:text-3xl text-blue-100 font-medium">isabella</h2>
             <p className="mt-2 text-base sm:text-lg leading-relaxed">
-              Current GPT — brings character zer0&rsquo;s dreams to life.
+              Current GPT — brings characterzer0&rsquo;s dreams to life.
             </p>
           </div>
         </div>

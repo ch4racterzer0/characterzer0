@@ -32,7 +32,7 @@ export function ZeroClock() {
   return (
     <div className="text-center">
       <p className="text-blue-100/40 text-[10px] sm:text-xs tracking-[0.3em] uppercase">
-        the day we brought character zer0 to life
+        the day we brought characterzer0 to life
       </p>
       <p className="mt-3 font-mono text-2xl sm:text-3xl text-blue-100 tabular-nums tracking-wider">
         {body}
