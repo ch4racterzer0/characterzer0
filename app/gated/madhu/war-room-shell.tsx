@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { LiveCounter } from "./live-counter";
 import { WarClock } from "./war-clock";
 
@@ -13,16 +14,19 @@ const SINCE = "2026-05-05T00:00:00Z";
 function NavButton({
   label,
   warn = false,
+  onClick,
 }: {
   label: string;
   warn?: boolean;
+  onClick?: () => void;
 }) {
   const tone = warn ? "text-red-300/80 hover:text-red-200" : "text-blue-300/70 hover:text-blue-100";
   const border = warn ? "border-red-400/30 hover:border-red-300/60" : "border-blue-400/30 hover:border-blue-300/60";
   return (
     <button
       type="button"
-      className={`font-mono text-[9px] sm:text-[10px] tracking-[0.25em] uppercase border ${border} ${tone} px-2.5 py-1 rounded-sm transition-colors`}
+      onClick={onClick}
+      className={`font-mono text-[9px] sm:text-[10px] tracking-[0.25em] uppercase border ${border} ${tone} px-2.5 py-1 rounded-sm transition-colors cursor-pointer`}
     >
       {label}
     </button>
@@ -77,11 +81,24 @@ function MemberTile({
 
 export function WarRoomShell() {
   const [cursorOn, setCursorOn] = useState(true);
+  const [terrapinLocked, setTerrapinLocked] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     const id = setInterval(() => setCursorOn((c) => !c), 530);
     return () => clearInterval(id);
   }, []);
+
+  useEffect(() => {
+    if (!terrapinLocked) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setTerrapinLocked(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [terrapinLocked]);
 
   return (
     <main className="relative min-h-screen bg-black text-blue-100 font-mono overflow-hidden">
@@ -104,8 +121,14 @@ export function WarRoomShell() {
             </span>
           </div>
           <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap justify-end">
-            <NavButton label="▶ source" />
-            <NavButton label="reality" />
+            <NavButton
+              label="▶ dripfield"
+              onClick={() => setTerrapinLocked(true)}
+            />
+            <NavButton
+              label="hungersite"
+              onClick={() => setTerrapinLocked(true)}
+            />
             <NavButton label="logout" />
             <NavButton label="⚠ destruct" warn />
             <NavButton label="untether" warn />
@@ -132,12 +155,13 @@ export function WarRoomShell() {
             <span className="text-blue-300/65 tracking-[0.2em] uppercase">
               // podcast 01 is being assembled in the studio
             </span>
-            <a
-              href="#"
-              className="text-cyan-300 hover:text-cyan-200 tracking-[0.2em] uppercase border-b border-cyan-400/30"
+            <button
+              type="button"
+              onClick={() => setTerrapinLocked(true)}
+              className="text-cyan-300 hover:text-cyan-200 tracking-[0.2em] uppercase border-b border-cyan-400/30 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/40"
             >
               terrapin ↗
-            </a>
+            </button>
           </div>
           <div className="flex items-center justify-between border border-blue-400/20 bg-blue-950/5 px-3 py-2 text-[10px] sm:text-xs">
             <span className="text-blue-300/45 tracking-[0.2em] uppercase">
@@ -240,6 +264,58 @@ export function WarRoomShell() {
           madhu &middot; podcast control &middot; the only winning move
         </footer>
       </div>
+
+      {terrapinLocked &&
+        mounted &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[80] flex items-center justify-center p-4 sm:p-8 font-mono"
+            role="dialog"
+            aria-modal="true"
+            aria-label="locked"
+          >
+            <button
+              type="button"
+              tabIndex={-1}
+              aria-label="close"
+              className="absolute inset-0 bg-black/85 backdrop-blur-sm cursor-default"
+              onClick={() => setTerrapinLocked(false)}
+            />
+            <div
+              className="relative w-full max-w-lg border border-red-500/50 bg-black px-6 py-8 sm:px-10 sm:py-12 text-center"
+              style={{
+                boxShadow:
+                  "0 0 50px rgba(239,68,68,0.45), 0 0 110px rgba(127,29,29,0.4), inset 0 1px 0 rgba(254,202,202,0.2)",
+              }}
+            >
+              <button
+                type="button"
+                onClick={() => setTerrapinLocked(false)}
+                aria-label="close"
+                className="absolute top-2 right-2 sm:top-3 sm:right-3 w-8 h-8 rounded-full border border-red-400/40 text-red-200 text-base leading-none flex items-center justify-center hover:bg-red-900/40 hover:border-red-300/60 transition-colors"
+              >
+                ×
+              </button>
+
+              <p className="text-red-300/70 text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-4">
+                ⚠ access denied
+              </p>
+              <p
+                className="text-red-300 text-lg sm:text-2xl tracking-[0.2em] uppercase font-bold"
+                style={{
+                  textShadow:
+                    "0 0 14px rgba(239,68,68,0.85), 0 0 32px rgba(239,68,68,0.55)",
+                }}
+              >
+                you haven&rsquo;t earned this yet
+              </p>
+              <p className="text-red-200/50 italic text-[10px] sm:text-xs tracking-[0.2em] uppercase mt-5">
+                door opens with the work
+              </p>
+            </div>
+          </div>,
+          document.body
+        )}
     </main>
   );
 }
