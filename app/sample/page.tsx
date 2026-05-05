@@ -148,13 +148,25 @@ export default function Sample() {
   return (
     <RadioProvider>
     <main
-      className="relative min-h-screen bg-black bg-cover bg-center bg-no-repeat flex flex-col items-center justify-between gap-4 sm:gap-0 py-4 sm:py-10 px-4"
+      className="relative min-h-screen bg-black flex flex-col items-center justify-between gap-4 sm:gap-0 py-4 sm:py-10 px-4 overflow-hidden"
       style={{
         filter: "hue-rotate(-22deg) brightness(0.85) saturate(1.1)",
-        backgroundImage:
-          "linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.78)), url('/peter-stage.jpg')",
       }}
     >
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.78)), url('/peter-stage.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          transform:
+            "perspective(1100px) rotateX(7deg) scale(1.12)",
+          transformOrigin: "50% 50%",
+        }}
+      />
+
       <RadioTilesMobileTop />
 
       <div className="flex flex-col items-center gap-4 sm:gap-10">
