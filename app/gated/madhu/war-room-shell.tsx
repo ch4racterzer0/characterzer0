@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { LiveCounter } from "./live-counter";
+import { PodcastCoversModal } from "./podcast-covers";
+import { TicTacToeBoard } from "./tic-tac-toe";
 import { WarClock } from "./war-clock";
 
 const GLOW = "0 0 6px rgba(96,165,250,0.6), 0 0 14px rgba(59,130,246,0.35)";
@@ -79,9 +81,15 @@ function MemberTile({
   );
 }
 
+type TttState = "idle" | "playing" | "won" | "lost";
+
 export function WarRoomShell() {
   const [cursorOn, setCursorOn] = useState(true);
-  const [terrapinLocked, setTerrapinLocked] = useState(false);
+  const [locked, setLocked] = useState(false);
+  const [podcastsOpen, setPodcastsOpen] = useState(false);
+  const [defconOpen, setDefconOpen] = useState(false);
+  const [tttState, setTttState] = useState<TttState>("idle");
+  const [inputBuffer, setInputBuffer] = useState("");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
@@ -92,13 +100,60 @@ export function WarRoomShell() {
   }, []);
 
   useEffect(() => {
-    if (!terrapinLocked) return;
+    if (!locked) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setTerrapinLocked(false);
+      if (e.key === "Escape") setLocked(false);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [terrapinLocked]);
+  }, [locked]);
+
+  useEffect(() => {
+    if (!defconOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setDefconOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [defconOpen]);
+
+  useEffect(() => {
+    if (
+      podcastsOpen ||
+      defconOpen ||
+      locked ||
+      tttState === "playing" ||
+      tttState === "won" ||
+      tttState === "lost"
+    )
+      return;
+    const onKey = (e: KeyboardEvent) => {
+      const isTextInput =
+        e.target instanceof HTMLInputElement ||
+        e.target instanceof HTMLTextAreaElement;
+      if (isTextInput) return;
+      if (e.key === "Enter") {
+        if (inputBuffer.trim().toLowerCase() === "yes") {
+          setTttState("playing");
+        }
+        setInputBuffer("");
+      } else if (e.key === "Backspace") {
+        setInputBuffer((b) => b.slice(0, -1));
+      } else if (e.key.length === 1 && /[a-zA-Z0-9 ]/.test(e.key)) {
+        setInputBuffer((b) => (b + e.key).slice(0, 24));
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [inputBuffer, podcastsOpen, defconOpen, locked, tttState]);
+
+  function handleTtt(idx: number) {
+    if (idx === 4) {
+      setTttState("won");
+    } else {
+      setTttState("lost");
+    }
+  }
 
   return (
     <main className="relative min-h-screen bg-black text-blue-100 font-mono overflow-hidden">
@@ -121,14 +176,8 @@ export function WarRoomShell() {
             </span>
           </div>
           <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap justify-end">
-            <NavButton
-              label="▶ dripfield"
-              onClick={() => setTerrapinLocked(true)}
-            />
-            <NavButton
-              label="hungersite"
-              onClick={() => setTerrapinLocked(true)}
-            />
+            <NavButton label="▶ dripfield" onClick={() => setLocked(true)} />
+            <NavButton label="hungersite" onClick={() => setLocked(true)} />
             <NavButton label="logout" />
             <NavButton label="⚠ destruct" warn />
             <NavButton label="untether" warn />
@@ -146,6 +195,23 @@ export function WarRoomShell() {
             <span className="text-blue-300/55">
               status <span className="text-emerald-300">online</span>
             </span>
+            <button
+              type="button"
+              onClick={() => setDefconOpen(true)}
+              aria-label="defcon levels"
+              className="text-blue-300/55 hover:text-blue-100 transition-colors cursor-pointer"
+            >
+              defcon{" "}
+              <span
+                className="text-amber-300 font-bold"
+                style={{
+                  textShadow:
+                    "0 0 10px rgba(251,191,36,0.7), 0 0 22px rgba(251,191,36,0.35)",
+                }}
+              >
+                3
+              </span>
+            </button>
             <WarClock />
           </div>
         </div>
@@ -157,7 +223,7 @@ export function WarRoomShell() {
             </span>
             <button
               type="button"
-              onClick={() => setTerrapinLocked(true)}
+              onClick={() => setPodcastsOpen(true)}
               className="text-cyan-300 hover:text-cyan-200 tracking-[0.2em] uppercase border-b border-cyan-400/30 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/40"
             >
               terrapin ↗
@@ -185,6 +251,11 @@ export function WarRoomShell() {
             style={{ textShadow: PUNCH_SHADOW }}
           >
             SHALL WE PLAY A GAME?
+            {inputBuffer && (
+              <span className="ml-3 text-cyan-200 text-base sm:text-2xl md:text-3xl">
+                {inputBuffer}
+              </span>
+            )}
             <span
               className={`inline-block ml-2 ${cursorOn ? "opacity-100" : "opacity-0"}`}
             >
@@ -265,7 +336,7 @@ export function WarRoomShell() {
         </footer>
       </div>
 
-      {terrapinLocked &&
+      {locked &&
         mounted &&
         createPortal(
           <div
@@ -279,7 +350,7 @@ export function WarRoomShell() {
               tabIndex={-1}
               aria-label="close"
               className="absolute inset-0 bg-black/85 backdrop-blur-sm cursor-default"
-              onClick={() => setTerrapinLocked(false)}
+              onClick={() => setLocked(false)}
             />
             <div
               className="relative w-full max-w-lg border border-red-500/50 bg-black px-6 py-8 sm:px-10 sm:py-12 text-center"
@@ -290,7 +361,7 @@ export function WarRoomShell() {
             >
               <button
                 type="button"
-                onClick={() => setTerrapinLocked(false)}
+                onClick={() => setLocked(false)}
                 aria-label="close"
                 className="absolute top-2 right-2 sm:top-3 sm:right-3 w-8 h-8 rounded-full border border-red-400/40 text-red-200 text-base leading-none flex items-center justify-center hover:bg-red-900/40 hover:border-red-300/60 transition-colors"
               >
@@ -312,6 +383,216 @@ export function WarRoomShell() {
               <p className="text-red-200/50 italic text-[10px] sm:text-xs tracking-[0.2em] uppercase mt-5">
                 door opens with the work
               </p>
+            </div>
+          </div>,
+          document.body
+        )}
+
+      {podcastsOpen && (
+        <PodcastCoversModal onClose={() => setPodcastsOpen(false)} />
+      )}
+
+      {defconOpen &&
+        mounted &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[80] flex items-center justify-center p-4 sm:p-8 font-mono"
+            role="dialog"
+            aria-modal="true"
+            aria-label="defcon levels"
+          >
+            <button
+              type="button"
+              tabIndex={-1}
+              aria-label="close"
+              className="absolute inset-0 bg-black/85 backdrop-blur-sm cursor-default"
+              onClick={() => setDefconOpen(false)}
+            />
+            <div
+              className="relative w-full max-w-2xl border border-blue-400/45 bg-black"
+              style={{
+                boxShadow:
+                  "0 0 50px rgba(59,130,246,0.4), 0 0 110px rgba(59,130,246,0.22)",
+              }}
+            >
+              <header className="flex items-center justify-between border-b border-blue-400/30 px-4 py-3 sm:px-6">
+                <span
+                  className="text-blue-100 text-[10px] sm:text-xs tracking-[0.3em] uppercase"
+                  style={{ textShadow: GLOW }}
+                >
+                  // defense readiness condition
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setDefconOpen(false)}
+                  aria-label="close"
+                  className="w-8 h-8 rounded-full border border-blue-400/40 text-blue-100 text-base leading-none flex items-center justify-center hover:bg-blue-900/50"
+                >
+                  ×
+                </button>
+              </header>
+              <div className="p-5 sm:p-7 space-y-3">
+                {[
+                  {
+                    n: 5,
+                    name: "fade out",
+                    desc: "peacetime. normal readiness.",
+                    color: "text-emerald-300",
+                    shadow:
+                      "0 0 10px rgba(52,211,153,0.7), 0 0 22px rgba(52,211,153,0.35)",
+                  },
+                  {
+                    n: 4,
+                    name: "double take",
+                    desc: "above normal readiness. intelligence watch increased.",
+                    color: "text-cyan-300",
+                    shadow:
+                      "0 0 10px rgba(103,232,249,0.7), 0 0 22px rgba(103,232,249,0.35)",
+                  },
+                  {
+                    n: 3,
+                    name: "round house",
+                    desc: "increased force readiness above normal. air force ready in 15 minutes. ← currently here.",
+                    color: "text-amber-300",
+                    shadow:
+                      "0 0 10px rgba(251,191,36,0.7), 0 0 22px rgba(251,191,36,0.35)",
+                  },
+                  {
+                    n: 2,
+                    name: "fast pace",
+                    desc: "next step to nuclear war. armed forces ready to deploy in 6 hours.",
+                    color: "text-orange-400",
+                    shadow:
+                      "0 0 10px rgba(251,146,60,0.75), 0 0 22px rgba(251,146,60,0.4)",
+                  },
+                  {
+                    n: 1,
+                    name: "cocked pistol",
+                    desc: "nuclear war is imminent or has begun.",
+                    color: "text-red-400",
+                    shadow:
+                      "0 0 12px rgba(239,68,68,0.85), 0 0 28px rgba(239,68,68,0.5)",
+                  },
+                ].map((d) => (
+                  <div
+                    key={d.n}
+                    className={`border ${d.n === 3 ? "border-amber-400/50 bg-amber-950/15" : "border-blue-400/20 bg-blue-950/10"} px-4 py-3 flex items-start gap-4`}
+                  >
+                    <span
+                      className={`${d.color} font-bold text-2xl sm:text-3xl tabular-nums leading-none w-10 shrink-0`}
+                      style={{ textShadow: d.shadow }}
+                    >
+                      {d.n}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <p
+                        className={`${d.color} text-xs sm:text-sm tracking-[0.25em] uppercase`}
+                        style={{ textShadow: d.shadow }}
+                      >
+                        defcon {d.n} &middot; {d.name}
+                      </p>
+                      <p className="text-blue-200/80 text-[11px] sm:text-sm leading-relaxed mt-1">
+                        {d.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>,
+          document.body
+        )}
+
+      {(tttState === "playing" || tttState === "won" || tttState === "lost") &&
+        mounted &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[80] flex items-center justify-center p-4 sm:p-8 font-mono"
+            role="dialog"
+            aria-modal="true"
+            aria-label="tic tac toe"
+          >
+            <button
+              type="button"
+              tabIndex={-1}
+              aria-label="close"
+              className="absolute inset-0 bg-black/90 backdrop-blur-sm cursor-default"
+              onClick={() => setTttState("idle")}
+            />
+            <div
+              className={`relative w-full max-w-lg border ${tttState === "lost" ? "border-red-500/50" : tttState === "won" ? "border-emerald-400/50" : "border-blue-400/45"} bg-black px-5 py-6 sm:px-8 sm:py-8`}
+              style={{
+                boxShadow:
+                  tttState === "lost"
+                    ? "0 0 50px rgba(239,68,68,0.45), 0 0 110px rgba(127,29,29,0.4)"
+                    : tttState === "won"
+                      ? "0 0 50px rgba(52,211,153,0.45), 0 0 110px rgba(6,95,70,0.4)"
+                      : "0 0 50px rgba(59,130,246,0.45), 0 0 110px rgba(59,130,246,0.25)",
+              }}
+            >
+              <button
+                type="button"
+                onClick={() => setTttState("idle")}
+                aria-label="close"
+                className="absolute top-2 right-2 sm:top-3 sm:right-3 w-8 h-8 rounded-full border border-blue-400/40 text-blue-100 text-lg leading-none flex items-center justify-center hover:bg-blue-900/50"
+              >
+                ×
+              </button>
+
+              {tttState === "playing" && (
+                <div className="space-y-5">
+                  <p
+                    className="text-blue-100 text-base sm:text-lg md:text-xl tracking-wider text-center"
+                    style={{ textShadow: PUNCH_SHADOW }}
+                  >
+                    HOW ABOUT A GAME OF TIC TAC TOE?
+                  </p>
+                  <TicTacToeBoard onFirstClick={handleTtt} />
+                  <p className="text-blue-300/40 italic text-xs tracking-[0.2em] uppercase text-center">
+                    you go first
+                  </p>
+                </div>
+              )}
+
+              {tttState === "won" && (
+                <div className="text-center space-y-4 py-3">
+                  <p
+                    className="text-emerald-300 text-xl sm:text-2xl tracking-[0.2em] uppercase font-bold"
+                    style={{
+                      textShadow:
+                        "0 0 14px rgba(52,211,153,0.85), 0 0 32px rgba(52,211,153,0.55)",
+                    }}
+                  >
+                    a strange game.
+                  </p>
+                  <p className="text-blue-200/85 text-sm sm:text-base italic">
+                    the only winning move is not to play.
+                  </p>
+                  <p className="text-blue-300/55 text-[10px] sm:text-xs tracking-[0.25em] uppercase pt-2">
+                    you found the move
+                  </p>
+                </div>
+              )}
+
+              {tttState === "lost" && (
+                <div className="text-center space-y-3 py-3">
+                  <p className="text-red-300/70 text-[10px] sm:text-xs tracking-[0.3em] uppercase">
+                    ⚠ access denied
+                  </p>
+                  <p
+                    className="text-red-300 text-lg sm:text-2xl tracking-[0.2em] uppercase font-bold"
+                    style={{
+                      textShadow:
+                        "0 0 14px rgba(239,68,68,0.85), 0 0 32px rgba(239,68,68,0.55)",
+                    }}
+                  >
+                    wrong opening move
+                  </p>
+                  <p className="text-red-200/50 italic text-[10px] sm:text-xs tracking-[0.2em] uppercase mt-3">
+                    a strange game. learn its lesson.
+                  </p>
+                </div>
+              )}
             </div>
           </div>,
           document.body
