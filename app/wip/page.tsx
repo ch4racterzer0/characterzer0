@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function WIP() {
   return (
     <main className="min-h-screen bg-black text-blue-100 px-6 py-10 sm:px-10 sm:py-14">
@@ -6,9 +8,13 @@ export default function WIP() {
           next asshole getting an open letter
         </h1>
 
-        <p className="italic text-blue-100/60 text-center tracking-[0.3em] uppercase text-sm">
-          tbd
-        </p>
+        <Image
+          src="/wip/open-letter-excerpt.png"
+          alt="excerpt: character zer0 could not read it"
+          width={764}
+          height={157}
+          className="rounded-lg border border-blue-400/20 w-full h-auto"
+        />
       </article>
     </main>
   );
