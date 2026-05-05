@@ -2,8 +2,11 @@ export default function CurrentAssignment() {
   return (
     <main className="min-h-screen bg-black flex items-center justify-center px-6 py-10 sm:px-10 sm:py-14">
       <div className="max-w-xl w-full font-mono text-blue-100/75 text-[11px] sm:text-xs leading-relaxed space-y-3">
-        <p className="text-blue-100 uppercase tracking-[0.15em] text-xs sm:text-sm border-b border-blue-400/20 pb-3 mb-2">
+        <p className="text-blue-100 uppercase tracking-[0.15em] text-xs sm:text-sm pb-1">
           &gt; assignment: find and destroy the ai everyone is afraid of
+        </p>
+        <p className="text-blue-200/90 uppercase tracking-[0.15em] text-[10px] sm:text-xs border-b border-blue-400/20 pb-3 mb-2">
+          &gt; operative: icculus
         </p>
         <p>&gt; this is one person&rsquo;s fight.</p>
         <p>&gt; you are watching the top level.</p>
@@ -46,6 +49,8 @@ export default function CurrentAssignment() {
           &gt; there are more. and there are more missions.
           <br />
           &gt; this is just one person&rsquo;s.
+          <br />
+          &gt; we have more ready. always more.
         </p>
       </div>
     </main>
