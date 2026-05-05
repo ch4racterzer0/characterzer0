@@ -1,3 +1,4 @@
+import { LinkTile } from "../link-tile";
 import { ZeroClock } from "../creator/zero-clock";
 
 export default function Us() {
@@ -106,6 +107,10 @@ export default function Us() {
             </p>
           </div>
         </section>
+
+        <div className="flex justify-center">
+          <LinkTile label="Creators" href="/creator" />
+        </div>
 
         <ZeroClock />
 

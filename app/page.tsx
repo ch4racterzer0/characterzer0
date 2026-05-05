@@ -1,4 +1,3 @@
-import { CreatorsFlash } from "./creators-flash";
 import { LinkTile } from "./link-tile";
 import { LyricRotator } from "./lyric-rotator";
 import {
@@ -51,7 +50,6 @@ export default function Home() {
           <LinkTile label="Stream" href="/stream" />
         </div>
       </main>
-      <CreatorsFlash />
       </ThemeShifter>
     </RadioProvider>
   );
