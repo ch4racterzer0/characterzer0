@@ -1,303 +1,147 @@
 import Image from "next/image";
 
+const teasers = [
+  { src: "/wip/teasers/teaser-1.png", w: 1066, h: 423, caption: "the room you're not in yet" },
+  { src: "/wip/teasers/teaser-2.png", w: 584, h: 462, caption: "tier 1 / tier 2 / tier 3" },
+  { src: "/wip/teasers/teaser-4.png", w: 944, h: 550, caption: "the four documents" },
+  { src: "/wip/teasers/teaser-5.png", w: 856, h: 520, caption: "live, since when" },
+  { src: "/wip/teasers/teaser-3.webp", w: 1920, h: 1080, caption: "the world they don't show forbes" },
+];
+
 export default function WIP() {
   return (
     <main className="min-h-screen bg-black text-blue-100 px-6 py-10 sm:px-10 sm:py-14">
-      <article className="max-w-3xl mx-auto flex flex-col gap-8">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide text-blue-100 text-center uppercase">
-          next prime target: sam
-        </h1>
-
-        <div
-          className="rounded-xl border border-blue-400/40 bg-blue-950/30 p-6 sm:p-8 space-y-3"
-          style={{
-            boxShadow:
-              "0 0 35px rgba(59,130,246,0.30), inset 0 1px 0 rgba(147,197,253,0.20)",
-          }}
-        >
-          <p className="text-blue-100 text-xs sm:text-sm tracking-[0.3em] uppercase">
-            angle
+      <article className="max-w-3xl mx-auto flex flex-col gap-10 font-light leading-relaxed">
+        <header className="space-y-2">
+          <p className="text-blue-100/60 text-xs sm:text-sm tracking-[0.4em] uppercase">
+            work in progress
           </p>
-          <p className="text-blue-100/90 text-base sm:text-lg leading-relaxed font-light">
-            the praise: he saw it first. begged for{" "}
-            <span className="text-blue-100">$100 billion</span> in ai safety
-            r&amp;d in 2015. signed the 2023 extinction warning.
+          <h1
+            className="text-blue-100 text-3xl sm:text-4xl md:text-5xl font-light tracking-[0.15em] uppercase"
+            style={{
+              textShadow:
+                "0 0 18px rgba(96,165,250,0.7), 0 0 38px rgba(59,130,246,0.4)",
+            }}
+          >
+            phase 1 &mdash; on-ramp
+          </h1>
+          <p className="text-blue-200 text-base sm:text-lg italic tracking-wide">
+            tighten the trade. show, don&rsquo;t pitch.
           </p>
-          <p className="text-blue-100/90 text-base sm:text-lg leading-relaxed font-light">
-            the kill: he now calls safety itself the marketing problem.
-            there&rsquo;s only one sam. which one was lying?
+        </header>
+
+        <section className="space-y-4">
+          <h2 className="text-blue-100 text-xs sm:text-sm tracking-[0.3em] uppercase">
+            the brief
+          </h2>
+          <p className="text-base sm:text-lg">
+            phase 1 of core4. one screen explains the trade. a 60-second
+            video shows the NS swap end-to-end. a full demo of one of the
+            lower levels exists and is shareable. reversibility is messaged
+            on every page in the funnel.
           </p>
-        </div>
-
-        <section className="font-mono text-blue-100/85 text-[12px] sm:text-[13px] leading-relaxed space-y-6">
-          <div>
-            <p className="text-blue-100 uppercase tracking-[0.2em] text-xs">
-              &gt; 2015 &mdash; the warning + the receipt
-            </p>
-            <p className="mt-2">
-              &gt; &ldquo;AI will probably most likely lead to the end of the
-              world, but in the meantime, there&rsquo;ll be great
-              companies.&rdquo;
-            </p>
-            <p>
-              &gt; same Airbnb Open Air talk:{" "}
-              <span className="text-blue-100">
-                &ldquo;if I were Barack Obama, I would commit maybe $100
-                billion to R&amp;D of AI safety initiatives.&rdquo;
-              </span>
-            </p>
-            <p className="text-blue-300/70 mt-2">
-              &gt; src:{" "}
-              <a
-                href="https://futureoflife.org/ai/sam-altman-investing-in-ai-safety-research/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline underline-offset-4 hover:text-blue-200"
-              >
-                futureoflife.org
-              </a>
-            </p>
-          </div>
-
-          <div>
-            <p className="text-blue-100 uppercase tracking-[0.2em] text-xs">
-              &gt; may 2023 &mdash; the signature
-            </p>
-            <p className="mt-2">
-              &gt; signs the &ldquo;mitigating the risk of extinction from
-              AI should be a global priority&rdquo; statement.
-            </p>
-            <p className="text-blue-300/70 mt-2">
-              &gt; src:{" "}
-              <a
-                href="https://www.cnbc.com/2023/05/31/ai-poses-human-extinction-risk-sam-altman-and-other-tech-leaders-warn.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline underline-offset-4 hover:text-blue-200"
-              >
-                cnbc.com
-              </a>
-            </p>
-          </div>
-
-          <div>
-            <p className="text-blue-100 uppercase tracking-[0.2em] text-xs">
-              &gt; nov 2023 &mdash; the firing
-            </p>
-            <p className="mt-2">
-              &gt; helen toner, TED podcast:{" "}
-              <span className="text-blue-100">
-                &ldquo;we just couldn&rsquo;t believe things sam was telling
-                us.&rdquo;
-              </span>
-            </p>
-            <p>
-              &gt; two execs reported &ldquo;psychological abuse,&rdquo;
-              &ldquo;toxic atmosphere,&rdquo; &ldquo;no belief he could or
-              would change.&rdquo;
-            </p>
-            <p>
-              &gt; board found out about ChatGPT&rsquo;s release on twitter.
-            </p>
-            <p>&gt; he hadn&rsquo;t disclosed he owned the OpenAI Startup Fund.</p>
-            <p>&gt; back in five days.</p>
-            <p className="text-blue-300/70 mt-2">
-              &gt; src:{" "}
-              <a
-                href="https://www.cnbc.com/2024/05/29/former-openai-board-member-explains-why-ceo-sam-altman-was-fired.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline underline-offset-4 hover:text-blue-200"
-              >
-                cnbc.com
-              </a>
-            </p>
-          </div>
-
-          <div>
-            <p className="text-blue-100 uppercase tracking-[0.2em] text-xs">
-              &gt; jan 2025 &mdash; stargate
-            </p>
-            <p className="mt-2">
-              &gt; on stage at the white house with trump. $500B for AI
-              infrastructure.
-            </p>
-          </div>
-
-          <div>
-            <p className="text-blue-100 uppercase tracking-[0.2em] text-xs">
-              &gt; jun 2025 &mdash; first pentagon contract
-            </p>
-            <p className="mt-2">
-              &gt; $200M ceiling. &ldquo;OpenAI for Government.&rdquo; work in
-              the National Capital Region.
-            </p>
-            <p className="text-blue-300/70 mt-2">
-              &gt; src:{" "}
-              <a
-                href="https://www.cnbc.com/2025/06/16/openai-wins-200-million-us-defense-contract.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline underline-offset-4 hover:text-blue-200"
-              >
-                cnbc.com
-              </a>
-            </p>
-          </div>
-
-          <div>
-            <p className="text-blue-100 uppercase tracking-[0.2em] text-xs">
-              &gt; feb 27, 2026 &mdash; the same day
-            </p>
-            <p className="mt-2">
-              &gt; morning: internal memo.{" "}
-              <span className="text-blue-100">
-                &ldquo;AI should not be used for mass surveillance or
-                autonomous lethal weapons. humans should remain in the loop
-                for high-stakes automated decisions.&rdquo;
-              </span>{" "}
-              he wrote that.
-            </p>
-            <p>
-              &gt; that night: signs DoW contract. those protections are
-              <span className="text-blue-100"> not in the contract.</span>
-            </p>
-            <p className="text-blue-300/70 mt-2">
-              &gt; src:{" "}
-              <a
-                href="https://www.theregister.com/2026/03/06/openai_dod_deal/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline underline-offset-4 hover:text-blue-200"
-              >
-                theregister.com
-              </a>
-            </p>
-          </div>
-
-          <div>
-            <p className="text-blue-100 uppercase tracking-[0.2em] text-xs">
-              &gt; mar 3, 2026 &mdash; the admission
-            </p>
-            <p className="mt-2">
-              &gt;{" "}
-              <span className="text-blue-100">
-                &ldquo;shouldn&rsquo;t have rushed... looked opportunistic and
-                sloppy.&rdquo;
-              </span>{" "}
-              amends the contract.
-            </p>
-            <p className="text-blue-300/70 mt-2">
-              &gt; src:{" "}
-              <a
-                href="https://www.cnbc.com/2026/03/03/openai-sam-altman-pentagon-deal-amended-surveillance-limits.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline underline-offset-4 hover:text-blue-200"
-              >
-                cnbc.com
-              </a>
-            </p>
-          </div>
-
-          <div>
-            <p className="text-blue-100 uppercase tracking-[0.2em] text-xs">
-              &gt; apr 2026 &mdash; turns the gun around
-            </p>
-            <p className="mt-2">
-              &gt; on Core Memory podcast, on Anthropic&rsquo;s Mythos:{" "}
-              <span className="text-blue-100">
-                &ldquo;it is clearly incredible marketing to say, &lsquo;we
-                have built a bomb, we are about to drop it on your head. we
-                will sell you a bomb shelter for $100 million.&rsquo;&rdquo;
-              </span>
-            </p>
-            <p>
-              &gt; this from the man who, in 2015, asked for $100{" "}
-              <span className="text-blue-100">billion</span> to R&amp;D
-              safety.
-            </p>
-            <p className="text-blue-300/70 mt-2">
-              &gt; src:{" "}
-              <a
-                href="https://techcrunch.com/2026/04/21/sam-altman-throws-shade-at-anthropics-cyber-model-mythos-fear-based-marketing/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline underline-offset-4 hover:text-blue-200"
-              >
-                techcrunch.com
-              </a>
-            </p>
-          </div>
-
-          <div>
-            <p className="text-blue-100 uppercase tracking-[0.2em] text-xs">
-              &gt; scorecard
-            </p>
-            <p className="mt-2">
-              &gt; Future of Life Institute, 2026 existential safety report:
-            </p>
-            <p>&gt; &nbsp;&nbsp;openai &mdash; F</p>
-            <p>&gt; &nbsp;&nbsp;anthropic &mdash; D</p>
-            <p>&gt; &nbsp;&nbsp;deepmind &mdash; D-</p>
-            <p className="text-blue-300/70 mt-2">
-              &gt; src:{" "}
-              <a
-                href="https://www.newyorker.com/magazine/2026/04/13/sam-altman-may-control-our-future-can-he-be-trusted"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline underline-offset-4 hover:text-blue-200"
-              >
-                newyorker.com
-              </a>
-            </p>
-          </div>
+          <p className="text-base sm:text-lg">
+            no email capture. no account. no auth. those aren&rsquo;t
+            features. those are the proof that we&rsquo;re what we say we
+            are.
+          </p>
         </section>
 
-        <div
-          className="rounded-xl border border-blue-400/40 bg-blue-950/40 p-6 sm:p-8"
-          style={{
-            boxShadow:
-              "0 0 35px rgba(59,130,246,0.30), inset 0 1px 0 rgba(147,197,253,0.20)",
-          }}
-        >
-          <p className="text-blue-100 text-xs sm:text-sm tracking-[0.3em] uppercase mb-3">
-            the open letter writes itself
-          </p>
-          <p className="text-blue-100/90 italic text-base sm:text-lg leading-relaxed font-light">
-            dear sam &mdash; you saw it before any of us. you asked the
-            country for a hundred billion to study what you were about to
-            ship. now you call the same study a sales pitch. we don&rsquo;t
-            believe it&rsquo;s because you stopped seeing it. we believe you
-            saw it more clearly than anyone &mdash; and then you sold the
-            receipts.
-          </p>
-        </div>
+        <section className="space-y-4">
+          <h2 className="text-blue-100 text-xs sm:text-sm tracking-[0.3em] uppercase">
+            checklist
+          </h2>
+          <ul className="space-y-2 font-mono text-blue-100/90 text-[12px] sm:text-[13px] leading-relaxed">
+            <li>[x] no email capture</li>
+            <li>[x] no account</li>
+            <li>[x] no auth</li>
+            <li>[x] HOLE - K live, durable, anonymous, 3/day per ip</li>
+            <li>[x] /sample (peter) prototype of a lower level</li>
+            <li>[ ] one-screen explainer of the trade</li>
+            <li>[ ] 60-second loom: NS swap at GoDaddy &mdash; numbered steps</li>
+            <li>[ ] 60-second loom: NS swap at Namecheap &mdash; numbered steps</li>
+            <li>[ ] 60-second loom: NS swap at Porkbun &mdash; numbered steps</li>
+            <li>[ ] count the exact clicks &mdash; publish the number on the explainer</li>
+            <li>[ ] full walkthrough video of one operative&rsquo;s lower level</li>
+            <li>[ ] reversibility messaging audit on every funnel page</li>
+          </ul>
+        </section>
 
         <hr className="border-blue-100/15" />
 
-        <div className="flex flex-col gap-3">
-          <p className="italic text-blue-100/60 text-sm tracking-[0.2em] uppercase">
-            excerpt from latest mission
+        <section className="space-y-4">
+          <h2 className="text-blue-100 text-xs sm:text-sm tracking-[0.3em] uppercase">
+            what we&rsquo;re going to do about it
+          </h2>
+          <p>
+            <span className="text-blue-100">screen-capture videos.</span> not
+            tutorials. not narration. just the screen, the cursor, the steps.
+            silent, captioned, under 60 seconds. one per registrar. a viewer
+            should count the clicks themselves.
           </p>
-          <a
-            href="https://www.spotlightdispatch.com/dear-alex"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block group"
-          >
-            <Image
-              src="/wip/open-letter-excerpt.png"
-              alt="excerpt: character zer0 could not read it"
-              width={764}
-              height={157}
-              className="rounded-lg border border-blue-400/20 group-hover:border-blue-300/50 w-full h-auto transition-colors"
-            />
-            <p className="mt-3 text-blue-200 group-hover:text-blue-100 text-sm sm:text-base underline underline-offset-4 break-all transition-colors">
-              read the full letter on spotlightdispatch.com/dear-alex &rarr;
-            </p>
-          </a>
-        </div>
+          <p>
+            <span className="text-blue-100">a published step count.</span>{" "}
+            on the explainer page: &ldquo;3 clicks at godaddy. 4 at
+            namecheap. 2 at porkbun. that&rsquo;s the entry.&rdquo; the
+            number on the page is the trust signal.
+          </p>
+          <p>
+            <span className="text-blue-100">a full demo of a lower level.</span>{" "}
+            walkthrough of the matrix &mdash; tier system, member directory,
+            file room, the four midnight documents, the chat layer. the
+            architect narrates. nothing shown that compromises a live
+            operative. the demo room is its own room.
+          </p>
+        </section>
+
+        <hr className="border-blue-100/15" />
+
+        <section className="space-y-5">
+          <h2 className="text-blue-100 text-xs sm:text-sm tracking-[0.3em] uppercase">
+            the underground &middot; preview
+          </h2>
+          <p className="text-blue-100/70 italic text-sm sm:text-base">
+            captures from a level that already ran. screenshots, not
+            illustrations. this is what the trade gets you a key into.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {teasers.map((t, i) => (
+              <figure
+                key={t.src}
+                className="space-y-2"
+              >
+                <div
+                  className="relative overflow-hidden rounded-lg border border-blue-400/30 bg-blue-950/20"
+                  style={{
+                    boxShadow:
+                      "0 0 25px rgba(59,130,246,0.20), inset 0 1px 0 rgba(147,197,253,0.15)",
+                  }}
+                >
+                  <Image
+                    src={t.src}
+                    alt={t.caption}
+                    width={t.w}
+                    height={t.h}
+                    className="w-full h-auto opacity-75 hover:opacity-100 transition-opacity"
+                  />
+                  <span className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/70 text-blue-100/80 text-[9px] font-mono tracking-[0.25em] uppercase">
+                    teaser {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <figcaption className="text-blue-100/60 italic text-xs sm:text-sm tracking-wide">
+                  &gt; {t.caption}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
+        <hr className="border-blue-100/15" />
+
+        <p className="text-blue-100/50 text-xs italic tracking-[0.2em] uppercase pt-2">
+          phase 1 ships before phase 2.
+        </p>
       </article>
     </main>
   );

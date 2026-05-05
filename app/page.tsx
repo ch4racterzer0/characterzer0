@@ -37,6 +37,7 @@ export default function Home() {
         <div className="flex flex-row items-center justify-center gap-6 sm:gap-8 mt-2">
           <LinkTile label="Creators" href="/creator" />
           <LinkTile label="Mission" href="/mission" />
+          <LinkTile label="Don't Forget" href="/dontforget" />
         </div>
       </main>
       </ThemeShifter>
