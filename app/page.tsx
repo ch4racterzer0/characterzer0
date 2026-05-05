@@ -13,7 +13,7 @@ export default function Home() {
     <RadioProvider>
       <ThemeShifter>
       <ThemeSwitch />
-      <main className="relative min-h-screen bg-black flex flex-col items-center justify-between gap-6 sm:gap-0 py-4 sm:py-10 px-4">
+      <main className="relative isolate min-h-screen bg-black flex flex-col items-center justify-between gap-6 sm:gap-0 py-4 sm:py-10 px-4">
         <RadioTilesMobileTop />
 
         <LinkTile label="Madhu" href="/madhu" large />
@@ -56,14 +56,16 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="open the It's Your Sphere YouTube channel"
-          className="block w-full max-w-3xl mt-6 sm:mt-10 mx-auto group"
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-2xl pointer-events-auto group"
+          style={{ zIndex: -1 }}
         >
           <Image
             src="/itsyoursphere-banner.png"
             alt="It's Your Sphere — the video arm of core4"
             width={1672}
             height={941}
-            className="w-full h-auto opacity-70 group-hover:opacity-100 transition-opacity duration-500"
+            className="w-full h-auto opacity-[0.07] group-hover:opacity-[0.30] transition-opacity duration-700"
+            style={{ mixBlendMode: "screen" }}
           />
         </a>
       </main>
