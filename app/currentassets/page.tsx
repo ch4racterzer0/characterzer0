@@ -40,10 +40,47 @@ export default function CurrentAssets() {
       <hr className="max-w-2xl mx-auto mt-14 border-blue-100/15" />
 
       <p className="max-w-2xl mx-auto mt-6 text-blue-100/55 italic text-sm sm:text-base font-light leading-relaxed">
-        Six additional properties remain parked and intentionally undisclosed,
+        10+ additional domains already parked and intentionally undisclosed,
         with more in development. Visitors typically arrive at characterzer0
-        through one of those — this hub itself is not advertised.
+        through one of those &mdash; this hub itself is not advertised.
       </p>
+
+      <div
+        className="max-w-2xl mx-auto mt-10 rounded-xl border border-blue-400/40 bg-blue-950/30 p-6 sm:p-8 space-y-4"
+        style={{
+          boxShadow:
+            "0 0 35px rgba(59,130,246,0.30), inset 0 1px 0 rgba(147,197,253,0.20)",
+        }}
+      >
+        <h2
+          className="text-blue-100 text-base sm:text-lg tracking-[0.3em] uppercase font-normal"
+          style={{
+            textShadow:
+              "0 0 14px rgba(96,165,250,0.7), 0 0 30px rgba(59,130,246,0.4)",
+          }}
+        >
+          how you can help
+        </h2>
+        <p className="text-blue-100/85 text-sm sm:text-base leading-relaxed font-light">
+          do you have an unused domain &mdash; parked at godaddy, or any of
+          the big shithole companies?
+        </p>
+        <p className="text-blue-100/85 text-sm sm:text-base leading-relaxed font-light">
+          drop a note in{" "}
+          <a
+            href="/yoursphere"
+            className="text-blue-200 hover:text-blue-100 underline underline-offset-4"
+          >
+            the hole
+          </a>
+          . we&rsquo;ll let you park it on one of ours. zero work to you. and
+          you get the key to the next level below.
+        </p>
+        <p className="text-blue-100/70 italic text-sm sm:text-base leading-relaxed font-light">
+          from there it&rsquo;s up to you to earn your way &mdash; but
+          that&rsquo;s the easiest path to go down one level.
+        </p>
+      </div>
     </main>
   );
 }
