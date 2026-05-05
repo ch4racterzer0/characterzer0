@@ -24,7 +24,7 @@ export default function Home() {
           <LinkTile label="Current Targets" href="/currenttarget" />
           <LinkTile label="Current Assets" href="/currentassets" />
           <LinkTile label="WIP" href="/wip" />
-          <LinkTile label="It's Your Sphere" href="/yoursphere" />
+          <LinkTile label="Your Own Anspach" href="/yoursphere" />
         </div>
 
         <FigureWithTilesDesktop />
