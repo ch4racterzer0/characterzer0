@@ -37,17 +37,6 @@ export default function YourSphere() {
         </p>
 
         <TheHole />
-
-        <p className="pt-2">
-          <a
-            href="/sample"
-            target="_top"
-            rel="noopener"
-            className="inline-block text-blue-200 hover:text-blue-100 underline underline-offset-4 tracking-[0.2em] uppercase text-sm"
-          >
-            see a sample anspach &rarr;
-          </a>
-        </p>
       </div>
     </main>
   );
