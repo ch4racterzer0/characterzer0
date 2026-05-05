@@ -16,17 +16,26 @@ export default function Home() {
         <RadioTilesMobileTop />
 
         <div className="flex flex-col items-center gap-6 sm:gap-10">
-          <LyricRotator />
+          <div className="hidden sm:block">
+            <LyricRotator />
+          </div>
           <div className="flex flex-row items-center gap-6 sm:gap-8">
             <LinkTile label="Core4" href="/core4" large />
-            <LinkTile label="Quest" href="/quest" large />
+            <div className="hidden sm:block">
+              <LinkTile label="Quest" href="/quest" large />
+            </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-10 w-full max-w-md sm:w-auto sm:max-w-none">
+        <div className="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-10 w-full max-w-md sm:w-auto sm:max-w-none">
           <LinkTile label="Current Targets" href="/currenttarget" />
           <LinkTile label="Current Assets" href="/currentassets" />
           <LinkTile label="WIP" href="/wip" />
+          <LinkTile label="Your Own Anspach" href="/yoursphere" />
+        </div>
+
+        <div className="sm:hidden flex flex-row items-center justify-center gap-6">
+          <LinkTile label="US" href="/us" />
           <LinkTile label="Your Own Anspach" href="/yoursphere" />
         </div>
 
@@ -34,7 +43,7 @@ export default function Home() {
           rightSlot={<LinkTile label="US" href="/us" />}
         />
 
-        <div className="flex flex-row items-center justify-center flex-wrap gap-4 sm:gap-6 mt-2">
+        <div className="hidden sm:flex flex-row items-center justify-center flex-wrap gap-4 sm:gap-6 mt-2">
           <LinkTile label="Creators" href="/creator" />
           <LinkTile label="Mission" href="/mission" />
           <LinkTile label="Don't Forget" href="/dontforget" />
