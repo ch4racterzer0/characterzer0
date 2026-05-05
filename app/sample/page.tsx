@@ -116,15 +116,6 @@ export default function Sample() {
   return (
     <main className="relative min-h-screen bg-black flex flex-col items-center justify-between gap-4 sm:gap-0 py-4 sm:py-10 px-4">
       <div className="flex flex-col items-center gap-4 sm:gap-10">
-        <div className="text-center">
-          <p className="text-blue-100/40 text-[10px] tracking-[0.4em] uppercase mb-2">
-            sample anspach
-          </p>
-          <h1 className="text-blue-100/80 italic font-light text-2xl sm:text-3xl tracking-wide">
-            peter
-          </h1>
-        </div>
-
         <div className="flex flex-row items-center gap-3 sm:gap-6">
           <DemoTile
             label="About"
