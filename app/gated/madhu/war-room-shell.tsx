@@ -404,7 +404,7 @@ function PanelNetwork() {
                   "0 0 12px rgba(103,232,249,0.7), 0 0 28px rgba(103,232,249,0.35)",
               }}
             >
-              42
+              14
             </div>
           </div>
         </div>
@@ -596,9 +596,9 @@ export function WarRoomShell() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
           {unlocked ? (
             <>
-              <StatBox label="stations connected" value="42" tone="green" />
-              <StatBox label="active operatives" value="4" tone="green" />
-              <StatBox label="parked carriers" value="20+" unit="m" />
+              <StatBox label="stations connected" value="14" tone="green" />
+              <StatBox label="active operatives" value="3" tone="green" />
+              <StatBox label="godaddy parked" value="20+" unit="m" />
               <StatBox label="uplink" value="LIVE" tone="green" />
             </>
           ) : (
