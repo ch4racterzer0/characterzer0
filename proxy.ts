@@ -8,12 +8,6 @@ export function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (host === "thedelos.com" || host === "www.thedelos.com") {
-    const url = request.nextUrl.clone();
-    url.pathname = `/thedelos${path === "/" ? "" : path}`;
-    return NextResponse.rewrite(url);
-  }
-
   const thedelosSub = host.match(/^([a-z0-9-]+)\.thedelos\.com$/i);
   if (thedelosSub && thedelosSub[1] !== "www") {
     const sub = thedelosSub[1];
