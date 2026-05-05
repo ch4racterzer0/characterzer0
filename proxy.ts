@@ -8,7 +8,10 @@ export function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (request.nextUrl.pathname === "/frame") {
+  if (
+    request.nextUrl.pathname === "/frame" ||
+    request.nextUrl.pathname.startsWith("/api/")
+  ) {
     return NextResponse.next();
   }
 
