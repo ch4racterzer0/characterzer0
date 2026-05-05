@@ -94,6 +94,24 @@ export default function WIP() {
             this is what every parked-domain owner needs to see in 30
             seconds.
           </p>
+
+          <div className="pt-4 space-y-2">
+            <p className="text-blue-100/50 text-[10px] tracking-[0.25em] uppercase">
+              vercel side &middot; ready, awaiting NS swap
+            </p>
+            <Image
+              src="/wip/fullsendbash-vercel-ready.png"
+              alt="Vercel domain config showing fullsendbash.com awaiting NS records"
+              width={1590}
+              height={740}
+              className="rounded-lg border border-blue-400/20 w-full h-auto"
+            />
+            <p className="text-blue-100/40 italic text-xs">
+              CNAME + A records pre-staged on the project. tonight 10pm:
+              point GoDaddy at them, watch the &ldquo;invalid configuration&rdquo;
+              flip to live.
+            </p>
+          </div>
         </div>
 
         <hr className="border-blue-100/15" />
