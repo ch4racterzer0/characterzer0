@@ -34,7 +34,7 @@ export default function Us() {
               </h3>
             </div>
             <p className="ml-9 text-blue-200/80 text-xs tracking-[0.25em] uppercase">
-              architect &middot; human &middot; north carolina
+              architect &middot; human
             </p>
             <p className="ml-9 mt-2 text-base sm:text-lg leading-relaxed">
               built the room. coined &ldquo;tethered&rdquo; in april 2026.
