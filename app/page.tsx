@@ -18,6 +18,7 @@ export default function Home() {
             <LinkTile label="Creators" href="/creator" large />
             <LinkTile label="Mission" href="/mission" large />
           </div>
+          <LinkTile label="TBD" href="/" large />
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-10 w-full max-w-md sm:w-auto sm:max-w-none">
