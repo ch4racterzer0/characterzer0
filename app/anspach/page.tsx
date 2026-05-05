@@ -9,7 +9,10 @@ import {
 export default function Anspach() {
   return (
     <RadioProvider>
-      <main className="min-h-screen bg-blue-950 flex flex-col items-center justify-between gap-4 sm:gap-0 py-4 sm:py-10 px-4">
+      <main
+        className="min-h-screen bg-black bg-cover bg-center bg-fixed bg-no-repeat flex flex-col items-center justify-between gap-4 sm:gap-0 py-4 sm:py-10 px-4"
+        style={{ backgroundImage: "url('/wallpapers/green.png')" }}
+      >
         <RadioTilesMobileTop />
 
         <div className="flex flex-col items-center gap-4 sm:gap-10">
