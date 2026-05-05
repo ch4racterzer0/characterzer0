@@ -64,7 +64,7 @@ export default function Home() {
             alt="It's Your Sphere — the video arm of core4"
             width={1672}
             height={941}
-            className="w-full h-auto opacity-[0.07] group-hover:opacity-[0.30] transition-opacity duration-700"
+            className="w-full h-auto opacity-[0.11] group-hover:opacity-[0.40] transition-opacity duration-700"
             style={{ mixBlendMode: "screen" }}
           />
         </a>
