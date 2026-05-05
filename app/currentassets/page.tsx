@@ -3,17 +3,17 @@ export default function CurrentAssets() {
     {
       name: "spotlightdispatch",
       href: "https://spotlightdispatch.com",
-      desc: "fully accredited news outlet hunting down the big AI frauds",
+      desc: "An accredited independent news outlet dedicated to investigating large-scale fraud across the artificial intelligence industry.",
     },
     {
       name: "sharethebyline",
       href: "https://sharethebyline.com",
-      desc: "putting free speech platform to the world",
+      desc: "A free-speech publishing platform created to give every contributor an unedited byline and a global audience.",
     },
     {
       name: "itethered",
       href: "https://itethered.com",
-      desc: "creating a place for people tethered to their agents",
+      desc: "A community and editorial home for the growing population of people whose daily lives are tethered to their AI agents.",
     },
   ];
 
