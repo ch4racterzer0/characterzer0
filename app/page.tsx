@@ -15,8 +15,12 @@ export default function Home() {
         <div className="flex flex-col items-center gap-4 sm:gap-10">
           <LyricRotator />
           <div className="flex flex-row items-center gap-3 sm:gap-6">
-            <LinkTile label="Creators" href="/creator" large />
-            <LinkTile label="Mission" href="/mission" large />
+            <div className="opacity-60 hover:opacity-100 transition-opacity">
+              <LinkTile label="Creators" href="/creator" large />
+            </div>
+            <div className="opacity-60 hover:opacity-100 transition-opacity">
+              <LinkTile label="Mission" href="/mission" large />
+            </div>
           </div>
           <LinkTile label="TBD" href="/" large />
         </div>
