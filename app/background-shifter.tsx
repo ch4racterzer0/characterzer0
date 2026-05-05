@@ -9,10 +9,9 @@ import {
 } from "react";
 import { createPortal } from "react-dom";
 
-type Bg = "void" | "shire" | "mordor";
+type Bg = "void" | "mordor";
 const NEXT: Record<Bg, Bg> = {
-  void: "shire",
-  shire: "mordor",
+  void: "mordor",
   mordor: "void",
 };
 
@@ -29,17 +28,6 @@ export function BackgroundShifter({ children }: { children: ReactNode }) {
         className="fixed inset-0 pointer-events-none bg-black"
         style={{ zIndex: 0 }}
       />
-      {bg === "shire" && (
-        <div
-          aria-hidden
-          className="fixed inset-0 pointer-events-none"
-          style={{
-            zIndex: 0,
-            background:
-              "radial-gradient(ellipse at center, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.55) 70%, rgba(0,0,0,0.45) 100%), url('/wallpapers/shire.webp') center/cover no-repeat",
-          }}
-        />
-      )}
       {bg === "mordor" && (
         <div
           aria-hidden
@@ -64,12 +52,7 @@ export function BackgroundSwitch() {
   useEffect(() => setMounted(true), []);
   if (!ctx || !mounted) return null;
 
-  const dot =
-    ctx.bg === "void"
-      ? "bg-white/30"
-      : ctx.bg === "shire"
-        ? "bg-emerald-400"
-        : "bg-orange-500";
+  const dot = ctx.bg === "void" ? "bg-white/30" : "bg-orange-500";
 
   return createPortal(
     <button
