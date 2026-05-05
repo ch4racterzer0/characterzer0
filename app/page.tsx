@@ -1,4 +1,3 @@
-import { HoleTile } from "./hole-tile";
 import { LinkTile } from "./link-tile";
 import { LyricRotator } from "./lyric-rotator";
 import {
@@ -34,16 +33,7 @@ export default function Home() {
           <LinkTile label="Your Own Anspach" href="/yoursphere" />
         </div>
 
-        <div className="flex items-end justify-center gap-4 sm:gap-10">
-          <div className="hidden sm:block">
-            <HoleTile />
-          </div>
-          <FigureWithTilesDesktop />
-        </div>
-
-        <div className="sm:hidden mt-4">
-          <HoleTile />
-        </div>
+        <FigureWithTilesDesktop />
       </main>
       </ThemeShifter>
     </RadioProvider>

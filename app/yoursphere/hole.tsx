@@ -42,7 +42,7 @@ export function TheHole() {
       setFile(null);
     } catch (err) {
       setStatus("error");
-      setErrorMsg(err instanceof Error ? err.message : "hole jammed");
+      setErrorMsg(err instanceof Error ? err.message : "HOLE - K jammed");
     }
   }
 
@@ -110,7 +110,7 @@ export function TheHole() {
           value={note}
           onChange={(e) => setNote(e.target.value)}
           onKeyDown={onKeyDown}
-          placeholder="say it. paste a link. drag a file. enter to drop."
+          placeholder="say it. paste a link. drag a file. enter drops it in HOLE - K."
           rows={5}
           className="w-full bg-transparent rounded-lg px-4 py-3 text-blue-100 placeholder:text-blue-100/30 text-base font-light leading-relaxed focus:outline-none resize-y"
         />
@@ -154,7 +154,7 @@ export function TheHole() {
           }
           className="ml-auto text-blue-100 text-xs sm:text-sm tracking-[0.3em] uppercase border border-blue-400/40 rounded-lg px-6 py-2.5 hover:bg-blue-900/40 hover:border-blue-300/60 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
         >
-          {status === "sending" ? "dropping..." : "drop in the hole"}
+          {status === "sending" ? "dropping..." : "drop in HOLE - K"}
         </button>
       </div>
 

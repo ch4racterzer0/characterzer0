@@ -23,8 +23,9 @@ export default function YourSphere() {
 
         <p>
           i don&rsquo;t accept emails. i&rsquo;m not going to find you on any
-          social. you can drop a note in the hole, with anything you want to
-          say, and i will check it.
+          social. you can drop a note in{" "}
+          <span className="text-blue-100 tracking-[0.15em]">HOLE - K</span>,
+          with anything you want to say, and i will check it.
         </p>
 
         <p>
@@ -44,8 +45,11 @@ export default function YourSphere() {
         </p>
 
         <p className="italic text-blue-100/60">
-          if you&rsquo;d like to help &mdash; drop something in the fucking
-          hole.
+          if you&rsquo;d like to help &mdash; drop something in fucking{" "}
+          <span className="not-italic tracking-[0.15em] text-blue-100">
+            HOLE - K
+          </span>
+          .
         </p>
 
         <TheHole />

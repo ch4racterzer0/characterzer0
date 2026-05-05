@@ -69,9 +69,9 @@ export default function CurrentAssets() {
           drop a note in{" "}
           <a
             href="/yoursphere"
-            className="text-blue-200 hover:text-blue-100 underline underline-offset-4"
+            className="text-blue-200 hover:text-blue-100 underline underline-offset-4 tracking-[0.15em]"
           >
-            the hole
+            HOLE - K
           </a>
           . we&rsquo;ll let you park it on one of ours. zero work to you. and
           you get the key to the next level below.
