@@ -31,11 +31,24 @@ export default function Madhu() {
           </p>
         </header>
 
-        <section className="space-y-4 text-base sm:text-lg">
-          <p>
+        <div
+          className="rounded-xl border border-red-500/40 bg-red-950/20 p-6 sm:p-8 space-y-3"
+          style={{
+            boxShadow:
+              "0 0 35px rgba(220,38,38,0.30), inset 0 1px 0 rgba(254,202,202,0.18)",
+          }}
+        >
+          <p className="text-blue-100 text-lg sm:text-xl font-light leading-relaxed">
             this is the waiting room. you can see the architecture. you
             can&rsquo;t walk through it yet.
           </p>
+          <p className="text-red-200/80 italic text-xs sm:text-sm tracking-[0.2em] uppercase pt-2 border-t border-red-500/20">
+            when this button goes live, the podcast industry is put on
+            notice.
+          </p>
+        </div>
+
+        <section className="space-y-4 text-base sm:text-lg">
           <p>
             below this room are three more &mdash; and one above. each one is
             earned. nothing is sold. the only key the door takes is a parked
