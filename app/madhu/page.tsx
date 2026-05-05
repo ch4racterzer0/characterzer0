@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FullsendBanner } from "../fullsend-banner";
-import { Cuckoo } from "./cuckoo";
 import { Gate } from "./gate";
+import { Hourglass } from "./hourglass";
 
 export default function Madhu() {
   return (
@@ -22,7 +22,7 @@ export default function Madhu() {
             >
               madhu
             </h1>
-            <Cuckoo />
+            <Hourglass />
           </div>
           <p className="text-blue-200 italic tracking-wide text-base sm:text-lg">
             from <span className="font-mono">madhuvan</span> &mdash;
