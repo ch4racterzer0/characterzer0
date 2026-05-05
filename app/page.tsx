@@ -23,6 +23,7 @@ export default function Home() {
             </div>
             <LinkTile label="Mission" href="/mission" large />
           </div>
+          <LinkTile label="Core4" href="/core4" large />
           <LinkTile label="Current Assignment" href="/currentassignment" large />
         </div>
 
