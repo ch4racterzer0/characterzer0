@@ -36,6 +36,14 @@ export default function CurrentAssets() {
           </li>
         ))}
       </ul>
+
+      <hr className="max-w-2xl mx-auto mt-14 border-blue-100/15" />
+
+      <p className="max-w-2xl mx-auto mt-6 text-blue-100/55 italic text-sm sm:text-base font-light leading-relaxed">
+        Six additional properties remain parked and intentionally undisclosed,
+        with more in development. Visitors typically arrive at characterzer0
+        through one of those — this hub itself is not advertised.
+      </p>
     </main>
   );
 }
