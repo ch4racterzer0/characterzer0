@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { PlaybookTask01 } from "./playbook-task-01";
 import { TicTacToeBoard } from "./tic-tac-toe";
 import { WarClock } from "./war-clock";
 import { WarTerminal } from "./war-terminal";
@@ -286,15 +287,31 @@ function TaskTile({
   title,
   body,
   locked,
+  onClick,
 }: {
   num: string;
   title?: string;
   body?: string;
   locked: boolean;
+  onClick?: () => void;
 }) {
+  const Wrapper = (props: React.HTMLAttributes<HTMLElement>) =>
+    locked ? (
+      <div {...props} />
+    ) : (
+      <button
+        type="button"
+        onClick={onClick}
+        className={`${props.className ?? ""} text-left cursor-pointer hover:bg-blue-900/30 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50`}
+        style={props.style}
+        aria-label={`open task ${num} playbook`}
+      >
+        {props.children}
+      </button>
+    );
   return (
-    <div
-      className="relative border border-blue-400/35 bg-blue-950/15 aspect-square overflow-hidden"
+    <Wrapper
+      className="relative border border-blue-400/35 bg-blue-950/15 aspect-square overflow-hidden block w-full"
       style={{ boxShadow: "inset 0 0 25px rgba(59,130,246,0.15)" }}
     >
       <div className="absolute top-2 left-3 right-3 flex justify-between text-[9px] sm:text-[10px] font-mono tracking-[0.2em] uppercase text-blue-300/75 z-10">
@@ -351,18 +368,19 @@ function TaskTile({
           />
         </svg>
       )}
-    </div>
+    </Wrapper>
   );
 }
 
-function TaskRow() {
+function TaskRow({ onTask01 }: { onTask01: () => void }) {
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
       <TaskTile
         num="01"
         title="recruit one"
-        body="one person. they point a parked domain at us, OR buy an $11 and park it on us. either gets them in."
+        body="one person. they point a parked domain at us, OR buy an $11 and park it on us. either gets them in. tap for the playbook."
         locked={false}
+        onClick={onTask01}
       />
       <TaskTile num="02" locked={true} />
       <TaskTile num="03" locked={true} />
@@ -481,6 +499,7 @@ export function WarRoomShell() {
   const [inputBuffer, setInputBuffer] = useState("");
   const [unlocked, setUnlocked] = useState(false);
   const [opacity, setOpacity] = useState(1);
+  const [openPlaybook, setOpenPlaybook] = useState<null | "01">(null);
 
   useEffect(() => {
     if (phase !== "awaiting-input") return;
@@ -583,7 +602,7 @@ export function WarRoomShell() {
               <PanelOperatives />
               <PanelNetwork />
             </div>
-            <TaskRow />
+            <TaskRow onTask01={() => setOpenPlaybook("01")} />
           </>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
@@ -715,6 +734,10 @@ export function WarRoomShell() {
             : "madhu · war room · the only winning move"}
         </footer>
       </div>
+
+      {openPlaybook === "01" && (
+        <PlaybookTask01 onClose={() => setOpenPlaybook(null)} />
+      )}
     </main>
   );
 }
