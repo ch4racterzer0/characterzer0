@@ -42,7 +42,7 @@ export default function Home() {
         </div>
 
         <FigureWithTilesDesktop
-          rightSlot={<LinkTile label="US" href="/us" />}
+          rightSlot={<LinkTile label="US" href="/us" subline="○ step in" />}
         />
 
         <div className="hidden sm:flex flex-row items-center justify-center flex-wrap gap-4 sm:gap-6 mt-2">

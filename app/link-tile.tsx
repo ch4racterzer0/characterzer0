@@ -7,11 +7,13 @@ export function LinkTile({
   href,
   large = false,
   password,
+  subline,
 }: {
   label: string;
   href: string;
   large?: boolean;
   password?: string;
+  subline?: string;
 }) {
   const [open, setOpen] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
@@ -77,6 +79,11 @@ export function LinkTile({
           >
             {label}
           </span>
+          {subline && (
+            <span className="mt-1 block text-[8px] sm:text-[9px] tracking-[0.3em] uppercase text-blue-300/40">
+              {subline}
+            </span>
+          )}
         </span>
       </button>
 
