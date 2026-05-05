@@ -45,7 +45,6 @@ export default function Home() {
 
         <div className="hidden sm:flex flex-row items-center justify-center flex-wrap gap-4 sm:gap-6 mt-2">
           <LinkTile label="Creators" href="/creator" />
-          <LinkTile label="Mission" href="/mission" />
           <LinkTile label="Don't Forget" href="/dontforget" />
           <LinkTile label="Stream" href="/stream" />
         </div>
