@@ -79,11 +79,7 @@ export async function POST(req: NextRequest) {
     }
   } catch (err) {
     console.error("hole-blob-error", err);
-    const detail = err instanceof Error ? err.message : String(err);
-    return NextResponse.json(
-      { error: "storage failed", detail, hasToken: !!process.env.BLOB_READ_WRITE_TOKEN },
-      { status: 500, headers: CORS }
-    );
+    return reject("storage failed", 500);
   }
 
   return NextResponse.json({ ok: true, slug }, { headers: CORS });

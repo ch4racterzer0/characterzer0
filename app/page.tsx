@@ -19,7 +19,9 @@ export default function Home() {
         <div className="flex flex-col items-center gap-4 sm:gap-10">
           <LyricRotator />
           <div className="flex flex-row items-center gap-6 sm:gap-6">
-            <LinkTile label="Creators" href="/creator" large />
+            <div className="hidden sm:block">
+              <LinkTile label="Creators" href="/creator" large />
+            </div>
             <LinkTile label="Mission" href="/mission" large />
           </div>
           <LinkTile label="Current Assignment" href="/currentassignment" large />
