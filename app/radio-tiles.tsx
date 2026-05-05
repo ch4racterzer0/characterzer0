@@ -98,7 +98,11 @@ export function RadioTilesMobileTop() {
   );
 }
 
-export function FigureWithTilesDesktop() {
+export function FigureWithTilesDesktop({
+  rightSlot,
+}: {
+  rightSlot?: ReactNode;
+} = {}) {
   return (
     <div className="flex items-end justify-center gap-4 sm:gap-8">
       <div className="hidden sm:block">
@@ -114,7 +118,7 @@ export function FigureWithTilesDesktop() {
         className="h-[28vh] w-auto"
       />
       <div className="hidden sm:block">
-        <RadioTile label="READY" />
+        {rightSlot ?? <RadioTile label="READY" />}
       </div>
     </div>
   );

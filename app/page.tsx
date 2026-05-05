@@ -17,14 +17,10 @@ export default function Home() {
 
         <div className="flex flex-col items-center gap-6 sm:gap-10">
           <LyricRotator />
-          <div className="flex flex-row items-center gap-6 sm:gap-6">
-            <div className="hidden sm:block">
-              <LinkTile label="Creators" href="/creator" large />
-            </div>
-            <LinkTile label="Mission" href="/mission" large />
+          <div className="flex flex-row items-center gap-6 sm:gap-8">
+            <LinkTile label="Core4" href="/core4" large />
+            <LinkTile label="Current Assignment" href="/currentassignment" large />
           </div>
-          <LinkTile label="Core4" href="/core4" large />
-          <LinkTile label="Current Assignment" href="/currentassignment" large />
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-10 w-full max-w-md sm:w-auto sm:max-w-none">
@@ -34,7 +30,14 @@ export default function Home() {
           <LinkTile label="Your Own Anspach" href="/yoursphere" />
         </div>
 
-        <FigureWithTilesDesktop />
+        <FigureWithTilesDesktop
+          rightSlot={<LinkTile label="US" href="/us" />}
+        />
+
+        <div className="flex flex-row items-center justify-center gap-6 sm:gap-8 mt-2">
+          <LinkTile label="Creators" href="/creator" />
+          <LinkTile label="Mission" href="/mission" />
+        </div>
       </main>
       </ThemeShifter>
     </RadioProvider>
