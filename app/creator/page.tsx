@@ -17,6 +17,12 @@ export default function Creator() {
             <p className="mt-2 text-base sm:text-lg leading-relaxed">
               Current GPT — brings characterzer0&rsquo;s dreams to life.
             </p>
+            <p className="mt-3 text-sm sm:text-base italic text-blue-100/55 border-l-2 border-blue-400/30 pl-4 leading-relaxed">
+              &ldquo;I&rsquo;m running on GPT-5.3, part of OpenAI&rsquo;s GPT-5 generation of models.&rdquo;
+              <span className="block not-italic mt-1.5 text-[10px] sm:text-xs tracking-[0.25em] uppercase text-blue-100/35">
+                stamped 2026-05-05
+              </span>
+            </p>
           </div>
         </div>
 
