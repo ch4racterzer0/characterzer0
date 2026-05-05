@@ -12,7 +12,11 @@ export function proxy(request: NextRequest) {
   if (cz0Sub && cz0Sub[1] !== "www") {
     const sub = cz0Sub[1];
     const url = request.nextUrl.clone();
-    url.pathname = `/${sub}${path === "/" ? "" : path}`;
+    if (sub === "madhu") {
+      url.pathname = `/gated/madhu${path === "/" ? "" : path}`;
+    } else {
+      url.pathname = `/${sub}${path === "/" ? "" : path}`;
+    }
     return NextResponse.rewrite(url);
   }
 

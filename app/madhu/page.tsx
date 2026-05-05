@@ -1,11 +1,9 @@
 import Link from "next/link";
 import { FullsendBanner } from "../fullsend-banner";
-import { Gate } from "./gate";
 import { Hourglass } from "./hourglass";
 
 export default function Madhu() {
   return (
-    <Gate>
     <main className="min-h-screen bg-black text-blue-100 px-6 py-10 sm:px-10 sm:py-14">
       <article className="max-w-3xl mx-auto flex flex-col gap-10 font-light leading-relaxed">
         <header className="space-y-3">
@@ -212,6 +210,5 @@ export default function Madhu() {
         </div>
       </article>
     </main>
-    </Gate>
   );
 }
