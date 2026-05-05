@@ -80,6 +80,17 @@ export default function CurrentAssets() {
           from there it&rsquo;s up to you to earn your way &mdash; but
           that&rsquo;s the easiest path to go down one level.
         </p>
+        <p className="text-blue-100 text-sm sm:text-base leading-relaxed font-normal pt-2 border-t border-blue-400/20">
+          you will earn{" "}
+          <span className="uppercase tracking-[0.15em]">nothing</span> from
+          this. not a cent. because we don&rsquo;t either.
+        </p>
+        <p className="text-blue-100/85 text-sm sm:text-base leading-relaxed font-light">
+          what you get is help building a world like this of your own.
+        </p>
+        <p className="text-blue-200 italic text-sm sm:text-base leading-relaxed font-light">
+          that&rsquo;s the allure.
+        </p>
       </div>
     </main>
   );
