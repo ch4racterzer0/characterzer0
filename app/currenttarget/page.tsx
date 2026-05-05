@@ -137,8 +137,6 @@ export default function CurrentTarget() {
               </p>
               <a
                 href={t.source.href}
-                target="_blank"
-                rel="noreferrer"
                 className="mt-4 inline-block text-xs italic text-blue-300/80 hover:text-blue-200 sm:text-sm"
               >
                 → {t.source.label}

@@ -12,7 +12,7 @@ export default function Home() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10">
-        <LinkTile label="Current Target" href="/currenttarget" />
+        <LinkTile label="Current Targets" href="/currenttarget" />
         <LinkTile label="Current Assets" href="/currentassets" />
         <LinkTile label="WIP" href="/wip" />
         <LinkTile label="It's Your Sphere" href="/yoursphere" />

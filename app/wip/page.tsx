@@ -6,8 +6,6 @@ export default function WIP() {
       <article className="max-w-3xl mx-auto flex flex-col gap-8">
         <a
           href="https://www.theatlantic.com/technology/2026/03/hypocrisy-ai-industry/686477/"
-          target="_blank"
-          rel="noopener noreferrer"
           className="text-blue-300 hover:text-blue-200 underline underline-offset-4 break-all text-sm sm:text-base"
         >
           https://www.theatlantic.com/technology/2026/03/hypocrisy-ai-industry/686477/
