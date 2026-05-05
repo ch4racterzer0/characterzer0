@@ -35,10 +35,8 @@ function Tile({ label, large = false }: { label: string; large?: boolean }) {
 export default function Home() {
   return (
     <main className="min-h-screen bg-black flex flex-col items-center justify-between py-6 sm:py-10 px-4">
-      <p className="text-white/45 italic text-xs sm:text-sm tracking-wide text-center max-w-md leading-relaxed">
-        &ldquo;But then I learned just yesterday
-        <br />
-        To rush and never waste the day&rdquo;
+      <p className="text-white/45 italic text-xs sm:text-sm tracking-wide text-center whitespace-nowrap">
+        &ldquo;But then I learned just yesterday — To rush and never waste the day&rdquo;
       </p>
 
       <div className="flex flex-col items-center gap-12 sm:gap-16">
