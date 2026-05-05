@@ -1,6 +1,4 @@
 import { CreatorsFlash } from "./creators-flash";
-import { EthosWhisper } from "./ethos-whisper";
-import { FullsendBanner } from "./fullsend-banner";
 import { LinkTile } from "./link-tile";
 import { LyricRotator } from "./lyric-rotator";
 import {
@@ -17,8 +15,6 @@ export default function Home() {
       <ThemeSwitch />
       <main className="relative min-h-screen bg-black flex flex-col items-center justify-between gap-6 sm:gap-0 py-4 sm:py-10 px-4">
         <RadioTilesMobileTop />
-
-        <FullsendBanner />
 
         <LinkTile label="Madhu" href="/madhu" large />
 
@@ -55,7 +51,6 @@ export default function Home() {
           <LinkTile label="Stream" href="/stream" />
         </div>
       </main>
-      <EthosWhisper />
       <CreatorsFlash />
       </ThemeShifter>
     </RadioProvider>

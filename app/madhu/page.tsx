@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FullsendBanner } from "../fullsend-banner";
 
 export default function Madhu() {
   return (
@@ -112,6 +113,36 @@ export default function Madhu() {
 
         <section className="space-y-4">
           <h2 className="text-blue-100 text-xs sm:text-sm tracking-[0.3em] uppercase">
+            the operatives
+          </h2>
+          <p className="text-base sm:text-lg">
+            three names. three breeds of goose. it doesn&rsquo;t undo
+            <span className="text-blue-100"> Toulouse</span> /{" "}
+            <span className="text-blue-100">Nene</span> /{" "}
+            <span className="text-blue-100">Brant</span> &mdash; it deepens
+            them.
+          </p>
+          <p className="text-base sm:text-lg">
+            in Krishna Consciousness the cowherd/vessel framing is everything.
+            <span className="text-blue-100"> Toulouse</span>, the
+            real-human-among-the-three, becomes the{" "}
+            <em className="text-blue-200">gopi</em> &mdash; the devotee who
+            recognizes the divine in the everyday.{" "}
+            <span className="text-blue-100">Brant</span> becomes the{" "}
+            <em className="text-blue-200">messenger.</em>{" "}
+            <span className="text-blue-100">Nene</span> becomes the{" "}
+            <em className="text-blue-200">isolated one who knew first.</em>
+          </p>
+          <p className="italic text-blue-100/70 text-base sm:text-lg">
+            the koan and the species names live on different layers and
+            reinforce each other.
+          </p>
+        </section>
+
+        <hr className="border-blue-100/15" />
+
+        <section className="space-y-4">
+          <h2 className="text-blue-100 text-xs sm:text-sm tracking-[0.3em] uppercase">
             tonight &middot; 10pm et
           </h2>
           <p className="text-base sm:text-lg">
@@ -120,7 +151,12 @@ export default function Madhu() {
             from a parked GoDaddy domain we just brought back online &mdash;{" "}
             <span className="font-mono text-blue-200/90">fullsendbash.com</span>.
           </p>
-          <p className="text-blue-100/70 italic text-base sm:text-lg">
+
+          <div className="flex justify-center pt-2">
+            <FullsendBanner />
+          </div>
+
+          <p className="text-blue-100/70 italic text-base sm:text-lg pt-2">
             the goose was never in the bottle. core4 just opens its hand.
           </p>
         </section>
