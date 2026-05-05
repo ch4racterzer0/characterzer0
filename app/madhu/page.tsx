@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FullsendBanner } from "../fullsend-banner";
+import { Cuckoo } from "./cuckoo";
 import { Gate } from "./gate";
 
 export default function Madhu() {
@@ -11,15 +12,18 @@ export default function Madhu() {
           <p className="text-blue-100/60 text-xs sm:text-sm tracking-[0.4em] uppercase">
             the waiting room
           </p>
-          <h1
-            className="text-blue-100 text-4xl sm:text-5xl md:text-6xl font-light tracking-[0.15em] uppercase"
-            style={{
-              textShadow:
-                "0 0 18px rgba(96,165,250,0.7), 0 0 38px rgba(59,130,246,0.4)",
-            }}
-          >
-            madhu
-          </h1>
+          <div className="flex items-center gap-4 flex-wrap">
+            <h1
+              className="text-blue-100 text-4xl sm:text-5xl md:text-6xl font-light tracking-[0.15em] uppercase"
+              style={{
+                textShadow:
+                  "0 0 18px rgba(96,165,250,0.7), 0 0 38px rgba(59,130,246,0.4)",
+              }}
+            >
+              madhu
+            </h1>
+            <Cuckoo />
+          </div>
           <p className="text-blue-200 italic tracking-wide text-base sm:text-lg">
             from <span className="font-mono">madhuvan</span> &mdash;
             krishna&rsquo;s forest. place of devotion. you&rsquo;re here
