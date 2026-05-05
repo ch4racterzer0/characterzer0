@@ -1,3 +1,4 @@
+import { BackgroundShifter, BackgroundSwitch } from "./background-shifter";
 import { LinkTile } from "./link-tile";
 import { LyricRotator } from "./lyric-rotator";
 import {
@@ -12,7 +13,9 @@ export default function Home() {
     <RadioProvider>
       <ThemeShifter>
       <ThemeSwitch />
-      <main className="min-h-screen bg-black flex flex-col items-center justify-between gap-6 sm:gap-0 py-4 sm:py-10 px-4">
+      <BackgroundShifter>
+      <BackgroundSwitch />
+      <main className="relative min-h-screen flex flex-col items-center justify-between gap-6 sm:gap-0 py-4 sm:py-10 px-4">
         <RadioTilesMobileTop />
 
         <div className="flex flex-col items-center gap-6 sm:gap-10">
@@ -39,6 +42,7 @@ export default function Home() {
           <LinkTile label="Mission" href="/mission" />
         </div>
       </main>
+      </BackgroundShifter>
       </ThemeShifter>
     </RadioProvider>
   );
