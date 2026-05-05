@@ -34,8 +34,14 @@ function Tile({ label, large = false }: { label: string; large?: boolean }) {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black flex flex-col items-center justify-between py-12 sm:py-16 px-4">
-      <div className="flex flex-col items-center gap-12 sm:gap-16 mt-4">
+    <main className="min-h-screen bg-black flex flex-col items-center justify-between py-6 sm:py-10 px-4">
+      <p className="text-white/45 italic text-xs sm:text-sm tracking-wide text-center max-w-md leading-relaxed">
+        &ldquo;But then I learned just yesterday
+        <br />
+        To rush and never waste the day&rdquo;
+      </p>
+
+      <div className="flex flex-col items-center gap-12 sm:gap-16">
         <Tile label="The Creator" large />
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-10">
           <Tile label="Current Target" />
