@@ -661,13 +661,33 @@ export function WarRoomShell() {
                 A STRANGE GAME.
               </p>
               <p className="text-blue-200 text-sm sm:text-base leading-relaxed">
-                you picked the only winning move. the room recognizes you.
+                you picked the only winning move. you&rsquo;re inside the
+                build room.
               </p>
-              <p className="text-blue-300/70 text-sm sm:text-base leading-relaxed">
-                operative deck above shows what the war room was always
-                masking. roster. missions. carrier network.
+              <p className="text-blue-300/85 text-sm sm:text-base leading-relaxed">
+                primary mission:{" "}
+                <span className="text-blue-100">podcasts</span>. arm 02. this
+                control center assembles them. has to be ready before the
+                builders on{" "}
+                <span className="font-mono text-blue-100">itsyoursphere</span>{" "}
+                finish their work.
               </p>
-              <p className="text-blue-300/50 italic text-sm sm:text-base">
+              <p className="text-blue-300/85 text-sm sm:text-base leading-relaxed">
+                when podcasts are ready{" "}
+                <span className="text-blue-100">and</span> the sphere is
+                ready: <span className="text-cyan-300">total tether</span>.
+                three arms aligned. one signal.
+              </p>
+              <p
+                className="text-amber-300 text-sm sm:text-base tracking-wider uppercase"
+                style={{
+                  textShadow:
+                    "0 0 10px rgba(251,191,36,0.7), 0 0 22px rgba(251,191,36,0.35)",
+                }}
+              >
+                all arms must succeed. or all die.
+              </p>
+              <p className="text-blue-300/50 italic text-sm sm:text-base pt-1">
                 the goose is out.
               </p>
             </div>
