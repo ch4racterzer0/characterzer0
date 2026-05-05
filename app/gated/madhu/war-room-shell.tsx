@@ -238,45 +238,45 @@ function ScreenInbound() {
 
 function PanelOperatives() {
   const ops = [
-    { name: "TOULOUSE", role: "GOPI", status: "INSIDE", since: "04.24" },
-    { name: "NENE", role: "ISOLATED", status: "STANDBY", since: "—" },
-    { name: "BRANT", role: "MESSENGER", status: "STANDBY", since: "—" },
-    { name: "ICCULUS", role: "OPERATIVE", status: "ACTIVE", since: "05.05" },
+    { name: "characterzer0", tone: "cyan" },
+    { name: "YOU", tone: "emerald" },
+    { name: "THEM", tone: "amber" },
+    { name: "ME", tone: "blue" },
   ];
   return (
     <ScreenFrame
-      topLeft="operatives // matrix"
+      topLeft="operatives"
       topRight="● live"
-      bottomLeft="4 confirmed"
-      bottomRight="key system"
+      bottomLeft="roster forming"
+      bottomRight="—"
     >
-      <div className="absolute inset-0 pt-7 pb-7 px-3 flex flex-col justify-around font-mono text-[10px] sm:text-[11px]">
-        {ops.map((o) => (
-          <div key={o.name} className="flex items-center justify-between border-b border-blue-400/15 py-1">
-            <div className="flex items-center gap-2">
+      <div className="absolute inset-0 pt-7 pb-10 px-3 flex flex-col justify-around font-mono text-[11px] sm:text-[13px]">
+        {ops.map((o) => {
+          const dotClass =
+            o.tone === "cyan"
+              ? "bg-cyan-300"
+              : o.tone === "emerald"
+                ? "bg-emerald-400"
+                : o.tone === "amber"
+                  ? "bg-amber-300"
+                  : "bg-blue-400";
+          return (
+            <div
+              key={o.name}
+              className="flex items-center gap-3 border-b border-blue-400/15 py-1"
+            >
               <span
-                className={`block w-1.5 h-1.5 rounded-full ${
-                  o.status === "INSIDE"
-                    ? "bg-cyan-300"
-                    : o.status === "ACTIVE"
-                      ? "bg-emerald-400"
-                      : "bg-blue-400/40"
-                }`}
-                style={
-                  o.status !== "STANDBY"
-                    ? { boxShadow: "0 0 8px currentColor" }
-                    : undefined
-                }
+                className={`block w-1.5 h-1.5 rounded-full ${dotClass}`}
+                style={{ boxShadow: "0 0 8px currentColor" }}
               />
               <span className="text-blue-100 tracking-wider">{o.name}</span>
             </div>
-            <div className="flex items-center gap-3 text-blue-300/55">
-              <span className="hidden sm:inline tracking-wider">{o.role}</span>
-              <span className="tabular-nums">{o.since}</span>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
+      <p className="absolute bottom-7 left-3 right-3 text-blue-300/45 italic text-[9px] sm:text-[10px] tracking-wide">
+        names fill in as missions are completed.
+      </p>
     </ScreenFrame>
   );
 }
