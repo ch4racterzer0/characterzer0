@@ -150,7 +150,7 @@ export default function Sample() {
     <main
       className="relative min-h-screen bg-black bg-cover bg-center bg-no-repeat flex flex-col items-center justify-between gap-4 sm:gap-0 py-4 sm:py-10 px-4"
       style={{
-        filter: "hue-rotate(75deg) brightness(0.75) saturate(1.15)",
+        filter: "hue-rotate(-22deg) brightness(0.85) saturate(1.1)",
         backgroundImage:
           "linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.78)), url('/peter-stage.jpg')",
       }}
@@ -199,6 +199,12 @@ export default function Sample() {
         className="fixed bottom-4 left-4 text-blue-200/70 hover:text-blue-100 text-[10px] tracking-[0.3em] uppercase underline underline-offset-4"
       >
         &larr; back
+      </a>
+      <a
+        href="/"
+        className="fixed bottom-4 right-4 text-blue-200/70 hover:text-blue-100 text-[10px] tracking-[0.3em] uppercase underline underline-offset-4"
+      >
+        characterzer0 &rarr;
       </a>
     </main>
     </RadioProvider>
