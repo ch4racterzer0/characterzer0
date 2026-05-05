@@ -6,12 +6,17 @@ export function LinkTile({
   label,
   href,
   large = false,
+  password,
 }: {
   label: string;
   href: string;
   large?: boolean;
+  password?: string;
 }) {
   const [open, setOpen] = useState(false);
+  const [unlocked, setUnlocked] = useState(false);
+  const [pwInput, setPwInput] = useState("");
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (!open) return;
@@ -36,6 +41,20 @@ export function LinkTile({
   const shadow = large
     ? "0 0 60px rgba(59, 130, 246, 0.55), 0 0 120px rgba(59, 130, 246, 0.30), 0 25px 50px -10px rgba(59, 130, 246, 0.50), inset 0 1px 0 rgba(147, 197, 253, 0.45)"
     : "0 0 30px rgba(59, 130, 246, 0.40), 0 0 60px rgba(59, 130, 246, 0.18), 0 12px 28px -10px rgba(59, 130, 246, 0.40), inset 0 1px 0 rgba(147, 197, 253, 0.35)";
+
+  const locked = !!password && !unlocked;
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (pwInput === password) {
+      setUnlocked(true);
+      setError(false);
+      setPwInput("");
+    } else {
+      setError(true);
+      setPwInput("");
+    }
+  }
 
   return (
     <>
@@ -90,11 +109,49 @@ export function LinkTile({
             >
               ×
             </button>
-            <iframe
-              src={href}
-              title={label}
-              className="w-full h-full border-0"
-            />
+
+            {locked ? (
+              <form
+                onSubmit={handleSubmit}
+                className="absolute inset-0 flex flex-col items-center justify-center gap-5 px-6"
+              >
+                <label
+                  htmlFor={`pw-${label}`}
+                  className="text-blue-100/60 italic text-xs tracking-[0.3em] uppercase"
+                >
+                  enter passphrase
+                </label>
+                <input
+                  id={`pw-${label}`}
+                  type="password"
+                  autoFocus
+                  value={pwInput}
+                  onChange={(e) => {
+                    setPwInput(e.target.value);
+                    if (error) setError(false);
+                  }}
+                  className="bg-blue-950/40 border border-blue-400/40 text-blue-100 text-center text-base tracking-[0.3em] uppercase rounded-lg px-5 py-3 w-64 outline-none focus:border-blue-300/70 focus:bg-blue-950/60 transition-colors placeholder:text-blue-100/30"
+                  placeholder="········"
+                />
+                <button
+                  type="submit"
+                  className="text-blue-100/80 hover:text-blue-100 text-xs tracking-[0.4em] uppercase border border-blue-400/40 rounded-lg px-6 py-2 hover:bg-blue-900/40 transition-colors"
+                >
+                  enter
+                </button>
+                {error && (
+                  <p className="text-red-300/80 text-xs tracking-[0.2em] uppercase italic">
+                    denied
+                  </p>
+                )}
+              </form>
+            ) : (
+              <iframe
+                src={href}
+                title={label}
+                className="w-full h-full border-0"
+              />
+            )}
           </div>
         </div>
       )}

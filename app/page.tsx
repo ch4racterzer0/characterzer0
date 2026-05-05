@@ -9,7 +9,12 @@ export default function Home() {
       </p>
 
       <div className="flex flex-col items-center gap-12 sm:gap-16">
-        <LinkTile label="The Creator" href="https://www.itethered.com/trey" large />
+        <LinkTile
+          label="The Creator"
+          href="https://www.itethered.com/trey"
+          password="yiswmt"
+          large
+        />
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-10">
           <LinkTile label="Current Target" href="/currenttarget" />
           <LinkTile label="Current Assets" href="/currentassets" />
