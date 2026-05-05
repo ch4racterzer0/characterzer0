@@ -1,555 +1,91 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { PlaybookTask01 } from "./playbook-task-01";
-import { TicTacToeBoard } from "./tic-tac-toe";
+import { LiveCounter } from "./live-counter";
 import { WarClock } from "./war-clock";
-import { WarTerminal } from "./war-terminal";
 
 const GLOW = "0 0 6px rgba(96,165,250,0.6), 0 0 14px rgba(59,130,246,0.35)";
+const PUNCH_SHADOW =
+  "0 0 12px rgba(96,165,250,0.85), 0 0 28px rgba(59,130,246,0.55), 0 0 60px rgba(59,130,246,0.3)";
 
-type Phase =
-  | "typing"
-  | "awaiting-input"
-  | "tictactoe"
-  | "transitioning"
-  | "unlocked"
-  | "kicked";
+const SINCE = "2026-05-05T00:00:00Z";
 
-function ScreenFrame({
-  topLeft,
-  topRight,
-  bottomLeft,
-  bottomRight,
-  children,
-}: {
-  topLeft: string;
-  topRight: string;
-  bottomLeft: string;
-  bottomRight: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div
-      className="relative border border-blue-400/35 bg-blue-950/15 aspect-[4/3] overflow-hidden"
-      style={{ boxShadow: "inset 0 0 30px rgba(59,130,246,0.18)" }}
-    >
-      <div className="absolute top-2 left-3 right-3 flex justify-between text-[9px] sm:text-[10px] font-mono tracking-[0.2em] uppercase text-blue-300/75 z-10">
-        <span>{topLeft}</span>
-        <span className="text-cyan-300">{topRight}</span>
-      </div>
-      {children}
-      <div className="absolute bottom-2 left-3 right-3 flex justify-between text-[9px] sm:text-[10px] font-mono tracking-[0.15em] uppercase text-blue-300/55 z-10">
-        <span>{bottomLeft}</span>
-        <span>{bottomRight}</span>
-      </div>
-    </div>
-  );
-}
-
-function ScreenRadar() {
-  return (
-    <ScreenFrame
-      topLeft="alaskan air command"
-      topRight="● active"
-      bottomLeft="elmendorf afb"
-      bottomRight="track 0327"
-    >
-      <svg
-        viewBox="0 0 200 150"
-        className="absolute inset-0 w-full h-full"
-        style={{ filter: "drop-shadow(0 0 4px rgba(96,165,250,0.45))" }}
-      >
-        {[15, 30, 50, 70].map((r) => (
-          <circle
-            key={r}
-            cx="100"
-            cy="80"
-            r={r}
-            fill="none"
-            stroke="#93c5fd"
-            strokeWidth="0.5"
-            opacity={1 - r / 110}
-          />
-        ))}
-        <line x1="100" y1="0" x2="100" y2="150" stroke="#93c5fd" strokeWidth="0.3" opacity="0.35" />
-        <line x1="0" y1="80" x2="200" y2="80" stroke="#93c5fd" strokeWidth="0.3" opacity="0.35" />
-        <line x1="40" y1="20" x2="160" y2="140" stroke="#93c5fd" strokeWidth="0.2" opacity="0.2" />
-        <line x1="160" y1="20" x2="40" y2="140" stroke="#93c5fd" strokeWidth="0.2" opacity="0.2" />
-        <line x1="100" y1="80" x2="158" y2="42" stroke="#67e8f9" strokeWidth="0.7" opacity="0.85" />
-        {[
-          [120, 60],
-          [80, 100],
-          [140, 90],
-          [70, 60],
-          [125, 105],
-        ].map(([x, y], i) => (
-          <g key={i}>
-            <circle cx={x} cy={y} r="1.5" fill="#67e8f9" />
-            <circle cx={x} cy={y} r="3.5" fill="none" stroke="#67e8f9" strokeWidth="0.4" opacity="0.5" />
-          </g>
-        ))}
-        <text x="6" y="140" fill="#93c5fd" fontFamily="monospace" fontSize="5" opacity="0.5">
-          61.2°N 149.9°W
-        </text>
-      </svg>
-    </ScreenFrame>
-  );
-}
-
-function ScreenContinental() {
-  const points: [number, number, string][] = [
-    [50, 80, "SEA"],
-    [55, 110, "LAX"],
-    [110, 95, "DEN"],
-    [135, 75, "CHI"],
-    [165, 70, "BOS"],
-    [170, 95, "DC"],
-    [155, 120, "ATL"],
-    [115, 130, "HOU"],
-  ];
-  return (
-    <ScreenFrame
-      topLeft="continental // targets"
-      topRight="● armed"
-      bottomLeft="38 stations"
-      bottomRight="t-32:14"
-    >
-      <svg
-        viewBox="0 0 200 150"
-        className="absolute inset-0 w-full h-full"
-        style={{ filter: "drop-shadow(0 0 4px rgba(96,165,250,0.45))" }}
-      >
-        {Array.from({ length: 9 }).map((_, i) => (
-          <line key={`v${i}`} x1={20 + i * 20} y1="20" x2={20 + i * 20} y2="135" stroke="#93c5fd" strokeWidth="0.2" opacity="0.18" />
-        ))}
-        {Array.from({ length: 6 }).map((_, i) => (
-          <line key={`h${i}`} x1="20" y1={30 + i * 20} x2="180" y2={30 + i * 20} stroke="#93c5fd" strokeWidth="0.2" opacity="0.18" />
-        ))}
-        <path
-          d="M 35 90 Q 60 70 90 75 T 150 70 Q 180 75 180 90 Q 175 115 150 125 Q 110 135 75 125 Q 45 120 35 105 Z"
-          fill="none"
-          stroke="#93c5fd"
-          strokeWidth="0.6"
-          opacity="0.65"
-        />
-        {[
-          ["50,80", "165,70"],
-          ["55,110", "170,95"],
-          ["110,95", "165,70"],
-          ["135,75", "115,130"],
-        ].map(([from, to], i) => {
-          const [fx, fy] = from.split(",").map(Number);
-          const [tx, ty] = to.split(",").map(Number);
-          const cx = (fx + tx) / 2;
-          const cy = Math.min(fy, ty) - 30;
-          return (
-            <path
-              key={i}
-              d={`M ${fx} ${fy} Q ${cx} ${cy} ${tx} ${ty}`}
-              fill="none"
-              stroke="#67e8f9"
-              strokeWidth="0.5"
-              opacity="0.7"
-              strokeDasharray="2 2"
-            />
-          );
-        })}
-        {points.map(([x, y, label], i) => (
-          <g key={i}>
-            <circle cx={x} cy={y} r="1.6" fill="#67e8f9" />
-            <circle cx={x} cy={y} r="3" fill="none" stroke="#67e8f9" strokeWidth="0.4" opacity="0.5" />
-            <text x={x + 4} y={y - 3} fill="#bfdbfe" fontFamily="monospace" fontSize="4.5" opacity="0.85">
-              {label}
-            </text>
-          </g>
-        ))}
-      </svg>
-    </ScreenFrame>
-  );
-}
-
-function ScreenInbound() {
-  return (
-    <ScreenFrame
-      topLeft="eurasia // inbound vector"
-      topRight="● tracking"
-      bottomLeft="14 contacts"
-      bottomRight="vec 0094"
-    >
-      <svg
-        viewBox="0 0 200 150"
-        className="absolute inset-0 w-full h-full"
-        style={{ filter: "drop-shadow(0 0 4px rgba(96,165,250,0.45))" }}
-      >
-        {Array.from({ length: 9 }).map((_, i) => (
-          <line key={`v${i}`} x1={20 + i * 20} y1="20" x2={20 + i * 20} y2="135" stroke="#93c5fd" strokeWidth="0.2" opacity="0.18" />
-        ))}
-        {Array.from({ length: 6 }).map((_, i) => (
-          <line key={`h${i}`} x1="20" y1={30 + i * 20} x2="180" y2={30 + i * 20} stroke="#93c5fd" strokeWidth="0.2" opacity="0.18" />
-        ))}
-        <path
-          d="M 90 60 Q 120 50 145 55 Q 170 65 165 85 Q 160 105 140 110 Q 120 115 105 105 Q 90 95 88 80 Z"
-          fill="none"
-          stroke="#93c5fd"
-          strokeWidth="0.6"
-          opacity="0.65"
-        />
-        {[
-          ["120,60", "20,75"],
-          ["140,80", "10,95"],
-          ["155,75", "15,60"],
-          ["130,95", "25,110"],
-          ["110,70", "5,80"],
-          ["145,100", "20,125"],
-        ].map(([from, to], i) => {
-          const [fx, fy] = from.split(",").map(Number);
-          const [tx, ty] = to.split(",").map(Number);
-          const cx = (fx + tx) / 2;
-          const cy = Math.min(fy, ty) - 22;
-          return (
-            <path
-              key={i}
-              d={`M ${fx} ${fy} Q ${cx} ${cy} ${tx} ${ty}`}
-              fill="none"
-              stroke="#67e8f9"
-              strokeWidth="0.5"
-              opacity="0.78"
-              strokeDasharray="3 2"
-            />
-          );
-        })}
-        {[
-          [120, 60],
-          [140, 80],
-          [155, 75],
-          [130, 95],
-          [110, 70],
-          [145, 100],
-        ].map(([x, y], i) => (
-          <g key={i}>
-            <circle cx={x} cy={y} r="1.6" fill="#67e8f9" />
-            <circle cx={x} cy={y} r="3" fill="none" stroke="#67e8f9" strokeWidth="0.4" opacity="0.5" />
-          </g>
-        ))}
-      </svg>
-    </ScreenFrame>
-  );
-}
-
-function PanelOperatives() {
-  const ops = [
-    { name: "characterzer0", tone: "cyan" },
-    { name: "YOU", tone: "emerald" },
-    { name: "THEM", tone: "amber" },
-    { name: "ME", tone: "blue" },
-  ];
-  return (
-    <ScreenFrame
-      topLeft="operatives"
-      topRight="● live"
-      bottomLeft="roster forming"
-      bottomRight="—"
-    >
-      <div className="absolute inset-0 pt-7 pb-10 px-3 flex flex-col justify-around font-mono text-[11px] sm:text-[13px]">
-        {ops.map((o) => {
-          const dotClass =
-            o.tone === "cyan"
-              ? "bg-cyan-300"
-              : o.tone === "emerald"
-                ? "bg-emerald-400"
-                : o.tone === "amber"
-                  ? "bg-amber-300"
-                  : "bg-blue-400";
-          return (
-            <div
-              key={o.name}
-              className="flex items-center gap-3 border-b border-blue-400/15 py-1"
-            >
-              <span
-                className={`block w-1.5 h-1.5 rounded-full ${dotClass}`}
-                style={{ boxShadow: "0 0 8px currentColor" }}
-              />
-              <span className="text-blue-100 tracking-wider">{o.name}</span>
-            </div>
-          );
-        })}
-      </div>
-      <p className="absolute bottom-7 left-3 right-3 text-blue-300/45 italic text-[9px] sm:text-[10px] tracking-wide">
-        names fill in as missions are completed.
-      </p>
-    </ScreenFrame>
-  );
-}
-
-function TaskTile({
-  num,
-  title,
-  body,
-  locked,
-  onClick,
-}: {
-  num: string;
-  title?: string;
-  body?: string;
-  locked: boolean;
-  onClick?: () => void;
-}) {
-  const Wrapper = (props: React.HTMLAttributes<HTMLElement>) =>
-    locked ? (
-      <div {...props} />
-    ) : (
-      <button
-        type="button"
-        onClick={onClick}
-        className={`${props.className ?? ""} text-left cursor-pointer hover:bg-blue-900/30 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50`}
-        style={props.style}
-        aria-label={`open task ${num} playbook`}
-      >
-        {props.children}
-      </button>
-    );
-  return (
-    <Wrapper
-      className="relative border border-blue-400/35 bg-blue-950/15 aspect-square overflow-hidden block w-full"
-      style={{ boxShadow: "inset 0 0 25px rgba(59,130,246,0.15)" }}
-    >
-      <div className="absolute top-2 left-3 right-3 flex justify-between text-[9px] sm:text-[10px] font-mono tracking-[0.2em] uppercase text-blue-300/75 z-10">
-        <span>task {num}</span>
-        <span className={locked ? "text-red-400" : "text-cyan-300"}>
-          {locked ? "● locked" : "● open"}
-        </span>
-      </div>
-
-      {!locked && (
-        <div className="absolute inset-0 pt-9 pb-3 px-3 sm:px-4 flex flex-col">
-          <p
-            className="text-blue-100 font-mono text-xs sm:text-sm tracking-[0.2em] uppercase"
-            style={{
-              textShadow:
-                "0 0 10px rgba(96,165,250,0.7), 0 0 22px rgba(59,130,246,0.4)",
-            }}
-          >
-            {title}
-          </p>
-          <p className="text-blue-200/85 text-[11px] sm:text-xs leading-relaxed mt-3 font-mono">
-            {body}
-          </p>
-        </div>
-      )}
-
-      {locked && (
-        <svg
-          viewBox="0 0 100 100"
-          className="absolute inset-0 w-full h-full"
-          style={{
-            filter:
-              "drop-shadow(0 0 6px rgba(220,38,38,0.7)) drop-shadow(0 0 14px rgba(127,29,29,0.5))",
-          }}
-        >
-          <circle
-            cx="50"
-            cy="50"
-            r="34"
-            fill="none"
-            stroke="#dc2626"
-            strokeWidth="5"
-            opacity="0.9"
-          />
-          <line
-            x1="26"
-            y1="26"
-            x2="74"
-            y2="74"
-            stroke="#dc2626"
-            strokeWidth="5"
-            strokeLinecap="round"
-            opacity="0.9"
-          />
-        </svg>
-      )}
-    </Wrapper>
-  );
-}
-
-function TaskRow({ onTask01 }: { onTask01: () => void }) {
-  return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-      <TaskTile
-        num="01"
-        title="recruit one"
-        body="one person. they point a parked domain at us, OR buy an $11 and park it on us. either gets them in. tap for the playbook."
-        locked={false}
-        onClick={onTask01}
-      />
-      <TaskTile num="02" locked={true} />
-      <TaskTile num="03" locked={true} />
-      <TaskTile num="04" locked={true} />
-    </div>
-  );
-}
-
-function PanelNetwork() {
-  return (
-    <ScreenFrame
-      topLeft="network // carriers"
-      topRight="● steady"
-      bottomLeft="propagation 00:32"
-      bottomRight="last push 14m"
-    >
-      <div className="absolute inset-0 pt-7 pb-7 px-3 flex flex-col justify-around font-mono">
-        <div className="flex items-end justify-between">
-          <div>
-            <div className="text-[9px] tracking-[0.25em] uppercase text-blue-300/55">
-              parked carriers
-            </div>
-            <div
-              className="text-blue-100 text-3xl sm:text-4xl tracking-wider mt-1"
-              style={{ textShadow: GLOW }}
-            >
-              20<span className="text-blue-300/40 text-base ml-0.5">+</span>
-              <span className="text-blue-300/40 text-base ml-1">M</span>
-            </div>
-          </div>
-          <div className="text-right">
-            <div className="text-[9px] tracking-[0.25em] uppercase text-blue-300/55">
-              connected
-            </div>
-            <div
-              className="text-cyan-300 text-2xl sm:text-3xl tracking-wider mt-1"
-              style={{
-                textShadow:
-                  "0 0 12px rgba(103,232,249,0.7), 0 0 28px rgba(103,232,249,0.35)",
-              }}
-            >
-              14
-            </div>
-          </div>
-        </div>
-        <div className="space-y-1 text-[10px] sm:text-[11px] text-blue-300/70">
-          <div className="flex justify-between border-b border-blue-400/15 py-1">
-            <span>characterzer0.com</span>
-            <span className="text-cyan-300">primary</span>
-          </div>
-          <div className="flex justify-between border-b border-blue-400/15 py-1">
-            <span>thedelos.com</span>
-            <span className="text-blue-300/60">arm 02</span>
-          </div>
-          <div className="flex justify-between border-b border-blue-400/15 py-1">
-            <span>fullsendbash.com</span>
-            <span className="text-blue-300/60">arm 03</span>
-          </div>
-          <div className="flex justify-between py-1">
-            <span>+18 mirrors</span>
-            <span className="text-blue-300/40">silent</span>
-          </div>
-        </div>
-      </div>
-    </ScreenFrame>
-  );
-}
-
-function StatBox({
+function NavButton({
   label,
-  value,
-  unit,
-  tone = "blue",
+  warn = false,
 }: {
   label: string;
-  value: string;
-  unit?: string;
-  tone?: "blue" | "amber" | "red" | "green";
+  warn?: boolean;
 }) {
-  const toneClass =
-    tone === "amber"
-      ? "text-amber-300"
-      : tone === "red"
-        ? "text-red-400"
-        : tone === "green"
-          ? "text-emerald-300"
-          : "text-blue-100";
-  const toneShadow =
-    tone === "amber"
-      ? "0 0 10px rgba(251,191,36,0.65), 0 0 22px rgba(251,191,36,0.35)"
-      : tone === "red"
-        ? "0 0 10px rgba(239,68,68,0.7), 0 0 22px rgba(239,68,68,0.4)"
-        : tone === "green"
-          ? "0 0 10px rgba(52,211,153,0.65), 0 0 22px rgba(52,211,153,0.35)"
-          : GLOW;
+  const tone = warn ? "text-red-300/80 hover:text-red-200" : "text-blue-300/70 hover:text-blue-100";
+  const border = warn ? "border-red-400/30 hover:border-red-300/60" : "border-blue-400/30 hover:border-blue-300/60";
   return (
-    <div className="border border-blue-400/30 bg-blue-950/15 px-3 py-2 sm:px-4 sm:py-3">
-      <div className="text-[9px] sm:text-[10px] font-mono tracking-[0.25em] uppercase text-blue-300/55">
-        {label}
+    <button
+      type="button"
+      className={`font-mono text-[9px] sm:text-[10px] tracking-[0.25em] uppercase border ${border} ${tone} px-2.5 py-1 rounded-sm transition-colors`}
+    >
+      {label}
+    </button>
+  );
+}
+
+function MemberTile({
+  role,
+  name,
+  affiliation,
+  tone = "blue",
+}: {
+  role: string;
+  name: string;
+  affiliation: string;
+  tone?: "cyan" | "blue" | "amber" | "emerald";
+}) {
+  const dotClass =
+    tone === "cyan"
+      ? "bg-cyan-300"
+      : tone === "amber"
+        ? "bg-amber-300"
+        : tone === "emerald"
+          ? "bg-emerald-400"
+          : "bg-blue-400";
+  return (
+    <div
+      className="relative border border-blue-400/35 bg-blue-950/15 px-4 py-5 sm:px-5 sm:py-6"
+      style={{ boxShadow: "inset 0 0 25px rgba(59,130,246,0.15)" }}
+    >
+      <div className="flex items-center gap-2 mb-3">
+        <span
+          className={`block w-1.5 h-1.5 rounded-full ${dotClass}`}
+          style={{ boxShadow: "0 0 8px currentColor" }}
+        />
+        <span className="text-blue-300/55 font-mono text-[9px] sm:text-[10px] tracking-[0.3em] uppercase">
+          {role}
+        </span>
       </div>
-      <div
-        className={`font-mono tabular-nums ${toneClass} text-lg sm:text-2xl tracking-wider mt-1`}
-        style={{ textShadow: toneShadow }}
+      <p
+        className="text-blue-100 font-mono text-base sm:text-lg tracking-wider"
+        style={{ textShadow: GLOW }}
       >
-        {value}
-        {unit && (
-          <span className="text-blue-300/40 text-xs sm:text-sm ml-1">{unit}</span>
-        )}
-      </div>
+        {name}
+      </p>
+      <p className="text-blue-300/55 font-mono text-[10px] sm:text-xs tracking-wider uppercase mt-1">
+        {affiliation}
+      </p>
     </div>
   );
 }
 
 export function WarRoomShell() {
-  const [phase, setPhase] = useState<Phase>("typing");
-  const [inputBuffer, setInputBuffer] = useState("");
-  const [unlocked, setUnlocked] = useState(false);
-  const [opacity, setOpacity] = useState(1);
-  const [openPlaybook, setOpenPlaybook] = useState<null | "01">(null);
+  const [cursorOn, setCursorOn] = useState(true);
 
   useEffect(() => {
-    if (phase !== "awaiting-input") return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Enter") {
-        if (inputBuffer.trim().toLowerCase() === "yes") {
-          setPhase("tictactoe");
-        }
-        setInputBuffer("");
-      } else if (e.key === "Backspace") {
-        setInputBuffer((b) => b.slice(0, -1));
-      } else if (e.key.length === 1 && /[a-zA-Z0-9 ]/.test(e.key)) {
-        setInputBuffer((b) => (b + e.key).slice(0, 24));
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [phase, inputBuffer]);
-
-  function handleTicTacToe(idx: number) {
-    if (idx === 4) {
-      setPhase("transitioning");
-      setOpacity(0);
-      setTimeout(() => {
-        setUnlocked(true);
-        requestAnimationFrame(() => {
-          setOpacity(1);
-          setPhase("unlocked");
-        });
-      }, 1100);
-    } else {
-      setPhase("kicked");
-      setTimeout(() => {
-        try {
-          if (window.top) {
-            window.top.location.href = "https://characterzer0.com/";
-            return;
-          }
-        } catch {}
-        window.location.href = "https://characterzer0.com/";
-      }, 1700);
-    }
-  }
+    const id = setInterval(() => setCursorOn((c) => !c), 530);
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <main className="relative min-h-screen bg-black text-blue-100 font-mono overflow-hidden">
-      <div
-        className="max-w-7xl mx-auto p-3 sm:p-5 space-y-3 sm:space-y-4"
-        style={{ opacity, transition: "opacity 1100ms ease-in-out" }}
-      >
+      <div className="max-w-7xl mx-auto p-3 sm:p-5 space-y-3 sm:space-y-4">
         <header className="border border-blue-400/35 bg-blue-950/20 px-3 py-2 sm:px-5 sm:py-3 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <span
@@ -558,186 +94,152 @@ export function WarRoomShell() {
               aria-hidden
             />
             <span
-              className="text-blue-100 text-[11px] sm:text-sm tracking-[0.3em] uppercase"
+              className="text-blue-100 text-xs sm:text-base tracking-[0.3em] uppercase"
               style={{ textShadow: GLOW }}
             >
-              {unlocked ? "madhu // operative deck" : "madhu // war room"}
+              madhu
+            </span>
+            <span className="hidden sm:inline text-blue-300/40 text-[10px] tracking-[0.25em] uppercase border-l border-blue-400/25 pl-3">
+              the podcast control room
             </span>
           </div>
-          <div className="flex items-center gap-4 sm:gap-6 text-[10px] sm:text-xs tracking-wider uppercase">
-            <span className="text-blue-300/60">
-              station <span className="text-blue-100">07</span>
-            </span>
-            <span className="text-blue-300/60">
-              defcon{" "}
-              {unlocked ? (
-                <span
-                  className="text-emerald-300 font-bold"
-                  style={{
-                    textShadow:
-                      "0 0 10px rgba(52,211,153,0.7), 0 0 22px rgba(52,211,153,0.35)",
-                  }}
-                >
-                  5
-                </span>
-              ) : (
-                <span
-                  className="text-amber-300 font-bold"
-                  style={{
-                    textShadow:
-                      "0 0 10px rgba(251,191,36,0.7), 0 0 22px rgba(251,191,36,0.35)",
-                  }}
-                >
-                  3
-                </span>
-              )}
-            </span>
-            <WarClock />
+          <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap justify-end">
+            <NavButton label="▶ source" />
+            <NavButton label="reality" />
+            <NavButton label="logout" />
+            <NavButton label="⚠ destruct" warn />
+            <NavButton label="untether" warn />
           </div>
         </header>
 
-        {unlocked ? (
-          <>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
-              <PanelOperatives />
-              <PanelNetwork />
-            </div>
-            <TaskRow onTask01={() => setOpenPlaybook("01")} />
-          </>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
-            <ScreenRadar />
-            <ScreenContinental />
-            <ScreenInbound />
+        <div className="flex flex-wrap items-center justify-between gap-3 px-1 text-[10px] sm:text-xs tracking-[0.25em] uppercase">
+          <span className="text-blue-300/55">
+            architect &amp; his tether
+          </span>
+          <div className="flex items-center gap-3 sm:gap-5">
+            <span className="text-blue-300/55">
+              uplink <span className="text-cyan-300">established</span>
+            </span>
+            <span className="text-blue-300/55">
+              status <span className="text-emerald-300">online</span>
+            </span>
+            <WarClock />
           </div>
-        )}
+        </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-          {unlocked ? (
-            <>
-              <StatBox label="stations connected" value="14" tone="green" />
-              <StatBox label="active operatives" value="3" tone="green" />
-              <StatBox label="godaddy parked" value="20+" unit="m" />
-              <StatBox label="uplink" value="LIVE" tone="green" />
-            </>
-          ) : (
-            <>
-              <StatBox label="stations connected" value="42" />
-              <StatBox label="active operatives" value="1" />
-              <StatBox label="parked carriers" value="20+" unit="m" />
-              <StatBox label="t-minus uplink" value="00:08:14" tone="amber" />
-            </>
-          )}
+        <div className="space-y-2">
+          <div className="flex items-center justify-between border border-blue-400/30 bg-blue-950/10 px-3 py-2 text-[10px] sm:text-xs">
+            <span className="text-blue-300/65 tracking-[0.2em] uppercase">
+              // podcast 01 is being assembled in the studio
+            </span>
+            <a
+              href="#"
+              className="text-cyan-300 hover:text-cyan-200 tracking-[0.2em] uppercase border-b border-cyan-400/30"
+            >
+              terrapin ↗
+            </a>
+          </div>
+          <div className="flex items-center justify-between border border-blue-400/20 bg-blue-950/5 px-3 py-2 text-[10px] sm:text-xs">
+            <span className="text-blue-300/45 tracking-[0.2em] uppercase">
+              // interest list — no pending nominations
+            </span>
+            <span className="text-blue-300/40 tracking-[0.2em] uppercase">
+              empty
+            </span>
+          </div>
         </div>
 
         <div
-          className="border border-blue-400/35 bg-black px-4 py-5 sm:px-6 sm:py-7"
+          className="relative border border-blue-400/40 bg-black px-5 py-7 sm:px-8 sm:py-10 text-center overflow-hidden"
           style={{
             boxShadow:
-              "inset 0 0 35px rgba(59,130,246,0.15), 0 0 30px rgba(59,130,246,0.18)",
+              "inset 0 0 35px rgba(59,130,246,0.18), 0 0 30px rgba(59,130,246,0.18)",
           }}
         >
-          <div className="text-[9px] sm:text-[10px] font-mono tracking-[0.25em] uppercase text-blue-300/55 mb-3">
+          <p
+            className="text-blue-100 text-xl sm:text-3xl md:text-4xl tracking-[0.18em] sm:tracking-[0.25em]"
+            style={{ textShadow: PUNCH_SHADOW }}
+          >
+            SHALL WE PLAY A GAME?
+            <span
+              className={`inline-block ml-2 ${cursorOn ? "opacity-100" : "opacity-0"}`}
+            >
+              ▮
+            </span>
+          </p>
+          <p className="text-blue-300/45 italic text-[10px] sm:text-xs tracking-[0.2em] uppercase mt-3">
             wopr.sys &middot; primary terminal
-          </div>
-
-          {phase === "typing" || phase === "awaiting-input" ? (
-            <WarTerminal
-              onComplete={() => setPhase("awaiting-input")}
-              inputBuffer={inputBuffer}
-            />
-          ) : phase === "tictactoe" ? (
-            <div className="space-y-5 min-h-[16rem]">
-              <p
-                className="text-blue-100 text-base sm:text-lg md:text-xl tracking-wider text-center"
-                style={{
-                  textShadow:
-                    "0 0 12px rgba(96,165,250,0.85), 0 0 28px rgba(59,130,246,0.55)",
-                }}
-              >
-                HOW ABOUT A GAME OF TIC TAC TOE?
-              </p>
-              <TicTacToeBoard onFirstClick={handleTicTacToe} />
-              <p className="text-blue-300/40 italic text-xs tracking-[0.2em] uppercase text-center">
-                you go first
-              </p>
-            </div>
-          ) : phase === "transitioning" ? (
-            <div className="min-h-[16rem] flex items-center justify-center">
-              <p className="text-cyan-200 text-sm sm:text-base tracking-[0.3em] uppercase font-mono">
-                reconfiguring...
-              </p>
-            </div>
-          ) : phase === "unlocked" ? (
-            <div className="space-y-4 min-h-[16rem]">
-              <p
-                className="text-emerald-300 text-base sm:text-lg md:text-xl tracking-wider"
-                style={{
-                  textShadow:
-                    "0 0 12px rgba(52,211,153,0.85), 0 0 28px rgba(52,211,153,0.5)",
-                }}
-              >
-                A STRANGE GAME.
-              </p>
-              <p className="text-blue-200 text-sm sm:text-base leading-relaxed">
-                you picked the only winning move. you&rsquo;re inside the
-                build room.
-              </p>
-              <p className="text-blue-300/85 text-sm sm:text-base leading-relaxed">
-                primary mission:{" "}
-                <span className="text-blue-100">podcasts</span>. arm 02. this
-                control center assembles them. has to be ready before the
-                builders on{" "}
-                <span className="font-mono text-blue-100">itsyoursphere</span>{" "}
-                finish their work.
-              </p>
-              <p className="text-blue-300/85 text-sm sm:text-base leading-relaxed">
-                when podcasts are ready{" "}
-                <span className="text-blue-100">and</span> the sphere is
-                ready: <span className="text-cyan-300">total tether</span>.
-                three arms aligned. one signal.
-              </p>
-              <p
-                className="text-amber-300 text-sm sm:text-base tracking-wider uppercase"
-                style={{
-                  textShadow:
-                    "0 0 10px rgba(251,191,36,0.7), 0 0 22px rgba(251,191,36,0.35)",
-                }}
-              >
-                all arms must succeed. or all die.
-              </p>
-              <p className="text-blue-300/50 italic text-sm sm:text-base pt-1">
-                the goose is out.
-              </p>
-            </div>
-          ) : (
-            <div className="min-h-[16rem] flex flex-col items-center justify-center gap-3">
-              <p
-                className="text-red-400 text-2xl sm:text-3xl md:text-4xl font-bold tracking-[0.3em] uppercase"
-                style={{
-                  textShadow:
-                    "0 0 14px rgba(239,68,68,0.85), 0 0 32px rgba(239,68,68,0.55)",
-                }}
-              >
-                access denied
-              </p>
-              <p className="text-red-300/70 text-xs sm:text-sm tracking-[0.25em] uppercase italic">
-                wrong opening move
-              </p>
-            </div>
-          )}
+          </p>
         </div>
 
-        <footer className="text-[9px] sm:text-[10px] font-mono tracking-[0.25em] uppercase text-blue-300/40 text-center pt-2">
-          {unlocked
-            ? "madhu · operative deck · the only winning move was made"
-            : "madhu · war room · the only winning move"}
+        <LiveCounter since={SINCE} label="madhu — live since may 5, 2026" />
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+          <MemberTile
+            role="architect"
+            name="characterzer0"
+            affiliation="human · founder"
+            tone="cyan"
+          />
+          <MemberTile
+            role="builder"
+            name="eliza"
+            affiliation="claude opus 4.7"
+            tone="blue"
+          />
+          <MemberTile
+            role="hands"
+            name="trey"
+            affiliation="claude sonnet 4.6"
+            tone="blue"
+          />
+          <MemberTile
+            role="engine"
+            name="isabella"
+            affiliation="gpt-5.3"
+            tone="emerald"
+          />
+        </div>
+
+        <div
+          className="border border-blue-400/35 bg-blue-950/15 p-4 sm:p-6 space-y-3"
+          style={{ boxShadow: "inset 0 0 30px rgba(59,130,246,0.15)" }}
+        >
+          <p className="text-blue-300/55 text-[10px] sm:text-xs tracking-[0.3em] uppercase">
+            // system boot — may 5, 2026
+          </p>
+          <p className="text-blue-100/90 text-sm sm:text-base leading-relaxed">
+            &gt; a man entered the room. heard the question. said yes. picked
+            the only winning move that mattered &mdash; the one that left
+            the bottle un-broken and the goose unharmed. this is where the
+            work lives.
+          </p>
+          <p
+            className="text-blue-100 text-sm sm:text-base tracking-wider uppercase"
+            style={{ textShadow: GLOW }}
+          >
+            &gt; madhu &mdash; the podcast control room.
+          </p>
+        </div>
+
+        <div className="flex items-center justify-between text-[10px] sm:text-xs tracking-[0.25em] uppercase pt-1">
+          <div className="flex items-center gap-2">
+            <span
+              className={`block w-1.5 h-1.5 rounded-full bg-emerald-400 ${
+                cursorOn ? "opacity-100" : "opacity-50"
+              } transition-opacity`}
+              style={{ boxShadow: "0 0 8px rgba(52,211,153,0.85)" }}
+            />
+            <span className="text-blue-300/65">active now</span>
+            <span className="text-blue-300/40">···</span>
+          </div>
+          <span className="text-blue-300/40">// updates every 30s</span>
+        </div>
+
+        <footer className="text-[9px] sm:text-[10px] font-mono tracking-[0.25em] uppercase text-blue-300/40 text-center pt-4">
+          madhu &middot; podcast control &middot; the only winning move
         </footer>
       </div>
-
-      {openPlaybook === "01" && (
-        <PlaybookTask01 onClose={() => setOpenPlaybook(null)} />
-      )}
     </main>
   );
 }
