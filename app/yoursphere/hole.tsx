@@ -10,8 +10,9 @@ export function TheHole() {
   const [file, setFile] = useState<File | null>(null);
   const [dragging, setDragging] = useState(false);
   const [status, setStatus] = useState<
-    "idle" | "sending" | "dropped" | "error"
+    "idle" | "sending" | "dropped" | "limit" | "error"
   >("idle");
+  const [remaining, setRemaining] = useState<number | null>(null);
   const [errorMsg, setErrorMsg] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -26,10 +27,16 @@ export function TheHole() {
       fd.set("note", note);
       if (file) fd.set("file", file);
       const res = await fetch(HOLE_URL, { method: "POST", body: fd });
+      const body = await res.json().catch(() => ({}));
       if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
+        if (res.status === 429) {
+          setStatus("limit");
+          setRemaining(0);
+          return;
+        }
         throw new Error(body?.error ?? "hole closed");
       }
+      setRemaining(typeof body?.remaining === "number" ? body.remaining : null);
       setStatus("dropped");
       setNote("");
       setFile(null);
@@ -53,19 +60,33 @@ export function TheHole() {
     if (dropped) setFile(dropped);
   }
 
+  if (status === "limit") {
+    return (
+      <p className="italic text-blue-200/80 text-base border-l-2 border-blue-400/40 pl-4">
+        come back tomorrow.
+      </p>
+    );
+  }
+
   if (status === "dropped") {
+    let msg = "dropped. i’ll check it.";
+    if (remaining === 2) msg = "dropped. two more today.";
+    else if (remaining === 1) msg = "dropped. one more today.";
+    else if (remaining === 0) msg = "dropped. come back tomorrow.";
     return (
       <div className="space-y-3">
         <p className="italic text-blue-200/80 text-base border-l-2 border-blue-400/40 pl-4">
-          dropped. i&rsquo;ll check it.
+          {msg}
         </p>
-        <button
-          type="button"
-          onClick={() => setStatus("idle")}
-          className="text-blue-100/60 hover:text-blue-100 text-xs tracking-[0.3em] uppercase underline underline-offset-4"
-        >
-          drop another
-        </button>
+        {remaining !== 0 && (
+          <button
+            type="button"
+            onClick={() => setStatus("idle")}
+            className="text-blue-100/60 hover:text-blue-100 text-xs tracking-[0.3em] uppercase underline underline-offset-4"
+          >
+            drop another
+          </button>
+        )}
       </div>
     );
   }
