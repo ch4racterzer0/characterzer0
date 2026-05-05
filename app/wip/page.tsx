@@ -64,8 +64,37 @@ export default function WIP() {
             <li>[ ] count the exact clicks &mdash; publish the number on the explainer</li>
             <li>[ ] full walkthrough video of one operative&rsquo;s lower level</li>
             <li>[ ] reversibility messaging audit on every funnel page</li>
+            <li>[ ] before/after demo: <span className="text-blue-100">fullsendbash.com</span> &mdash; godaddy parking page vs characterzer0 hub, same domain</li>
           </ul>
         </section>
+
+        <div
+          className="rounded-xl border border-blue-400/40 bg-blue-950/30 p-6 sm:p-8 space-y-3"
+          style={{
+            boxShadow:
+              "0 0 35px rgba(59,130,246,0.30), inset 0 1px 0 rgba(147,197,253,0.20)",
+          }}
+        >
+          <p className="text-blue-100 text-xs sm:text-sm tracking-[0.3em] uppercase">
+            the canonical demo
+          </p>
+          <p className="text-blue-100/90 text-base sm:text-lg leading-relaxed font-light">
+            <span className="font-mono text-blue-200">fullsendbash.com</span>{" "}
+            was reverted to godaddy parking on may 5, 2026. once dns
+            propagates we record the page in its parked state &mdash; ad
+            rails, &ldquo;buy this domain,&rdquo; the slow scam-shaped
+            churn &mdash; and place it next to the same domain pointed at
+            this hub.
+          </p>
+          <p className="text-blue-100/85 text-base sm:text-lg leading-relaxed font-light">
+            same url. two worlds. one frame split-screen. the demo writes
+            itself.
+          </p>
+          <p className="text-blue-100/60 italic text-sm sm:text-base">
+            this is what every parked-domain owner needs to see in 30
+            seconds.
+          </p>
+        </div>
 
         <hr className="border-blue-100/15" />
 
