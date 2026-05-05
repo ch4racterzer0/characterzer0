@@ -1,5 +1,5 @@
-const CHANNEL_ID = "UCWqtZvq2yoraEk0e0JnQx9A";
-const CHANNEL_HANDLE = "FullSendBash";
+const CHANNEL_ID = "UCYmL7UZfguRrtqjlZUoScCQ";
+const CHANNEL_HANDLE = "ItsYourSphere";
 const CHANNEL_URL = `https://www.youtube.com/@${CHANNEL_HANDLE}`;
 const LIVE_URL = `${CHANNEL_URL}/live`;
 
@@ -15,7 +15,7 @@ export default function Stream() {
           />
           <div className="min-w-0">
             <p className="text-blue-100 font-light tracking-[0.2em] uppercase text-sm sm:text-base truncate">
-              fullsendbash
+              itsyoursphere
             </p>
             <p className="text-blue-100/50 text-[10px] tracking-[0.25em] uppercase truncate">
               the video arm
