@@ -1,30 +1,22 @@
 import Image from "next/image";
+import { CreatorTile } from "./creator-tile";
 
-function Tile({ label, large = false }: { label: string; large?: boolean }) {
-  const padding = large
-    ? "px-8 sm:px-12 py-4 sm:py-6"
-    : "px-5 sm:px-7 py-3 sm:py-4";
-  const text = large
-    ? "text-base sm:text-xl md:text-2xl tracking-[0.3em] sm:tracking-[0.4em]"
-    : "text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.3em]";
-  const halo = large ? "-inset-12 bg-blue-500/20" : "-inset-6 bg-blue-500/15";
-  const shadow = large
-    ? "0 0 60px rgba(59, 130, 246, 0.55), 0 0 120px rgba(59, 130, 246, 0.30), 0 25px 50px -10px rgba(59, 130, 246, 0.50), inset 0 1px 0 rgba(147, 197, 253, 0.45)"
-    : "0 0 30px rgba(59, 130, 246, 0.40), 0 0 60px rgba(59, 130, 246, 0.18), 0 12px 28px -10px rgba(59, 130, 246, 0.40), inset 0 1px 0 rgba(147, 197, 253, 0.35)";
-
+function Tile({ label }: { label: string }) {
   return (
     <div className="relative">
-      <div aria-hidden className={`absolute rounded-full blur-3xl ${halo}`} />
       <div
-        className={`relative rounded-xl border border-blue-400/40 bg-blue-950/40 backdrop-blur-sm ${padding}`}
+        aria-hidden
+        className="absolute -inset-6 rounded-full blur-3xl bg-blue-500/15"
+      />
+      <div
+        className="relative rounded-xl border border-blue-400/40 bg-blue-950/40 backdrop-blur-sm px-5 sm:px-7 py-3 sm:py-4"
         style={{
           transform: "perspective(1200px) rotateX(-8deg)",
-          boxShadow: shadow,
+          boxShadow:
+            "0 0 30px rgba(59, 130, 246, 0.40), 0 0 60px rgba(59, 130, 246, 0.18), 0 12px 28px -10px rgba(59, 130, 246, 0.40), inset 0 1px 0 rgba(147, 197, 253, 0.35)",
         }}
       >
-        <span
-          className={`block text-blue-100 font-light uppercase whitespace-nowrap ${text}`}
-        >
+        <span className="block text-blue-100 font-light uppercase whitespace-nowrap text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.3em]">
           {label}
         </span>
       </div>
@@ -40,7 +32,7 @@ export default function Home() {
       </p>
 
       <div className="flex flex-col items-center gap-12 sm:gap-16">
-        <Tile label="The Creator" large />
+        <CreatorTile />
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-10">
           <Tile label="Current Target" />
           <Tile label="Current Assets" />
