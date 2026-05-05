@@ -5,10 +5,13 @@ import {
   RadioProvider,
   RadioTilesMobileTop,
 } from "./radio-tiles";
+import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
 
 export default function Home() {
   return (
     <RadioProvider>
+      <ThemeShifter>
+      <ThemeSwitch />
       <main className="min-h-screen bg-black flex flex-col items-center justify-between gap-4 sm:gap-0 py-4 sm:py-10 px-4">
         <RadioTilesMobileTop />
 
@@ -34,6 +37,7 @@ export default function Home() {
 
         <FigureWithTilesDesktop />
       </main>
+      </ThemeShifter>
     </RadioProvider>
   );
 }
