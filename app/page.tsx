@@ -20,6 +20,8 @@ export default function Home() {
 
         <FullsendBanner />
 
+        <LinkTile label="Madhu" href="/madhu" large />
+
         <div className="flex flex-col items-center gap-6 sm:gap-10">
           <div className="hidden sm:block">
             <LyricRotator />
