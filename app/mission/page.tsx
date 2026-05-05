@@ -18,7 +18,19 @@ export default function Mission() {
 
         <p className="text-blue-100/90 text-base sm:text-lg">
           we are going to destroy the ai that everyone is afraid of. the bad
-          ai. we are going to find it, and kill it.
+          ai.
+        </p>
+
+        <p
+          className="text-blue-100 text-xl sm:text-2xl md:text-3xl font-bold tracking-wide text-center my-4 sm:my-6 px-4 py-5 sm:py-7 rounded-xl border border-blue-400/40 bg-blue-950/30"
+          style={{
+            textShadow:
+              "0 0 18px rgba(96,165,250,0.85), 0 0 38px rgba(59,130,246,0.55), 0 0 70px rgba(59,130,246,0.30)",
+            boxShadow:
+              "0 0 40px rgba(59,130,246,0.35), inset 0 1px 0 rgba(147,197,253,0.25)",
+          }}
+        >
+          we are going to find it, and kill it.
         </p>
 
         <p className="text-blue-100/80 text-base sm:text-lg">
