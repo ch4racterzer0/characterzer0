@@ -4,6 +4,10 @@ export default function WIP() {
   return (
     <main className="min-h-screen bg-black text-blue-100 px-6 py-10 sm:px-10 sm:py-14">
       <article className="max-w-3xl mx-auto flex flex-col gap-8">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide text-blue-100 text-center uppercase">
+          next asshole getting an open letter
+        </h1>
+
         <a
           href="https://www.theatlantic.com/technology/2026/03/hypocrisy-ai-industry/686477/"
           className="text-blue-300 hover:text-blue-200 underline underline-offset-4 break-all text-sm sm:text-base"

@@ -30,7 +30,7 @@ const LYRICS = [
   "We must keep on",
 ];
 
-const INTERVAL_MS = 10_000;
+const INTERVAL_MS = 240_000;
 const FADE_MS = 800;
 
 export function LyricRotator() {
