@@ -13,10 +13,10 @@ export default function Home() {
     <RadioProvider>
       <ThemeShifter>
       <ThemeSwitch />
-      <main className="min-h-screen bg-black flex flex-col items-center justify-between gap-4 sm:gap-0 py-4 sm:py-10 px-4">
+      <main className="min-h-screen bg-black flex flex-col items-center justify-between gap-10 sm:gap-0 py-4 sm:py-10 px-4">
         <RadioTilesMobileTop />
 
-        <div className="flex flex-col items-center gap-4 sm:gap-10">
+        <div className="flex flex-col items-center gap-10 sm:gap-10">
           <LyricRotator />
           <div className="flex flex-row items-center gap-6 sm:gap-6">
             <div className="hidden sm:block">
