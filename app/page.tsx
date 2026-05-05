@@ -8,18 +8,14 @@ export default function Home() {
         <p className="text-white/45 italic text-xs sm:text-sm tracking-wide text-center whitespace-nowrap">
           &ldquo;But then I learned just yesterday — To rush and never waste the day&rdquo;
         </p>
-        <LinkTile
-          label="The Creator"
-          href="https://www.itethered.com/trey"
-          password="yiswmt"
-          large
-        />
+        <LinkTile label="The Creator" href="/creator" large />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10">
         <LinkTile label="Current Target" href="/currenttarget" />
         <LinkTile label="Current Assets" href="/currentassets" />
         <LinkTile label="WIP" href="/wip" />
+        <LinkTile label="It's Your Sphere" href="/yoursphere" />
       </div>
 
       <Image
