@@ -121,14 +121,14 @@ export default function Sample() {
             sample anspach
           </p>
           <h1 className="text-blue-100/80 italic font-light text-2xl sm:text-3xl tracking-wide">
-            jordan
+            peter
           </h1>
         </div>
 
         <div className="flex flex-row items-center gap-3 sm:gap-6">
           <DemoTile
             label="About"
-            blurb="who jordan is, in jordan's own words. a paragraph or three. links to anywhere they want."
+            blurb="who peter is, in peter's own words. a paragraph or three. links to anywhere they want."
             large
           />
           <DemoTile
@@ -142,15 +142,15 @@ export default function Sample() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-10 w-full max-w-md sm:w-auto sm:max-w-none">
         <DemoTile
           label="Projects"
-          blurb="a list of things jordan is building, with screenshots and short notes on each."
+          blurb="a list of things peter is building, with screenshots and short notes on each."
         />
         <DemoTile
           label="Notes"
-          blurb="long-form posts, journal entries, anything jordan wants to say at length."
+          blurb="long-form posts, journal entries, anything peter wants to say at length."
         />
         <DemoTile
           label="Stream"
-          blurb="when jordan is live, this turns on. otherwise, last few archives sit here."
+          blurb="when peter is live, this turns on. otherwise, last few archives sit here."
         />
         <DemoTile
           label="Contact"
