@@ -32,6 +32,17 @@ export default function YourSphere() {
           we aren&rsquo;t sure how yet, but it&rsquo;s coming.
         </p>
 
+        <p className="text-blue-100">
+          you will earn{" "}
+          <span className="uppercase tracking-[0.15em]">nothing</span> from it.
+          not a cent. because we don&rsquo;t either.
+        </p>
+
+        <p>
+          what you get is a world like this of your own.{" "}
+          <span className="italic text-blue-200">that&rsquo;s the allure.</span>
+        </p>
+
         <p className="italic text-blue-100/60">
           if you&rsquo;d like to help &mdash; drop something in the fucking
           hole.
