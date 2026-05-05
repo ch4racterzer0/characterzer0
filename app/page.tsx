@@ -1,4 +1,5 @@
 import { CreatorsFlash } from "./creators-flash";
+import { EthosWhisper } from "./ethos-whisper";
 import { FullsendBanner } from "./fullsend-banner";
 import { LinkTile } from "./link-tile";
 import { LyricRotator } from "./lyric-rotator";
@@ -52,6 +53,7 @@ export default function Home() {
           <LinkTile label="Stream" href="/stream" />
         </div>
       </main>
+      <EthosWhisper />
       <CreatorsFlash />
       </ThemeShifter>
     </RadioProvider>
