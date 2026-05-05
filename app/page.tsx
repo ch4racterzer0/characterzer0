@@ -23,9 +23,6 @@ export default function Home() {
             <LinkTile label="Mission" href="/mission" large />
           </div>
           <LinkTile label="Current Assignment" href="/currentassignment" large />
-          <div className="hidden sm:block">
-            <HoleTile />
-          </div>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-10 w-full max-w-md sm:w-auto sm:max-w-none">
@@ -35,7 +32,12 @@ export default function Home() {
           <LinkTile label="Your Own Anspach" href="/yoursphere" />
         </div>
 
-        <FigureWithTilesDesktop />
+        <div className="flex items-end justify-center gap-4 sm:gap-10">
+          <div className="hidden sm:block">
+            <HoleTile />
+          </div>
+          <FigureWithTilesDesktop />
+        </div>
 
         <div className="sm:hidden mt-4">
           <HoleTile />
