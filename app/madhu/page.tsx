@@ -25,8 +25,8 @@ export default function Madhu() {
           </div>
           <p className="text-blue-200 italic tracking-wide text-base sm:text-lg">
             from <span className="font-mono">madhuvan</span> &mdash;
-            krishna&rsquo;s forest. place of devotion. you&rsquo;re here
-            because you wanted to be. that&rsquo;s the only ticket.
+            krishna&rsquo;s forest. place of devotion. you are here because
+            you wanted to be. that&rsquo;s the only ticket.
           </p>
         </header>
 
