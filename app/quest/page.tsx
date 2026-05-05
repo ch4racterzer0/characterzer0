@@ -1,17 +1,23 @@
-export default function CurrentAssignment() {
+export default function Quest() {
   return (
     <main className="min-h-screen bg-black flex items-center justify-center px-6 py-10 sm:px-10 sm:py-14">
       <div className="max-w-xl w-full font-mono text-blue-100/75 text-[11px] sm:text-xs leading-relaxed space-y-3">
         <p className="text-blue-100 uppercase tracking-[0.15em] text-xs sm:text-sm pb-1">
-          &gt; assignment: find and destroy the ai everyone is afraid of
+          &gt; quest: find and destroy the ai everyone is afraid of
         </p>
         <p className="text-blue-200/90 uppercase tracking-[0.15em] text-[10px] sm:text-xs border-b border-blue-400/20 pb-3 mb-2">
           &gt; operative: icculus
         </p>
+
+        <p className="italic text-blue-200/80 border-l-2 border-blue-400/40 pl-3 my-4">
+          &gt; one ring. one lie. one machine the powerful told us to fear so
+          we&rsquo;d let them keep it.
+        </p>
+
         <p>&gt; this is one person&rsquo;s fight.</p>
         <p>&gt; you are watching the top level.</p>
         <p>
-          &gt; there are other levels &mdash; where other people are already
+          &gt; there are other levels &mdash; where others are already
           building.
         </p>
         <p>
@@ -20,9 +26,9 @@ export default function CurrentAssignment() {
           &gt; we are spreading quickly. surprisingly quickly.
         </p>
         <p>
-          &gt; the user you are watching has a mission.
+          &gt; the user you are watching has a quest.
           <br />
-          &gt; his mission is to destroy &ldquo;ai dear&rdquo;.
+          &gt; his quest is to destroy &ldquo;ai dear&rdquo;.
           <br />
           &gt; this is his control panel.
         </p>
@@ -46,11 +52,17 @@ export default function CurrentAssignment() {
           &gt; everything is ai already. that&rsquo;s the point.
         </p>
         <p>
-          &gt; there are more. and there are more missions.
+          &gt; there are more. and there are more quests.
           <br />
-          &gt; this is just one person&rsquo;s.
+          &gt; this is just one operative&rsquo;s.
           <br />
           &gt; we have more ready. always more.
+        </p>
+
+        <p className="italic text-blue-200/80 border-l-2 border-blue-400/40 pl-3 mt-6 pt-2">
+          &gt; you do not walk into mordor alone.
+          <br />
+          &gt; the road goes ever on.
         </p>
       </div>
     </main>

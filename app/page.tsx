@@ -19,7 +19,7 @@ export default function Home() {
           <LyricRotator />
           <div className="flex flex-row items-center gap-6 sm:gap-8">
             <LinkTile label="Core4" href="/core4" large />
-            <LinkTile label="Current Assignment" href="/currentassignment" large />
+            <LinkTile label="Quest" href="/quest" large />
           </div>
         </div>
 
