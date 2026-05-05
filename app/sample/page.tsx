@@ -149,7 +149,7 @@ export default function Sample() {
     <RadioProvider>
     <main
       className="relative min-h-screen bg-black flex flex-col items-center justify-between gap-4 sm:gap-0 py-4 sm:py-10 px-4"
-      style={{ filter: "hue-rotate(-90deg)" }}
+      style={{ filter: "hue-rotate(75deg) brightness(0.75) saturate(1.15)" }}
     >
       <RadioTilesMobileTop />
 
