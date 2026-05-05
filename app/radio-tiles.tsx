@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
-const JEMP_STREAM = "https://tunein.com/embed/player/s173729/";
+const JEMP_STREAM = "https://streaming.radio.co/sd71de59b3/listen";
 
 function RadioTile({
   label,
@@ -52,7 +52,23 @@ function RadioTile({
 
 export function RadioTilesRow() {
   const [playing, setPlaying] = useState(false);
-  const toggle = () => setPlaying((p) => !p);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const toggle = async () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (playing) {
+      audio.pause();
+      setPlaying(false);
+    } else {
+      try {
+        await audio.play();
+        setPlaying(true);
+      } catch {
+        setPlaying(false);
+      }
+    }
+  };
 
   return (
     <div className="flex items-end justify-center gap-4 sm:gap-8">
@@ -68,17 +84,7 @@ export function RadioTilesRow() {
       />
       <RadioTile label="Goose" playing={playing} onClick={toggle} />
 
-      {playing && (
-        <iframe
-          key="jemp-stream"
-          src={JEMP_STREAM}
-          title="JEMP Radio stream"
-          aria-hidden="true"
-          allow="autoplay"
-          className="pointer-events-none absolute"
-          style={{ width: 1, height: 1, opacity: 0, left: -9999, top: -9999 }}
-        />
-      )}
+      <audio ref={audioRef} src={JEMP_STREAM} preload="none" />
     </div>
   );
 }
