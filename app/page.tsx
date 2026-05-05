@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { LinkTile } from "./link-tile";
 import { LyricRotator } from "./lyric-rotator";
 import {
@@ -51,6 +52,22 @@ export default function Home() {
           <LinkTile label="Mirror" href="/mirror" />
           <LinkTile label="My Heaviest Lifts" href="/heaviestlifts" />
         </div>
+
+        <a
+          href="https://www.youtube.com/@ItsYourSphere"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="open the It's Your Sphere YouTube channel"
+          className="block w-full max-w-3xl mt-6 sm:mt-10 mx-auto group"
+        >
+          <Image
+            src="/itsyoursphere-banner.png"
+            alt="It's Your Sphere — the video arm of core4"
+            width={1672}
+            height={941}
+            className="w-full h-auto opacity-70 group-hover:opacity-100 transition-opacity duration-500"
+          />
+        </a>
       </main>
       </ThemeShifter>
     </RadioProvider>
