@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const LYRICS = [
+const PHISH_LYRICS = [
   "Surrender to the flow",
   "But then I learned just yesterday — to rush and never waste the day",
   "Set the gearshift for the high gear of your soul",
@@ -30,24 +30,28 @@ const LYRICS = [
   "We must keep on",
 ];
 
-const INTERVAL_MS = 240_000;
+const INTERVAL_MS = 180_000;
 const FADE_MS = 800;
 
-export function LyricRotator() {
+export function LyricRotator({
+  lyrics = PHISH_LYRICS,
+}: {
+  lyrics?: readonly string[];
+}) {
   const [idx, setIdx] = useState(0);
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    setIdx(Math.floor(Math.random() * LYRICS.length));
+    setIdx(Math.floor(Math.random() * lyrics.length));
 
     const id = setInterval(() => {
       setVisible(false);
       window.setTimeout(() => {
         setIdx((curr) => {
-          if (LYRICS.length <= 1) return curr;
+          if (lyrics.length <= 1) return curr;
           let next = curr;
           while (next === curr) {
-            next = Math.floor(Math.random() * LYRICS.length);
+            next = Math.floor(Math.random() * lyrics.length);
           }
           return next;
         });
@@ -56,7 +60,7 @@ export function LyricRotator() {
     }, INTERVAL_MS);
 
     return () => clearInterval(id);
-  }, []);
+  }, [lyrics]);
 
   return (
     <p
@@ -64,7 +68,7 @@ export function LyricRotator() {
         visible ? "opacity-100" : "opacity-0"
       }`}
     >
-      {LYRICS[idx]}
+      {lyrics[idx]}
     </p>
   );
 }

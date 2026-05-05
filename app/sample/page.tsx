@@ -3,6 +3,34 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { LyricRotator } from "../lyric-rotator";
+
+const GOOSE_LYRICS = [
+  "Hot tea in the kitchen, honey on your spoon",
+  "Been chasing satellites since we landed on the moon",
+  "Lay your weapons down and reach up to the skies",
+  "It's a natural inquisition, we just wanna know",
+  "Throw an old song on the fire, let it burn til the heavens sing",
+  "About lighting bolts and waterfalls, where all the night walls go",
+  "We paint the walls with warning signs, hope that all the world will see",
+  "To the rhythm of life, I was walking on by",
+  "Down on the ground you sometimes find what you wouldn't have found if you kept on walking by",
+  "Maybe there's no bad luck — you gotta go down if you want to get up",
+  "There is a lesson to learn, and a cup to refill",
+  "If your balance you lose, a road lies ahead, so tie up your shoes",
+  "Run straight to the sky",
+  "It's the same dream of mine, to be there if we drive for a mile",
+  "I'll be seeing you next time",
+  "It's just a raindrop, falling, hauling love from above",
+  "I'm not tired, I'm not worn at all — I've just started",
+  "Now I'm shown around just what we were born to be",
+  "Ironclad heart, someday I will lay my head down",
+  "Sight stolen again, falling out, all I've been",
+  "It's soaring now, sword in mouth — my arrow",
+  "Slowing down over the air",
+  "There's no shadow left to rest in",
+  "Mist under my arrow",
+];
 
 function DemoTile({
   label,
@@ -116,6 +144,7 @@ export default function Sample() {
   return (
     <main className="relative min-h-screen bg-black flex flex-col items-center justify-between gap-4 sm:gap-0 py-4 sm:py-10 px-4">
       <div className="flex flex-col items-center gap-4 sm:gap-10">
+        <LyricRotator lyrics={GOOSE_LYRICS} />
         <div className="flex flex-row items-center gap-3 sm:gap-6">
           <DemoTile
             label="About"
