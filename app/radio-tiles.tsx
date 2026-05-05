@@ -72,7 +72,7 @@ export function RadioTilesRow() {
 
   return (
     <div className="flex items-end justify-center gap-4 sm:gap-8">
-      <RadioTile label="Phish" playing={playing} onClick={toggle} />
+      <RadioTile label="SLOW" playing={playing} onClick={toggle} />
       <Image
         src="/characterzer0-figure.png"
         alt="character zer0"
@@ -82,7 +82,7 @@ export function RadioTilesRow() {
         sizes="(max-width: 640px) 50vw, 30vw"
         className="h-[28vh] w-auto"
       />
-      <RadioTile label="Goose" playing={playing} onClick={toggle} />
+      <RadioTile label="READY" playing={playing} onClick={toggle} />
 
       <audio ref={audioRef} src={JEMP_STREAM} preload="none" />
     </div>
