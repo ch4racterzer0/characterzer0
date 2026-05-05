@@ -24,7 +24,7 @@ export default function Home() {
           <LinkTile label="The Creator" href="/creator" large />
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-10 w-full max-w-md sm:max-w-none">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-10 w-full max-w-md sm:w-auto sm:max-w-none">
           <LinkTile label="Current Targets" href="/currenttarget" />
           <LinkTile label="Current Assets" href="/currentassets" />
           <LinkTile label="WIP" href="/wip" />
