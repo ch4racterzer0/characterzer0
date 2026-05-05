@@ -38,6 +38,39 @@ body,
   height: 0;
 }
 
+@keyframes blackhole-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes warp-out {
+  0% {
+    transform: scale(1) rotate(0deg);
+    filter: blur(0px);
+    opacity: 1;
+  }
+  60% {
+    transform: scale(2) rotate(120deg);
+    filter: blur(8px);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(10) rotate(360deg);
+    filter: blur(28px);
+    opacity: 0;
+  }
+}
+
+body.warping-out {
+  animation: warp-out 1000ms ease-in forwards;
+  transform-origin: center center;
+  overflow: hidden;
+}
+
 .feathered-figure img {
   -webkit-mask-image: radial-gradient(
     ellipse 58% 68% at 50% 50%,

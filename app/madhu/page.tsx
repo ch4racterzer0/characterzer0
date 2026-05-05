@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FullsendBanner } from "../fullsend-banner";
+import { BlackHolePortal } from "./black-hole-portal";
 import { Hourglass } from "./hourglass";
 
 export default function Madhu() {
@@ -44,6 +45,10 @@ export default function Madhu() {
             when this button goes live, the podcast industry is put on
             notice.
           </p>
+
+          <div className="pt-3 flex justify-center">
+            <BlackHolePortal />
+          </div>
         </div>
 
         <section className="space-y-4 text-base sm:text-lg">
