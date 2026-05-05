@@ -1,9 +1,13 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { LyricRotator } from "../lyric-rotator";
+import {
+  FigureWithTilesDesktop,
+  RadioProvider,
+  RadioTilesMobileTop,
+} from "../radio-tiles";
 
 const GOOSE_LYRICS = [
   "Hot tea in the kitchen, honey on your spoon",
@@ -142,7 +146,10 @@ function DemoTile({
 
 export default function Sample() {
   return (
+    <RadioProvider>
     <main className="relative min-h-screen bg-black flex flex-col items-center justify-between gap-4 sm:gap-0 py-4 sm:py-10 px-4">
+      <RadioTilesMobileTop />
+
       <div className="flex flex-col items-center gap-4 sm:gap-10">
         <LyricRotator lyrics={GOOSE_LYRICS} />
         <div className="flex flex-row items-center gap-3 sm:gap-6">
@@ -178,17 +185,7 @@ export default function Sample() {
         />
       </div>
 
-      <div className="flex items-end justify-center gap-4 sm:gap-8">
-        <Image
-          src="/characterzer0-figure.png"
-          alt="sample figure"
-          width={1536}
-          height={1024}
-          priority
-          sizes="(max-width: 640px) 50vw, 30vw"
-          className="h-[24vh] w-auto opacity-70"
-        />
-      </div>
+      <FigureWithTilesDesktop />
 
       <a
         href="/yoursphere"
@@ -197,5 +194,6 @@ export default function Sample() {
         &larr; back
       </a>
     </main>
+    </RadioProvider>
   );
 }
