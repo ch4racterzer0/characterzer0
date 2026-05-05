@@ -76,7 +76,6 @@ export function CreatorTile() {
             <iframe
               src="https://www.itethered.com/trey"
               title="The Creator"
-              sandbox=""
               className="w-full h-full border-0"
             />
           </div>
