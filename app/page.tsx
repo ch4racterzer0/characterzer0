@@ -22,7 +22,7 @@ export default function Home() {
         <MatrixSphere />
         <RadioTilesMobileTop />
 
-        <LinkTile label="Madhu" href="https://madhu.characterzer0.com/" large />
+        <LinkTile label="Madhu" href="/madhu" large />
 
         <LinkTile label="Unparked" href="/unparked" subline="raid plan" large />
 
