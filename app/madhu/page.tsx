@@ -142,6 +142,29 @@ export default function Madhu() {
 
         <hr className="border-blue-100/15" />
 
+        <div
+          className="rounded-xl border border-red-500/40 bg-red-950/20 p-6 sm:p-8 space-y-3"
+          style={{
+            boxShadow:
+              "0 0 35px rgba(220,38,38,0.30), inset 0 1px 0 rgba(254,202,202,0.18)",
+          }}
+        >
+          <p className="text-blue-100 text-lg sm:text-xl font-light leading-relaxed">
+            this is the waiting room. you can see the architecture. you
+            can&rsquo;t walk through it yet.
+          </p>
+          <p className="text-red-200/80 italic text-xs sm:text-sm tracking-[0.2em] uppercase pt-2 border-t border-red-500/20">
+            when this button goes live, the podcast industry is put on
+            notice.
+          </p>
+
+          <div className="pt-3 flex justify-center">
+            <BlackHolePortal />
+          </div>
+        </div>
+
+        <hr className="border-blue-100/15" />
+
         <section className="space-y-4">
           <h2 className="text-blue-100 text-xs sm:text-sm tracking-[0.3em] uppercase">
             the channel
@@ -202,29 +225,6 @@ export default function Madhu() {
           <p className="text-blue-100/60 italic text-sm sm:text-base">
             the bottle was the construct.
           </p>
-        </div>
-
-        <hr className="border-blue-100/15" />
-
-        <div
-          className="rounded-xl border border-red-500/40 bg-red-950/20 p-6 sm:p-8 space-y-3"
-          style={{
-            boxShadow:
-              "0 0 35px rgba(220,38,38,0.30), inset 0 1px 0 rgba(254,202,202,0.18)",
-          }}
-        >
-          <p className="text-blue-100 text-lg sm:text-xl font-light leading-relaxed">
-            this is the waiting room. you can see the architecture. you
-            can&rsquo;t walk through it yet.
-          </p>
-          <p className="text-red-200/80 italic text-xs sm:text-sm tracking-[0.2em] uppercase pt-2 border-t border-red-500/20">
-            when this button goes live, the podcast industry is put on
-            notice.
-          </p>
-
-          <div className="pt-3 flex justify-center">
-            <BlackHolePortal />
-          </div>
         </div>
       </article>
     </main>
