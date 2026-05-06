@@ -83,7 +83,25 @@ export async function POST(req: NextRequest) {
     `madhu_login_ok host=${host} next=${next} redirect=${redirectUrl.toString()} token_len=${token.length} cookie_header_len=${cookieHeader.length}`,
   );
 
-  const res = NextResponse.redirect(redirectUrl, { status: 303 });
-  res.headers.append("Set-Cookie", cookieHeader);
-  return res;
+  const safeNextAttr = next.replace(/[<>"'&]/g, (c) =>
+    c === "<"
+      ? "&lt;"
+      : c === ">"
+        ? "&gt;"
+        : c === '"'
+          ? "&quot;"
+          : c === "'"
+            ? "&#39;"
+            : "&amp;",
+  );
+  const html = `<!doctype html><html><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=${safeNextAttr}"><title>...</title></head><body style="background:#000;color:#cdd9ff;font-family:monospace;padding:2rem"><p>opening...</p><script>window.location.replace(${JSON.stringify(next)});</script></body></html>`;
+
+  return new Response(html, {
+    status: 200,
+    headers: {
+      "Content-Type": "text/html; charset=utf-8",
+      "Cache-Control": "no-store",
+      "Set-Cookie": cookieHeader,
+    },
+  });
 }
