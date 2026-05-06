@@ -9,7 +9,7 @@ export default function Madhu() {
       <article className="max-w-3xl mx-auto flex flex-col gap-10 font-light leading-relaxed">
         <header className="space-y-3">
           <p className="text-blue-100/60 text-xs sm:text-sm tracking-[0.4em] uppercase">
-            the waiting room
+            level 0 &middot; the waiting room
           </p>
           <div className="flex items-center gap-4 flex-wrap">
             <h1
@@ -19,7 +19,7 @@ export default function Madhu() {
                   "0 0 18px rgba(96,165,250,0.7), 0 0 38px rgba(59,130,246,0.4)",
               }}
             >
-              madhu
+              Madhu
             </h1>
             <Hourglass />
           </div>
@@ -32,9 +32,20 @@ export default function Madhu() {
 
         <section className="space-y-4 text-base sm:text-lg">
           <p>
-            below this room are three more &mdash; and one above. each one is
-            earned. nothing is sold. the only key the door takes is a parked
-            domain pointed at this hub.
+            madhu is free. no domain. no key. anyone who finds the room is in
+            the room.
+          </p>
+          <p>
+            below this room are three more &mdash; and one above. those are
+            earned. nothing is sold. the door to{" "}
+            <Link
+              href="/hungersite"
+              className="text-blue-100 hover:text-blue-50 underline underline-offset-4"
+            >
+              hungersite
+            </Link>{" "}
+            opens with one parked domain pointed at this hub. that&rsquo;s the
+            entry to L1, not here.
           </p>
         </section>
 
