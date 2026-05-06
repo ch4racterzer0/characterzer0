@@ -11,14 +11,11 @@ export function proxy(request: NextRequest) {
   const cz0Sub = host.match(/^([a-z0-9-]+)\.characterzer0\.com$/i);
   if (cz0Sub && cz0Sub[1] !== "www") {
     const sub = cz0Sub[1];
-    const url = request.nextUrl.clone();
-    if (sub === "madhu") {
-      url.pathname = `/madhu${path === "/" ? "" : path}`;
-    } else if (sub === "hungersite") {
-      url.pathname = `/gated/madhu${path === "/" ? "" : path}`;
-    } else {
-      url.pathname = `/${sub}${path === "/" ? "" : path}`;
+    if (sub === "madhu" || sub === "hungersite") {
+      return new NextResponse(null, { status: 410 });
     }
+    const url = request.nextUrl.clone();
+    url.pathname = `/${sub}${path === "/" ? "" : path}`;
     return NextResponse.rewrite(url);
   }
 
