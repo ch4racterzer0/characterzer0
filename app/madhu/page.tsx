@@ -83,12 +83,17 @@ export default function Madhu() {
                 L2
               </span>
               <div>
-                <p className="text-blue-100/70 font-medium">
-                  dripfield <span className="text-blue-100/40 text-xs">[locked]</span>
+                <p className="text-blue-100 font-medium">
+                  <Link
+                    href="/dripfield"
+                    className="hover:text-blue-50 underline underline-offset-4"
+                  >
+                    dripfield
+                  </Link>
                 </p>
-                <p className="text-blue-100/50 text-sm sm:text-base italic">
+                <p className="text-blue-100/60 text-sm sm:text-base italic">
                   the field. the room where the work happens. earned from
-                  hungersite. not now.
+                  hungersite. coming soon.
                 </p>
               </div>
             </li>
