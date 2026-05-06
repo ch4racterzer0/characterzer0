@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
-const DESTINATION = "https://hungersite.characterzer0.com/";
+const DESTINATION = "https://madhu.characterzer0.com/";
 const WARP_MS = 1500;
 const STREAK_COUNT = 48;
 
