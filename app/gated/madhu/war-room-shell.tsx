@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { BandPrompt } from "./band-prompt";
 import { LightSwitch } from "./light-switch";
 import { LiveCounter } from "./live-counter";
 import { PodcastCoversModal } from "./podcast-covers";
@@ -245,6 +246,7 @@ export function WarRoomShell() {
               empty
             </span>
           </div>
+          <BandPrompt />
         </div>
 
         <div
