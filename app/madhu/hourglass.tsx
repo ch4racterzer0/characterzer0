@@ -28,10 +28,10 @@ export function Hourglass() {
 
   return (
     <a
-      href="https://hungersite.characterzer0.com/"
+      href="https://madhu.characterzer0.com/"
       target="_top"
       rel="noopener"
-      aria-label="enter hungersite"
+      aria-label="enter madhu"
       className="relative inline-block shrink-0 transition-transform duration-300 hover:scale-105"
       style={{ width: "62px", height: "84px" }}
     >
