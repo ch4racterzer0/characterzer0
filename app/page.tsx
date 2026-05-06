@@ -1,6 +1,7 @@
 import { LinkTile } from "./link-tile";
 import { LyricRotator } from "./lyric-rotator";
 import { MatrixSphere } from "./matrix-sphere";
+import { MobileLanding } from "./mobile-landing";
 import { PoppedTile } from "./popped-tile";
 import {
   FigureWithTilesDesktop,
@@ -11,10 +12,13 @@ import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
 
 export default function Home() {
   return (
-    <RadioProvider>
-      <ThemeShifter>
-      <ThemeSwitch />
-      <main className="relative isolate min-h-screen bg-black flex flex-col items-center justify-between gap-6 sm:gap-0 py-4 sm:py-10 px-4">
+    <>
+      <MobileLanding />
+      <div className="hidden sm:block">
+        <RadioProvider>
+          <ThemeShifter>
+          <ThemeSwitch />
+          <main className="relative isolate min-h-screen bg-black flex flex-col items-center justify-between gap-6 sm:gap-0 py-4 sm:py-10 px-4">
         <MatrixSphere />
         <RadioTilesMobileTop />
 
@@ -62,8 +66,10 @@ export default function Home() {
           <LinkTile label="First Podcast" href="/firstpodcast" subline="thedelos · launch" />
         </div>
 
-      </main>
-      </ThemeShifter>
-    </RadioProvider>
+          </main>
+          </ThemeShifter>
+        </RadioProvider>
+      </div>
+    </>
   );
 }
