@@ -1,7 +1,13 @@
+import { HungersiteMask } from "./hungersite-mask";
 import { WarRoomShell } from "./war-room-shell";
 
 export const dynamic = "force-dynamic";
 
 export default function GatedMadhu() {
-  return <WarRoomShell />;
+  return (
+    <>
+      <WarRoomShell />
+      <HungersiteMask />
+    </>
+  );
 }
