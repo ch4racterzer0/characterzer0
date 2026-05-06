@@ -1,6 +1,7 @@
 import { LinkTile } from "./link-tile";
 import { LyricRotator } from "./lyric-rotator";
 import { MatrixSphere } from "./matrix-sphere";
+import { PoppedTile } from "./popped-tile";
 import {
   FigureWithTilesDesktop,
   RadioProvider,
@@ -18,6 +19,12 @@ export default function Home() {
         <RadioTilesMobileTop />
 
         <LinkTile label="Madhu" href="/madhu" large />
+
+        <PoppedTile
+          label="Divided Sky"
+          href="https://sharethebyline.com/trey-anastasio-s-surprise-set-at-divided-sky-benefit-brings--motfuhl7"
+          subline="sharethebyline ↗"
+        />
 
         <div className="flex flex-col items-center gap-6 sm:gap-10">
           <div className="hidden sm:block">
