@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { LightSwitch } from "./light-switch";
 import { LiveCounter } from "./live-counter";
 import { PodcastCoversModal } from "./podcast-covers";
 import { TicTacToeBoard } from "./tic-tac-toe";
@@ -91,8 +92,11 @@ export function WarRoomShell() {
   const [tttState, setTttState] = useState<TttState>("idle");
   const [inputBuffer, setInputBuffer] = useState("");
   const [mounted, setMounted] = useState(false);
+  const [lit, setLit] = useState(false);
 
   useEffect(() => setMounted(true), []);
+
+  const handleLit = useCallback(() => setLit(true), []);
 
   useEffect(() => {
     const id = setInterval(() => setCursorOn((c) => !c), 530);
@@ -157,7 +161,11 @@ export function WarRoomShell() {
 
   return (
     <main className="relative min-h-screen bg-black text-blue-100 font-mono overflow-hidden">
-      <div className="max-w-7xl mx-auto p-3 sm:p-5 space-y-3 sm:space-y-4">
+      <LightSwitch onLit={handleLit} />
+      <div
+        className="max-w-7xl mx-auto p-3 sm:p-5 space-y-3 sm:space-y-4 transition-[filter] duration-700"
+        style={{ filter: lit ? "none" : "blur(5px)" }}
+      >
         <header className="border border-blue-400/35 bg-blue-950/20 px-3 py-2 sm:px-5 sm:py-3 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <span
