@@ -73,6 +73,12 @@ export async function POST(req: NextRequest) {
   const banKey = `wopr/bans/${ipHash}.json`;
   const attemptsKey = `wopr/attempts/${ipHash}.json`;
 
+  if (password.trim().toLowerCase() === PASSWORD) {
+    await clearMatching(attemptsKey);
+    await clearMatching(banKey);
+    return NextResponse.json({ ok: true }, { headers: CORS });
+  }
+
   const banRecord = await fetchJson(banKey);
   if (
     banRecord &&
@@ -87,11 +93,6 @@ export async function POST(req: NextRequest) {
       },
       { status: 403, headers: CORS }
     );
-  }
-
-  if (password.trim().toLowerCase() === PASSWORD) {
-    await clearMatching(attemptsKey);
-    return NextResponse.json({ ok: true }, { headers: CORS });
   }
 
   const now = Date.now();
