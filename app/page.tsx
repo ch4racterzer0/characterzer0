@@ -59,6 +59,7 @@ export default function Home() {
           <LinkTile label="My Heaviest Lifts" href="/heaviestlifts" />
           <LinkTile label="First Podcast" href="/firstpodcast" subline="thedelos · launch" />
           <LinkTile label="Handles" href="/handles" />
+          <LinkTile label="Unparked" href="/unparked" subline="raid plan" />
         </div>
 
       </main>
