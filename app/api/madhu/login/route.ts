@@ -78,17 +78,12 @@ export async function POST(req: NextRequest) {
 
   const host = req.headers.get("host") ?? "";
   const redirectUrl = new URL(next, req.url);
+  const cookieHeader = `${COOKIE}=${token}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${MAX_AGE_S}`;
   console.log(
-    `madhu_login_ok host=${host} next=${next} redirect=${redirectUrl.toString()} token_len=${token.length}`,
+    `madhu_login_ok host=${host} next=${next} redirect=${redirectUrl.toString()} token_len=${token.length} cookie_header_len=${cookieHeader.length}`,
   );
 
   const res = NextResponse.redirect(redirectUrl, { status: 303 });
-  res.cookies.set(COOKIE, token, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "lax",
-    path: "/",
-    maxAge: MAX_AGE_S,
-  });
+  res.headers.append("Set-Cookie", cookieHeader);
   return res;
 }
