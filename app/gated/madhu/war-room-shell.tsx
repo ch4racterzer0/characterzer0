@@ -1,9 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { BandPrompt } from "./band-prompt";
-import { LightSwitch } from "./light-switch";
 import { LiveCounter } from "./live-counter";
 import { PodcastCoversModal } from "./podcast-covers";
 import { TicTacToeBoard } from "./tic-tac-toe";
@@ -93,11 +92,9 @@ export function WarRoomShell() {
   const [tttState, setTttState] = useState<TttState>("idle");
   const [inputBuffer, setInputBuffer] = useState("");
   const [mounted, setMounted] = useState(false);
-  const [lit, setLit] = useState(false);
+  const lit = true;
 
   useEffect(() => setMounted(true), []);
-
-  const handleLit = useCallback(() => setLit(true), []);
 
   useEffect(() => {
     const id = setInterval(() => setCursorOn((c) => !c), 530);
@@ -162,7 +159,6 @@ export function WarRoomShell() {
 
   return (
     <main className="relative min-h-screen bg-black text-blue-100 font-mono overflow-hidden">
-      <LightSwitch onLit={handleLit} />
       <div
         className="max-w-7xl mx-auto p-3 sm:p-5 space-y-3 sm:space-y-4 transition-[filter] duration-700"
         style={{ filter: lit ? "none" : "blur(5px)" }}
