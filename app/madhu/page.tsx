@@ -1,5 +1,5 @@
+import Image from "next/image";
 import Link from "next/link";
-import { FullsendBanner } from "../fullsend-banner";
 import { BlackHolePortal } from "./black-hole-portal";
 import { Hourglass } from "./hourglass";
 
@@ -165,18 +165,29 @@ export default function Madhu() {
 
         <section className="space-y-4">
           <h2 className="text-blue-100 text-xs sm:text-sm tracking-[0.3em] uppercase">
-            tonight &middot; 10pm et
+            the channel
           </h2>
-          <p className="text-base sm:text-lg">
-            <span className="text-blue-100">toulouse</span> leads the tour.
-            five minutes. enough to show you what waits below. broadcasting
-            from a parked GoDaddy domain we just brought back online &mdash;{" "}
-            <span className="font-mono text-blue-200/90">fullsendbash.com</span>.
-          </p>
 
-          <div className="flex justify-center pt-2">
-            <FullsendBanner />
-          </div>
+          <Link
+            href="https://www.youtube.com/@ItsYourSphere"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block -mx-6 sm:-mx-10 group"
+          >
+            <Image
+              src="/itsyoursphere-banner.png"
+              alt="itsyoursphere"
+              width={1672}
+              height={941}
+              priority
+              className="w-full h-auto block transition-opacity group-hover:opacity-90"
+            />
+          </Link>
+
+          <p className="text-base sm:text-lg">
+            we&rsquo;re posting videos on our youtube channel showing how easy
+            it is to park on top of this and earn your key.
+          </p>
 
           <p className="text-blue-100/70 italic text-base sm:text-lg pt-2">
             the goose was never in the bottle. core4 just opens its hand.
