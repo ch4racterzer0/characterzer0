@@ -50,6 +50,7 @@ export default function Home() {
         <div className="hidden sm:flex flex-row items-center justify-center flex-wrap gap-4 sm:gap-6 mt-2">
           <LinkTile label="Don't Forget" href="/dontforget" />
           <LinkTile label="My Heaviest Lifts" href="/heaviestlifts" />
+          <LinkTile label="Handles" href="/handles" />
         </div>
 
       </main>
