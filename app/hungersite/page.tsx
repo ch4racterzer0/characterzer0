@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 export default function Hungersite() {
   return (
     <main className="min-h-screen bg-black text-blue-100 px-6 py-10 sm:px-10 sm:py-14">
