@@ -1,3 +1,5 @@
+import { FrameBust } from "./frame-bust";
+
 type Search = { error?: string; next?: string };
 
 function safeNext(raw: string | undefined): string {
@@ -25,6 +27,7 @@ export default async function MadhuLogin({
 
   return (
     <main className="min-h-screen bg-black flex items-center justify-center px-6 py-10">
+      <FrameBust />
       <form
         method="POST"
         action="/api/madhu/login"
