@@ -13,7 +13,7 @@ function CloseButton() {
       }}
       className="block w-full text-center text-blue-100/70 hover:text-blue-100 text-sm tracking-[0.3em] uppercase border border-blue-100/20 hover:border-blue-100/40 rounded-md px-5 py-3 transition-colors"
     >
-      close the window
+      dead end
     </button>
   );
 }
