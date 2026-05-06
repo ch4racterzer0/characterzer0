@@ -1,6 +1,5 @@
 import { LinkTile } from "./link-tile";
 import { LyricRotator } from "./lyric-rotator";
-import { MatrixSphere } from "./matrix-sphere";
 import { PoppedTile } from "./popped-tile";
 import {
   FigureWithTilesDesktop,
@@ -8,6 +7,7 @@ import {
   RadioTilesMobileTop,
 } from "./radio-tiles";
 import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
+import { WizardSphere } from "./wizard-sphere";
 
 export default function Home() {
   return (
@@ -15,7 +15,7 @@ export default function Home() {
       <ThemeShifter>
       <ThemeSwitch />
       <main className="relative isolate min-h-screen bg-black flex flex-col items-center justify-between gap-6 sm:gap-0 py-4 sm:py-10 px-4">
-        <MatrixSphere />
+        <WizardSphere />
         <RadioTilesMobileTop />
 
         <LinkTile label="Madhu" href="/madhu" large />
