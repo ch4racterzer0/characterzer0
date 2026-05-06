@@ -3,7 +3,7 @@
 import { ReactNode, useEffect, useState } from "react";
 
 const KEY = "madhu_unlocked";
-const PHRASE = "slowready";
+const PHRASE = "slow";
 
 export function Gate({ children }: { children: ReactNode }) {
   const [unlocked, setUnlocked] = useState(false);

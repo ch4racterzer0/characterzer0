@@ -1,7 +1,7 @@
 import { head, list, put } from "@vercel/blob";
 import { NextRequest, NextResponse } from "next/server";
 
-const PASSWORD = "wopr";
+const PASSWORD = "ready";
 const MAX_ATTEMPTS = 2;
 const BAN_MS = 24 * 60 * 60 * 1000;
 const ATTEMPT_WINDOW_MS = 60 * 60 * 1000;
