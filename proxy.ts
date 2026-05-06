@@ -82,11 +82,13 @@ export async function proxy(request: NextRequest) {
     const password = process.env.MADHU_PASSWORD?.trim();
     const secret = process.env.MADHU_SECRET?.trim();
     const token = request.cookies.get(COOKIE)?.value;
-    const authed =
-      !!password &&
-      !!secret &&
-      !!token &&
-      (await verifyToken(token, secret));
+    const verified =
+      !!secret && !!token && (await verifyToken(token, secret));
+    const authed = !!password && !!secret && !!token && verified;
+
+    console.log(
+      `madhu_proxy host=${host} path=${path} effective=${effectivePath} has_pw=${!!password} has_secret=${!!secret} has_token=${!!token} token_len=${token?.length ?? 0} verified=${verified} authed=${authed}`,
+    );
 
     if (!authed) {
       const loginUrl = new URL("/madhu/login", request.url);

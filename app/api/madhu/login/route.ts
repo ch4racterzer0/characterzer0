@@ -76,7 +76,13 @@ export async function POST(req: NextRequest) {
   const sig = await sign(issued, secret);
   const token = `${issued}.${sig}`;
 
-  const res = NextResponse.redirect(new URL(next, req.url), { status: 303 });
+  const host = req.headers.get("host") ?? "";
+  const redirectUrl = new URL(next, req.url);
+  console.log(
+    `madhu_login_ok host=${host} next=${next} redirect=${redirectUrl.toString()} token_len=${token.length}`,
+  );
+
+  const res = NextResponse.redirect(redirectUrl, { status: 303 });
   res.cookies.set(COOKIE, token, {
     httpOnly: true,
     secure: true,
