@@ -29,6 +29,12 @@ function timingSafeEqual(a: string, b: string): boolean {
   return r === 0;
 }
 
+async function shaPrefix(s: string): Promise<string> {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
+  const arr = Array.from(new Uint8Array(buf));
+  return arr.slice(0, 2).map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
 function safeNext(raw: string): string {
   if (typeof raw !== "string") return "/madhu";
   if (!raw.startsWith("/") || raw.startsWith("//")) return "/madhu";
@@ -56,6 +62,13 @@ export async function POST(req: NextRequest) {
   await new Promise((r) => setTimeout(r, 400));
 
   if (!submitted || !timingSafeEqual(submitted, password)) {
+    const [subPrefix, expPrefix] = await Promise.all([
+      shaPrefix(submitted),
+      shaPrefix(password),
+    ]);
+    console.log(
+      `madhu_login_denied submitted_len=${submitted.length} expected_len=${password.length} submitted_sha=${subPrefix} expected_sha=${expPrefix} eq_lengths=${submitted.length === password.length}`,
+    );
     return fail("denied");
   }
 
