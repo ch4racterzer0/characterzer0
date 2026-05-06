@@ -5,11 +5,15 @@ function CloseButton() {
     <button
       type="button"
       onClick={() => {
-        window.open("", "_self");
-        window.close();
-        setTimeout(() => {
+        try {
+          window.top?.location.replace("about:blank");
+        } catch {
           window.location.replace("about:blank");
-        }, 150);
+        }
+        try {
+          window.open("", "_self");
+          window.close();
+        } catch {}
       }}
       className="block w-full text-center text-blue-100/70 hover:text-blue-100 text-sm tracking-[0.3em] uppercase border border-blue-100/20 hover:border-blue-100/40 rounded-md px-5 py-3 transition-colors"
     >
@@ -33,13 +37,17 @@ export function MobileLanding() {
 
       <nav className="flex flex-col gap-4 w-full max-w-xs">
         <a
-          href="https://sharethebyline.com"
+          href="https://www.sharethebyline.com"
+          target="_top"
+          rel="noopener noreferrer"
           className="block text-center text-blue-100 hover:text-blue-50 text-sm tracking-[0.3em] uppercase border border-blue-300/40 hover:border-blue-300/70 rounded-md px-5 py-3 transition-colors"
         >
           sharethebyline
         </a>
         <a
-          href="https://spotlightdispatch.com"
+          href="https://www.spotlightdispatch.com"
+          target="_top"
+          rel="noopener noreferrer"
           className="block text-center text-blue-100 hover:text-blue-50 text-sm tracking-[0.3em] uppercase border border-blue-300/40 hover:border-blue-300/70 rounded-md px-5 py-3 transition-colors"
         >
           spotlightdispatch
