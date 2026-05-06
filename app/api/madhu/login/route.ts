@@ -35,25 +35,31 @@ async function shaPrefix(s: string): Promise<string> {
   return arr.slice(0, 2).map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
-function safeNext(raw: string): string {
-  if (typeof raw !== "string") return "/madhu";
-  if (!raw.startsWith("/") || raw.startsWith("//")) return "/madhu";
-  if (raw === "/madhu/login") return "/madhu";
+function defaultNextForHost(host: string): string {
+  return host.toLowerCase() === "madhu.characterzer0.com" ? "/" : "/madhu";
+}
+
+function safeNext(raw: string, host: string): string {
+  const fallback = defaultNextForHost(host);
+  if (typeof raw !== "string" || !raw) return fallback;
+  if (!raw.startsWith("/") || raw.startsWith("//")) return fallback;
+  if (raw === "/madhu/login") return fallback;
   return raw;
 }
 
 export async function POST(req: NextRequest) {
   const password = process.env.MADHU_PASSWORD?.trim();
   const secret = process.env.MADHU_SECRET?.trim();
+  const host = req.headers.get("host") ?? "";
 
   const form = await req.formData().catch(() => null);
   const submitted = String(form?.get("password") ?? "").trim();
-  const next = safeNext(String(form?.get("next") ?? "/madhu"));
+  const next = safeNext(String(form?.get("next") ?? ""), host);
 
   const fail = (code: string) => {
     const url = new URL("/madhu/login", req.url);
     url.searchParams.set("error", code);
-    if (next !== "/madhu") url.searchParams.set("next", next);
+    if (next !== defaultNextForHost(host)) url.searchParams.set("next", next);
     return NextResponse.redirect(url, { status: 303 });
   };
 
@@ -76,7 +82,6 @@ export async function POST(req: NextRequest) {
   const sig = await sign(issued, secret);
   const token = `${issued}.${sig}`;
 
-  const host = req.headers.get("host") ?? "";
   const redirectUrl = new URL(next, req.url);
   const cookieHeader = `${COOKIE}=${token}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${MAX_AGE_S}`;
   console.log(

@@ -93,7 +93,7 @@ export async function proxy(request: NextRequest) {
     if (!authed) {
       const loginUrl = new URL("/madhu/login", request.url);
       const nextPath = path + (request.nextUrl.search || "");
-      if (nextPath !== "/madhu" && nextPath !== "/") {
+      if (nextPath !== "/madhu/login") {
         loginUrl.searchParams.set("next", nextPath);
       }
       if (!password || !secret) {
