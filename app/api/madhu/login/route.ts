@@ -37,11 +37,11 @@ function safeNext(raw: string): string {
 }
 
 export async function POST(req: NextRequest) {
-  const password = process.env.MADHU_PASSWORD;
-  const secret = process.env.MADHU_SECRET;
+  const password = process.env.MADHU_PASSWORD?.trim();
+  const secret = process.env.MADHU_SECRET?.trim();
 
   const form = await req.formData().catch(() => null);
-  const submitted = String(form?.get("password") ?? "");
+  const submitted = String(form?.get("password") ?? "").trim();
   const next = safeNext(String(form?.get("next") ?? "/madhu"));
 
   const fail = (code: string) => {

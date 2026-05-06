@@ -79,8 +79,8 @@ export async function proxy(request: NextRequest) {
   const isLoginRoute = path === "/madhu/login";
 
   if (pathIsGated(effectivePath) && !isLoginRoute) {
-    const password = process.env.MADHU_PASSWORD;
-    const secret = process.env.MADHU_SECRET;
+    const password = process.env.MADHU_PASSWORD?.trim();
+    const secret = process.env.MADHU_SECRET?.trim();
     const token = request.cookies.get(COOKIE)?.value;
     const authed =
       !!password &&
