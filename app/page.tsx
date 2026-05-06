@@ -22,6 +22,8 @@ export default function Home() {
         <MatrixSphere />
         <RadioTilesMobileTop />
 
+        <LinkTile label="Madhu" href="/madhu" large />
+
         <LinkTile label="Unparked" href="/unparked" subline="raid plan" large />
 
         <PoppedTile
