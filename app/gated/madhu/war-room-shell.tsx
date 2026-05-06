@@ -157,6 +157,14 @@ export function WarRoomShell() {
     }
   }
 
+  function handleLogout() {
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "/api/madhu/logout";
+    document.body.appendChild(form);
+    form.submit();
+  }
+
   return (
     <main className="relative min-h-screen bg-black text-blue-100 font-mono overflow-hidden">
       <div
@@ -183,7 +191,7 @@ export function WarRoomShell() {
           <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap justify-end">
             <NavButton label="▶ dripfield" onClick={() => setLocked(true)} />
             <NavButton label="hungersite" onClick={() => setLocked(true)} />
-            <NavButton label="logout" />
+            <NavButton label="logout" onClick={handleLogout} />
             <NavButton label="⚠ destruct" warn />
             <NavButton label="untether" warn />
           </div>
