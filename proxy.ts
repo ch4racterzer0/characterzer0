@@ -13,7 +13,7 @@ export function proxy(request: NextRequest) {
     const sub = cz0Sub[1];
     const url = request.nextUrl.clone();
     if (sub === "madhu") {
-      url.pathname = `/hungersite${path === "/" ? "" : path}`;
+      url.pathname = `/madhu${path === "/" ? "" : path}`;
     } else if (sub === "hungersite") {
       url.pathname = `/gated/madhu${path === "/" ? "" : path}`;
     } else {
