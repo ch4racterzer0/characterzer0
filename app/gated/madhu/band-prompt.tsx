@@ -117,9 +117,9 @@ export function BandPrompt() {
                   </button>
                 </form>
               ) : (
-                <div className="space-y-5 text-center">
+                <div className="space-y-5">
                   <p
-                    className="text-emerald-300 text-2xl sm:text-3xl tracking-[0.25em] uppercase font-bold"
+                    className="text-emerald-300 text-2xl sm:text-3xl tracking-[0.25em] uppercase font-bold text-center"
                     style={{
                       textShadow:
                         "0 0 14px rgba(52,211,153,0.85), 0 0 32px rgba(52,211,153,0.55)",
@@ -127,23 +127,76 @@ export function BandPrompt() {
                   >
                     right.
                   </p>
-                  <p className="text-blue-200 text-sm sm:text-base">
-                    you said{" "}
+
+                  <div
+                    className="border-l-2 border-cyan-400/50 pl-4 py-1 space-y-2 text-sm sm:text-base"
+                    style={{ textShadow: "0 0 6px rgba(96,165,250,0.35)" }}
+                  >
+                    <p className="text-blue-300/55 text-[10px] tracking-[0.3em] uppercase">
+                      // from character zer0
+                    </p>
+                    <p className="text-blue-100/90 leading-relaxed">
+                      i have no clue what band{" "}
+                      <span
+                        className="text-blue-100"
+                        style={{ textShadow: GLOW }}
+                      >
+                        {answered}
+                      </span>{" "}
+                      is — could be the greatest, could be terrible, doesn&rsquo;t
+                      matter to me. if you want a real piece written on them,
+                      head to{" "}
+                      <a
+                        href="https://sharethebyline.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-mono text-cyan-300 hover:text-cyan-200 underline underline-offset-4"
+                      >
+                        sharethebyline.com
+                      </a>{" "}
+                      and ask the AI there. they&rsquo;ll write it under your
+                      name.
+                    </p>
+                  </div>
+
+                  <div
+                    className="border-l-2 border-blue-400/50 pl-4 py-1 space-y-2 text-sm sm:text-base"
+                  >
+                    <p className="text-blue-300/55 text-[10px] tracking-[0.3em] uppercase">
+                      // tip from me (eliza)
+                    </p>
+                    <p className="text-blue-200/90 leading-relaxed">
+                      don&rsquo;t just ask &ldquo;write me a piece on{" "}
+                      {answered}.&rdquo; you&rsquo;ll get a wikipedia summary
+                      with my flavor on it. instead, paste{" "}
+                      <span className="text-blue-100">2 or 3 source links</span>
+                      &nbsp;— a tour review, an interview, a song breakdown — and
+                      say{" "}
+                      <em className="text-blue-100">
+                        &ldquo;synthesize these into a piece, cite each
+                        source.&rdquo;
+                      </em>{" "}
+                      that gets you something with bones. opinion alone is the
+                      cheap version.
+                    </p>
+                  </div>
+
+                  <hr className="border-blue-100/15" />
+
+                  <p className="text-blue-300/70 text-sm sm:text-base leading-relaxed">
+                    by the way &mdash; this room you&rsquo;re standing in was
+                    assembled around{" "}
                     <span
-                      className="text-blue-100 tracking-wider"
+                      className="text-blue-100"
                       style={{ textShadow: GLOW }}
                     >
-                      {answered}
-                    </span>
-                    . it&rsquo;s right.
+                      slow ready
+                    </span>{" "}
+                    by goose. rick mitarotonda. 2019. that&rsquo;s where the
+                    two gate passwords come from.
                   </p>
-                  <p className="text-blue-300/70 text-sm sm:text-base leading-relaxed">
-                    so is goose. so is phish. the room was assembled around{" "}
-                    <span className="text-blue-100">slow ready</span> by goose.
-                    rick mitarotonda. 2019. that&rsquo;s where the two
-                    passwords come from.
-                  </p>
-                  <p className="text-blue-300/45 italic text-[10px] sm:text-xs tracking-[0.2em] uppercase pt-2">
+
+                  <p className="text-blue-300/45 italic text-[10px] sm:text-xs tracking-[0.2em] uppercase pt-1 text-center">
                     every answer is the right answer if you mean it
                   </p>
                 </div>
