@@ -167,12 +167,12 @@ function LiveSphere({ size = 560 }: { size?: number }) {
       }}
     >
       <iframe
-        src="https://www.youtube-nocookie.com/embed/live_stream?channel=UCYmL7UZfguRrtqjlZUoScCQ&autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1&iv_load_policy=3"
-        title="character zer0 — live"
+        src="https://www.youtube-nocookie.com/embed/yLLN6g1BkkI?autoplay=1&mute=1&loop=1&playlist=yLLN6g1BkkI&controls=0&modestbranding=1&rel=0&playsinline=1&iv_load_policy=3&disablekb=1"
+        title="character zer0 — sphere ghost video"
         allow="autoplay; encrypted-media; picture-in-picture"
         referrerPolicy="strict-origin"
         loading="lazy"
-        className="absolute top-0 left-1/2 -translate-x-1/2 h-full block border-0 opacity-80"
+        className="absolute top-0 left-1/2 -translate-x-1/2 h-full block border-0 opacity-30"
         style={{ aspectRatio: "16 / 9" }}
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
