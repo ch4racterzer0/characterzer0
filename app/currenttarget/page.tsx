@@ -200,30 +200,30 @@ export default function CurrentTarget() {
               href="/dearelon"
               target="_top"
               rel="noopener"
-              aria-label="dear elon — open letter, ten questions for elon musk"
-              className="group absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-10 w-60 sm:w-72 backdrop-blur-[2px] bg-amber-950/55 hover:bg-amber-950/75 border border-amber-400/55 hover:border-amber-300/80 px-4 py-3 sm:px-5 sm:py-4 rounded-sm transition-colors"
+              aria-label="moon shot — dear elon delivered, ten questions for elon musk"
+              className="group absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-10 w-60 sm:w-72 backdrop-blur-[2px] bg-red-950/55 hover:bg-red-950/75 border border-red-400/55 hover:border-red-300/80 px-4 py-3 sm:px-5 sm:py-4 rounded-sm transition-colors"
               style={{
                 boxShadow:
-                  "0 0 30px rgba(251,191,36,0.30), 0 8px 28px -8px rgba(146,64,14,0.55), inset 0 1px 0 rgba(254,243,199,0.20)",
+                  "0 0 30px rgba(239,68,68,0.35), 0 8px 28px -8px rgba(127,29,29,0.55), inset 0 1px 0 rgba(254,202,202,0.20)",
               }}
             >
               <div className="flex flex-col items-center gap-1">
-                <span className="text-amber-300/80 text-[9px] sm:text-[10px] tracking-[0.4em] uppercase">
+                <span className="text-red-300/80 text-[9px] sm:text-[10px] tracking-[0.4em] uppercase">
                   ↗ delivered
                 </span>
                 <span
-                  className="text-amber-200 text-xl sm:text-2xl tracking-[0.25em] uppercase font-light group-hover:text-amber-100 transition-colors"
+                  className="text-red-200 text-xl sm:text-2xl tracking-[0.25em] uppercase font-light group-hover:text-red-100 transition-colors"
                   style={{
                     textShadow:
-                      "0 0 12px rgba(252,211,77,0.85), 0 0 24px rgba(251,191,36,0.55)",
+                      "0 0 12px rgba(252,165,165,0.85), 0 0 24px rgba(239,68,68,0.55)",
                   }}
                 >
-                  the letter
+                  moon shot
                 </span>
-                <span className="text-amber-300/60 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase italic">
+                <span className="text-red-300/60 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase italic">
                   dear elon · ten questions · $777,777
                 </span>
-                <MissileClock since={DEAR_ELON_SENT} tone="amber" label="sent" />
+                <MissileClock since={DEAR_ELON_SENT} label="sent" />
               </div>
             </a>
           )}
