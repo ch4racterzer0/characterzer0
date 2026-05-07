@@ -14,7 +14,7 @@ const GLOW = "0 0 6px rgba(96,165,250,0.6), 0 0 14px rgba(59,130,246,0.35)";
 const PUNCH_SHADOW =
   "0 0 12px rgba(96,165,250,0.85), 0 0 28px rgba(59,130,246,0.55), 0 0 60px rgba(59,130,246,0.3)";
 
-const FIRSTPLACED_REGISTERED = "2026-05-07T06:35:15Z";
+const SCOFTI_REGISTERED = "2026-05-07T06:35:15Z";
 
 function NavButton({
   label,
@@ -38,7 +38,7 @@ function NavButton({
   );
 }
 
-const FIRSTPLACED_INITIAL: { label: string; done: boolean }[] = [
+const SCOFTI_INITIAL: { label: string; done: boolean }[] = [
   { label: "domain registered", done: true },
   { label: "nameservers pointed", done: false },
   { label: "host live", done: false },
@@ -51,12 +51,12 @@ const FIRSTPLACED_INITIAL: { label: string; done: boolean }[] = [
   { label: "announce", done: false },
 ];
 
-const FIRSTPLACED_CHECKLIST_KEY = "firstplaced-checklist-v1";
-const FIRSTPLACED_UNLOCK_KEY = "firstplaced-checklist-unlocked";
-const FIRSTPLACED_PASS = "jedi";
+const SCOFTI_CHECKLIST_KEY = "scofti-checklist-v1";
+const SCOFTI_UNLOCK_KEY = "scofti-checklist-unlocked";
+const SCOFTI_PASS = "jedi";
 
-function FirstplacedChecklist() {
-  const [items, setItems] = useState(FIRSTPLACED_INITIAL);
+function ScoftiChecklist() {
+  const [items, setItems] = useState(SCOFTI_INITIAL);
   const [unlocked, setUnlocked] = useState(false);
   const [pwOpen, setPwOpen] = useState(false);
   const [pwInput, setPwInput] = useState("");
@@ -64,7 +64,7 @@ function FirstplacedChecklist() {
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem(FIRSTPLACED_CHECKLIST_KEY);
+      const raw = localStorage.getItem(SCOFTI_CHECKLIST_KEY);
       if (raw) {
         const saved = JSON.parse(raw) as { label: string; done: boolean }[];
         setItems((prev) =>
@@ -76,7 +76,7 @@ function FirstplacedChecklist() {
       }
     } catch {}
     try {
-      if (sessionStorage.getItem(FIRSTPLACED_UNLOCK_KEY) === "1") {
+      if (sessionStorage.getItem(SCOFTI_UNLOCK_KEY) === "1") {
         setUnlocked(true);
       }
     } catch {}
@@ -92,7 +92,7 @@ function FirstplacedChecklist() {
         it.label === label ? { ...it, done: !it.done } : it,
       );
       try {
-        localStorage.setItem(FIRSTPLACED_CHECKLIST_KEY, JSON.stringify(next));
+        localStorage.setItem(SCOFTI_CHECKLIST_KEY, JSON.stringify(next));
       } catch {}
       return next;
     });
@@ -100,13 +100,13 @@ function FirstplacedChecklist() {
 
   function handlePwSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (pwInput.trim().toLowerCase() === FIRSTPLACED_PASS) {
+    if (pwInput.trim().toLowerCase() === SCOFTI_PASS) {
       setUnlocked(true);
       setPwOpen(false);
       setPwError(false);
       setPwInput("");
       try {
-        sessionStorage.setItem(FIRSTPLACED_UNLOCK_KEY, "1");
+        sessionStorage.setItem(SCOFTI_UNLOCK_KEY, "1");
       } catch {}
     } else {
       setPwError(true);
@@ -117,7 +117,7 @@ function FirstplacedChecklist() {
   function relock() {
     setUnlocked(false);
     try {
-      sessionStorage.removeItem(FIRSTPLACED_UNLOCK_KEY);
+      sessionStorage.removeItem(SCOFTI_UNLOCK_KEY);
     } catch {}
   }
 
@@ -131,7 +131,7 @@ function FirstplacedChecklist() {
     >
       <div className="flex items-center justify-between mb-3 gap-3">
         <p className="text-blue-300/55 text-[10px] sm:text-xs tracking-[0.3em] uppercase flex items-center gap-2">
-          firstplaced — to first podcast
+          scofti — to first podcast
           <button
             type="button"
             onClick={() => (unlocked ? relock() : setPwOpen(true))}
@@ -241,6 +241,72 @@ function FirstplacedChecklist() {
   );
 }
 
+const SCOFTIC_INTEL: { tag: string; line: string }[] = [
+  {
+    tag: "species",
+    line: "scofti — a sentient species native to the unknown regions; only marginal contact with the wider galaxy on record.",
+  },
+  {
+    tag: "homeworld",
+    line: "bardram scoft — the planet they live on; sole inhabited world of the bardram scoft system.",
+  },
+  {
+    tag: "coordinates",
+    line: "bardram scoft system — grid square d-7 on the standard galactic grid, deep unknown regions.",
+  },
+  {
+    tag: "regime",
+    line: "scoftic government — led by a prefect; succession cadence is irregular and the transitions are usually violent.",
+  },
+  {
+    tag: "incident",
+    line: "~36 bby — a sitting prefect was assassinated; the successor took the seat without recorded resistance.",
+  },
+];
+
+function ScofticIntel() {
+  return (
+    <div
+      className="border border-blue-400/35 bg-blue-950/15 p-4 sm:p-6 space-y-3"
+      style={{ boxShadow: "inset 0 0 30px rgba(59,130,246,0.15)" }}
+    >
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <p
+          className="text-blue-100 text-[11px] sm:text-sm tracking-[0.3em] uppercase flex items-center gap-2"
+          style={{ textShadow: GLOW }}
+        >
+          <span
+            aria-hidden
+            className="block w-2 h-2 rounded-full bg-amber-300"
+            style={{ boxShadow: "0 0 10px rgba(251,191,36,0.85)" }}
+          />
+          // scoftic intel — galactic file fragment
+        </p>
+        <p className="text-blue-300/45 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase">
+          source: wookieepedia · canon
+        </p>
+      </div>
+      <ul className="space-y-2 font-mono text-[11px] sm:text-sm">
+        {SCOFTIC_INTEL.map((it) => (
+          <li key={it.tag} className="flex items-start gap-3">
+            <span
+              className="text-amber-300/80 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase shrink-0 w-20 sm:w-24 mt-0.5"
+              style={{ textShadow: "0 0 8px rgba(251,191,36,0.55)" }}
+            >
+              {it.tag}
+            </span>
+            <span className="text-blue-100/80">{it.line}</span>
+          </li>
+        ))}
+      </ul>
+      <p className="text-blue-300/55 italic text-[10px] sm:text-xs leading-relaxed pt-1">
+        scofti is the base. the room is the war room. the rest of this file is
+        either redacted or has not yet been written.
+      </p>
+    </div>
+  );
+}
+
 type PlanState = "done" | "next" | "future";
 
 const SPHERE_PLAN: {
@@ -252,7 +318,7 @@ const SPHERE_PLAN: {
     n: "01",
     name: "foundation",
     items: [
-      { label: "domain registered — firstplaced", state: "done" },
+      { label: "domain registered — scofti", state: "done" },
       { label: "nameservers pointed → host", state: "next" },
       { label: "host live (vercel)", state: "next" },
       { label: "landing page — what this is", state: "next" },
@@ -292,7 +358,7 @@ const SPHERE_PLAN: {
     name: "sphere integration",
     items: [
       {
-        label: "podcast-factory tile repointed (thedelos → firstplaced)",
+        label: "podcast-factory tile repointed (thedelos → scofti)",
         state: "future",
       },
       { label: "hungersite — planning + interest list", state: "future" },
@@ -352,7 +418,7 @@ function ToTheSpherePlan() {
           // the plan — bring podcast to the sphere
         </p>
         <p className="text-blue-300/45 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase">
-          six phases · firstplaced is the spine
+          six phases · scofti is the base
         </p>
       </div>
 
@@ -692,6 +758,8 @@ export function WarRoomShell() {
 
         <WoprTranscript tone="blue" />
 
+        <ScofticIntel />
+
         <div
           className="relative border border-blue-400/40 bg-black px-5 py-7 sm:px-8 sm:py-10 text-center overflow-hidden"
           style={{
@@ -724,10 +792,10 @@ export function WarRoomShell() {
 
         <div className="grid md:grid-cols-2 gap-3 sm:gap-4 items-stretch">
           <LiveCounter
-            since={FIRSTPLACED_REGISTERED}
-            label="firstplaced — initial podcast factory · registered may 7, 2026"
+            since={SCOFTI_REGISTERED}
+            label="scofti — base of operations · registered may 7, 2026"
           />
-          <FirstplacedChecklist />
+          <ScoftiChecklist />
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
