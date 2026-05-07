@@ -36,6 +36,10 @@ export default function DearSam() {
       label: "Spotlight Dispatch — They want you afraid (the fear machine)",
       href: "https://www.spotlightdispatch.com/fear-machine",
     },
+    {
+      label: "Share the Byline — The deception of AI: OpenAI under fire",
+      href: "https://sharethebyline.com/the-deception-of-ai-openai-under-fire-mov1tno1",
+    },
   ];
 
   return (
@@ -50,7 +54,12 @@ export default function DearSam() {
         >
           open letter — target 01
         </p>
-        <h1 className="mt-3 text-3xl sm:text-5xl font-light tracking-tight text-blue-100">
+        <img
+          src="/dearsam/sam-portrait.png"
+          alt=""
+          className="mt-6 w-full max-w-md rounded-sm opacity-95"
+        />
+        <h1 className="mt-8 text-3xl sm:text-5xl font-light tracking-tight text-blue-100">
           Dear Sam,
         </h1>
         <p className="mt-3 text-blue-100/55 italic text-sm sm:text-base">
@@ -96,6 +105,12 @@ export default function DearSam() {
             transition — was three words long:{" "}
             <span className="text-blue-200">&ldquo;it was a lie.&rdquo;</span>
           </p>
+
+          <img
+            src="/dearsam/it-was-a-lie.png"
+            alt=""
+            className="my-2 w-full rounded-sm opacity-95"
+          />
 
           <p>
             That is your co-founder, in his own private notes, describing the
@@ -221,6 +236,12 @@ export default function DearSam() {
             you for &ldquo;deceptive and chaotic behaviour.&rdquo; Different
             company. Same pattern. On the record. By a former director.
           </p>
+
+          <img
+            src="/dearsam/thesis-wide.png"
+            alt=""
+            className="mt-6 w-full rounded-sm opacity-95"
+          />
 
           <h2
             className="pt-4 text-blue-100 text-xl sm:text-2xl font-normal tracking-wide"
