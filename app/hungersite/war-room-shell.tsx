@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { BandPrompt } from "./band-prompt";
 import { LiveCounter } from "./live-counter";
 import { PodcastCoversModal } from "./podcast-covers";
+import { RegisteredClock } from "./registered-clock";
 import { TicTacToeBoard } from "./tic-tac-toe";
 import { WarClock } from "./war-clock";
 
@@ -13,6 +14,7 @@ const PUNCH_SHADOW =
   "0 0 12px rgba(96,165,250,0.85), 0 0 28px rgba(59,130,246,0.55), 0 0 60px rgba(59,130,246,0.3)";
 
 const SINCE = "2026-05-05T00:00:00Z";
+const FIRSTPLACED_REGISTERED = "2026-05-07T06:35:15Z";
 
 function NavButton({
   label,
@@ -230,6 +232,10 @@ export function WarRoomShell() {
               </span>
             </button>
             <WarClock />
+            <span className="text-blue-300/55 flex items-center gap-2">
+              firstplaced
+              <RegisteredClock since={FIRSTPLACED_REGISTERED} />
+            </span>
           </div>
         </div>
 
