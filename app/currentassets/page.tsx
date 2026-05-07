@@ -20,11 +20,6 @@ export default function CurrentAssets() {
       href: "https://scofti.com",
       desc: "Soon to be the center of the podcast factory hub.",
     },
-    {
-      name: "yiswmt",
-      href: "https://yiswmt.com",
-      desc: "TMWSIY in reverse. The man who stepped into yesterday, spelled the other way around. Held.",
-    },
   ];
 
   return (
