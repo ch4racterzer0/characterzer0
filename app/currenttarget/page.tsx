@@ -1,4 +1,8 @@
 import { LinkTile } from "../link-tile";
+import { MissileClock } from "./missile-clock";
+import { NextTile } from "./next-tile";
+
+const MISSILE_FIRED = "2026-05-07T10:07:03Z";
 
 type Target = {
   n: string;
@@ -159,9 +163,11 @@ export default function CurrentTarget() {
                 <span className="text-red-300/55 text-[10px] sm:text-xs tracking-[0.3em] uppercase italic">
                   dear sam · spotlight dispatch
                 </span>
+                <MissileClock since={MISSILE_FIRED} />
               </div>
             </a>
           )}
+          {t.n === "02" && <NextTile />}
           <div className="grid gap-6 md:grid-cols-[5rem_minmax(0,1fr)_minmax(0,1.15fr)] md:gap-10">
             <div className="text-2xl font-light tracking-tight text-blue-100/40 md:text-3xl">
               {t.n}
