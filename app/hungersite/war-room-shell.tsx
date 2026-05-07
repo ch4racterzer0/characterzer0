@@ -5,7 +5,6 @@ import { createPortal } from "react-dom";
 import { BandPrompt } from "./band-prompt";
 import { LiveCounter } from "./live-counter";
 import { PodcastCoversModal } from "./podcast-covers";
-import { RegisteredClock } from "./registered-clock";
 import { TicTacToeBoard } from "./tic-tac-toe";
 import { WarClock } from "./war-clock";
 
@@ -232,10 +231,6 @@ export function WarRoomShell() {
               </span>
             </button>
             <WarClock />
-            <span className="text-blue-300/55 flex items-center gap-2">
-              firstplaced
-              <RegisteredClock since={FIRSTPLACED_REGISTERED} />
-            </span>
           </div>
         </div>
 
@@ -292,6 +287,10 @@ export function WarRoomShell() {
         </div>
 
         <LiveCounter since={SINCE} label="madhu — live since may 5, 2026" />
+        <LiveCounter
+          since={FIRSTPLACED_REGISTERED}
+          label="firstplaced — initial podcast factory · registered may 7, 2026"
+        />
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           <MemberTile
