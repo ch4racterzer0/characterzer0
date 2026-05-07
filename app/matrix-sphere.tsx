@@ -1,7 +1,76 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+
+function SphereGrid({ size = 560 }: { size?: number }) {
+  const spacing = 28;
+  const lines = [];
+  for (let x = spacing; x < size; x += spacing) {
+    lines.push(
+      <line
+        key={`v${x}`}
+        x1={x}
+        y1={0}
+        x2={x}
+        y2={size}
+        stroke="rgba(147,197,253,0.16)"
+        strokeWidth="0.5"
+      />,
+    );
+  }
+  for (let y = spacing; y < size; y += spacing) {
+    lines.push(
+      <line
+        key={`h${y}`}
+        x1={0}
+        y1={y}
+        x2={size}
+        y2={y}
+        stroke="rgba(147,197,253,0.16)"
+        strokeWidth="0.5"
+      />,
+    );
+  }
+
+  const sparkles = useMemo(() => {
+    const xs = Math.floor(size / spacing);
+    const ys = Math.floor(size / spacing);
+    return Array.from({ length: 32 }, (_, i) => {
+      const cx = (1 + Math.floor(Math.random() * (xs - 1))) * spacing;
+      const cy = (1 + Math.floor(Math.random() * (ys - 1))) * spacing;
+      const delay = Math.random() * 5;
+      const duration = 2.4 + Math.random() * 3;
+      return { i, cx, cy, delay, duration };
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [size]);
+
+  return (
+    <svg
+      aria-hidden
+      className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen"
+      viewBox={`0 0 ${size} ${size}`}
+      preserveAspectRatio="xMidYMid slice"
+    >
+      {lines}
+      {sparkles.map((s) => (
+        <circle
+          key={s.i}
+          cx={s.cx}
+          cy={s.cy}
+          r="1.6"
+          fill="rgba(220,235,255,1)"
+          style={{
+            transformOrigin: `${s.cx}px ${s.cy}px`,
+            animation: `sphere-sparkle ${s.duration}s ease-in-out ${s.delay}s infinite`,
+            filter: "drop-shadow(0 0 2px rgba(147,197,253,0.9))",
+          }}
+        />
+      ))}
+    </svg>
+  );
+}
 
 function LiveSphere({ size = 560 }: { size?: number }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -115,6 +184,7 @@ function LiveSphere({ size = 560 }: { size?: number }) {
         className="absolute inset-0 w-full h-full object-cover pointer-events-none mix-blend-screen select-none"
         style={{ animation: "sphere-ghost 10s ease-in-out infinite" }}
       />
+      <SphereGrid size={560} />
       <canvas
         ref={canvasRef}
         className="absolute inset-0 block w-full h-full opacity-35 mix-blend-screen pointer-events-none"
