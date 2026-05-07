@@ -43,14 +43,19 @@ const REGISTRARS = [
   },
 ];
 
-type Glitch = { id: number; char: string; color: "green" | "red"; top: string; left: string; size: string };
+type Glitch = {
+  text: string;
+  color: "green" | "red";
+  growing: boolean;
+  targetLen: number;
+};
 
 export function EndOfRoadModal({ onClose }: { onClose: () => void }) {
   const [mounted, setMounted] = useState(false);
-  const [glitches, setGlitches] = useState<Glitch[]>([]);
   const [phase, setPhase] = useState(0);
   const [typed, setTyped] = useState("");
-  const idRef = useRef(0);
+  const [glitch, setGlitch] = useState<Glitch | null>(null);
+  const tickRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => setMounted(true), []);
 
@@ -67,37 +72,65 @@ export function EndOfRoadModal({ onClose }: { onClose: () => void }) {
   }, [onClose]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const id = idRef.current++;
-      const char = CHINESE_CHARS[Math.floor(Math.random() * CHINESE_CHARS.length)];
-      const color: "green" | "red" = Math.random() < 0.5 ? "green" : "red";
-      const top = `${Math.random() * 96}%`;
-      const left = `${Math.random() * 96}%`;
-      const size = Math.random() < 0.3 ? "text-3xl" : Math.random() < 0.6 ? "text-2xl" : "text-xl";
-      setGlitches((g) => [...g, { id, char, color, top, left, size }]);
-      setTimeout(() => {
-        setGlitches((g) => g.filter((x) => x.id !== id));
-      }, 1200);
-    }, 230);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
     if (phase >= PITCH_PARAGRAPHS.length) return;
     const target = PITCH_PARAGRAPHS[phase];
-    let i = typed.length;
-    if (i >= target.length) {
-      const t = setTimeout(() => {
+
+    if (glitch) {
+      if (glitch.growing) {
+        if (glitch.text.length < glitch.targetLen) {
+          tickRef.current = setTimeout(() => {
+            const ch =
+              CHINESE_CHARS[Math.floor(Math.random() * CHINESE_CHARS.length)];
+            setGlitch({ ...glitch, text: glitch.text + ch });
+          }, 35 + Math.random() * 25);
+        } else {
+          tickRef.current = setTimeout(() => {
+            setGlitch({ ...glitch, growing: false });
+          }, 120 + Math.random() * 90);
+        }
+      } else {
+        if (glitch.text.length > 0) {
+          tickRef.current = setTimeout(() => {
+            setGlitch({ ...glitch, text: glitch.text.slice(0, -1) });
+          }, 22 + Math.random() * 18);
+        } else {
+          tickRef.current = setTimeout(() => setGlitch(null), 60);
+        }
+      }
+      return () => {
+        if (tickRef.current) clearTimeout(tickRef.current);
+      };
+    }
+
+    if (typed.length >= target.length) {
+      tickRef.current = setTimeout(() => {
         setTyped("");
         setPhase((p) => p + 1);
       }, 700);
-      return () => clearTimeout(t);
+      return () => {
+        if (tickRef.current) clearTimeout(tickRef.current);
+      };
     }
-    const t = setTimeout(() => {
-      setTyped(target.slice(0, i + 1));
-    }, 18 + Math.random() * 22);
-    return () => clearTimeout(t);
-  }, [typed, phase]);
+
+    const i = typed.length;
+    const shouldGlitch =
+      i > 6 && i < target.length - 1 && Math.random() < 0.025;
+    if (shouldGlitch) {
+      const targetLen = 2 + Math.floor(Math.random() * 3);
+      const color: "green" | "red" = Math.random() < 0.5 ? "green" : "red";
+      tickRef.current = setTimeout(() => {
+        setGlitch({ text: "", color, growing: true, targetLen });
+      }, 30);
+    } else {
+      tickRef.current = setTimeout(() => {
+        setTyped(target.slice(0, i + 1));
+      }, 18 + Math.random() * 22);
+    }
+
+    return () => {
+      if (tickRef.current) clearTimeout(tickRef.current);
+    };
+  }, [typed, phase, glitch]);
 
   if (!mounted) return null;
 
@@ -127,25 +160,6 @@ export function EndOfRoadModal({ onClose }: { onClose: () => void }) {
             "0 0 60px rgba(255,255,255,0.18), 0 0 140px rgba(255,255,255,0.10), inset 0 1px 0 rgba(255,255,255,0.20)",
         }}
       >
-        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-          {glitches.map((g) => (
-            <span
-              key={g.id}
-              className={`absolute font-mono ${g.size} ${g.color === "green" ? "text-emerald-400/85" : "text-red-400/85"} animate-[fadeOut_1.2s_ease-out_forwards]`}
-              style={{
-                top: g.top,
-                left: g.left,
-                textShadow:
-                  g.color === "green"
-                    ? "0 0 14px rgba(52,211,153,0.85), 0 0 28px rgba(52,211,153,0.45)"
-                    : "0 0 14px rgba(248,113,113,0.85), 0 0 28px rgba(239,68,68,0.45)",
-              }}
-            >
-              {g.char}
-            </span>
-          ))}
-        </div>
-
         <header className="sticky top-0 z-10 bg-black/95 border-b border-white/30 px-4 py-3 sm:px-6 sm:py-4 flex items-center justify-between gap-3">
           <div className="flex items-center gap-3 min-w-0">
             <span
@@ -206,6 +220,23 @@ export function EndOfRoadModal({ onClose }: { onClose: () => void }) {
             {!finished && (
               <p>
                 {current}
+                {glitch && glitch.text.length > 0 && (
+                  <span
+                    className={
+                      glitch.color === "green"
+                        ? "text-emerald-400"
+                        : "text-red-400"
+                    }
+                    style={{
+                      textShadow:
+                        glitch.color === "green"
+                          ? "0 0 8px rgba(52,211,153,0.8), 0 0 18px rgba(52,211,153,0.4)"
+                          : "0 0 8px rgba(248,113,113,0.85), 0 0 18px rgba(239,68,68,0.45)",
+                    }}
+                  >
+                    {glitch.text}
+                  </span>
+                )}
                 <span className="inline-block ml-0.5 animate-pulse">▮</span>
               </p>
             )}
@@ -306,14 +337,6 @@ export function EndOfRoadModal({ onClose }: { onClose: () => void }) {
         </div>
       </div>
 
-      <style>{`
-        @keyframes fadeOut {
-          0% { opacity: 0; transform: scale(0.85); }
-          15% { opacity: 0.85; transform: scale(1); }
-          70% { opacity: 0.6; }
-          100% { opacity: 0; transform: scale(1.05); }
-        }
-      `}</style>
     </div>,
     document.body,
   );
