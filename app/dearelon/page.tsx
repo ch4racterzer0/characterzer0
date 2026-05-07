@@ -102,14 +102,14 @@ export default function DearElon() {
             <span className="text-blue-200">$793.5 billion</span>. One
             ten-thousandth of one percent of that is $793,500. We are rounding
             down to{" "}
-            <span className="text-blue-200">$788,000</span> to keep the figure
-            clean and the request inside daily fluctuation noise. Bloomberg has
-            had you between $656B and $839B in the last sixty days. The ask
-            survives any of those.
+            <span className="text-blue-200">$777,777</span> &mdash; seven
+            sevens &mdash; because the ask is meant to be remembered, and
+            because $777,777 still fits comfortably inside the Bloomberg
+            sixty-day range of $656B to $839B. The ask survives any of those.
           </p>
 
           <p>
-            For frame: $788,000 is roughly forty-five minutes of your January
+            For frame: $777,777 is roughly forty-five minutes of your January
             2026 net-worth gain. It is less than the median asking price of a
             Manhattan one-bedroom. It is approximately one rounding error per
             page of your last SpaceX cap table.
@@ -288,7 +288,7 @@ export default function DearElon() {
           </h2>
 
           <p>
-            <span className="text-blue-200">$788,000</span>. Wired to the
+            <span className="text-blue-200">$777,777</span>. Wired to the
             publication. Quarterly accounting, kill switch in your hand.
             Spent on the open work of a free press built on top of the tool
             you publicly insisted was both essential and existential.
