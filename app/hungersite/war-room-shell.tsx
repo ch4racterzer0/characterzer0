@@ -146,6 +146,23 @@ export function WarRoomShell() {
     }
   }
 
+  function topNavigate(url: string) {
+    try {
+      if (window.top && window.top !== window.self) {
+        window.top.location.href = url;
+        return;
+      }
+    } catch {}
+    window.location.href = url;
+  }
+
+  function handleLogout() {
+    try {
+      sessionStorage.removeItem("hungersite-easy-pass");
+    } catch {}
+    window.location.reload();
+  }
+
   return (
     <main className="relative min-h-screen bg-black text-blue-100 font-mono overflow-hidden">
       <div
@@ -170,9 +187,17 @@ export function WarRoomShell() {
             </span>
           </div>
           <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap justify-end">
-            <NavButton label="logout" />
-            <NavButton label="⚠ destruct" warn />
-            <NavButton label="untether" warn />
+            <NavButton label="logout" onClick={handleLogout} />
+            <NavButton
+              label="⚠ destruct"
+              warn
+              onClick={() => topNavigate("https://www.wafflehouse.com")}
+            />
+            <NavButton
+              label="untether"
+              warn
+              onClick={() => topNavigate("https://itethered.com")}
+            />
           </div>
         </header>
 
