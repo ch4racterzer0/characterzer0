@@ -28,7 +28,7 @@ $chain = @(
   "[s2][C]overlay=x='${GuyX}+520*sin(t*0.30+2.51)':y='${GuyY}+120*cos(t*0.32+2.51)':eval=frame[s3]"
   "[s3][D]overlay=x='${GuyX}+250*sin(t*0.65+3.77)':y='${GuyY}+180*cos(t*0.70+3.77)':eval=frame[s4]"
   "[s4][E]overlay=x='${GuyX}+400*sin(t*0.20+5.03)':y='${GuyY}+90*cos(t*0.25+5.03)':eval=frame[s5]"
-  "[s5]hue=H=2*PI*t/16:s=1.4,lagfun=decay=0.78,v360=input=flat:output=fisheye:ih_fov=150:iv_fov=100:yaw=18*sin(t*0.15):pitch=10*sin(t*0.20):roll=12*sin(t*0.08),vignette,format=yuv420p"
+  "[s5]hue=H=2*PI*t/16:s=1.4,lagfun=decay=0.78,v360=input=flat:output=fisheye:ih_fov=150:iv_fov=100,rotate=angle=PI*sin(t*0.08)/10:c=black,vignette,format=yuv420p"
 ) -join ';'
 
 & $ffplayExe -hide_banner -loglevel info `
