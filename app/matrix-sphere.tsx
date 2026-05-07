@@ -177,7 +177,7 @@ function LiveSphere({ size = 560 }: { size?: number }) {
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/sphere/ghost.png"
+        src="/sphere/trey-wrigley.webp"
         alt=""
         aria-hidden
         draggable={false}
