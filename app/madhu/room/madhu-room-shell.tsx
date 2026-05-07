@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { LayerNav } from "../../layer-nav";
+import { LightSwitchMask } from "../../light-switch-mask";
 import { BandPrompt } from "./band-prompt";
 import { LiveCounter } from "./live-counter";
 import { COVERS, PodcastCoversModal } from "../../hungersite/podcast-covers";
@@ -719,6 +720,7 @@ export function MadhuRoomShell() {
 
         <TerrapinStationRow />
 
+        <div className="relative space-y-3 sm:space-y-4">
         <div className="grid md:grid-cols-2 gap-3 sm:gap-4 items-stretch">
           <LiveCounter
             since={FIRSTPLACED_REGISTERED}
@@ -794,6 +796,13 @@ export function MadhuRoomShell() {
         <footer className="text-[9px] sm:text-[10px] font-mono tracking-[0.25em] uppercase text-red-300/40 text-center pt-4">
           madhu &middot; podcast control &middot; the only winning move
         </footer>
+
+          <LightSwitchMask
+            tone="red"
+            contained
+            onSwitch={() => setTttState("playing")}
+          />
+        </div>
       </div>
 
       {podcastsOpen && (

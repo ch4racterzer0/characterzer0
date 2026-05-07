@@ -53,15 +53,17 @@ const TONES: Record<
 export function LightSwitchMask({
   tone = "blue",
   onSwitch,
+  contained = false,
 }: {
   tone?: Tone;
   onSwitch: () => void;
+  contained?: boolean;
 }) {
   const c = TONES[tone];
   return (
     <div
       aria-hidden
-      className="fixed inset-0 z-[60] bg-black/85 backdrop-blur-[1px] flex items-center justify-center font-mono pointer-events-none"
+      className={`${contained ? "absolute" : "fixed z-[60]"} inset-0 bg-black/85 backdrop-blur-[1px] flex items-center justify-center font-mono pointer-events-none`}
     >
       <button
         type="button"
