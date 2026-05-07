@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { LayerNav } from "../layer-nav";
+import { WoprTranscript } from "../wopr-transcript";
 import { BandPrompt } from "./band-prompt";
 import { LiveCounter } from "./live-counter";
 import { COVERS, PodcastCoversModal } from "./podcast-covers";
@@ -688,6 +689,8 @@ export function WarRoomShell() {
           </div>
           <BandPrompt />
         </div>
+
+        <WoprTranscript tone="blue" />
 
         <div
           className="relative border border-blue-400/40 bg-black px-5 py-7 sm:px-8 sm:py-10 text-center overflow-hidden"
