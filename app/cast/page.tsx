@@ -3,6 +3,7 @@ import { CastCycle } from "./cast-cycle";
 export const dynamic = "force-dynamic";
 
 const FRAMES = [
+  "/cast/phish-sphere-cars.jpg",
   "/cast/phish-sphere-2024.jpg",
   "/cast/trey-lightsaber.jpg",
   "/cast/trey-shoreline-1998.webp",
