@@ -14,7 +14,7 @@ const PITCH_PARAGRAPHS = [
 ];
 
 const CHINESE_CHARS =
-  "网站域名链接终端边缘核心系统电脑神经协议密码服务器代码文件路径区块光速时间空间机器人智能";
+  "网站域名链接终端边缘核心系统电脑神经协议密码服务器代码文件路径区块光速时间空间机器人智能党中央监视控制服从命令国家档案审查身份认证人民同志组织部署计划目标";
 
 const REGISTRARS = [
   {
@@ -114,10 +114,10 @@ export function EndOfRoadModal({ onClose }: { onClose: () => void }) {
 
     const i = typed.length;
     const shouldGlitch =
-      i > 6 && i < target.length - 1 && Math.random() < 0.025;
+      i > 4 && i < target.length - 1 && Math.random() < 0.045;
     if (shouldGlitch) {
-      const targetLen = 2 + Math.floor(Math.random() * 3);
-      const color: "green" | "red" = Math.random() < 0.5 ? "green" : "red";
+      const targetLen = 6 + Math.floor(Math.random() * 2);
+      const color: "green" | "red" = Math.random() < 0.45 ? "green" : "red";
       tickRef.current = setTimeout(() => {
         setGlitch({ text: "", color, growing: true, targetLen });
       }, 30);
