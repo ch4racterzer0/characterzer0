@@ -172,7 +172,7 @@ function LiveSphere({ size = 560 }: { size?: number }) {
         allow="autoplay; encrypted-media; picture-in-picture"
         referrerPolicy="strict-origin"
         loading="lazy"
-        className="absolute top-0 left-1/2 -translate-x-1/2 h-full block border-0 opacity-30"
+        className="absolute top-0 left-1/2 -translate-x-1/2 h-full block border-0 opacity-40"
         style={{ aspectRatio: "16 / 9" }}
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
