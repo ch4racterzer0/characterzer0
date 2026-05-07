@@ -3,9 +3,15 @@
 import { useEffect, useState, type ReactNode } from "react";
 
 const PASS = "jedi";
-const KEY = "hungersite-easy-pass";
+const KEY = "core-easy-pass";
 
-export function EasyPass({ children }: { children: ReactNode }) {
+export function EasyPass({
+  children,
+  label,
+}: {
+  children: ReactNode;
+  label?: string;
+}) {
   const [unlocked, setUnlocked] = useState(false);
   const [pwInput, setPwInput] = useState("");
   const [error, setError] = useState(false);
@@ -46,13 +52,13 @@ export function EasyPass({ children }: { children: ReactNode }) {
         }}
       >
         <label
-          htmlFor="hungersite-pass"
+          htmlFor="easy-pass-input"
           className="text-blue-100/60 italic text-[11px] tracking-[0.3em] uppercase"
         >
-          enter passphrase
+          {label ?? "enter passphrase"}
         </label>
         <input
-          id="hungersite-pass"
+          id="easy-pass-input"
           type="password"
           autoFocus
           value={pwInput}

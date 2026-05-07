@@ -362,7 +362,7 @@ export function WarRoomShell() {
 
   function handleLogout() {
     try {
-      sessionStorage.removeItem("hungersite-easy-pass");
+      sessionStorage.removeItem("core-easy-pass");
     } catch {}
     window.location.reload();
   }

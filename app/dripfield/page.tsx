@@ -1,8 +1,19 @@
+import { EasyPass } from "../easy-pass";
 import { LayerNav } from "../layer-nav";
+
+export const dynamic = "force-dynamic";
 
 const GLOW = "0 0 8px rgba(110,231,183,0.7), 0 0 18px rgba(52,211,153,0.4)";
 
 export default function DripfieldPage() {
+  return (
+    <EasyPass>
+      <DripfieldShell />
+    </EasyPass>
+  );
+}
+
+function DripfieldShell() {
   return (
     <main className="relative min-h-screen bg-black text-emerald-100 font-mono overflow-hidden">
       <div className="max-w-7xl mx-auto p-3 sm:p-5 space-y-3 sm:space-y-4">

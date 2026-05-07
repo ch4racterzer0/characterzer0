@@ -1,4 +1,4 @@
-import { EasyPass } from "./easy-pass";
+import { EasyPass } from "../easy-pass";
 import { WarRoomShell } from "./war-room-shell";
 
 export const dynamic = "force-dynamic";
