@@ -36,10 +36,6 @@ export default function DearSam() {
       label: "Spotlight Dispatch — They want you afraid (the fear machine)",
       href: "https://www.spotlightdispatch.com/fear-machine",
     },
-    {
-      label: "Share the Byline — The deception of AI: OpenAI under fire",
-      href: "https://sharethebyline.com/the-deception-of-ai-openai-under-fire-mov1tno1",
-    },
   ];
 
   return (
