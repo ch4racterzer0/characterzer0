@@ -15,6 +15,11 @@ export default function CurrentAssets() {
       href: "https://itethered.com",
       desc: "A community and editorial home for the growing population of people whose daily lives are tethered to their AI agents.",
     },
+    {
+      name: "scofti",
+      href: "https://scofti.com",
+      desc: "Soon to be the center of the podcast factory hub.",
+    },
   ];
 
   return (
