@@ -17,22 +17,29 @@ export function CastCycle({ frames }: { frames: string[] }) {
   }, [frames.length]);
 
   return (
-    <main className="fixed inset-0 bg-black text-white overflow-hidden font-mono">
-      {frames.map((src, i) => (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          key={src}
-          src={src}
-          alt=""
-          aria-hidden
-          draggable={false}
-          className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
-          style={{
-            opacity: i === index ? 1 : 0,
-            transition: `opacity ${CROSSFADE_MS}ms ease-in-out`,
-          }}
-        />
-      ))}
+    <main
+      className="fixed inset-0 bg-black text-white overflow-hidden font-mono"
+      style={{ animation: "cast-flicker 7.3s steps(60, end) infinite" }}
+    >
+      {frames.map((src, i) => {
+        const drift = i % 2 === 0 ? "cast-drift" : "cast-drift-alt";
+        return (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={src}
+            src={src}
+            alt=""
+            aria-hidden
+            draggable={false}
+            className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
+            style={{
+              opacity: i === index ? 1 : 0,
+              transition: `opacity ${CROSSFADE_MS}ms ease-in-out`,
+              animation: `${drift} 9s ease-in-out infinite alternate`,
+            }}
+          />
+        );
+      })}
 
       <div
         aria-hidden
