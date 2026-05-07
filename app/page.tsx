@@ -8,6 +8,7 @@ import {
   RadioTilesMobileTop,
 } from "./radio-tiles";
 import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
+import { TokenGateTile } from "./token-gate-tile";
 
 export default function Home() {
   return (
@@ -28,20 +29,16 @@ export default function Home() {
             <LyricRotator />
           </div>
           <div className="flex flex-row items-center gap-6 sm:gap-8">
-            <span className="[&_*]:!pointer-events-none [&_*]:!cursor-default select-none">
-              <LinkTile label="Core4" href="/core4" large />
-            </span>
-            <div className="hidden sm:block [&_*]:!pointer-events-none [&_*]:!cursor-default select-none">
-              <LinkTile label="Quest" href="/quest" large />
+            <TokenGateTile label="Core4" large />
+            <div className="hidden sm:block">
+              <TokenGateTile label="Quest" large />
             </div>
           </div>
         </div>
 
         <div className="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-10 w-full max-w-md sm:w-auto sm:max-w-none">
           <LinkTile label="Current Targets" href="/currenttarget" />
-          <span className="[&_*]:!pointer-events-none [&_*]:!cursor-default select-none">
-            <LinkTile label="Current Assets" href="/currentassets" />
-          </span>
+          <TokenGateTile label="Current Assets" />
           <LinkTile label="WIP" href="/wip" />
           <LinkTile label="Your Own Anspach" href="/yoursphere" />
         </div>
