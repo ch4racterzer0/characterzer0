@@ -87,10 +87,10 @@ export function MatrixSphere() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center overflow-hidden"
+      className="pointer-events-none absolute top-12 right-3 sm:top-14 sm:right-5 z-20"
     >
       <div
-        className="relative w-[420px] h-[420px] sm:w-[560px] sm:h-[560px] rounded-full overflow-hidden"
+        className="relative w-40 h-40 sm:w-56 sm:h-56 rounded-full overflow-hidden"
         style={{
           transform: "perspective(1100px) rotateX(20deg) rotateY(-10deg)",
           maskImage:
