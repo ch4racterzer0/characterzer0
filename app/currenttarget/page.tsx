@@ -126,39 +126,6 @@ const targets: Target[] = [
 export default function CurrentTarget() {
   return (
     <main className="min-h-screen bg-black text-blue-100/90">
-      <section className="px-6 pt-10 sm:px-12 sm:pt-14">
-        <a
-          href="https://www.spotlightdispatch.com/fear-machine"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block max-w-4xl mx-auto rounded-xl border border-blue-400/40 bg-blue-950/30 p-6 sm:p-8 hover:border-blue-300/70 transition-colors"
-          style={{
-            boxShadow:
-              "0 0 35px rgba(59,130,246,0.30), inset 0 1px 0 rgba(147,197,253,0.20)",
-          }}
-        >
-          <p
-            className="text-blue-100 text-xs sm:text-sm tracking-[0.3em] uppercase"
-            style={{
-              textShadow:
-                "0 0 14px rgba(96,165,250,0.7), 0 0 30px rgba(59,130,246,0.4)",
-            }}
-          >
-            currently researching
-          </p>
-          <h2 className="mt-3 text-blue-100 text-xl sm:text-2xl md:text-3xl font-light tracking-wide">
-            they want you afraid &mdash; the fear machine
-          </h2>
-          <p className="mt-3 text-blue-100/70 text-sm sm:text-base italic leading-relaxed">
-            the article that already underwrites #1. surfacing here because
-            it&rsquo;s next on the desk anyway.
-          </p>
-          <p className="mt-4 text-blue-200 text-sm sm:text-base underline underline-offset-4 break-all">
-            spotlightdispatch.com/fear-machine &rarr;
-          </p>
-        </a>
-      </section>
-
       {targets.map((t) => (
         <section
           key={t.n}
