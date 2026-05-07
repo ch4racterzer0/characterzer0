@@ -4,7 +4,33 @@ import { useEffect, useState } from "react";
 
 const pad = (n: number) => n.toString().padStart(2, "0");
 
-export function MissileClock({ since }: { since: string }) {
+type Tone = "red" | "amber";
+
+const TONE_STYLES: Record<
+  Tone,
+  { dim: string; live: string; glow: string }
+> = {
+  red: {
+    dim: "text-red-300/55",
+    live: "text-red-300/70",
+    glow: "0 0 8px rgba(239,68,68,0.45)",
+  },
+  amber: {
+    dim: "text-amber-300/55",
+    live: "text-amber-300/75",
+    glow: "0 0 8px rgba(251,191,36,0.5)",
+  },
+};
+
+export function MissileClock({
+  since,
+  tone = "red",
+  label = "fired",
+}: {
+  since: string;
+  tone?: Tone;
+  label?: string;
+}) {
   const startMs = new Date(since).getTime();
   const [now, setNow] = useState<number | null>(null);
 
@@ -14,15 +40,19 @@ export function MissileClock({ since }: { since: string }) {
     return () => clearInterval(id);
   }, []);
 
-  const fired = (() => {
+  const styles = TONE_STYLES[tone];
+
+  const stamp = (() => {
     const d = new Date(since);
     return `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())} ${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())}Z`;
   })();
 
   if (now === null) {
     return (
-      <span className="text-red-300/55 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase font-mono tabular-nums">
-        fired {fired} · elapsed --:--:--
+      <span
+        className={`${styles.dim} text-[9px] sm:text-[10px] tracking-[0.3em] uppercase font-mono tabular-nums`}
+      >
+        {label} {stamp} · elapsed --:--:--
       </span>
     );
   }
@@ -36,10 +66,10 @@ export function MissileClock({ since }: { since: string }) {
 
   return (
     <span
-      className="text-red-300/70 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase font-mono tabular-nums"
-      style={{ textShadow: "0 0 8px rgba(239,68,68,0.45)" }}
+      className={`${styles.live} text-[9px] sm:text-[10px] tracking-[0.3em] uppercase font-mono tabular-nums`}
+      style={{ textShadow: styles.glow }}
     >
-      fired {fired} · elapsed {days > 0 ? `${days}d ` : ""}
+      {label} {stamp} · elapsed {days > 0 ? `${days}d ` : ""}
       {hh}:{mm}:{ss}
     </span>
   );

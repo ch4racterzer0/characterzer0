@@ -3,20 +3,21 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
-const QUESTIONS = [
-  "You signed the March 2023 letter calling for a six-month pause on advanced AI training. Why didn't you pause?",
-  "xAI was founded inside the same six months you asked the rest of the industry to stand still. What did you know that they didn't?",
-  "Grok ships with most of the safety constraints its competitors keep on. Which removed constraints do you stand behind on the record?",
-  "You have called AI the most existentially dangerous thing humans have ever built. Which xAI internal practice maps to that level of danger?",
-  "Has xAI declined any contract on safety grounds since founding? If so, which?",
-  "Do you still hold the position you signed in May 2023 — that AI extinction risk belongs in the same conversation as nuclear war and pandemics?",
-  "You publicly criticize OpenAI's safety record while being a co-founder and early funder. What did you specifically do as a board member to enforce a different posture?",
-  "What does Grok's red-team process look like, and when did you last personally read its findings?",
-  "You have said Earth needs a multiplanetary civilization to survive AI. What is xAI's current contribution to that, today?",
-  "Name the person at xAI whose job it is to tell you no — and the last time they did.",
-];
-
-export function NextTile() {
+export function NextTile({
+  subject,
+  questions,
+  ariaLabel,
+  subline,
+  modalTitle,
+  headerLabel,
+}: {
+  subject: string;
+  questions: string[];
+  ariaLabel: string;
+  subline: string;
+  modalTitle: string;
+  headerLabel: string;
+}) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -40,7 +41,7 @@ export function NextTile() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        aria-label="next — open ten questions for elon musk"
+        aria-label={ariaLabel}
         className="group absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-10 w-60 sm:w-72 backdrop-blur-[2px] bg-amber-950/55 hover:bg-amber-950/75 border border-amber-400/55 hover:border-amber-300/80 px-4 py-3 sm:px-5 sm:py-4 rounded-sm transition-colors cursor-pointer"
         style={{
           boxShadow:
@@ -61,7 +62,7 @@ export function NextTile() {
             next
           </span>
           <span className="text-amber-300/60 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase italic">
-            ten questions for elon musk
+            {subline}
           </span>
         </div>
       </button>
@@ -73,7 +74,7 @@ export function NextTile() {
             className="fixed inset-0 z-[90] flex items-center justify-center p-4 sm:p-8 font-mono"
             role="dialog"
             aria-modal="true"
-            aria-label="ten questions for elon musk"
+            aria-label={ariaLabel}
           >
             <button
               type="button"
@@ -103,7 +104,7 @@ export function NextTile() {
                         "0 0 12px rgba(252,211,77,0.55), 0 0 28px rgba(251,191,36,0.3)",
                     }}
                   >
-                    // 10 questions we have
+                    {headerLabel}
                   </span>
                 </div>
                 <button
@@ -124,11 +125,11 @@ export function NextTile() {
                       "0 0 14px rgba(252,211,77,0.6), 0 0 32px rgba(251,191,36,0.3)",
                   }}
                 >
-                  10 questions for elon musk
+                  {modalTitle}
                 </h2>
 
                 <ol className="space-y-5">
-                  {QUESTIONS.map((q, i) => (
+                  {questions.map((q, i) => (
                     <li key={i} className="flex items-start gap-4">
                       <span
                         className="text-amber-300/70 font-mono text-lg sm:text-xl tabular-nums tracking-tight shrink-0 w-8 sm:w-10"
@@ -146,7 +147,7 @@ export function NextTile() {
                 </ol>
 
                 <p className="text-amber-300/45 italic text-[10px] sm:text-xs tracking-[0.2em] uppercase pt-4 text-center border-t border-amber-400/20">
-                  press esc to close
+                  for {subject} · press esc to close
                 </p>
               </div>
             </div>

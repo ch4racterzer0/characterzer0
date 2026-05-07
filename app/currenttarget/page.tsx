@@ -3,6 +3,33 @@ import { MissileClock } from "./missile-clock";
 import { NextTile } from "./next-tile";
 
 const MISSILE_FIRED = "2026-05-07T10:07:03Z";
+const DEAR_ELON_SENT = "2026-05-07T18:39:11Z";
+
+const ELON_QUESTIONS = [
+  "You signed the March 2023 letter calling for a six-month pause on advanced AI training. Why didn't you pause?",
+  "xAI was founded inside the same six months you asked the rest of the industry to stand still. What did you know that they didn't?",
+  "Grok ships with most of the safety constraints its competitors keep on. Which removed constraints do you stand behind on the record?",
+  "You have called AI the most existentially dangerous thing humans have ever built. Which xAI internal practice maps to that level of danger?",
+  "Has xAI declined any contract on safety grounds since founding? If so, which?",
+  "Do you still hold the position you signed in May 2023 — that AI extinction risk belongs in the same conversation as nuclear war and pandemics?",
+  "You publicly criticize OpenAI's safety record while being a co-founder and early funder. What did you specifically do as a board member to enforce a different posture?",
+  "What does Grok's red-team process look like, and when did you last personally read its findings?",
+  "You have said Earth needs a multiplanetary civilization to survive AI. What is xAI's current contribution to that, today?",
+  "Name the person at xAI whose job it is to tell you no — and the last time they did.",
+];
+
+const SUNDAR_QUESTIONS = [
+  "You called AI \"more profound than fire or electricity.\" Which Google practice today actually maps to that level of consequence?",
+  "In May 2023 at the White House you accepted a moral duty to safeguard the public on AI. Name the specific commitments that resulted, and what's in production today as a result of any of them.",
+  "After the post-ChatGPT Code Red, what changed about Google's internal safety review pipeline — concretely, by name of process or document?",
+  "Roughly a quarter of new code at Google is now AI-written. Who reviews it for security, correctness, and unintended behavior, and at what cadence?",
+  "Has Google published the training-data corpus for Gemini? If not, why not, and what would it take?",
+  "AI Overviews on Search has shipped demonstrably wrong answers (eat rocks, glue on pizza, snake-bite hallucinations) to a global audience. What is your standard for shipping a wrong answer to a billion users at scale?",
+  "DeepMind's founding charter included an ethics board. Where is that charter today, and which provisions still hold?",
+  "What is Google's current contractual relationship with the Pentagon on AI work, and what changed after the Project Maven walkout?",
+  "Workforce reductions at Google have continued through 2024–2026 alongside heavy AI deployment. How much of those reductions are attributable to AI substitution, and how do you account for that publicly?",
+  "Name the person at Alphabet whose job it is to tell you no on AI safety — and the last time they did.",
+];
 
 type Target = {
   n: string;
@@ -168,7 +195,48 @@ export default function CurrentTarget() {
               </div>
             </a>
           )}
-          {t.n === "02" && <NextTile />}
+          {t.n === "02" && (
+            <a
+              href="/dearelon"
+              target="_top"
+              rel="noopener"
+              aria-label="dear elon — open letter, ten questions for elon musk"
+              className="group absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-10 w-60 sm:w-72 backdrop-blur-[2px] bg-amber-950/55 hover:bg-amber-950/75 border border-amber-400/55 hover:border-amber-300/80 px-4 py-3 sm:px-5 sm:py-4 rounded-sm transition-colors"
+              style={{
+                boxShadow:
+                  "0 0 30px rgba(251,191,36,0.30), 0 8px 28px -8px rgba(146,64,14,0.55), inset 0 1px 0 rgba(254,243,199,0.20)",
+              }}
+            >
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-amber-300/80 text-[9px] sm:text-[10px] tracking-[0.4em] uppercase">
+                  ↗ delivered
+                </span>
+                <span
+                  className="text-amber-200 text-xl sm:text-2xl tracking-[0.25em] uppercase font-light group-hover:text-amber-100 transition-colors"
+                  style={{
+                    textShadow:
+                      "0 0 12px rgba(252,211,77,0.85), 0 0 24px rgba(251,191,36,0.55)",
+                  }}
+                >
+                  the letter
+                </span>
+                <span className="text-amber-300/60 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase italic">
+                  dear elon · ten questions · $777,777
+                </span>
+                <MissileClock since={DEAR_ELON_SENT} tone="amber" label="sent" />
+              </div>
+            </a>
+          )}
+          {t.n === "03" && (
+            <NextTile
+              subject="sundar pichai"
+              questions={SUNDAR_QUESTIONS}
+              ariaLabel="next — open ten questions for sundar pichai"
+              subline="ten questions for sundar pichai"
+              modalTitle="10 questions for sundar pichai"
+              headerLabel="// 10 questions we have"
+            />
+          )}
           <div className="grid gap-6 md:grid-cols-[5rem_minmax(0,1fr)_minmax(0,1.15fr)] md:gap-10">
             <div className="text-2xl font-light tracking-tight text-blue-100/40 md:text-3xl">
               {t.n}
