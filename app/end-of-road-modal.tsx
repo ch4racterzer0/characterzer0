@@ -171,6 +171,24 @@ export function EndOfRoadModal({ onClose }: { onClose: () => void }) {
         </header>
 
         <div className="relative z-10 px-5 py-6 sm:px-8 sm:py-8 space-y-7">
+          <div className="-mx-5 sm:-mx-8 -mt-6 sm:-mt-8 relative">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/end-of-road/hero-doorway.png"
+              alt=""
+              className="w-full h-40 sm:h-56 object-cover object-center select-none pointer-events-none"
+              draggable={false}
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to bottom, rgba(0,0,0,0) 30%, rgba(0,0,0,0.95) 100%)",
+              }}
+            />
+          </div>
+
           <h2
             className="text-white text-xl sm:text-3xl tracking-[0.25em] uppercase"
             style={{
@@ -194,22 +212,42 @@ export function EndOfRoadModal({ onClose }: { onClose: () => void }) {
           </div>
 
           <div
-            className="border border-white/30 bg-white/5 p-4 sm:p-5 space-y-2"
+            className="border border-white/30 bg-white/5 grid grid-cols-1 sm:grid-cols-[1fr_minmax(0,140px)] items-stretch gap-0"
             style={{ boxShadow: "inset 0 0 25px rgba(255,255,255,0.08)" }}
           >
-            <p className="text-white/55 text-[10px] sm:text-xs tracking-[0.3em] uppercase">
-              // the cost
-            </p>
-            <p
-              className="text-white text-base sm:text-lg tracking-wider"
-              style={{ textShadow: "0 0 10px rgba(255,255,255,0.45)" }}
-            >
-              one parked domain · less than $10 / yr · you keep ownership
-            </p>
-            <p className="text-white/65 text-[11px] sm:text-sm italic">
-              one switch on your end ends the contract. you walk with the domain.
-              we walk with nothing.
-            </p>
+            <div className="p-4 sm:p-5 space-y-2">
+              <p className="text-white/55 text-[10px] sm:text-xs tracking-[0.3em] uppercase">
+                // the cost
+              </p>
+              <p
+                className="text-white text-base sm:text-lg tracking-wider"
+                style={{ textShadow: "0 0 10px rgba(255,255,255,0.45)" }}
+              >
+                one parked domain · less than $10 / yr · you keep ownership
+              </p>
+              <p className="text-white/65 text-[11px] sm:text-sm italic flex items-start gap-2">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/end-of-road/kill-switch.png"
+                  alt=""
+                  className="w-8 h-8 object-contain shrink-0 select-none pointer-events-none mt-0.5"
+                  draggable={false}
+                />
+                <span>
+                  one switch on your end ends the contract. you walk with the
+                  domain. we walk with nothing.
+                </span>
+              </p>
+            </div>
+            <div className="hidden sm:block relative bg-black/60 border-l border-white/15">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/end-of-road/domain-house.png"
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover opacity-90 select-none pointer-events-none"
+                draggable={false}
+              />
+            </div>
           </div>
 
           <div className="space-y-3">
