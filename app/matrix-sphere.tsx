@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
-export function MatrixSphere() {
+function LiveSphere({ size = 560 }: { size?: number }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -11,7 +12,6 @@ export function MatrixSphere() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const size = 560;
     canvas.width = size;
     canvas.height = size;
 
@@ -82,39 +82,155 @@ export function MatrixSphere() {
 
     raf = requestAnimationFrame(draw);
     return () => cancelAnimationFrame(raf);
-  }, []);
+  }, [size]);
 
   return (
     <div
-      aria-hidden
-      className="pointer-events-none absolute top-12 right-3 sm:top-14 sm:right-5 z-20"
+      className="relative aspect-square w-full max-w-[560px] mx-auto rounded-full overflow-hidden"
+      style={{
+        transform: "perspective(1100px) rotateX(15deg) rotateY(-8deg)",
+        maskImage:
+          "radial-gradient(circle at center, black 30%, rgba(0,0,0,0.4) 60%, transparent 78%)",
+        WebkitMaskImage:
+          "radial-gradient(circle at center, black 30%, rgba(0,0,0,0.4) 60%, transparent 78%)",
+        boxShadow:
+          "inset 0 0 80px rgba(59,130,246,0.25), 0 0 60px rgba(59,130,246,0.15)",
+      }}
+    >
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/live_stream?channel=UCYmL7UZfguRrtqjlZUoScCQ&autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1&iv_load_policy=3"
+        title="character zer0 — live"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        referrerPolicy="strict-origin"
+        loading="lazy"
+        className="absolute top-0 left-1/2 -translate-x-1/2 h-full block border-0 opacity-80"
+        style={{ aspectRatio: "16 / 9" }}
+      />
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 block w-full h-full opacity-35 mix-blend-screen pointer-events-none"
+      />
+    </div>
+  );
+}
+
+function ScoftiTile({ onClick }: { onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label="scofti — entertainment · open the live cast"
+      className="group absolute top-12 right-3 sm:top-14 sm:right-5 z-20 w-32 sm:w-40 backdrop-blur-[2px] bg-amber-950/35 hover:bg-amber-950/55 border border-amber-400/55 hover:border-amber-300/85 rounded-md px-3 py-3 sm:px-4 sm:py-3 transition-colors cursor-pointer flex flex-col items-center gap-1 overflow-hidden"
+      style={{
+        boxShadow:
+          "0 0 30px rgba(251,191,36,0.30), 0 0 70px rgba(146,64,14,0.30), 0 8px 22px -8px rgba(0,0,0,0.65), inset 0 1px 0 rgba(254,243,199,0.30)",
+      }}
     >
       <div
-        className="relative w-40 h-40 sm:w-56 sm:h-56 rounded-full overflow-hidden"
+        aria-hidden
+        className="absolute -inset-x-4 -top-12 h-24 opacity-50 pointer-events-none"
         style={{
-          transform: "perspective(1100px) rotateX(20deg) rotateY(-10deg)",
-          maskImage:
-            "radial-gradient(circle at center, black 30%, rgba(0,0,0,0.4) 60%, transparent 78%)",
-          WebkitMaskImage:
-            "radial-gradient(circle at center, black 30%, rgba(0,0,0,0.4) 60%, transparent 78%)",
-          boxShadow:
-            "inset 0 0 80px rgba(59,130,246,0.25), 0 0 60px rgba(59,130,246,0.15)",
+          background:
+            "radial-gradient(circle at 50% 100%, rgba(251,191,36,0.55) 0%, transparent 70%)",
+        }}
+      />
+      <div className="flex items-center gap-1.5">
+        <span
+          aria-hidden
+          className="block w-1.5 h-1.5 rounded-full bg-red-500"
+          style={{
+            boxShadow: "0 0 8px rgba(239,68,68,0.95)",
+            animation: "scofti-pulse 1.6s ease-in-out infinite",
+          }}
+        />
+        <span className="text-amber-300/85 text-[8px] sm:text-[9px] tracking-[0.4em] uppercase">
+          ↗ scofti
+        </span>
+      </div>
+      <span
+        className="relative text-amber-100 text-lg sm:text-2xl tracking-[0.35em] uppercase font-light group-hover:text-amber-50 transition-colors"
+        style={{
+          textShadow:
+            "0 0 12px rgba(252,211,77,0.85), 0 0 28px rgba(251,191,36,0.55), 0 0 60px rgba(146,64,14,0.4)",
+          fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
         }}
       >
-        <iframe
-          src="https://www.youtube-nocookie.com/embed/live_stream?channel=UCYmL7UZfguRrtqjlZUoScCQ&autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1&iv_load_policy=3"
-          title="character zer0 — live"
-          allow="autoplay; encrypted-media; picture-in-picture"
-          referrerPolicy="strict-origin"
-          loading="lazy"
-          className="absolute top-0 left-1/2 -translate-x-1/2 h-full block border-0 opacity-70"
-          style={{ aspectRatio: "16 / 9" }}
-        />
-        <canvas
-          ref={canvasRef}
-          className="absolute inset-0 block w-full h-full opacity-35 mix-blend-screen"
-        />
+        Scofti
+      </span>
+      <span className="text-amber-300/55 text-[8px] sm:text-[9px] tracking-[0.3em] uppercase italic">
+        entertainment
+      </span>
+      <span className="text-amber-300/45 text-[7px] sm:text-[8px] tracking-[0.3em] uppercase">
+        youtube · podcasts
+      </span>
+    </button>
+  );
+}
+
+function ScoftiPopup({ onClose }: { onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [onClose]);
+
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[80] flex items-center justify-center p-4 sm:p-8"
+      role="dialog"
+      aria-modal="true"
+      aria-label="scofti live cast"
+    >
+      <button
+        type="button"
+        tabIndex={-1}
+        aria-label="close"
+        className="absolute inset-0 bg-black/90 backdrop-blur-sm cursor-default"
+        onClick={onClose}
+      />
+      <div
+        className="relative w-full max-w-3xl flex flex-col items-center gap-5"
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="close"
+          className="absolute -top-2 -right-2 z-10 w-9 h-9 rounded-full border border-amber-400/45 bg-amber-950/60 text-amber-100 text-lg leading-none flex items-center justify-center hover:bg-amber-900/70 hover:border-amber-300/70 transition-colors"
+        >
+          ×
+        </button>
+        <p
+          className="text-amber-300/80 text-[10px] sm:text-xs tracking-[0.4em] uppercase"
+          style={{ textShadow: "0 0 10px rgba(251,191,36,0.55)" }}
+        >
+          // scofti · entertainment · live
+        </p>
+        <LiveSphere />
+        <p className="text-amber-300/55 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase italic">
+          esc to close
+        </p>
       </div>
-    </div>
+    </div>,
+    document.body,
+  );
+}
+
+export function MatrixSphere() {
+  const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  return (
+    <>
+      <ScoftiTile onClick={() => setOpen(true)} />
+      {open && mounted && <ScoftiPopup onClose={() => setOpen(false)} />}
+    </>
   );
 }
