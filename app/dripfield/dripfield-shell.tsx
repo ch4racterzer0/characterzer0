@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { LayerNav } from "../layer-nav";
+import { LightSwitchMask } from "../light-switch-mask";
 import { BandPrompt } from "./band-prompt";
 import { LiveCounter } from "./live-counter";
 import { COVERS, PodcastCoversModal } from "../hungersite/podcast-covers";
@@ -795,6 +796,8 @@ export function DripfieldShell() {
           madhu &middot; podcast control &middot; the only winning move
         </footer>
       </div>
+
+      <LightSwitchMask tone="yellow" onSwitch={() => setTttState("playing")} />
 
       {podcastsOpen && (
         <PodcastCoversModal onClose={() => setPodcastsOpen(false)} />

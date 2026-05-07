@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { LayerNav } from "../layer-nav";
+import { LightSwitchMask } from "../light-switch-mask";
 import { WoprTranscript } from "../wopr-transcript";
 import { BandPrompt } from "./band-prompt";
 import { LiveCounter } from "./live-counter";
@@ -866,6 +867,8 @@ export function WarRoomShell() {
           madhu &middot; podcast control &middot; the only winning move
         </footer>
       </div>
+
+      <LightSwitchMask tone="blue" onSwitch={() => setTttState("playing")} />
 
       {podcastsOpen && (
         <PodcastCoversModal onClose={() => setPodcastsOpen(false)} />
