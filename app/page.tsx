@@ -1,4 +1,3 @@
-import { ClickTrap } from "./click-trap";
 import { LinkTile } from "./link-tile";
 import { LyricRotator } from "./lyric-rotator";
 import { MatrixSphere } from "./matrix-sphere";
@@ -16,8 +15,6 @@ export default function Home() {
     <>
       <MobileLanding />
       <div className="hidden sm:block">
-        <ClickTrap />
-        <div className="[&_*]:!pointer-events-none [&_*]:!cursor-default select-none">
         <RadioProvider>
           <ThemeShifter>
           <ThemeSwitch />
@@ -72,7 +69,6 @@ export default function Home() {
           </main>
           </ThemeShifter>
         </RadioProvider>
-        </div>
       </div>
     </>
   );
