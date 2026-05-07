@@ -38,8 +38,16 @@ export default function Home() {
           </div>
         </div>
 
-        <HoleInput />
         <ZeroThoughts />
+
+        <div className="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-10 w-full max-w-md sm:w-auto sm:max-w-none items-end justify-items-center">
+          <div />
+          <div className="w-32 sm:w-36">
+            <HoleInput />
+          </div>
+          <div />
+          <div />
+        </div>
 
         <div className="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-10 w-full max-w-md sm:w-auto sm:max-w-none">
           <LinkTile
