@@ -36,6 +36,55 @@ function NavButton({
   );
 }
 
+const FIRSTPLACED_CHECKLIST: { label: string; done: boolean }[] = [
+  { label: "domain registered", done: true },
+  { label: "nameservers pointed", done: false },
+  { label: "host live", done: false },
+  { label: "landing page", done: false },
+  { label: "audio pipeline", done: false },
+  { label: "episode 01 recorded", done: false },
+  { label: "rss live", done: false },
+  { label: "spotify ingest", done: false },
+  { label: "apple ingest", done: false },
+  { label: "announce", done: false },
+];
+
+function FirstplacedChecklist() {
+  return (
+    <div
+      className="border border-blue-400/30 bg-blue-950/15 px-4 py-5 sm:px-6 sm:py-7"
+      style={{ boxShadow: "inset 0 0 30px rgba(59,130,246,0.18)" }}
+    >
+      <p className="text-blue-300/55 text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-3">
+        firstplaced — to first podcast
+      </p>
+      <ul className="space-y-1.5 font-mono">
+        {FIRSTPLACED_CHECKLIST.map((it) => (
+          <li
+            key={it.label}
+            className="flex items-center gap-3 text-[11px] sm:text-sm"
+          >
+            <span
+              aria-hidden
+              className={`inline-block w-3 leading-none ${it.done ? "text-emerald-300" : "text-blue-300/35"}`}
+              style={
+                it.done
+                  ? { textShadow: "0 0 8px rgba(52,211,153,0.7)" }
+                  : undefined
+              }
+            >
+              {it.done ? "▣" : "▢"}
+            </span>
+            <span className={it.done ? "text-blue-100" : "text-blue-100/65"}>
+              {it.label}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 function MemberTile({
   role,
   name,
@@ -285,10 +334,13 @@ export function WarRoomShell() {
           </p>
         </div>
 
-        <LiveCounter
-          since={FIRSTPLACED_REGISTERED}
-          label="firstplaced — initial podcast factory · registered may 7, 2026"
-        />
+        <div className="grid md:grid-cols-2 gap-3 sm:gap-4 items-stretch">
+          <LiveCounter
+            since={FIRSTPLACED_REGISTERED}
+            label="firstplaced — initial podcast factory · registered may 7, 2026"
+          />
+          <FirstplacedChecklist />
+        </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           <MemberTile
