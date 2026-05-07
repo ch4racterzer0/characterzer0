@@ -21,6 +21,8 @@ export default function Home() {
         <MatrixSphere />
         <RadioTilesMobileTop />
 
+        <LinkTile label="Dear Sam" href="/dearsam" large subline="○ open letter · target 01" />
+
         <LinkTile label="Madhu" href="/madhu" large />
 
         <div className="flex flex-col items-center gap-6 sm:gap-10">
