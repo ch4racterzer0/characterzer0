@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { EndOfRoadModal } from "../end-of-road-modal";
 import { LayerNav } from "../layer-nav";
 import { LightSwitchMask } from "../light-switch-mask";
 import { WoprTranscript } from "../wopr-transcript";
@@ -586,6 +587,7 @@ export function WarRoomShell() {
   const [cursorOn, setCursorOn] = useState(true);
   const [podcastsOpen, setPodcastsOpen] = useState(false);
   const [defconOpen, setDefconOpen] = useState(false);
+  const [endOfRoadOpen, setEndOfRoadOpen] = useState(false);
   const [tttState, setTttState] = useState<TttState>("idle");
   const [inputBuffer, setInputBuffer] = useState("");
   const [mounted, setMounted] = useState(false);
@@ -868,7 +870,11 @@ export function WarRoomShell() {
         </footer>
       </div>
 
-      <LightSwitchMask tone="blue" onSwitch={() => setTttState("playing")} />
+      <LightSwitchMask tone="blue" onSwitch={() => setEndOfRoadOpen(true)} />
+
+      {endOfRoadOpen && (
+        <EndOfRoadModal onClose={() => setEndOfRoadOpen(false)} />
+      )}
 
       {podcastsOpen && (
         <PodcastCoversModal onClose={() => setPodcastsOpen(false)} />

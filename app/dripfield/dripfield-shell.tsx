@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { EndOfRoadModal } from "../end-of-road-modal";
 import { LayerNav } from "../layer-nav";
 import { LightSwitchMask } from "../light-switch-mask";
 import { BandPrompt } from "./band-prompt";
@@ -519,6 +520,7 @@ export function DripfieldShell() {
   const [cursorOn, setCursorOn] = useState(true);
   const [podcastsOpen, setPodcastsOpen] = useState(false);
   const [defconOpen, setDefconOpen] = useState(false);
+  const [endOfRoadOpen, setEndOfRoadOpen] = useState(false);
   const [tttState, setTttState] = useState<TttState>("idle");
   const [inputBuffer, setInputBuffer] = useState("");
   const [mounted, setMounted] = useState(false);
@@ -797,7 +799,11 @@ export function DripfieldShell() {
         </footer>
       </div>
 
-      <LightSwitchMask tone="yellow" onSwitch={() => setTttState("playing")} />
+      <LightSwitchMask tone="yellow" onSwitch={() => setEndOfRoadOpen(true)} />
+
+      {endOfRoadOpen && (
+        <EndOfRoadModal onClose={() => setEndOfRoadOpen(false)} />
+      )}
 
       {podcastsOpen && (
         <PodcastCoversModal onClose={() => setPodcastsOpen(false)} />

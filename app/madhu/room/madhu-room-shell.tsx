@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { EndOfRoadModal } from "../../end-of-road-modal";
 import { LayerNav } from "../../layer-nav";
 import { LightSwitchMask } from "../../light-switch-mask";
 import { BandPrompt } from "./band-prompt";
@@ -519,6 +520,7 @@ export function MadhuRoomShell() {
   const [cursorOn, setCursorOn] = useState(true);
   const [podcastsOpen, setPodcastsOpen] = useState(false);
   const [defconOpen, setDefconOpen] = useState(false);
+  const [endOfRoadOpen, setEndOfRoadOpen] = useState(false);
   const [tttState, setTttState] = useState<TttState>("idle");
   const [inputBuffer, setInputBuffer] = useState("");
   const [mounted, setMounted] = useState(false);
@@ -800,13 +802,17 @@ export function MadhuRoomShell() {
           <LightSwitchMask
             tone="red"
             contained
-            onSwitch={() => setTttState("playing")}
+            onSwitch={() => setEndOfRoadOpen(true)}
           />
         </div>
       </div>
 
       {podcastsOpen && (
         <PodcastCoversModal onClose={() => setPodcastsOpen(false)} />
+      )}
+
+      {endOfRoadOpen && (
+        <EndOfRoadModal onClose={() => setEndOfRoadOpen(false)} />
       )}
 
       {defconOpen &&
