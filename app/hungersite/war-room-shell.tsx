@@ -163,7 +163,7 @@ export function WarRoomShell() {
               className="text-blue-100 text-xs sm:text-base tracking-[0.3em] uppercase"
               style={{ textShadow: GLOW }}
             >
-              madhu
+              hungersite
             </span>
             <span className="hidden sm:inline text-blue-300/40 text-[10px] tracking-[0.25em] uppercase border-l border-blue-400/25 pl-3">
               the podcast control room
