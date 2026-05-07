@@ -12,7 +12,7 @@ import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
 
 export default function Home() {
   return (
-    <>
+    <div className="[&_*]:!pointer-events-none [&_*]:!cursor-default select-none">
       <MobileLanding />
       <div className="hidden sm:block">
         <RadioProvider>
@@ -70,6 +70,6 @@ export default function Home() {
           </ThemeShifter>
         </RadioProvider>
       </div>
-    </>
+    </div>
   );
 }
