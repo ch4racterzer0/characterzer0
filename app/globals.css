@@ -93,6 +93,15 @@ body,
   }
 }
 
+@keyframes sphere-ghost {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
 @keyframes site-breathe {
   0%, 100% {
     opacity: 1;

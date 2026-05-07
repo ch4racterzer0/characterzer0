@@ -106,6 +106,15 @@ function LiveSphere({ size = 560 }: { size?: number }) {
         className="absolute top-0 left-1/2 -translate-x-1/2 h-full block border-0 opacity-80"
         style={{ aspectRatio: "16 / 9" }}
       />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/sphere/ghost.png"
+        alt=""
+        aria-hidden
+        draggable={false}
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none mix-blend-screen select-none"
+        style={{ animation: "sphere-ghost 10s ease-in-out infinite" }}
+      />
       <canvas
         ref={canvasRef}
         className="absolute inset-0 block w-full h-full opacity-35 mix-blend-screen pointer-events-none"
