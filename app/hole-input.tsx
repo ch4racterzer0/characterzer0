@@ -1,17 +1,45 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const DAILY_LIMIT = 2;
+
+function todayKey() {
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `hole-drops-${y}-${m}-${day}`;
+}
 
 export function HoleInput() {
   const [value, setValue] = useState("");
   const [dropping, setDropping] = useState<{ id: number; text: string } | null>(
     null,
   );
+  const [count, setCount] = useState(0);
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    setHydrated(true);
+    try {
+      const raw = localStorage.getItem(todayKey());
+      if (raw) setCount(parseInt(raw, 10) || 0);
+    } catch {}
+  }, []);
+
+  const remaining = Math.max(0, DAILY_LIMIT - count);
+  const blocked = hydrated && remaining <= 0;
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const text = value.trim();
-    if (!text) return;
+    if (!text || blocked) return;
+    const next = count + 1;
+    setCount(next);
+    try {
+      localStorage.setItem(todayKey(), String(next));
+    } catch {}
     setDropping({ id: Date.now(), text });
     setValue("");
     setTimeout(() => setDropping(null), 1800);
@@ -37,8 +65,12 @@ export function HoleInput() {
           >
             // the hole
           </span>
-          <span className="text-blue-300/45 text-[8px] sm:text-[10px] tracking-[0.3em] uppercase italic">
-            drops to eliza
+          <span className="text-blue-300/55 text-[8px] sm:text-[10px] tracking-[0.3em] uppercase italic tabular-nums">
+            {hydrated
+              ? blocked
+                ? "the hole is full for today"
+                : `${remaining}/${DAILY_LIMIT} drops left today`
+              : "drops to eliza"}
           </span>
         </div>
         <div className="flex items-stretch gap-2">
@@ -46,13 +78,14 @@ export function HoleInput() {
             type="text"
             value={value}
             onChange={(e) => setValue(e.target.value)}
-            placeholder="drop something in"
+            placeholder={blocked ? "come back tomorrow" : "drop something in"}
             aria-label="drop something in the hole"
-            className="flex-1 bg-blue-950/40 border border-blue-400/30 text-blue-100 text-sm sm:text-base font-mono tracking-wider rounded px-3 py-2 outline-none focus:border-blue-300/70 focus:bg-blue-950/60 transition-colors placeholder:text-blue-100/30"
+            disabled={blocked}
+            className="flex-1 bg-blue-950/40 border border-blue-400/30 text-blue-100 text-sm sm:text-base font-mono tracking-wider rounded px-3 py-2 outline-none focus:border-blue-300/70 focus:bg-blue-950/60 transition-colors placeholder:text-blue-100/30 disabled:opacity-40 disabled:cursor-not-allowed"
           />
           <button
             type="submit"
-            disabled={!value.trim()}
+            disabled={!value.trim() || blocked}
             className="text-blue-100/85 hover:text-blue-100 text-[10px] sm:text-xs tracking-[0.4em] uppercase border border-blue-400/40 hover:border-blue-300/70 rounded px-4 py-2 hover:bg-blue-900/40 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
           >
             drop ↓
