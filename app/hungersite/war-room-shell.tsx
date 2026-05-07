@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import { LayerNav } from "../layer-nav";
 import { BandPrompt } from "./band-prompt";
 import { LiveCounter } from "./live-counter";
-import { PodcastCoversModal } from "./podcast-covers";
+import { COVERS, PodcastCoversModal } from "./podcast-covers";
 import { TicTacToeBoard } from "./tic-tac-toe";
 import { WarClock } from "./war-clock";
 
@@ -387,6 +387,85 @@ function ToTheSpherePlan() {
   );
 }
 
+function statusToneClass(t: (typeof COVERS)[number]["statusTone"]) {
+  if (t === "complete") return "text-emerald-300";
+  if (t === "active") return "text-cyan-300";
+  if (t === "head-start") return "text-amber-300";
+  return "text-blue-300/55";
+}
+
+function statusToneShadow(t: (typeof COVERS)[number]["statusTone"]) {
+  if (t === "complete")
+    return "0 0 10px rgba(52,211,153,0.7), 0 0 22px rgba(52,211,153,0.35)";
+  if (t === "active")
+    return "0 0 10px rgba(103,232,249,0.7), 0 0 22px rgba(103,232,249,0.35)";
+  if (t === "head-start")
+    return "0 0 10px rgba(251,191,36,0.7), 0 0 22px rgba(251,191,36,0.35)";
+  return "none";
+}
+
+function TerrapinStationRow() {
+  return (
+    <div
+      className="border border-blue-400/30 bg-blue-950/10 p-4 sm:p-5 space-y-4"
+      style={{ boxShadow: "inset 0 0 30px rgba(59,130,246,0.12)" }}
+    >
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <p
+          className="text-blue-100 text-[11px] sm:text-sm tracking-[0.3em] uppercase flex items-center gap-2"
+          style={{ textShadow: GLOW }}
+        >
+          <span
+            aria-hidden
+            className="block w-2 h-2 rounded-full bg-cyan-300"
+            style={{ boxShadow: "0 0 10px rgba(103,232,249,0.85)" }}
+          />
+          // terrapin station — four podcasts
+        </p>
+        <p className="text-blue-300/45 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase">
+          three must drop before the door opens
+        </p>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        {COVERS.map((c) => (
+          <div
+            key={c.title}
+            className="border border-blue-400/30 bg-black/50 flex flex-col"
+            style={{ boxShadow: "inset 0 0 18px rgba(59,130,246,0.15)" }}
+          >
+            <div className="relative aspect-video overflow-hidden">
+              {c.art}
+              <div
+                className="absolute inset-x-0 bottom-0 px-3 py-2 flex items-center justify-between gap-2"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(0,0,0,0.92), rgba(0,0,0,0.55) 70%, rgba(0,0,0,0))",
+                }}
+              >
+                <p
+                  className="text-blue-100 text-xs sm:text-sm tracking-[0.2em] uppercase truncate"
+                  style={{ textShadow: GLOW }}
+                >
+                  {c.title}
+                </p>
+                <span
+                  className={`text-[9px] tracking-[0.25em] uppercase shrink-0 ${statusToneClass(c.statusTone)}`}
+                  style={{ textShadow: statusToneShadow(c.statusTone) }}
+                >
+                  ● {c.status}
+                </span>
+              </div>
+            </div>
+            <p className="text-blue-100/75 text-[11px] sm:text-xs leading-relaxed px-3 py-3 sm:px-4 sm:py-4 italic">
+              {c.summary}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function MemberTile({
   role,
   name,
@@ -637,6 +716,8 @@ export function WarRoomShell() {
             wopr.sys &middot; primary terminal
           </p>
         </div>
+
+        <TerrapinStationRow />
 
         <div className="grid md:grid-cols-2 gap-3 sm:gap-4 items-stretch">
           <LiveCounter

@@ -5,10 +5,11 @@ import { createPortal } from "react-dom";
 
 const GLOW = "0 0 6px rgba(96,165,250,0.6), 0 0 14px rgba(59,130,246,0.35)";
 
-type Cover = {
+export type Cover = {
   title: string;
   status: string;
   statusTone: "complete" | "active" | "queued" | "head-start";
+  summary: string;
   art: React.ReactNode;
 };
 
@@ -183,29 +184,37 @@ function TunnelArt() {
   );
 }
 
-const COVERS: Cover[] = [
+export const COVERS: Cover[] = [
   {
     title: "TETHERED",
     status: "complete",
     statusTone: "complete",
+    summary:
+      "two figures across a void, linked by something the eye can't see. a host paired with a presence adjacent to reality, not in it. the first season is the rules of the rope — what it carries, what it won't.",
     art: <TetheredArt />,
   },
   {
     title: "THE OTHER SIDE",
     status: "in production",
     statusTone: "active",
+    summary:
+      "the wall is glass and the cracks have been accumulating quietly for years. each episode widens one. by the season's end the listener has walked through and looked back at where they were standing.",
     art: <OtherSideArt />,
   },
   {
     title: "HOLE",
     status: "queued",
     statusTone: "queued",
+    summary:
+      "a fall without a floor. recorded inside the descent — every episode is a layer further from the rim, where the rules of the layer above no longer apply and time begins to slip its register.",
     art: <HoleArt />,
   },
   {
     title: "TUNNEL",
     status: "head start",
     statusTone: "head-start",
+    summary:
+      "the bore through the architecture — surface, madhu, hungersite, dripfield, source. one concentric ring closes per episode. the series ends only when the listener arrives on the far end intact.",
     art: <TunnelArt />,
   },
 ];
