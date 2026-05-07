@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { MorselsRibbon } from "./morsels-ribbon";
+import { SiteGhost } from "./site-ghost";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,6 +31,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <MorselsRibbon />
+        <SiteGhost />
         {children}
       </body>
     </html>
