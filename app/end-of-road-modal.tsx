@@ -114,7 +114,7 @@ export function EndOfRoadModal({ onClose }: { onClose: () => void }) {
 
     const i = typed.length;
     const shouldGlitch =
-      i > 4 && i < target.length - 1 && Math.random() < 0.045;
+      i > 4 && i < target.length - 1 && Math.random() < 0.0225;
     if (shouldGlitch) {
       const targetLen = 6 + Math.floor(Math.random() * 2);
       const color: "green" | "red" = Math.random() < 0.45 ? "green" : "red";
@@ -243,9 +243,26 @@ export function EndOfRoadModal({ onClose }: { onClose: () => void }) {
           </div>
 
           <div
-            className="border border-white/30 bg-white/5 grid grid-cols-1 sm:grid-cols-[1fr_minmax(0,140px)] items-stretch gap-0"
+            className="border border-white/30 bg-white/5 overflow-hidden"
             style={{ boxShadow: "inset 0 0 25px rgba(255,255,255,0.08)" }}
           >
+            <div className="relative w-full h-32 sm:h-44 bg-black border-b border-white/15">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/end-of-road/domain-house.png"
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover object-center opacity-90 select-none pointer-events-none"
+                draggable={false}
+              />
+              <div
+                aria-hidden
+                className="absolute inset-x-0 bottom-0 h-12"
+                style={{
+                  background:
+                    "linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.85))",
+                }}
+              />
+            </div>
             <div className="p-4 sm:p-5 space-y-2">
               <p className="text-white/55 text-[10px] sm:text-xs tracking-[0.3em] uppercase">
                 // the cost
@@ -269,15 +286,6 @@ export function EndOfRoadModal({ onClose }: { onClose: () => void }) {
                   domain. we walk with nothing.
                 </span>
               </p>
-            </div>
-            <div className="hidden sm:block relative bg-black/60 border-l border-white/15">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/end-of-road/domain-house.png"
-                alt=""
-                className="absolute inset-0 w-full h-full object-cover opacity-90 select-none pointer-events-none"
-                draggable={false}
-              />
             </div>
           </div>
 
