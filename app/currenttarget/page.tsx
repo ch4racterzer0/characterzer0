@@ -1,7 +1,19 @@
-const targets = [
+import { LinkTile } from "../link-tile";
+
+type Target = {
+  n: string;
+  name: string;
+  done?: boolean;
+  why: string;
+  pitch: string;
+  source: { label: string; href: string };
+};
+
+const targets: Target[] = [
   {
     n: "01",
     name: "Sam Altman — OpenAI",
+    done: true,
     why: "Said in 2015: “AI will probably most likely lead to the end of the world, but in the meantime, there’ll be great companies.” Signed the 2023 extinction statement. Then shipped every model since, accepted federal contracts, and pivoted to calling Anthropic’s fear-marketing the problem.",
     pitch:
       "Dear Sam — you said the quiet part out loud eleven years ago, and the great company is now the largest user-facing AI on earth. We’d like to ask whether the end-of-the-world part still applies, or whether that line was always the marketing.",
@@ -157,9 +169,23 @@ export default function CurrentTarget() {
               {t.n}
             </div>
             <div>
-              <h2 className="text-xl font-medium leading-snug sm:text-2xl">
-                {t.name}
-              </h2>
+              <div className="flex flex-wrap items-center gap-3">
+                <h2 className="text-xl font-medium leading-snug sm:text-2xl">
+                  {t.name}
+                </h2>
+                {t.done && (
+                  <span
+                    className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-blue-100 border border-blue-300/60 rounded px-2 py-0.5"
+                    style={{
+                      textShadow:
+                        "0 0 10px rgba(96,165,250,0.7), 0 0 22px rgba(59,130,246,0.4)",
+                      boxShadow: "0 0 12px rgba(59,130,246,0.35)",
+                    }}
+                  >
+                    done
+                  </span>
+                )}
+              </div>
               <p className="mt-3 text-sm leading-relaxed text-blue-100/70 sm:text-base">
                 {t.why}
               </p>
@@ -180,6 +206,13 @@ export default function CurrentTarget() {
           </div>
         </section>
       ))}
+
+      <section className="px-6 py-14 sm:px-12 sm:py-20 flex flex-col items-center gap-6">
+        <p className="text-blue-100/60 text-xs sm:text-sm tracking-[0.3em] uppercase">
+          target 01 — open letter delivered
+        </p>
+        <LinkTile label="Dear Sam" href="/dearsam" subline="○ open letter · target 01" />
+      </section>
     </main>
   );
 }
