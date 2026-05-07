@@ -14,7 +14,7 @@ type LayerEntry = {
 const LAYERS: LayerEntry[] = [
   {
     label: "surface",
-    href: "/",
+    href: "https://characterzer0.com/",
     text: "text-yellow-300",
     border: "border-yellow-400/40",
     hover:
@@ -26,7 +26,7 @@ const LAYERS: LayerEntry[] = [
   },
   {
     label: "madhu",
-    href: "/madhu",
+    href: "https://madhu.characterzer0.com/",
     text: "text-red-300",
     border: "border-red-400/40",
     hover: "hover:text-red-200 hover:border-red-300/70 hover:bg-red-950/30",
@@ -37,7 +37,7 @@ const LAYERS: LayerEntry[] = [
   },
   {
     label: "hungersite",
-    href: "/hungersite",
+    href: "https://hungersite.characterzer0.com/",
     text: "text-blue-300",
     border: "border-blue-400/45",
     hover: "hover:text-blue-200 hover:border-blue-300/70 hover:bg-blue-950/30",
@@ -48,7 +48,7 @@ const LAYERS: LayerEntry[] = [
   },
   {
     label: "dripfield",
-    href: "/dripfield",
+    href: "https://dripfield.characterzer0.com/",
     text: "text-emerald-300",
     border: "border-emerald-400/40",
     hover:
