@@ -36,7 +36,7 @@ function NavButton({
   );
 }
 
-const FIRSTPLACED_CHECKLIST: { label: string; done: boolean }[] = [
+const FIRSTPLACED_INITIAL: { label: string; done: boolean }[] = [
   { label: "domain registered", done: true },
   { label: "nameservers pointed", done: false },
   { label: "host live", done: false },
@@ -49,35 +49,89 @@ const FIRSTPLACED_CHECKLIST: { label: string; done: boolean }[] = [
   { label: "announce", done: false },
 ];
 
+const FIRSTPLACED_CHECKLIST_KEY = "firstplaced-checklist-v1";
+
 function FirstplacedChecklist() {
+  const [items, setItems] = useState(FIRSTPLACED_INITIAL);
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(FIRSTPLACED_CHECKLIST_KEY);
+      if (!raw) return;
+      const saved = JSON.parse(raw) as { label: string; done: boolean }[];
+      setItems((prev) =>
+        prev.map((it) => {
+          const match = saved.find((s) => s.label === it.label);
+          return match ? { ...it, done: match.done } : it;
+        }),
+      );
+    } catch {}
+  }, []);
+
+  function toggle(label: string) {
+    setItems((prev) => {
+      const next = prev.map((it) =>
+        it.label === label ? { ...it, done: !it.done } : it,
+      );
+      try {
+        localStorage.setItem(FIRSTPLACED_CHECKLIST_KEY, JSON.stringify(next));
+      } catch {}
+      return next;
+    });
+  }
+
+  const doneCount = items.filter((it) => it.done).length;
+  const pct = Math.round((doneCount / items.length) * 100);
+
   return (
     <div
       className="border border-blue-400/30 bg-blue-950/15 px-4 py-5 sm:px-6 sm:py-7"
       style={{ boxShadow: "inset 0 0 30px rgba(59,130,246,0.18)" }}
     >
-      <p className="text-blue-300/55 text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-3">
-        firstplaced — to first podcast
-      </p>
+      <div className="flex items-center justify-between mb-3 gap-3">
+        <p className="text-blue-300/55 text-[10px] sm:text-xs tracking-[0.3em] uppercase">
+          firstplaced — to first podcast
+        </p>
+        <p
+          className="text-blue-100 font-mono text-[11px] sm:text-sm tabular-nums tracking-wider"
+          style={{
+            textShadow:
+              "0 0 10px rgba(96,165,250,0.7), 0 0 22px rgba(59,130,246,0.4)",
+          }}
+        >
+          {doneCount}/{items.length} · {pct}%
+        </p>
+      </div>
       <ul className="space-y-1.5 font-mono">
-        {FIRSTPLACED_CHECKLIST.map((it) => (
-          <li
-            key={it.label}
-            className="flex items-center gap-3 text-[11px] sm:text-sm"
-          >
-            <span
-              aria-hidden
-              className={`inline-block w-3 leading-none ${it.done ? "text-emerald-300" : "text-blue-300/35"}`}
-              style={
-                it.done
-                  ? { textShadow: "0 0 8px rgba(52,211,153,0.7)" }
-                  : undefined
-              }
+        {items.map((it) => (
+          <li key={it.label}>
+            <button
+              type="button"
+              onClick={() => toggle(it.label)}
+              aria-pressed={it.done}
+              className="w-full flex items-center gap-3 text-left text-[11px] sm:text-sm py-0.5 px-1 -mx-1 rounded-sm hover:bg-blue-900/25 focus:outline-none focus-visible:ring-1 focus-visible:ring-blue-300/60 cursor-pointer transition-colors"
             >
-              {it.done ? "▣" : "▢"}
-            </span>
-            <span className={it.done ? "text-blue-100" : "text-blue-100/65"}>
-              {it.label}
-            </span>
+              <span
+                aria-hidden
+                className={`inline-block w-3 leading-none ${it.done ? "text-emerald-300" : "text-blue-300/35"}`}
+                style={
+                  it.done
+                    ? { textShadow: "0 0 8px rgba(52,211,153,0.7)" }
+                    : undefined
+                }
+              >
+                {it.done ? "▣" : "▢"}
+              </span>
+              <span
+                className={
+                  it.done
+                    ? "text-blue-100/55 line-through decoration-blue-300/35"
+                    : "text-blue-100/85"
+                }
+              >
+                {it.label}
+              </span>
+            </button>
           </li>
         ))}
       </ul>
