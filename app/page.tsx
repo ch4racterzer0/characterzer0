@@ -136,9 +136,38 @@ export default function Home() {
             />
           }
           rightTop={
-            <IframeTilePopup
-              ariaLabel="dear elon — open letter, ten questions for elon musk"
-              src="/dearelon"
+            <div className="flex flex-col items-center gap-2">
+              <IframeTilePopup
+                ariaLabel="dear sundar — open letter, ten questions for sundar pichai"
+                src="/dearsundar"
+                triggerClassName="group w-44 sm:w-48 backdrop-blur-[2px] bg-white/8 hover:bg-white/15 border border-white/55 hover:border-white/85 px-3 py-2 rounded-sm transition-colors flex flex-col items-center gap-0.5 cursor-pointer"
+                triggerStyle={{
+                  boxShadow:
+                    "0 0 22px rgba(255,255,255,0.28), 0 0 50px rgba(255,255,255,0.14), 0 8px 22px -8px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.28)",
+                }}
+                trigger={
+                  <>
+                    <span className="text-white/70 text-[8px] tracking-[0.4em] uppercase">
+                      ↗ draft
+                    </span>
+                    <span
+                      className="text-white text-xs sm:text-sm tracking-[0.22em] uppercase font-light"
+                      style={{
+                        textShadow:
+                          "0 0 10px rgba(255,255,255,0.8), 0 0 22px rgba(255,255,255,0.45)",
+                      }}
+                    >
+                      dear sundar
+                    </span>
+                    <span className="text-white/55 text-[8px] tracking-[0.3em] uppercase italic">
+                      ten questions
+                    </span>
+                  </>
+                }
+              />
+              <IframeTilePopup
+                ariaLabel="dear elon — open letter, ten questions for elon musk"
+                src="/dearelon"
               triggerClassName="group w-44 sm:w-48 backdrop-blur-[2px] bg-white/8 hover:bg-white/15 border border-white/55 hover:border-white/85 px-3 py-2 rounded-sm transition-colors flex flex-col items-center gap-0.5 cursor-pointer"
               triggerStyle={{
                 boxShadow:
@@ -164,6 +193,7 @@ export default function Home() {
                 </>
               }
             />
+            </div>
           }
         />
 
