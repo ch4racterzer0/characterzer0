@@ -8,7 +8,6 @@ import {
   RadioTilesMobileTop,
 } from "./radio-tiles";
 import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
-import { TokenGateTile } from "./token-gate-tile";
 
 export default function Home() {
   return (
@@ -29,16 +28,16 @@ export default function Home() {
             <LyricRotator />
           </div>
           <div className="flex flex-row items-center gap-6 sm:gap-8">
-            <TokenGateTile label="Core4" large />
+            <LinkTile label="Core4" href="/core4" large />
             <div className="hidden sm:block">
-              <TokenGateTile label="Quest" large />
+              <LinkTile label="Quest" href="/quest" large />
             </div>
           </div>
         </div>
 
         <div className="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-10 w-full max-w-md sm:w-auto sm:max-w-none">
           <LinkTile label="Current Targets" href="/currenttarget" />
-          <TokenGateTile label="Current Assets" />
+          <LinkTile label="Current Assets" href="/currentassets" />
           <LinkTile label="WIP" href="/wip" />
           <LinkTile label="Your Own Anspach" href="/yoursphere" />
         </div>
@@ -53,9 +52,9 @@ export default function Home() {
         />
 
         <div className="hidden sm:flex flex-row items-center justify-center flex-wrap gap-4 sm:gap-6 mt-2">
-          <TokenGateTile label="Don't Forget" />
+          <LinkTile label="Don't Forget" href="/dontforget" />
           <LinkTile label="My Heaviest Lifts" href="/heaviestlifts" />
-          <TokenGateTile label="Podcast Factory" />
+          <LinkTile label="Podcast Factory" href="/thedelos" />
         </div>
 
           </main>
