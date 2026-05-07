@@ -5,7 +5,9 @@ import { useEffect, useState } from "react";
 const FRAMES = [
   "/cast/phish-sphere-cars.jpg",
   "/cast/phish-sphere-2024.jpg",
+  "/sphere/trey-wrigley.webp",
   "/cast/trey-lightsaber.jpg",
+  "/sphere/phish-band-portrait.jpg",
   "/cast/trey-shoreline-1998.webp",
   "/cast/phish-04.webp",
   "/cast/phish-05.jpg",
