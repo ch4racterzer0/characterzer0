@@ -191,11 +191,13 @@ function ScoftiPopup({ onClose }: { onClose: () => void }) {
         type="button"
         tabIndex={-1}
         aria-label="close"
-        className="absolute inset-0 bg-black/90 backdrop-blur-sm cursor-default"
+        className="absolute inset-0 backdrop-blur-[2px] cursor-default"
+        style={{ animation: "site-breathe-backdrop 6s ease-in-out infinite" }}
         onClick={onClose}
       />
       <div
         className="relative w-full max-w-3xl flex flex-col items-center gap-5"
+        style={{ animation: "site-breathe 6s ease-in-out infinite" }}
       >
         <button
           type="button"
