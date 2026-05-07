@@ -29,6 +29,7 @@ const targets: Target[] = [
   {
     n: "02",
     name: "Elon Musk — xAI",
+    done: true,
     why: "Signed the March 2023 letter calling for a six-month pause on advanced AI training. Founded xAI inside six months. Has called AI the most existentially dangerous thing humans have ever built — while shipping Grok with the safety rails sanded off and posting at his rivals from the same account.",
     pitch:
       "Dear Elon — you signed the pause letter and then you didn’t pause. We’d publish a side-by-side of every public warning you’ve issued and every model release you’ve shipped, and ask which one you actually meant.",
