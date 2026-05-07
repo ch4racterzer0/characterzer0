@@ -93,6 +93,36 @@ body,
   }
 }
 
+@keyframes secret-flicker {
+  0% {
+    opacity: 0;
+  }
+  6% {
+    opacity: 1;
+  }
+  18% {
+    opacity: 0.05;
+  }
+  30% {
+    opacity: 1;
+  }
+  42% {
+    opacity: 0.2;
+  }
+  56% {
+    opacity: 1;
+  }
+  72% {
+    opacity: 0.4;
+  }
+  88% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 body.warping-out {
   overflow: hidden;
 }
