@@ -28,8 +28,10 @@ export default function Home() {
             <LyricRotator />
           </div>
           <div className="flex flex-row items-center gap-6 sm:gap-8">
-            <LinkTile label="Core4" href="/core4" large />
-            <div className="hidden sm:block">
+            <span className="[&_*]:!pointer-events-none [&_*]:!cursor-default select-none">
+              <LinkTile label="Core4" href="/core4" large />
+            </span>
+            <div className="hidden sm:block [&_*]:!pointer-events-none [&_*]:!cursor-default select-none">
               <LinkTile label="Quest" href="/quest" large />
             </div>
           </div>
@@ -37,7 +39,9 @@ export default function Home() {
 
         <div className="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-10 w-full max-w-md sm:w-auto sm:max-w-none">
           <LinkTile label="Current Targets" href="/currenttarget" />
-          <LinkTile label="Current Assets" href="/currentassets" />
+          <span className="[&_*]:!pointer-events-none [&_*]:!cursor-default select-none">
+            <LinkTile label="Current Assets" href="/currentassets" />
+          </span>
           <LinkTile label="WIP" href="/wip" />
           <LinkTile label="Your Own Anspach" href="/yoursphere" />
         </div>
