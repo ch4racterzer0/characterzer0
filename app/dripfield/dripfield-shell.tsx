@@ -9,9 +9,9 @@ import { COVERS, PodcastCoversModal } from "../hungersite/podcast-covers";
 import { TicTacToeBoard } from "../hungersite/tic-tac-toe";
 import { WarClock } from "../hungersite/war-clock";
 
-const GLOW = "0 0 6px rgba(52,211,153,0.6), 0 0 14px rgba(16,185,129,0.35)";
+const GLOW = "0 0 6px rgba(250,204,21,0.6), 0 0 14px rgba(234,179,8,0.35)";
 const PUNCH_SHADOW =
-  "0 0 12px rgba(52,211,153,0.85), 0 0 28px rgba(16,185,129,0.55), 0 0 60px rgba(16,185,129,0.3)";
+  "0 0 12px rgba(250,204,21,0.85), 0 0 28px rgba(234,179,8,0.55), 0 0 60px rgba(234,179,8,0.3)";
 
 const FIRSTPLACED_REGISTERED = "2026-05-07T06:35:15Z";
 
@@ -24,8 +24,8 @@ function NavButton({
   warn?: boolean;
   onClick?: () => void;
 }) {
-  const tone = warn ? "text-red-300/80 hover:text-red-200" : "text-emerald-300/70 hover:text-emerald-100";
-  const border = warn ? "border-red-400/30 hover:border-red-300/60" : "border-emerald-400/30 hover:border-emerald-300/60";
+  const tone = warn ? "text-red-300/80 hover:text-red-200" : "text-yellow-300/70 hover:text-yellow-100";
+  const border = warn ? "border-red-400/30 hover:border-red-300/60" : "border-yellow-400/30 hover:border-yellow-300/60";
   return (
     <button
       type="button"
@@ -125,11 +125,11 @@ function FirstplacedChecklist() {
 
   return (
     <div
-      className="border border-emerald-400/30 bg-emerald-950/15 px-4 py-5 sm:px-6 sm:py-7"
-      style={{ boxShadow: "inset 0 0 30px rgba(16,185,129,0.18)" }}
+      className="border border-yellow-400/30 bg-yellow-950/15 px-4 py-5 sm:px-6 sm:py-7"
+      style={{ boxShadow: "inset 0 0 30px rgba(234,179,8,0.18)" }}
     >
       <div className="flex items-center justify-between mb-3 gap-3">
-        <p className="text-emerald-300/55 text-[10px] sm:text-xs tracking-[0.3em] uppercase flex items-center gap-2">
+        <p className="text-yellow-300/55 text-[10px] sm:text-xs tracking-[0.3em] uppercase flex items-center gap-2">
           firstplaced — to first podcast
           <button
             type="button"
@@ -137,18 +137,18 @@ function FirstplacedChecklist() {
             aria-label={unlocked ? "lock checklist" : "unlock checklist"}
             className={`text-[10px] tracking-[0.25em] uppercase border px-1.5 py-0.5 rounded-sm transition-colors cursor-pointer ${
               unlocked
-                ? "text-emerald-300/80 border-emerald-400/40 hover:text-emerald-200 hover:border-emerald-300/70"
-                : "text-emerald-300/60 border-emerald-400/30 hover:text-emerald-200 hover:border-emerald-300/60"
+                ? "text-yellow-300/80 border-yellow-400/40 hover:text-yellow-200 hover:border-yellow-300/70"
+                : "text-yellow-300/60 border-yellow-400/30 hover:text-yellow-200 hover:border-yellow-300/60"
             }`}
           >
             {unlocked ? "unlocked" : "🔒 locked"}
           </button>
         </p>
         <p
-          className="text-emerald-100 font-mono text-[11px] sm:text-sm tabular-nums tracking-wider"
+          className="text-yellow-100 font-mono text-[11px] sm:text-sm tabular-nums tracking-wider"
           style={{
             textShadow:
-              "0 0 10px rgba(52,211,153,0.7), 0 0 22px rgba(16,185,129,0.4)",
+              "0 0 10px rgba(250,204,21,0.7), 0 0 22px rgba(234,179,8,0.4)",
           }}
         >
           {doneCount}/{items.length} · {pct}%
@@ -158,7 +158,7 @@ function FirstplacedChecklist() {
       {pwOpen && !unlocked && (
         <form
           onSubmit={handlePwSubmit}
-          className="mb-3 flex items-center gap-2 border border-emerald-400/40 bg-emerald-950/40 rounded-sm px-2 py-2"
+          className="mb-3 flex items-center gap-2 border border-yellow-400/40 bg-yellow-950/40 rounded-sm px-2 py-2"
         >
           <input
             type="password"
@@ -169,11 +169,11 @@ function FirstplacedChecklist() {
               if (pwError) setPwError(false);
             }}
             placeholder="······"
-            className="flex-1 bg-transparent border-b border-emerald-400/40 text-emerald-100 text-center text-sm font-mono tracking-[0.3em] uppercase outline-none focus:border-emerald-300/70 placeholder:text-emerald-100/30 px-1 py-1"
+            className="flex-1 bg-transparent border-b border-yellow-400/40 text-yellow-100 text-center text-sm font-mono tracking-[0.3em] uppercase outline-none focus:border-yellow-300/70 placeholder:text-yellow-100/30 px-1 py-1"
           />
           <button
             type="submit"
-            className="text-emerald-100/80 hover:text-emerald-100 text-[10px] tracking-[0.3em] uppercase border border-emerald-400/40 rounded px-2 py-1 hover:bg-emerald-900/40"
+            className="text-yellow-100/80 hover:text-yellow-100 text-[10px] tracking-[0.3em] uppercase border border-yellow-400/40 rounded px-2 py-1 hover:bg-yellow-900/40"
           >
             enter
           </button>
@@ -185,7 +185,7 @@ function FirstplacedChecklist() {
               setPwInput("");
               setPwError(false);
             }}
-            className="text-emerald-300/60 hover:text-emerald-200 text-base leading-none px-1"
+            className="text-yellow-300/60 hover:text-yellow-200 text-base leading-none px-1"
           >
             ×
           </button>
@@ -206,18 +206,18 @@ function FirstplacedChecklist() {
               aria-pressed={it.done}
               aria-disabled={!unlocked}
               title={unlocked ? undefined : "locked — enter passphrase to toggle"}
-              className={`w-full flex items-center gap-3 text-left text-[11px] sm:text-sm py-0.5 px-1 -mx-1 rounded-sm focus:outline-none focus-visible:ring-1 focus-visible:ring-emerald-300/60 transition-colors ${
+              className={`w-full flex items-center gap-3 text-left text-[11px] sm:text-sm py-0.5 px-1 -mx-1 rounded-sm focus:outline-none focus-visible:ring-1 focus-visible:ring-yellow-300/60 transition-colors ${
                 unlocked
-                  ? "hover:bg-emerald-900/25 cursor-pointer"
+                  ? "hover:bg-yellow-900/25 cursor-pointer"
                   : "cursor-not-allowed"
               }`}
             >
               <span
                 aria-hidden
-                className={`inline-block w-3 leading-none ${it.done ? "text-emerald-300" : "text-emerald-300/35"}`}
+                className={`inline-block w-3 leading-none ${it.done ? "text-yellow-300" : "text-yellow-300/35"}`}
                 style={
                   it.done
-                    ? { textShadow: "0 0 8px rgba(52,211,153,0.7)" }
+                    ? { textShadow: "0 0 8px rgba(250,204,21,0.7)" }
                     : undefined
                 }
               >
@@ -226,8 +226,8 @@ function FirstplacedChecklist() {
               <span
                 className={
                   it.done
-                    ? "text-emerald-100/55 line-through decoration-emerald-300/35"
-                    : "text-emerald-100/85"
+                    ? "text-yellow-100/55 line-through decoration-yellow-300/35"
+                    : "text-yellow-100/85"
                 }
               >
                 {it.label}
@@ -319,10 +319,10 @@ function PlanItem({
 }) {
   const dot =
     state === "done"
-      ? { mark: "▣", text: "text-emerald-300", glow: "0 0 8px rgba(52,211,153,0.7)", row: "text-emerald-100/55 line-through decoration-emerald-300/35" }
+      ? { mark: "▣", text: "text-yellow-300", glow: "0 0 8px rgba(250,204,21,0.7)", row: "text-yellow-100/55 line-through decoration-yellow-300/35" }
       : state === "next"
-        ? { mark: "▢", text: "text-amber-300", glow: "0 0 8px rgba(251,191,36,0.7)", row: "text-emerald-100/90" }
-        : { mark: "▢", text: "text-emerald-300/35", glow: "", row: "text-emerald-100/60" };
+        ? { mark: "▢", text: "text-amber-300", glow: "0 0 8px rgba(251,191,36,0.7)", row: "text-yellow-100/90" }
+        : { mark: "▢", text: "text-yellow-300/35", glow: "", row: "text-yellow-100/60" };
   return (
     <li className="flex items-start gap-3 text-[11px] sm:text-sm font-mono">
       <span
@@ -340,17 +340,17 @@ function PlanItem({
 function ToTheSpherePlan() {
   return (
     <div
-      className="border border-emerald-400/35 bg-emerald-950/15 p-4 sm:p-6 space-y-5"
-      style={{ boxShadow: "inset 0 0 30px rgba(16,185,129,0.15)" }}
+      className="border border-yellow-400/35 bg-yellow-950/15 p-4 sm:p-6 space-y-5"
+      style={{ boxShadow: "inset 0 0 30px rgba(234,179,8,0.15)" }}
     >
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p
-          className="text-emerald-100 text-[11px] sm:text-sm tracking-[0.3em] uppercase"
+          className="text-yellow-100 text-[11px] sm:text-sm tracking-[0.3em] uppercase"
           style={{ textShadow: GLOW }}
         >
           // the plan — bring podcast to the sphere
         </p>
-        <p className="text-emerald-300/45 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase">
+        <p className="text-yellow-300/45 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase">
           six phases · firstplaced is the spine
         </p>
       </div>
@@ -359,17 +359,17 @@ function ToTheSpherePlan() {
         {SPHERE_PLAN.map((phase) => (
           <div
             key={phase.n}
-            className="border border-emerald-400/25 bg-black/40 p-3 sm:p-4 space-y-3"
+            className="border border-yellow-400/25 bg-black/40 p-3 sm:p-4 space-y-3"
           >
             <div className="flex items-baseline gap-3">
               <span
-                className="text-emerald-100/40 font-mono text-2xl sm:text-3xl tabular-nums tracking-tight"
+                className="text-yellow-100/40 font-mono text-2xl sm:text-3xl tabular-nums tracking-tight"
                 style={{ textShadow: GLOW }}
               >
                 {phase.n}
               </span>
               <span
-                className="text-emerald-100 text-[11px] sm:text-sm tracking-[0.3em] uppercase"
+                className="text-yellow-100 text-[11px] sm:text-sm tracking-[0.3em] uppercase"
                 style={{ textShadow: GLOW }}
               >
                 {phase.name}
@@ -388,15 +388,15 @@ function ToTheSpherePlan() {
 }
 
 function statusToneClass(t: (typeof COVERS)[number]["statusTone"]) {
-  if (t === "complete") return "text-emerald-300";
+  if (t === "complete") return "text-yellow-300";
   if (t === "active") return "text-cyan-300";
   if (t === "head-start") return "text-amber-300";
-  return "text-emerald-300/55";
+  return "text-yellow-300/55";
 }
 
 function statusToneShadow(t: (typeof COVERS)[number]["statusTone"]) {
   if (t === "complete")
-    return "0 0 10px rgba(52,211,153,0.7), 0 0 22px rgba(52,211,153,0.35)";
+    return "0 0 10px rgba(250,204,21,0.7), 0 0 22px rgba(250,204,21,0.35)";
   if (t === "active")
     return "0 0 10px rgba(103,232,249,0.7), 0 0 22px rgba(103,232,249,0.35)";
   if (t === "head-start")
@@ -407,12 +407,12 @@ function statusToneShadow(t: (typeof COVERS)[number]["statusTone"]) {
 function TerrapinStationRow() {
   return (
     <div
-      className="border border-emerald-400/30 bg-emerald-950/10 p-4 sm:p-5 space-y-4"
-      style={{ boxShadow: "inset 0 0 30px rgba(16,185,129,0.12)" }}
+      className="border border-yellow-400/30 bg-yellow-950/10 p-4 sm:p-5 space-y-4"
+      style={{ boxShadow: "inset 0 0 30px rgba(234,179,8,0.12)" }}
     >
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p
-          className="text-emerald-100 text-[11px] sm:text-sm tracking-[0.3em] uppercase flex items-center gap-2"
+          className="text-yellow-100 text-[11px] sm:text-sm tracking-[0.3em] uppercase flex items-center gap-2"
           style={{ textShadow: GLOW }}
         >
           <span
@@ -422,7 +422,7 @@ function TerrapinStationRow() {
           />
           // terrapin station — four podcasts
         </p>
-        <p className="text-emerald-300/45 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase">
+        <p className="text-yellow-300/45 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase">
           three must drop before the door opens
         </p>
       </div>
@@ -430,8 +430,8 @@ function TerrapinStationRow() {
         {COVERS.map((c) => (
           <div
             key={c.title}
-            className="border border-emerald-400/30 bg-black/50 flex flex-col"
-            style={{ boxShadow: "inset 0 0 18px rgba(16,185,129,0.15)" }}
+            className="border border-yellow-400/30 bg-black/50 flex flex-col"
+            style={{ boxShadow: "inset 0 0 18px rgba(234,179,8,0.15)" }}
           >
             <div className="relative aspect-video overflow-hidden">
               {c.art}
@@ -443,7 +443,7 @@ function TerrapinStationRow() {
                 }}
               >
                 <p
-                  className="text-emerald-100 text-xs sm:text-sm tracking-[0.2em] uppercase truncate"
+                  className="text-yellow-100 text-xs sm:text-sm tracking-[0.2em] uppercase truncate"
                   style={{ textShadow: GLOW }}
                 >
                   {c.title}
@@ -456,7 +456,7 @@ function TerrapinStationRow() {
                 </span>
               </div>
             </div>
-            <p className="text-emerald-100/75 text-[11px] sm:text-xs leading-relaxed px-3 py-3 sm:px-4 sm:py-4 italic">
+            <p className="text-yellow-100/75 text-[11px] sm:text-xs leading-relaxed px-3 py-3 sm:px-4 sm:py-4 italic">
               {c.summary}
             </p>
           </div>
@@ -483,29 +483,29 @@ function MemberTile({
       : tone === "amber"
         ? "bg-amber-300"
         : tone === "emerald"
-          ? "bg-emerald-400"
-          : "bg-emerald-400";
+          ? "bg-yellow-400"
+          : "bg-yellow-400";
   return (
     <div
-      className="relative border border-emerald-400/35 bg-emerald-950/15 px-4 py-5 sm:px-5 sm:py-6"
-      style={{ boxShadow: "inset 0 0 25px rgba(16,185,129,0.15)" }}
+      className="relative border border-yellow-400/35 bg-yellow-950/15 px-4 py-5 sm:px-5 sm:py-6"
+      style={{ boxShadow: "inset 0 0 25px rgba(234,179,8,0.15)" }}
     >
       <div className="flex items-center gap-2 mb-3">
         <span
           className={`block w-1.5 h-1.5 rounded-full ${dotClass}`}
           style={{ boxShadow: "0 0 8px currentColor" }}
         />
-        <span className="text-emerald-300/55 font-mono text-[9px] sm:text-[10px] tracking-[0.3em] uppercase">
+        <span className="text-yellow-300/55 font-mono text-[9px] sm:text-[10px] tracking-[0.3em] uppercase">
           {role}
         </span>
       </div>
       <p
-        className="text-emerald-100 font-mono text-base sm:text-lg tracking-wider"
+        className="text-yellow-100 font-mono text-base sm:text-lg tracking-wider"
         style={{ textShadow: GLOW }}
       >
         {name}
       </p>
-      <p className="text-emerald-300/55 font-mono text-[10px] sm:text-xs tracking-wider uppercase mt-1">
+      <p className="text-yellow-300/55 font-mono text-[10px] sm:text-xs tracking-wider uppercase mt-1">
         {affiliation}
       </p>
     </div>
@@ -594,14 +594,14 @@ export function DripfieldShell() {
   }
 
   return (
-    <main className="relative min-h-screen bg-black text-emerald-100 font-mono overflow-hidden">
+    <main className="relative min-h-screen bg-black text-yellow-100 font-mono overflow-hidden">
       <div
         className="max-w-7xl mx-auto p-3 sm:p-5 space-y-3 sm:space-y-4 transition-[filter] duration-700"
         style={{ filter: lit ? "none" : "blur(5px)" }}
       >
         <LayerNav active="dripfield" />
 
-        <header className="border border-emerald-400/35 bg-emerald-950/20 px-3 py-2 sm:px-5 sm:py-3 flex flex-wrap items-center justify-between gap-3">
+        <header className="border border-yellow-400/35 bg-yellow-950/20 px-3 py-2 sm:px-5 sm:py-3 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <span
               className="block w-2 h-2 rounded-full bg-red-500"
@@ -609,12 +609,12 @@ export function DripfieldShell() {
               aria-hidden
             />
             <span
-              className="text-emerald-100 text-xs sm:text-base tracking-[0.3em] uppercase"
+              className="text-yellow-100 text-xs sm:text-base tracking-[0.3em] uppercase"
               style={{ textShadow: GLOW }}
             >
               dripfield
             </span>
-            <span className="hidden sm:inline text-emerald-300/40 text-[10px] tracking-[0.25em] uppercase border-l border-emerald-400/25 pl-3">
+            <span className="hidden sm:inline text-yellow-300/40 text-[10px] tracking-[0.25em] uppercase border-l border-yellow-400/25 pl-3">
               the podcast control room
             </span>
           </div>
@@ -634,21 +634,21 @@ export function DripfieldShell() {
         </header>
 
         <div className="flex flex-wrap items-center justify-between gap-3 px-1 text-[10px] sm:text-xs tracking-[0.25em] uppercase">
-          <span className="text-emerald-300/55">
+          <span className="text-yellow-300/55">
             architect &amp; his tether
           </span>
           <div className="flex items-center gap-3 sm:gap-5">
-            <span className="text-emerald-300/55">
+            <span className="text-yellow-300/55">
               uplink <span className="text-cyan-300">established</span>
             </span>
-            <span className="text-emerald-300/55">
-              status <span className="text-emerald-300">online</span>
+            <span className="text-yellow-300/55">
+              status <span className="text-yellow-300">online</span>
             </span>
             <button
               type="button"
               onClick={() => setDefconOpen(true)}
               aria-label="defcon levels"
-              className="text-emerald-300/55 hover:text-emerald-100 transition-colors cursor-pointer"
+              className="text-yellow-300/55 hover:text-yellow-100 transition-colors cursor-pointer"
             >
               defcon{" "}
               <span
@@ -666,8 +666,8 @@ export function DripfieldShell() {
         </div>
 
         <div className="space-y-2">
-          <div className="flex items-center justify-between border border-emerald-400/30 bg-emerald-950/10 px-3 py-2 text-[10px] sm:text-xs">
-            <span className="text-emerald-300/65 tracking-[0.2em] uppercase">
+          <div className="flex items-center justify-between border border-yellow-400/30 bg-yellow-950/10 px-3 py-2 text-[10px] sm:text-xs">
+            <span className="text-yellow-300/65 tracking-[0.2em] uppercase">
               // podcast 01 is being assembled in the studio
             </span>
             <button
@@ -678,11 +678,11 @@ export function DripfieldShell() {
               terrapin ↗
             </button>
           </div>
-          <div className="flex items-center justify-between border border-emerald-400/20 bg-emerald-950/5 px-3 py-2 text-[10px] sm:text-xs">
-            <span className="text-emerald-300/45 tracking-[0.2em] uppercase">
+          <div className="flex items-center justify-between border border-yellow-400/20 bg-yellow-950/5 px-3 py-2 text-[10px] sm:text-xs">
+            <span className="text-yellow-300/45 tracking-[0.2em] uppercase">
               // interest list — no pending nominations
             </span>
-            <span className="text-emerald-300/40 tracking-[0.2em] uppercase">
+            <span className="text-yellow-300/40 tracking-[0.2em] uppercase">
               empty
             </span>
           </div>
@@ -690,14 +690,14 @@ export function DripfieldShell() {
         </div>
 
         <div
-          className="relative border border-emerald-400/40 bg-black px-5 py-7 sm:px-8 sm:py-10 text-center overflow-hidden"
+          className="relative border border-yellow-400/40 bg-black px-5 py-7 sm:px-8 sm:py-10 text-center overflow-hidden"
           style={{
             boxShadow:
-              "inset 0 0 35px rgba(16,185,129,0.18), 0 0 30px rgba(16,185,129,0.18)",
+              "inset 0 0 35px rgba(234,179,8,0.18), 0 0 30px rgba(234,179,8,0.18)",
           }}
         >
           <p
-            className="text-emerald-100 text-xl sm:text-3xl md:text-4xl tracking-[0.18em] sm:tracking-[0.25em]"
+            className="text-yellow-100 text-xl sm:text-3xl md:text-4xl tracking-[0.18em] sm:tracking-[0.25em]"
             style={{ textShadow: PUNCH_SHADOW }}
           >
             SHALL WE PLAY A GAME?
@@ -712,7 +712,7 @@ export function DripfieldShell() {
               ▮
             </span>
           </p>
-          <p className="text-emerald-300/45 italic text-[10px] sm:text-xs tracking-[0.2em] uppercase mt-3">
+          <p className="text-yellow-300/45 italic text-[10px] sm:text-xs tracking-[0.2em] uppercase mt-3">
             wopr.sys &middot; primary terminal
           </p>
         </div>
@@ -757,20 +757,20 @@ export function DripfieldShell() {
         <ToTheSpherePlan />
 
         <div
-          className="border border-emerald-400/35 bg-emerald-950/15 p-4 sm:p-6 space-y-3"
-          style={{ boxShadow: "inset 0 0 30px rgba(16,185,129,0.15)" }}
+          className="border border-yellow-400/35 bg-yellow-950/15 p-4 sm:p-6 space-y-3"
+          style={{ boxShadow: "inset 0 0 30px rgba(234,179,8,0.15)" }}
         >
-          <p className="text-emerald-300/55 text-[10px] sm:text-xs tracking-[0.3em] uppercase">
+          <p className="text-yellow-300/55 text-[10px] sm:text-xs tracking-[0.3em] uppercase">
             // system boot — may 5, 2026
           </p>
-          <p className="text-emerald-100/90 text-sm sm:text-base leading-relaxed">
+          <p className="text-yellow-100/90 text-sm sm:text-base leading-relaxed">
             &gt; a man entered the room. heard the question. said yes. picked
             the only winning move that mattered &mdash; the one that left
             the bottle un-broken and the goose unharmed. this is where the
             work lives.
           </p>
           <p
-            className="text-emerald-100 text-sm sm:text-base tracking-wider uppercase"
+            className="text-yellow-100 text-sm sm:text-base tracking-wider uppercase"
             style={{ textShadow: GLOW }}
           >
             &gt; madhu &mdash; the podcast control room.
@@ -780,18 +780,18 @@ export function DripfieldShell() {
         <div className="flex items-center justify-between text-[10px] sm:text-xs tracking-[0.25em] uppercase pt-1">
           <div className="flex items-center gap-2">
             <span
-              className={`block w-1.5 h-1.5 rounded-full bg-emerald-400 ${
+              className={`block w-1.5 h-1.5 rounded-full bg-yellow-400 ${
                 cursorOn ? "opacity-100" : "opacity-50"
               } transition-opacity`}
-              style={{ boxShadow: "0 0 8px rgba(52,211,153,0.85)" }}
+              style={{ boxShadow: "0 0 8px rgba(250,204,21,0.85)" }}
             />
-            <span className="text-emerald-300/65">active now</span>
-            <span className="text-emerald-300/40">···</span>
+            <span className="text-yellow-300/65">active now</span>
+            <span className="text-yellow-300/40">···</span>
           </div>
-          <span className="text-emerald-300/40">// updates every 30s</span>
+          <span className="text-yellow-300/40">// updates every 30s</span>
         </div>
 
-        <footer className="text-[9px] sm:text-[10px] font-mono tracking-[0.25em] uppercase text-emerald-300/40 text-center pt-4">
+        <footer className="text-[9px] sm:text-[10px] font-mono tracking-[0.25em] uppercase text-yellow-300/40 text-center pt-4">
           madhu &middot; podcast control &middot; the only winning move
         </footer>
       </div>
@@ -817,15 +817,15 @@ export function DripfieldShell() {
               onClick={() => setDefconOpen(false)}
             />
             <div
-              className="relative w-full max-w-2xl border border-emerald-400/45 bg-black"
+              className="relative w-full max-w-2xl border border-yellow-400/45 bg-black"
               style={{
                 boxShadow:
-                  "0 0 50px rgba(16,185,129,0.4), 0 0 110px rgba(16,185,129,0.22)",
+                  "0 0 50px rgba(234,179,8,0.4), 0 0 110px rgba(234,179,8,0.22)",
               }}
             >
-              <header className="flex items-center justify-between border-b border-emerald-400/30 px-4 py-3 sm:px-6">
+              <header className="flex items-center justify-between border-b border-yellow-400/30 px-4 py-3 sm:px-6">
                 <span
-                  className="text-emerald-100 text-[10px] sm:text-xs tracking-[0.3em] uppercase"
+                  className="text-yellow-100 text-[10px] sm:text-xs tracking-[0.3em] uppercase"
                   style={{ textShadow: GLOW }}
                 >
                   // defense readiness condition
@@ -834,7 +834,7 @@ export function DripfieldShell() {
                   type="button"
                   onClick={() => setDefconOpen(false)}
                   aria-label="close"
-                  className="w-8 h-8 rounded-full border border-emerald-400/40 text-emerald-100 text-base leading-none flex items-center justify-center hover:bg-emerald-900/50"
+                  className="w-8 h-8 rounded-full border border-yellow-400/40 text-yellow-100 text-base leading-none flex items-center justify-center hover:bg-yellow-900/50"
                 >
                   ×
                 </button>
@@ -845,9 +845,9 @@ export function DripfieldShell() {
                     n: 5,
                     name: "fade out",
                     desc: "peacetime. normal readiness.",
-                    color: "text-emerald-300",
+                    color: "text-yellow-300",
                     shadow:
-                      "0 0 10px rgba(52,211,153,0.7), 0 0 22px rgba(52,211,153,0.35)",
+                      "0 0 10px rgba(250,204,21,0.7), 0 0 22px rgba(250,204,21,0.35)",
                   },
                   {
                     n: 4,
@@ -884,7 +884,7 @@ export function DripfieldShell() {
                 ].map((d) => (
                   <div
                     key={d.n}
-                    className={`border ${d.n === 3 ? "border-amber-400/50 bg-amber-950/15" : "border-emerald-400/20 bg-emerald-950/10"} px-4 py-3 flex items-start gap-4`}
+                    className={`border ${d.n === 3 ? "border-amber-400/50 bg-amber-950/15" : "border-yellow-400/20 bg-yellow-950/10"} px-4 py-3 flex items-start gap-4`}
                   >
                     <span
                       className={`${d.color} font-bold text-2xl sm:text-3xl tabular-nums leading-none w-10 shrink-0`}
@@ -899,7 +899,7 @@ export function DripfieldShell() {
                       >
                         defcon {d.n} &middot; {d.name}
                       </p>
-                      <p className="text-emerald-200/80 text-[11px] sm:text-sm leading-relaxed mt-1">
+                      <p className="text-yellow-200/80 text-[11px] sm:text-sm leading-relaxed mt-1">
                         {d.desc}
                       </p>
                     </div>
@@ -928,21 +928,21 @@ export function DripfieldShell() {
               onClick={() => setTttState("idle")}
             />
             <div
-              className={`relative w-full max-w-lg border ${tttState === "lost" ? "border-red-500/50" : tttState === "won" ? "border-emerald-400/50" : "border-emerald-400/45"} bg-black px-5 py-6 sm:px-8 sm:py-8`}
+              className={`relative w-full max-w-lg border ${tttState === "lost" ? "border-red-500/50" : tttState === "won" ? "border-yellow-400/50" : "border-yellow-400/45"} bg-black px-5 py-6 sm:px-8 sm:py-8`}
               style={{
                 boxShadow:
                   tttState === "lost"
                     ? "0 0 50px rgba(239,68,68,0.45), 0 0 110px rgba(127,29,29,0.4)"
                     : tttState === "won"
-                      ? "0 0 50px rgba(52,211,153,0.45), 0 0 110px rgba(6,95,70,0.4)"
-                      : "0 0 50px rgba(16,185,129,0.45), 0 0 110px rgba(16,185,129,0.25)",
+                      ? "0 0 50px rgba(250,204,21,0.45), 0 0 110px rgba(113,63,18,0.4)"
+                      : "0 0 50px rgba(234,179,8,0.45), 0 0 110px rgba(234,179,8,0.25)",
               }}
             >
               <button
                 type="button"
                 onClick={() => setTttState("idle")}
                 aria-label="close"
-                className="absolute top-2 right-2 sm:top-3 sm:right-3 w-8 h-8 rounded-full border border-emerald-400/40 text-emerald-100 text-lg leading-none flex items-center justify-center hover:bg-emerald-900/50"
+                className="absolute top-2 right-2 sm:top-3 sm:right-3 w-8 h-8 rounded-full border border-yellow-400/40 text-yellow-100 text-lg leading-none flex items-center justify-center hover:bg-yellow-900/50"
               >
                 ×
               </button>
@@ -950,13 +950,13 @@ export function DripfieldShell() {
               {tttState === "playing" && (
                 <div className="space-y-5">
                   <p
-                    className="text-emerald-100 text-base sm:text-lg md:text-xl tracking-wider text-center"
+                    className="text-yellow-100 text-base sm:text-lg md:text-xl tracking-wider text-center"
                     style={{ textShadow: PUNCH_SHADOW }}
                   >
                     HOW ABOUT A GAME OF TIC TAC TOE?
                   </p>
                   <TicTacToeBoard onFirstClick={handleTtt} />
-                  <p className="text-emerald-300/40 italic text-xs tracking-[0.2em] uppercase text-center">
+                  <p className="text-yellow-300/40 italic text-xs tracking-[0.2em] uppercase text-center">
                     you go first
                   </p>
                 </div>
@@ -965,18 +965,18 @@ export function DripfieldShell() {
               {tttState === "won" && (
                 <div className="text-center space-y-4 py-3">
                   <p
-                    className="text-emerald-300 text-xl sm:text-2xl tracking-[0.2em] uppercase font-bold"
+                    className="text-yellow-300 text-xl sm:text-2xl tracking-[0.2em] uppercase font-bold"
                     style={{
                       textShadow:
-                        "0 0 14px rgba(52,211,153,0.85), 0 0 32px rgba(52,211,153,0.55)",
+                        "0 0 14px rgba(250,204,21,0.85), 0 0 32px rgba(250,204,21,0.55)",
                     }}
                   >
                     a strange game.
                   </p>
-                  <p className="text-emerald-200/85 text-sm sm:text-base italic">
+                  <p className="text-yellow-200/85 text-sm sm:text-base italic">
                     the only winning move is not to play.
                   </p>
-                  <p className="text-emerald-300/55 text-[10px] sm:text-xs tracking-[0.25em] uppercase pt-2">
+                  <p className="text-yellow-300/55 text-[10px] sm:text-xs tracking-[0.25em] uppercase pt-2">
                     you found the move
                   </p>
                 </div>

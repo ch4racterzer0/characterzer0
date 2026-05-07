@@ -35,10 +35,10 @@ export function LiveCounter({
 
   return (
     <div
-      className="border border-emerald-400/30 bg-emerald-950/15 px-4 py-5 sm:px-6 sm:py-7"
-      style={{ boxShadow: "inset 0 0 30px rgba(16,185,129,0.18)" }}
+      className="border border-yellow-400/30 bg-yellow-950/15 px-4 py-5 sm:px-6 sm:py-7"
+      style={{ boxShadow: "inset 0 0 30px rgba(234,179,8,0.18)" }}
     >
-      <p className="text-emerald-300/55 text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-3">
+      <p className="text-yellow-300/55 text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-3">
         {label}
       </p>
       <div className="flex flex-wrap items-end gap-3 sm:gap-6 font-mono tabular-nums">
@@ -50,15 +50,15 @@ export function LiveCounter({
         ].map(([v, u]) => (
           <div key={u as string} className="flex flex-col items-center">
             <span
-              className="text-emerald-100 text-3xl sm:text-5xl tracking-wider"
+              className="text-yellow-100 text-3xl sm:text-5xl tracking-wider"
               style={{
                 textShadow:
-                  "0 0 12px rgba(52,211,153,0.7), 0 0 28px rgba(16,185,129,0.4)",
+                  "0 0 12px rgba(250,204,21,0.7), 0 0 28px rgba(234,179,8,0.4)",
               }}
             >
               {pad(v as number)}
             </span>
-            <span className="text-emerald-300/50 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase mt-1">
+            <span className="text-yellow-300/50 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase mt-1">
               {u as string}
             </span>
           </div>

@@ -15,14 +15,14 @@ const LAYERS: LayerEntry[] = [
   {
     label: "surface",
     href: "https://characterzer0.com/",
-    text: "text-yellow-300",
-    border: "border-yellow-400/40",
+    text: "text-emerald-300",
+    border: "border-emerald-400/40",
     hover:
-      "hover:text-yellow-200 hover:border-yellow-300/70 hover:bg-yellow-950/30",
-    glow: "0 0 10px rgba(253,224,71,0.7), 0 0 22px rgba(250,204,21,0.4)",
-    activeBg: "bg-yellow-950/25",
+      "hover:text-emerald-200 hover:border-emerald-300/70 hover:bg-emerald-950/30",
+    glow: "0 0 10px rgba(110,231,183,0.7), 0 0 22px rgba(52,211,153,0.4)",
+    activeBg: "bg-emerald-950/25",
     activeShadow:
-      "inset 0 0 18px rgba(250,204,21,0.20), 0 0 14px rgba(250,204,21,0.18)",
+      "inset 0 0 18px rgba(16,185,129,0.20), 0 0 14px rgba(16,185,129,0.18)",
   },
   {
     label: "madhu",
@@ -49,14 +49,14 @@ const LAYERS: LayerEntry[] = [
   {
     label: "dripfield",
     href: "https://dripfield.characterzer0.com/",
-    text: "text-emerald-300",
-    border: "border-emerald-400/40",
+    text: "text-yellow-300",
+    border: "border-yellow-400/40",
     hover:
-      "hover:text-emerald-200 hover:border-emerald-300/70 hover:bg-emerald-950/30",
-    glow: "0 0 10px rgba(110,231,183,0.7), 0 0 22px rgba(52,211,153,0.4)",
-    activeBg: "bg-emerald-950/25",
+      "hover:text-yellow-200 hover:border-yellow-300/70 hover:bg-yellow-950/30",
+    glow: "0 0 10px rgba(253,224,71,0.7), 0 0 22px rgba(250,204,21,0.4)",
+    activeBg: "bg-yellow-950/25",
     activeShadow:
-      "inset 0 0 18px rgba(16,185,129,0.20), 0 0 14px rgba(16,185,129,0.18)",
+      "inset 0 0 18px rgba(250,204,21,0.20), 0 0 14px rgba(250,204,21,0.18)",
   },
 ];
 

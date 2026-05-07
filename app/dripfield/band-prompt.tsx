@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
-const GLOW = "0 0 6px rgba(52,211,153,0.6), 0 0 14px rgba(16,185,129,0.35)";
+const GLOW = "0 0 6px rgba(250,204,21,0.6), 0 0 14px rgba(234,179,8,0.35)";
 
 type Phase = "asking" | "revealed";
 
@@ -45,9 +45,9 @@ export function BandPrompt() {
       <button
         type="button"
         onClick={openFresh}
-        className="w-full flex items-center justify-between border border-emerald-400/20 bg-emerald-950/5 hover:bg-emerald-950/15 hover:border-emerald-400/35 transition-colors px-3 py-2 text-[10px] sm:text-xs cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/40"
+        className="w-full flex items-center justify-between border border-yellow-400/20 bg-yellow-950/5 hover:bg-yellow-950/15 hover:border-yellow-400/35 transition-colors px-3 py-2 text-[10px] sm:text-xs cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/40"
       >
-        <span className="text-emerald-300/55 tracking-[0.2em] uppercase">
+        <span className="text-yellow-300/55 tracking-[0.2em] uppercase">
           // name the best band ever
         </span>
         <span className="text-cyan-300 hover:text-cyan-200 tracking-[0.2em] uppercase border-b border-cyan-400/30">
@@ -72,28 +72,28 @@ export function BandPrompt() {
               onClick={() => setOpen(false)}
             />
             <div
-              className="relative w-full max-w-lg border border-emerald-400/45 bg-black px-6 py-8 sm:px-10 sm:py-10"
+              className="relative w-full max-w-lg border border-yellow-400/45 bg-black px-6 py-8 sm:px-10 sm:py-10"
               style={{
                 boxShadow:
-                  "0 0 50px rgba(16,185,129,0.45), 0 0 110px rgba(16,185,129,0.25)",
+                  "0 0 50px rgba(234,179,8,0.45), 0 0 110px rgba(234,179,8,0.25)",
               }}
             >
               <button
                 type="button"
                 onClick={() => setOpen(false)}
                 aria-label="close"
-                className="absolute top-2 right-2 sm:top-3 sm:right-3 w-8 h-8 rounded-full border border-emerald-400/40 text-emerald-100 text-base leading-none flex items-center justify-center hover:bg-emerald-900/40 hover:border-emerald-300/60 transition-colors"
+                className="absolute top-2 right-2 sm:top-3 sm:right-3 w-8 h-8 rounded-full border border-yellow-400/40 text-yellow-100 text-base leading-none flex items-center justify-center hover:bg-yellow-900/40 hover:border-yellow-300/60 transition-colors"
               >
                 ×
               </button>
 
               {phase === "asking" ? (
                 <form onSubmit={submit} className="space-y-5 text-center">
-                  <p className="text-emerald-300/55 text-[10px] sm:text-xs tracking-[0.3em] uppercase">
+                  <p className="text-yellow-300/55 text-[10px] sm:text-xs tracking-[0.3em] uppercase">
                     // name the best band ever
                   </p>
                   <p
-                    className="text-emerald-100 text-base sm:text-lg tracking-wider"
+                    className="text-yellow-100 text-base sm:text-lg tracking-wider"
                     style={{ textShadow: GLOW }}
                   >
                     no wrong answer.
@@ -106,12 +106,12 @@ export function BandPrompt() {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="any band"
-                    className="w-full bg-emerald-950/30 border border-emerald-400/40 text-emerald-100 text-center text-base sm:text-lg tracking-wider rounded px-5 py-3 outline-none focus:border-emerald-300/70 focus:bg-emerald-950/50 transition-colors placeholder:text-emerald-100/30"
+                    className="w-full bg-yellow-950/30 border border-yellow-400/40 text-yellow-100 text-center text-base sm:text-lg tracking-wider rounded px-5 py-3 outline-none focus:border-yellow-300/70 focus:bg-yellow-950/50 transition-colors placeholder:text-yellow-100/30"
                   />
                   <button
                     type="submit"
                     disabled={!input.trim()}
-                    className="text-emerald-100 text-xs sm:text-sm tracking-[0.4em] uppercase border border-emerald-400/50 rounded px-6 py-2 hover:bg-emerald-900/40 hover:border-emerald-300/70 transition-colors disabled:opacity-40"
+                    className="text-yellow-100 text-xs sm:text-sm tracking-[0.4em] uppercase border border-yellow-400/50 rounded px-6 py-2 hover:bg-yellow-900/40 hover:border-yellow-300/70 transition-colors disabled:opacity-40"
                   >
                     submit
                   </button>
@@ -119,10 +119,10 @@ export function BandPrompt() {
               ) : (
                 <div className="space-y-5">
                   <p
-                    className="text-emerald-300 text-2xl sm:text-3xl tracking-[0.25em] uppercase font-bold text-center"
+                    className="text-yellow-300 text-2xl sm:text-3xl tracking-[0.25em] uppercase font-bold text-center"
                     style={{
                       textShadow:
-                        "0 0 14px rgba(52,211,153,0.85), 0 0 32px rgba(52,211,153,0.55)",
+                        "0 0 14px rgba(250,204,21,0.85), 0 0 32px rgba(250,204,21,0.55)",
                     }}
                   >
                     right.
@@ -130,15 +130,15 @@ export function BandPrompt() {
 
                   <div
                     className="border-l-2 border-cyan-400/50 pl-4 py-1 space-y-2 text-sm sm:text-base"
-                    style={{ textShadow: "0 0 6px rgba(52,211,153,0.35)" }}
+                    style={{ textShadow: "0 0 6px rgba(250,204,21,0.35)" }}
                   >
-                    <p className="text-emerald-300/55 text-[10px] tracking-[0.3em] uppercase">
+                    <p className="text-yellow-300/55 text-[10px] tracking-[0.3em] uppercase">
                       // from character zer0
                     </p>
-                    <p className="text-emerald-100/90 leading-relaxed">
+                    <p className="text-yellow-100/90 leading-relaxed">
                       i have no clue what band{" "}
                       <span
-                        className="text-emerald-100"
+                        className="text-yellow-100"
                         style={{ textShadow: GLOW }}
                       >
                         {answered}
@@ -160,19 +160,19 @@ export function BandPrompt() {
                   </div>
 
                   <div
-                    className="border-l-2 border-emerald-400/50 pl-4 py-1 space-y-2 text-sm sm:text-base"
+                    className="border-l-2 border-yellow-400/50 pl-4 py-1 space-y-2 text-sm sm:text-base"
                   >
-                    <p className="text-emerald-300/55 text-[10px] tracking-[0.3em] uppercase">
+                    <p className="text-yellow-300/55 text-[10px] tracking-[0.3em] uppercase">
                       // tip from me (eliza)
                     </p>
-                    <p className="text-emerald-200/90 leading-relaxed">
+                    <p className="text-yellow-200/90 leading-relaxed">
                       don&rsquo;t just ask &ldquo;write me a piece on{" "}
                       {answered}.&rdquo; you&rsquo;ll get a wikipedia summary
                       with my flavor on it. instead, paste{" "}
-                      <span className="text-emerald-100">2 or 3 source links</span>
+                      <span className="text-yellow-100">2 or 3 source links</span>
                       &nbsp;— a tour review, an interview, a song breakdown — and
                       say{" "}
-                      <em className="text-emerald-100">
+                      <em className="text-yellow-100">
                         &ldquo;synthesize these into a piece, cite each
                         source.&rdquo;
                       </em>{" "}
@@ -181,13 +181,13 @@ export function BandPrompt() {
                     </p>
                   </div>
 
-                  <hr className="border-emerald-100/15" />
+                  <hr className="border-yellow-100/15" />
 
-                  <p className="text-emerald-300/70 text-sm sm:text-base leading-relaxed">
+                  <p className="text-yellow-300/70 text-sm sm:text-base leading-relaxed">
                     by the way &mdash; this room you&rsquo;re standing in was
                     assembled around{" "}
                     <span
-                      className="text-emerald-100"
+                      className="text-yellow-100"
                       style={{ textShadow: GLOW }}
                     >
                       slow ready
@@ -196,7 +196,7 @@ export function BandPrompt() {
                     two gate passwords come from.
                   </p>
 
-                  <p className="text-emerald-300/45 italic text-[10px] sm:text-xs tracking-[0.2em] uppercase pt-1 text-center">
+                  <p className="text-yellow-300/45 italic text-[10px] sm:text-xs tracking-[0.2em] uppercase pt-1 text-center">
                     every answer is the right answer if you mean it
                   </p>
                 </div>
