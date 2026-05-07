@@ -90,7 +90,7 @@ export function MatrixSphere() {
       className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center overflow-hidden"
     >
       <div
-        className="relative w-[420px] h-[420px] sm:w-[560px] sm:h-[560px] rounded-full overflow-hidden opacity-35"
+        className="relative w-[420px] h-[420px] sm:w-[560px] sm:h-[560px] rounded-full overflow-hidden"
         style={{
           transform: "perspective(1100px) rotateX(20deg) rotateY(-10deg)",
           maskImage:
@@ -101,7 +101,19 @@ export function MatrixSphere() {
             "inset 0 0 80px rgba(59,130,246,0.25), 0 0 60px rgba(59,130,246,0.15)",
         }}
       >
-        <canvas ref={canvasRef} className="block w-full h-full" />
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/live_stream?channel=UCYmL7UZfguRrtqjlZUoScCQ&autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1&iv_load_policy=3"
+          title="character zer0 — live"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          referrerPolicy="strict-origin"
+          loading="lazy"
+          className="absolute top-0 left-1/2 -translate-x-1/2 h-full block border-0 opacity-70"
+          style={{ aspectRatio: "16 / 9" }}
+        />
+        <canvas
+          ref={canvasRef}
+          className="absolute inset-0 block w-full h-full opacity-35 mix-blend-screen"
+        />
       </div>
     </div>
   );
