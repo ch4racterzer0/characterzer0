@@ -100,12 +100,17 @@ export function RadioTilesMobileTop() {
 
 export function FigureWithTilesDesktop({
   rightSlot,
+  leftTop,
+  rightTop,
 }: {
   rightSlot?: ReactNode;
+  leftTop?: ReactNode;
+  rightTop?: ReactNode;
 } = {}) {
   return (
     <div className="flex items-end justify-center gap-4 sm:gap-8">
-      <div className="hidden sm:block">
+      <div className="hidden sm:flex flex-col items-center gap-4">
+        {leftTop}
         <RadioTile label="SLOW" />
       </div>
       <Image
@@ -117,7 +122,8 @@ export function FigureWithTilesDesktop({
         sizes="(max-width: 640px) 50vw, 30vw"
         className="h-[28vh] w-auto"
       />
-      <div className="hidden sm:block">
+      <div className="hidden sm:flex flex-col items-center gap-4">
+        {rightTop}
         {rightSlot ?? <RadioTile label="READY" />}
       </div>
     </div>

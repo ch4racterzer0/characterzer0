@@ -21,34 +21,6 @@ export default function Home() {
         <MatrixSphere />
         <RadioTilesMobileTop />
 
-        <a
-          href="https://www.spotlightdispatch.com/dear-nra"
-          target="_top"
-          rel="noopener"
-          aria-label="shot in the dark — dear nra on spotlight dispatch"
-          className="group hidden sm:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-72 sm:w-80 backdrop-blur-[2px] bg-white/8 hover:bg-white/15 border border-white/55 hover:border-white/85 px-5 py-4 sm:px-6 sm:py-5 rounded-sm transition-colors flex-col items-center gap-1.5"
-          style={{
-            boxShadow:
-              "0 0 35px rgba(255,255,255,0.30), 0 0 80px rgba(255,255,255,0.18), 0 14px 32px -10px rgba(0,0,0,0.70), inset 0 1px 0 rgba(255,255,255,0.30)",
-          }}
-        >
-          <span className="text-white/70 text-[9px] sm:text-[10px] tracking-[0.4em] uppercase">
-            ↗ flash
-          </span>
-          <span
-            className="text-white text-xl sm:text-2xl tracking-[0.25em] uppercase font-light group-hover:text-white transition-colors"
-            style={{
-              textShadow:
-                "0 0 14px rgba(255,255,255,0.85), 0 0 28px rgba(255,255,255,0.55), 0 0 60px rgba(255,255,255,0.28)",
-            }}
-          >
-            shot in the dark
-          </span>
-          <span className="text-white/55 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase italic">
-            dear nra · spotlight dispatch
-          </span>
-        </a>
-
         <LinkTile label="Madhu" href="/madhu" large />
 
         <div className="flex flex-col items-center gap-6 sm:gap-10">
@@ -77,6 +49,64 @@ export default function Home() {
 
         <FigureWithTilesDesktop
           rightSlot={<LinkTile label="US" href="/us" subline="○ step in" />}
+          leftTop={
+            <a
+              href="https://www.spotlightdispatch.com/dear-nra"
+              target="_top"
+              rel="noopener"
+              aria-label="shot in the dark — dear nra on spotlight dispatch"
+              className="group w-44 sm:w-48 backdrop-blur-[2px] bg-white/8 hover:bg-white/15 border border-white/55 hover:border-white/85 px-3 py-2 rounded-sm transition-colors flex flex-col items-center gap-0.5"
+              style={{
+                boxShadow:
+                  "0 0 22px rgba(255,255,255,0.28), 0 0 50px rgba(255,255,255,0.14), 0 8px 22px -8px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.28)",
+              }}
+            >
+              <span className="text-white/70 text-[8px] tracking-[0.4em] uppercase">
+                ↗ flash
+              </span>
+              <span
+                className="text-white text-xs sm:text-sm tracking-[0.22em] uppercase font-light"
+                style={{
+                  textShadow:
+                    "0 0 10px rgba(255,255,255,0.8), 0 0 22px rgba(255,255,255,0.45)",
+                }}
+              >
+                shot in the dark
+              </span>
+              <span className="text-white/55 text-[8px] tracking-[0.3em] uppercase italic">
+                dear nra
+              </span>
+            </a>
+          }
+          rightTop={
+            <a
+              href="/dearelon"
+              target="_top"
+              rel="noopener"
+              aria-label="dear elon — draft open letter, ten questions for elon musk"
+              className="group w-44 sm:w-48 backdrop-blur-[2px] bg-white/8 hover:bg-white/15 border border-white/55 hover:border-white/85 px-3 py-2 rounded-sm transition-colors flex flex-col items-center gap-0.5"
+              style={{
+                boxShadow:
+                  "0 0 22px rgba(255,255,255,0.28), 0 0 50px rgba(255,255,255,0.14), 0 8px 22px -8px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.28)",
+              }}
+            >
+              <span className="text-white/70 text-[8px] tracking-[0.4em] uppercase">
+                ↗ draft
+              </span>
+              <span
+                className="text-white text-xs sm:text-sm tracking-[0.22em] uppercase font-light"
+                style={{
+                  textShadow:
+                    "0 0 10px rgba(255,255,255,0.8), 0 0 22px rgba(255,255,255,0.45)",
+                }}
+              >
+                dear elon
+              </span>
+              <span className="text-white/55 text-[8px] tracking-[0.3em] uppercase italic">
+                ten questions
+              </span>
+            </a>
+          }
         />
 
           </main>
