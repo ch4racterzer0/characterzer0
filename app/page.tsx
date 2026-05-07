@@ -121,9 +121,8 @@ export default function Home() {
           }
           rightTop={
             <IframeTilePopup
-              ariaLabel="dear elon — draft open letter, ten questions for elon musk"
+              ariaLabel="dear elon — open letter, ten questions for elon musk"
               src="/dearelon"
-              gated
               triggerClassName="group w-44 sm:w-48 backdrop-blur-[2px] bg-white/8 hover:bg-white/15 border border-white/55 hover:border-white/85 px-3 py-2 rounded-sm transition-colors flex flex-col items-center gap-0.5 cursor-pointer"
               triggerStyle={{
                 boxShadow:
@@ -132,7 +131,7 @@ export default function Home() {
               trigger={
                 <>
                   <span className="text-white/70 text-[8px] tracking-[0.4em] uppercase">
-                    ↗ draft
+                    ↗ open letter
                   </span>
                   <span
                     className="text-white text-xs sm:text-sm tracking-[0.22em] uppercase font-light"
@@ -144,7 +143,7 @@ export default function Home() {
                     dear elon
                   </span>
                   <span className="text-white/55 text-[8px] tracking-[0.3em] uppercase italic">
-                    🔒 ten questions
+                    ten questions
                   </span>
                 </>
               }
