@@ -18,10 +18,7 @@ export default function Home() {
         <RadioProvider>
           <ThemeShifter>
           <ThemeSwitch />
-          <main
-            className="relative isolate min-h-screen bg-black flex flex-col items-center justify-between gap-6 sm:gap-0 py-4 sm:py-10 px-4"
-            style={{ animation: "cast-flicker 11s steps(48, end) infinite" }}
-          >
+          <main className="relative isolate min-h-screen bg-black flex flex-col items-center justify-between gap-6 sm:gap-0 py-4 sm:py-10 px-4">
         <MatrixSphere />
         <RadioTilesMobileTop />
 
