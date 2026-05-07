@@ -12,13 +12,15 @@ export function IframeTilePopup({
   ariaLabel,
   src,
   gated = false,
+  content,
 }: {
   trigger: ReactNode;
   triggerClassName?: string;
   triggerStyle?: React.CSSProperties;
   ariaLabel: string;
-  src: string;
+  src?: string;
   gated?: boolean;
+  content?: ReactNode;
 }) {
   const [open, setOpen] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
@@ -148,13 +150,15 @@ export function IframeTilePopup({
                     </p>
                   )}
                 </form>
-              ) : (
+              ) : content ? (
+                <div className="absolute inset-0 overflow-y-auto">{content}</div>
+              ) : src ? (
                 <iframe
                   src={src}
                   title={ariaLabel}
                   className="w-full h-full border-0"
                 />
-              )}
+              ) : null}
             </div>
           </div>,
           document.body,
