@@ -129,8 +129,39 @@ export default function CurrentTarget() {
       {targets.map((t) => (
         <section
           key={t.n}
-          className="border-b border-blue-100/10 px-6 py-10 sm:px-12 sm:py-14"
+          className="relative border-b border-blue-100/10 px-6 py-10 sm:px-12 sm:py-14"
         >
+          {t.n === "01" && (
+            <a
+              href="https://www.spotlightdispatch.com/dear-sam"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="the missile — open dear sam on spotlight dispatch"
+              className="group absolute inset-0 z-10 flex items-center justify-center backdrop-blur-[2px] bg-red-950/25 hover:bg-red-950/40 border border-red-400/40 hover:border-red-300/70 transition-colors"
+              style={{
+                boxShadow:
+                  "0 0 35px rgba(239,68,68,0.30), inset 0 1px 0 rgba(254,202,202,0.18)",
+              }}
+            >
+              <div className="flex flex-col items-center gap-2 px-6">
+                <span className="text-red-300/80 text-[10px] sm:text-xs tracking-[0.4em] uppercase">
+                  ↗ launch
+                </span>
+                <span
+                  className="text-red-200 text-3xl sm:text-5xl tracking-[0.3em] uppercase font-light group-hover:text-red-100 transition-colors"
+                  style={{
+                    textShadow:
+                      "0 0 14px rgba(252,165,165,0.85), 0 0 32px rgba(239,68,68,0.55), 0 0 70px rgba(127,29,29,0.4)",
+                  }}
+                >
+                  the missile
+                </span>
+                <span className="text-red-300/55 text-[10px] sm:text-xs tracking-[0.3em] uppercase italic">
+                  dear sam · spotlight dispatch
+                </span>
+              </div>
+            </a>
+          )}
           <div className="grid gap-6 md:grid-cols-[5rem_minmax(0,1fr)_minmax(0,1.15fr)] md:gap-10">
             <div className="text-2xl font-light tracking-tight text-blue-100/40 md:text-3xl">
               {t.n}
