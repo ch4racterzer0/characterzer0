@@ -22,13 +22,34 @@ export function MatrixSphere() {
       .map(() => Math.random() * (size / fontSize));
     const chars =
       "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ";
+    const redChars =
+      "党中央监视控制服从命令国家档案审查人民同志组织部署计划目标网站域名核心电脑神经协议密码";
+
+    const redRemaining = Array(cols).fill(0);
+    const RED_INTERVAL = 45000;
+    const RED_BURST_COLS = 2;
+    const RED_LEN_MIN = 6;
+    const RED_LEN_MAX = 10;
 
     let raf = 0;
     let last = 0;
+    let lastRedTrigger = 0;
     const step = 95;
 
     function draw(t: number) {
       if (!ctx) return;
+
+      if (t - lastRedTrigger > RED_INTERVAL) {
+        lastRedTrigger = t;
+        for (let n = 0; n < RED_BURST_COLS; n++) {
+          const col = Math.floor(Math.random() * cols);
+          const len =
+            RED_LEN_MIN +
+            Math.floor(Math.random() * (RED_LEN_MAX - RED_LEN_MIN + 1));
+          if (redRemaining[col] < len) redRemaining[col] = len;
+        }
+      }
+
       if (t - last > step) {
         last = t;
         ctx.fillStyle = "rgba(0,0,0,0.10)";
@@ -36,14 +57,25 @@ export function MatrixSphere() {
         ctx.font = `${fontSize}px ui-monospace, SFMono-Regular, Menlo, monospace`;
         for (let i = 0; i < cols; i++) {
           if (Math.random() > 0.55) continue;
-          const ch = chars[Math.floor(Math.random() * chars.length)];
+          const isRed = redRemaining[i] > 0;
+          const set = isRed ? redChars : chars;
+          const ch = set[Math.floor(Math.random() * set.length)];
           const x = i * fontSize;
           const y = drops[i] * fontSize;
-          ctx.fillStyle = "rgba(147,197,253,0.85)";
+          if (isRed) {
+            ctx.shadowColor = "rgba(239,68,68,0.85)";
+            ctx.shadowBlur = 6;
+            ctx.fillStyle = "rgba(252,165,165,0.95)";
+          } else {
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = "rgba(147,197,253,0.85)";
+          }
           ctx.fillText(ch, x, y);
           drops[i]++;
+          if (isRed) redRemaining[i]--;
           if (y > size && Math.random() > 0.975) drops[i] = 0;
         }
+        ctx.shadowBlur = 0;
       }
       raf = requestAnimationFrame(draw);
     }
