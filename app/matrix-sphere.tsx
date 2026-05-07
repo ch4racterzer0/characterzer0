@@ -203,8 +203,6 @@ function ScoftiTile({ onClick }: { onClick: () => void }) {
       style={{
         boxShadow:
           "0 0 30px rgba(251,191,36,0.30), 0 0 70px rgba(146,64,14,0.30), 0 8px 22px -8px rgba(0,0,0,0.65), inset 0 1px 0 rgba(254,243,199,0.30)",
-        animation: "scofti-spin-cw 24s linear infinite",
-        transformOrigin: "center",
       }}
     >
       <div
