@@ -50,25 +50,41 @@ const FIRSTPLACED_INITIAL: { label: string; done: boolean }[] = [
 ];
 
 const FIRSTPLACED_CHECKLIST_KEY = "firstplaced-checklist-v1";
+const FIRSTPLACED_UNLOCK_KEY = "firstplaced-checklist-unlocked";
+const FIRSTPLACED_PASS = "jedi";
 
 function FirstplacedChecklist() {
   const [items, setItems] = useState(FIRSTPLACED_INITIAL);
+  const [unlocked, setUnlocked] = useState(false);
+  const [pwOpen, setPwOpen] = useState(false);
+  const [pwInput, setPwInput] = useState("");
+  const [pwError, setPwError] = useState(false);
 
   useEffect(() => {
     try {
       const raw = localStorage.getItem(FIRSTPLACED_CHECKLIST_KEY);
-      if (!raw) return;
-      const saved = JSON.parse(raw) as { label: string; done: boolean }[];
-      setItems((prev) =>
-        prev.map((it) => {
-          const match = saved.find((s) => s.label === it.label);
-          return match ? { ...it, done: match.done } : it;
-        }),
-      );
+      if (raw) {
+        const saved = JSON.parse(raw) as { label: string; done: boolean }[];
+        setItems((prev) =>
+          prev.map((it) => {
+            const match = saved.find((s) => s.label === it.label);
+            return match ? { ...it, done: match.done } : it;
+          }),
+        );
+      }
+    } catch {}
+    try {
+      if (sessionStorage.getItem(FIRSTPLACED_UNLOCK_KEY) === "1") {
+        setUnlocked(true);
+      }
     } catch {}
   }, []);
 
-  function toggle(label: string) {
+  function tryToggle(label: string) {
+    if (!unlocked) {
+      setPwOpen(true);
+      return;
+    }
     setItems((prev) => {
       const next = prev.map((it) =>
         it.label === label ? { ...it, done: !it.done } : it,
@@ -80,6 +96,29 @@ function FirstplacedChecklist() {
     });
   }
 
+  function handlePwSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (pwInput.trim().toLowerCase() === FIRSTPLACED_PASS) {
+      setUnlocked(true);
+      setPwOpen(false);
+      setPwError(false);
+      setPwInput("");
+      try {
+        sessionStorage.setItem(FIRSTPLACED_UNLOCK_KEY, "1");
+      } catch {}
+    } else {
+      setPwError(true);
+      setPwInput("");
+    }
+  }
+
+  function relock() {
+    setUnlocked(false);
+    try {
+      sessionStorage.removeItem(FIRSTPLACED_UNLOCK_KEY);
+    } catch {}
+  }
+
   const doneCount = items.filter((it) => it.done).length;
   const pct = Math.round((doneCount / items.length) * 100);
 
@@ -89,8 +128,20 @@ function FirstplacedChecklist() {
       style={{ boxShadow: "inset 0 0 30px rgba(59,130,246,0.18)" }}
     >
       <div className="flex items-center justify-between mb-3 gap-3">
-        <p className="text-blue-300/55 text-[10px] sm:text-xs tracking-[0.3em] uppercase">
+        <p className="text-blue-300/55 text-[10px] sm:text-xs tracking-[0.3em] uppercase flex items-center gap-2">
           firstplaced — to first podcast
+          <button
+            type="button"
+            onClick={() => (unlocked ? relock() : setPwOpen(true))}
+            aria-label={unlocked ? "lock checklist" : "unlock checklist"}
+            className={`text-[10px] tracking-[0.25em] uppercase border px-1.5 py-0.5 rounded-sm transition-colors cursor-pointer ${
+              unlocked
+                ? "text-emerald-300/80 border-emerald-400/40 hover:text-emerald-200 hover:border-emerald-300/70"
+                : "text-blue-300/60 border-blue-400/30 hover:text-blue-200 hover:border-blue-300/60"
+            }`}
+          >
+            {unlocked ? "unlocked" : "🔒 locked"}
+          </button>
         </p>
         <p
           className="text-blue-100 font-mono text-[11px] sm:text-sm tabular-nums tracking-wider"
@@ -102,14 +153,63 @@ function FirstplacedChecklist() {
           {doneCount}/{items.length} · {pct}%
         </p>
       </div>
+
+      {pwOpen && !unlocked && (
+        <form
+          onSubmit={handlePwSubmit}
+          className="mb-3 flex items-center gap-2 border border-blue-400/40 bg-blue-950/40 rounded-sm px-2 py-2"
+        >
+          <input
+            type="password"
+            autoFocus
+            value={pwInput}
+            onChange={(e) => {
+              setPwInput(e.target.value);
+              if (pwError) setPwError(false);
+            }}
+            placeholder="······"
+            className="flex-1 bg-transparent border-b border-blue-400/40 text-blue-100 text-center text-sm font-mono tracking-[0.3em] uppercase outline-none focus:border-blue-300/70 placeholder:text-blue-100/30 px-1 py-1"
+          />
+          <button
+            type="submit"
+            className="text-blue-100/80 hover:text-blue-100 text-[10px] tracking-[0.3em] uppercase border border-blue-400/40 rounded px-2 py-1 hover:bg-blue-900/40"
+          >
+            enter
+          </button>
+          <button
+            type="button"
+            aria-label="cancel"
+            onClick={() => {
+              setPwOpen(false);
+              setPwInput("");
+              setPwError(false);
+            }}
+            className="text-blue-300/60 hover:text-blue-200 text-base leading-none px-1"
+          >
+            ×
+          </button>
+          {pwError && (
+            <span className="text-red-300/80 text-[10px] tracking-[0.2em] uppercase italic">
+              denied
+            </span>
+          )}
+        </form>
+      )}
+
       <ul className="space-y-1.5 font-mono">
         {items.map((it) => (
           <li key={it.label}>
             <button
               type="button"
-              onClick={() => toggle(it.label)}
+              onClick={() => tryToggle(it.label)}
               aria-pressed={it.done}
-              className="w-full flex items-center gap-3 text-left text-[11px] sm:text-sm py-0.5 px-1 -mx-1 rounded-sm hover:bg-blue-900/25 focus:outline-none focus-visible:ring-1 focus-visible:ring-blue-300/60 cursor-pointer transition-colors"
+              aria-disabled={!unlocked}
+              title={unlocked ? undefined : "locked — enter passphrase to toggle"}
+              className={`w-full flex items-center gap-3 text-left text-[11px] sm:text-sm py-0.5 px-1 -mx-1 rounded-sm focus:outline-none focus-visible:ring-1 focus-visible:ring-blue-300/60 transition-colors ${
+                unlocked
+                  ? "hover:bg-blue-900/25 cursor-pointer"
+                  : "cursor-not-allowed"
+              }`}
             >
               <span
                 aria-hidden
