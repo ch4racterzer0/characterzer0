@@ -1,20 +1,14 @@
 const MORSELS_LINES = [
-  "i feed from the bottom, you feed from the top",
-  "i live upon morsels you happen to drop",
-  "and coffee that somehow leaks out of your cup",
-  "if nothing comes down, then i'm forced to swim up",
-  "it's not all that bad if it doesn't get worse",
-  "despite the appearance of being a curse",
-  "jumbled events that have less than no worth",
-  "combine to spell beauty, the theme of the earth",
-  "get out, get into it, get involved",
-  "you live upon morsels i happen to drop",
-  "the coffee that somehow leaks out of my cup",
-  "if nothing comes down, then i'm forced to swim up",
-  "on the way upwards, the colors come back",
-  "but all along the bottom is blue, grey, and black",
-  "the darkness is cold and perception goes wrong",
-  "and the night seems to go on incredibly long",
+  "I feed from the bottom, you feed from the top",
+  "I live upon morsels you happen to drop",
+  "And coffee that somehow leaks out of your cup",
+  "If nothing comes down then I'm forced to swim up",
+  "On the way upwards, the colors come back",
+  "But all along the bottom is blue, grey, and black",
+  "The darkness is cold and perception goes wrong",
+  "And the night seems to go on incredibly long",
+  "So I ask you why if I'm swimming by,",
+  "Don't you see anything you'd like to try?",
 ];
 
 const SEPARATOR = "  ◆  ";
@@ -38,7 +32,7 @@ export function MorselsRibbon() {
           }}
         >
           <span
-            className="font-mono text-blue-200/65 text-[10px] sm:text-xs tracking-[0.25em] uppercase pr-12"
+            className="font-mono text-blue-200/65 text-[10px] sm:text-xs tracking-[0.2em] pr-12"
             style={{ textShadow: "0 0 8px rgba(96,165,250,0.4)" }}
           >
             {stream}
