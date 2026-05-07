@@ -3,12 +3,6 @@ const MORSELS_LINES = [
   "I live upon morsels you happen to drop",
   "And coffee that somehow leaks out of your cup",
   "If nothing comes down then I'm forced to swim up",
-  "On the way upwards, the colors come back",
-  "But all along the bottom is blue, grey, and black",
-  "The darkness is cold and perception goes wrong",
-  "And the night seems to go on incredibly long",
-  "So I ask you why if I'm swimming by,",
-  "Don't you see anything you'd like to try?",
 ];
 
 const SEPARATOR = "  ◆  ";
