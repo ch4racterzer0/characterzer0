@@ -12,7 +12,6 @@ const GLOW = "0 0 6px rgba(96,165,250,0.6), 0 0 14px rgba(59,130,246,0.35)";
 const PUNCH_SHADOW =
   "0 0 12px rgba(96,165,250,0.85), 0 0 28px rgba(59,130,246,0.55), 0 0 60px rgba(59,130,246,0.3)";
 
-const SINCE = "2026-05-05T00:00:00Z";
 const FIRSTPLACED_REGISTERED = "2026-05-07T06:35:15Z";
 
 function NavButton({
@@ -286,7 +285,6 @@ export function WarRoomShell() {
           </p>
         </div>
 
-        <LiveCounter since={SINCE} label="madhu — live since may 5, 2026" />
         <LiveCounter
           since={FIRSTPLACED_REGISTERED}
           label="firstplaced — initial podcast factory · registered may 7, 2026"
