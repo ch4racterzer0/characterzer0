@@ -37,7 +37,7 @@ export function Hourglass() {
         className="w-full h-full"
         style={{
           filter:
-            "drop-shadow(0 0 10px rgba(220,38,38,0.55)) drop-shadow(0 0 20px rgba(127,29,29,0.35))",
+            "drop-shadow(0 0 10px rgba(34,197,94,0.55)) drop-shadow(0 0 20px rgba(21,128,61,0.35))",
         }}
       >
         <defs>
@@ -48,9 +48,9 @@ export function Hourglass() {
             <path d="M31 40 L52 70 L10 70 Z" />
           </clipPath>
           <linearGradient id="hg-sand" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#fca5a5" />
-            <stop offset="60%" stopColor="#dc2626" />
-            <stop offset="100%" stopColor="#7f1d1d" />
+            <stop offset="0%" stopColor="#bbf7d0" />
+            <stop offset="60%" stopColor="#16a34a" />
+            <stop offset="100%" stopColor="#14532d" />
           </linearGradient>
         </defs>
 
@@ -59,8 +59,8 @@ export function Hourglass() {
           y="2"
           width="50"
           height="4"
-          fill="#7f1d1d"
-          stroke="#450a0a"
+          fill="#14532d"
+          stroke="#052e16"
           strokeWidth="0.5"
         />
         <rect
@@ -68,23 +68,23 @@ export function Hourglass() {
           y="72"
           width="50"
           height="4"
-          fill="#7f1d1d"
-          stroke="#450a0a"
+          fill="#14532d"
+          stroke="#052e16"
           strokeWidth="0.5"
         />
-        <rect x="4" y="2" width="2" height="74" fill="#450a0a" />
-        <rect x="56" y="2" width="2" height="74" fill="#450a0a" />
+        <rect x="4" y="2" width="2" height="74" fill="#052e16" />
+        <rect x="56" y="2" width="2" height="74" fill="#052e16" />
 
         <path
           d="M10 8 L52 8 L31 38 Z"
-          fill="rgba(254,242,242,0.04)"
-          stroke="#7f1d1d"
+          fill="rgba(240,253,244,0.04)"
+          stroke="#14532d"
           strokeWidth="0.8"
         />
         <path
           d="M31 40 L52 70 L10 70 Z"
-          fill="rgba(254,242,242,0.04)"
-          stroke="#7f1d1d"
+          fill="rgba(240,253,244,0.04)"
+          stroke="#14532d"
           strokeWidth="0.8"
         />
 
