@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { LayerNav } from "../layer-nav";
 import { BandPrompt } from "./band-prompt";
 import { LiveCounter } from "./live-counter";
 import { PodcastCoversModal } from "./podcast-covers";
@@ -239,79 +240,6 @@ function FirstplacedChecklist() {
   );
 }
 
-type LayerName = "surface" | "madhu" | "hungersite" | "dripfield";
-
-const LAYER_NAV: {
-  label: LayerName;
-  href: string;
-  text: string;
-  border: string;
-  hover: string;
-  glow: string;
-  active?: boolean;
-}[] = [
-  {
-    label: "surface",
-    href: "/",
-    text: "text-sky-300",
-    border: "border-sky-400/40",
-    hover: "hover:text-sky-200 hover:border-sky-300/70 hover:bg-sky-950/30",
-    glow: "0 0 10px rgba(125,211,252,0.6), 0 0 22px rgba(56,189,248,0.35)",
-  },
-  {
-    label: "madhu",
-    href: "/madhu",
-    text: "text-amber-300",
-    border: "border-amber-400/40",
-    hover: "hover:text-amber-200 hover:border-amber-300/70 hover:bg-amber-950/30",
-    glow: "0 0 10px rgba(252,211,77,0.6), 0 0 22px rgba(251,191,36,0.35)",
-  },
-  {
-    label: "hungersite",
-    href: "/hungersite",
-    text: "text-red-300",
-    border: "border-red-400/45",
-    hover: "hover:text-red-200 hover:border-red-300/70 hover:bg-red-950/30",
-    glow: "0 0 12px rgba(252,165,165,0.7), 0 0 28px rgba(239,68,68,0.4)",
-    active: true,
-  },
-  {
-    label: "dripfield",
-    href: "/dripfield",
-    text: "text-emerald-300",
-    border: "border-emerald-400/40",
-    hover:
-      "hover:text-emerald-200 hover:border-emerald-300/70 hover:bg-emerald-950/30",
-    glow: "0 0 10px rgba(52,211,153,0.7), 0 0 22px rgba(16,185,129,0.4)",
-  },
-];
-
-function LayerNav() {
-  return (
-    <nav className="border border-blue-400/35 bg-blue-950/15 px-3 py-2 sm:px-5 sm:py-2 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-      {LAYER_NAV.map((item) => (
-        <a
-          key={item.label}
-          href={item.href}
-          target="_top"
-          className={`font-mono text-[10px] sm:text-xs tracking-[0.3em] uppercase border ${item.border} ${item.text} ${item.hover} px-3 py-1.5 sm:px-4 rounded-sm transition-colors ${
-            item.active ? "bg-red-950/25" : ""
-          }`}
-          style={{
-            textShadow: item.glow,
-            boxShadow: item.active
-              ? `inset 0 0 18px rgba(239,68,68,0.18), 0 0 14px rgba(239,68,68,0.18)`
-              : undefined,
-          }}
-          aria-current={item.active ? "page" : undefined}
-        >
-          {item.label}
-        </a>
-      ))}
-    </nav>
-  );
-}
-
 function MemberTile({
   role,
   name,
@@ -445,7 +373,7 @@ export function WarRoomShell() {
         className="max-w-7xl mx-auto p-3 sm:p-5 space-y-3 sm:space-y-4 transition-[filter] duration-700"
         style={{ filter: lit ? "none" : "blur(5px)" }}
       >
-        <LayerNav />
+        <LayerNav active="hungersite" />
 
         <header className="border border-blue-400/35 bg-blue-950/20 px-3 py-2 sm:px-5 sm:py-3 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-3">
