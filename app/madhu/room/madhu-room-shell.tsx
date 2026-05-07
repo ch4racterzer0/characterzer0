@@ -799,6 +799,28 @@ export function MadhuRoomShell() {
           madhu &middot; podcast control &middot; the only winning move
         </footer>
 
+          <div
+            aria-hidden
+            className="absolute inset-x-0 bottom-0 top-1/2 pointer-events-none flex items-end justify-center pb-4 sm:pb-10"
+            style={{ perspective: "900px" }}
+          >
+            <div
+              className="font-mono text-cyan-300 text-base sm:text-2xl md:text-3xl tracking-[0.4em] sm:tracking-[0.5em] uppercase text-center whitespace-nowrap leading-[1.6]"
+              style={{
+                transform: "rotateX(62deg) rotateZ(-1deg)",
+                transformOrigin: "center bottom",
+                textShadow:
+                  "0 0 8px rgba(103,232,249,1), 0 0 22px rgba(103,232,249,0.85), 0 0 48px rgba(34,211,238,0.65), 0 0 110px rgba(6,182,212,0.35)",
+                filter: "blur(0.4px)",
+                opacity: 0.95,
+              }}
+            >
+              <div style={{ opacity: 0.55 }}>people sometimes make mistakes.</div>
+              <div style={{ opacity: 0.78 }}>yes they do.</div>
+              <div style={{ opacity: 1 }}>shall we play a game?</div>
+            </div>
+          </div>
+
           <LightSwitchMask
             tone="red"
             contained
