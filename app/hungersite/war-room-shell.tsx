@@ -240,6 +240,153 @@ function FirstplacedChecklist() {
   );
 }
 
+type PlanState = "done" | "next" | "future";
+
+const SPHERE_PLAN: {
+  n: string;
+  name: string;
+  items: { label: string; state: PlanState }[];
+}[] = [
+  {
+    n: "01",
+    name: "foundation",
+    items: [
+      { label: "domain registered — firstplaced", state: "done" },
+      { label: "nameservers pointed → host", state: "next" },
+      { label: "host live (vercel)", state: "next" },
+      { label: "landing page — what this is", state: "next" },
+    ],
+  },
+  {
+    n: "02",
+    name: "identity",
+    items: [
+      { label: "show name + tagline committed", state: "future" },
+      { label: "cover art — 3000×3000 square", state: "future" },
+      { label: "voice + tone written down", state: "future" },
+    ],
+  },
+  {
+    n: "03",
+    name: "production",
+    items: [
+      { label: "audio pipeline — mic → master", state: "future" },
+      { label: "episode 01 recorded", state: "future" },
+      { label: "master pass — −16 lufs / −1.5 db peak", state: "future" },
+      { label: "transcript searchable", state: "future" },
+    ],
+  },
+  {
+    n: "04",
+    name: "distribution",
+    items: [
+      { label: "episode files hosted (blob / cdn)", state: "future" },
+      { label: "rss feed live — apple/spotify spec", state: "future" },
+      { label: "spotify ingest submitted", state: "future" },
+      { label: "apple podcasts connect submitted", state: "future" },
+    ],
+  },
+  {
+    n: "05",
+    name: "sphere integration",
+    items: [
+      {
+        label: "podcast-factory tile repointed (thedelos → firstplaced)",
+        state: "future",
+      },
+      { label: "hungersite — planning + interest list", state: "future" },
+      { label: "dripfield — ingest line wired", state: "future" },
+      { label: "madhu — workshop / session control", state: "future" },
+    ],
+  },
+  {
+    n: "06",
+    name: "launch",
+    items: [
+      { label: "announce — channels lit at once", state: "future" },
+      { label: "first 100 listeners measured", state: "future" },
+      { label: "episode 02 cadence locked", state: "future" },
+    ],
+  },
+];
+
+function PlanItem({
+  label,
+  state,
+}: {
+  label: string;
+  state: PlanState;
+}) {
+  const dot =
+    state === "done"
+      ? { mark: "▣", text: "text-emerald-300", glow: "0 0 8px rgba(52,211,153,0.7)", row: "text-blue-100/55 line-through decoration-blue-300/35" }
+      : state === "next"
+        ? { mark: "▢", text: "text-amber-300", glow: "0 0 8px rgba(251,191,36,0.7)", row: "text-blue-100/90" }
+        : { mark: "▢", text: "text-blue-300/35", glow: "", row: "text-blue-100/60" };
+  return (
+    <li className="flex items-start gap-3 text-[11px] sm:text-sm font-mono">
+      <span
+        aria-hidden
+        className={`inline-block w-3 leading-none mt-0.5 ${dot.text}`}
+        style={dot.glow ? { textShadow: dot.glow } : undefined}
+      >
+        {dot.mark}
+      </span>
+      <span className={dot.row}>{label}</span>
+    </li>
+  );
+}
+
+function ToTheSpherePlan() {
+  return (
+    <div
+      className="border border-blue-400/35 bg-blue-950/15 p-4 sm:p-6 space-y-5"
+      style={{ boxShadow: "inset 0 0 30px rgba(59,130,246,0.15)" }}
+    >
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <p
+          className="text-blue-100 text-[11px] sm:text-sm tracking-[0.3em] uppercase"
+          style={{ textShadow: GLOW }}
+        >
+          // the plan — bring podcast to the sphere
+        </p>
+        <p className="text-blue-300/45 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase">
+          six phases · firstplaced is the spine
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
+        {SPHERE_PLAN.map((phase) => (
+          <div
+            key={phase.n}
+            className="border border-blue-400/25 bg-black/40 p-3 sm:p-4 space-y-3"
+          >
+            <div className="flex items-baseline gap-3">
+              <span
+                className="text-blue-100/40 font-mono text-2xl sm:text-3xl tabular-nums tracking-tight"
+                style={{ textShadow: GLOW }}
+              >
+                {phase.n}
+              </span>
+              <span
+                className="text-blue-100 text-[11px] sm:text-sm tracking-[0.3em] uppercase"
+                style={{ textShadow: GLOW }}
+              >
+                {phase.name}
+              </span>
+            </div>
+            <ul className="space-y-1.5">
+              {phase.items.map((it) => (
+                <PlanItem key={it.label} label={it.label} state={it.state} />
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function MemberTile({
   role,
   name,
@@ -525,6 +672,8 @@ export function WarRoomShell() {
             tone="emerald"
           />
         </div>
+
+        <ToTheSpherePlan />
 
         <div
           className="border border-blue-400/35 bg-blue-950/15 p-4 sm:p-6 space-y-3"
