@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-const FRAME_HOLD_MS = 6000;
-const CROSSFADE_MS = 1400;
+const FRAME_HOLD_MS = 11000;
+const CROSSFADE_MS = 3500;
 
 export function CastCycle({ frames }: { frames: string[] }) {
   const [index, setIndex] = useState(0);

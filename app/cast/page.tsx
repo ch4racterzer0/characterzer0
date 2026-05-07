@@ -4,8 +4,10 @@ export const dynamic = "force-dynamic";
 
 const FRAMES = [
   "/sphere/rick-mitarotonda.jpg",
+  "/sphere/goose-band.jpg",
   "/sphere/trevor-weekz.webp",
-  "/sphere/ghost.png",
+  "/sphere/rick-420fest.jpg",
+  "/sphere/goose-msg.jpg",
 ];
 
 export default function CastPage() {
