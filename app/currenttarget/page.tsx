@@ -141,26 +141,26 @@ export default function CurrentTarget() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="the missile — open dear sam on spotlight dispatch"
-              className="group absolute inset-0 z-10 flex items-center justify-center backdrop-blur-[2px] bg-red-950/25 hover:bg-red-950/40 border border-red-400/40 hover:border-red-300/70 transition-colors"
+              className="group absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-10 w-60 sm:w-72 backdrop-blur-[2px] bg-red-950/55 hover:bg-red-950/75 border border-red-400/55 hover:border-red-300/80 px-4 py-3 sm:px-5 sm:py-4 rounded-sm transition-colors"
               style={{
                 boxShadow:
-                  "0 0 35px rgba(239,68,68,0.30), inset 0 1px 0 rgba(254,202,202,0.18)",
+                  "0 0 30px rgba(239,68,68,0.35), 0 8px 28px -8px rgba(127,29,29,0.55), inset 0 1px 0 rgba(254,202,202,0.20)",
               }}
             >
-              <div className="flex flex-col items-center gap-2 px-6">
-                <span className="text-red-300/80 text-[10px] sm:text-xs tracking-[0.4em] uppercase">
+              <div className="flex flex-col items-center gap-1.5">
+                <span className="text-red-300/80 text-[9px] sm:text-[10px] tracking-[0.4em] uppercase">
                   ↗ launch
                 </span>
                 <span
-                  className="text-red-200 text-3xl sm:text-5xl tracking-[0.3em] uppercase font-light group-hover:text-red-100 transition-colors"
+                  className="text-red-200 text-xl sm:text-2xl tracking-[0.25em] uppercase font-light group-hover:text-red-100 transition-colors"
                   style={{
                     textShadow:
-                      "0 0 14px rgba(252,165,165,0.85), 0 0 32px rgba(239,68,68,0.55), 0 0 70px rgba(127,29,29,0.4)",
+                      "0 0 12px rgba(252,165,165,0.85), 0 0 24px rgba(239,68,68,0.55)",
                   }}
                 >
                   the missile
                 </span>
-                <span className="text-red-300/55 text-[10px] sm:text-xs tracking-[0.3em] uppercase italic">
+                <span className="text-red-300/60 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase italic">
                   dear sam · spotlight dispatch
                 </span>
                 <MissileClock since={MISSILE_FIRED} />
