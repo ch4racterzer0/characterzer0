@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { LayerNav } from "../../layer-nav";
-import { BandPrompt } from "../../hungersite/band-prompt";
-import { LiveCounter } from "../../hungersite/live-counter";
+import { BandPrompt } from "./band-prompt";
+import { LiveCounter } from "./live-counter";
 import { COVERS, PodcastCoversModal } from "../../hungersite/podcast-covers";
 import { TicTacToeBoard } from "../../hungersite/tic-tac-toe";
 import { WarClock } from "../../hungersite/war-clock";
