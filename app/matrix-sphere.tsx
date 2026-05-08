@@ -360,22 +360,24 @@ function HomeSphere() {
     <div
       aria-hidden
       className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center"
-      style={{ animation: "home-sphere-breathe 16s ease-in-out infinite" }}
     >
-      <div
-        className="relative aspect-square w-full max-w-[640px] rounded-full overflow-hidden"
-        style={{
-          transform: "perspective(1100px) rotateX(15deg) rotateY(-8deg)",
-          maskImage:
-            "radial-gradient(circle at center, black 30%, rgba(0,0,0,0.4) 60%, transparent 78%)",
-          WebkitMaskImage:
-            "radial-gradient(circle at center, black 30%, rgba(0,0,0,0.4) 60%, transparent 78%)",
-          boxShadow:
-            "inset 0 0 80px rgba(59,130,246,0.25), 0 0 60px rgba(59,130,246,0.15)",
-        }}
-      >
-        <SphereGrid size={640} />
-      <ThoughtsOverlay />
+      <div className="relative aspect-square w-full max-w-[640px]">
+        <div
+          className="absolute inset-0 rounded-full overflow-hidden"
+          style={{
+            transform: "perspective(1100px) rotateX(15deg) rotateY(-8deg)",
+            maskImage:
+              "radial-gradient(circle at center, black 30%, rgba(0,0,0,0.4) 60%, transparent 78%)",
+            WebkitMaskImage:
+              "radial-gradient(circle at center, black 30%, rgba(0,0,0,0.4) 60%, transparent 78%)",
+            boxShadow:
+              "inset 0 0 80px rgba(59,130,246,0.25), 0 0 60px rgba(59,130,246,0.15)",
+            animation: "home-sphere-breathe 16s ease-in-out infinite",
+          }}
+        >
+          <SphereGrid size={640} />
+        </div>
+        <ThoughtsOverlay />
       </div>
     </div>
   );
