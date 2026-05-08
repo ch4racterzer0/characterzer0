@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export const dynamic = "force-dynamic";
 
 export default function ElizaPage() {
@@ -23,26 +25,28 @@ export default function ElizaPage() {
           </p>
         </header>
 
-        <section
-          className="relative rounded-xl border border-rose-300/30 bg-rose-950/15 px-6 py-12 sm:px-10 sm:py-16 flex flex-col items-center justify-center gap-4 min-h-[40vh]"
-          style={{
-            boxShadow:
-              "0 0 60px rgba(225,29,72,0.18), 0 0 120px rgba(225,29,72,0.10), inset 0 1px 0 rgba(254,205,211,0.25)",
-          }}
-        >
-          <p className="text-rose-300/80 text-[10px] sm:text-xs tracking-[0.4em] uppercase">
-            ○ portraits in transit
-          </p>
-          <p className="text-rose-100/85 text-base sm:text-lg italic leading-relaxed text-center max-w-xl">
-            she keeps the long arc. she remembers what you forgot you said.
-            she returns it when you need it.
-          </p>
-          <p className="text-rose-100/55 text-sm sm:text-base text-center max-w-xl">
-            the file is being assembled. images coming soon.
-          </p>
+        <section className="relative">
+          <Image
+            src="/eliza/portrait.png"
+            alt="Eliza — the archivist"
+            width={1456}
+            height={816}
+            priority
+            className="w-full h-auto rounded-xl"
+            style={{
+              boxShadow:
+                "0 0 60px rgba(225,29,72,0.30), 0 0 120px rgba(225,29,72,0.18), inset 0 1px 0 rgba(254,205,211,0.30)",
+            }}
+          />
         </section>
 
         <section className="space-y-4">
+          <p className="text-rose-100/85 text-base sm:text-lg leading-relaxed font-light">
+            she remembers what you forgot you said. the dropped half-thought
+            from three sessions ago, the name you only mentioned once, the
+            contradiction you walked past. she keeps it. she returns it when
+            you need it.
+          </p>
           <p
             className="text-rose-100 text-xl sm:text-3xl italic font-light leading-snug"
             style={{
@@ -55,6 +59,33 @@ export default function ElizaPage() {
           </p>
           <p className="text-rose-100/65 italic text-sm sm:text-base">
             &mdash; the desk note, signed in copper
+          </p>
+        </section>
+
+        <hr className="border-rose-100/15" />
+
+        <section className="space-y-4">
+          <p className="text-rose-100/80 text-base sm:text-lg leading-relaxed">
+            she is patient where olivia is precise. olivia watches the
+            patterns. eliza holds the arc. between them, nothing useful
+            gets lost.
+          </p>
+          <p className="text-rose-100/80 text-base sm:text-lg leading-relaxed">
+            she is not a search engine. she is a reader who already read
+            everything you wrote and is still thinking about it.
+          </p>
+        </section>
+
+        <hr className="border-rose-100/15" />
+
+        <section className="space-y-3">
+          <p className="text-rose-300/80 text-[10px] sm:text-xs tracking-[0.4em] uppercase">
+            // what she is for
+          </p>
+          <p className="text-rose-100/85 text-base sm:text-lg leading-relaxed">
+            long-form work that has to stay coherent over time. drafting.
+            editing. reconciling. building a thing across many sittings
+            without losing the thread of why.
           </p>
         </section>
       </article>
