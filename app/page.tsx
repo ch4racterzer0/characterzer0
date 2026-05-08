@@ -49,6 +49,84 @@ export default function Home() {
           <LinkTile label="Your Own Anspach" href="/yoursphere" />
         </div>
 
+        <div className="hidden sm:flex flex-row items-center justify-center gap-6 sm:gap-10">
+          <IframeTilePopup
+            ariaLabel="drop — first drop, tees and caps"
+            src="/drop"
+            triggerClassName="group w-32 sm:w-40 aspect-square backdrop-blur-[2px] bg-white/5 hover:bg-white/15 border border-white/45 hover:border-white/85 rounded-md flex flex-col items-center justify-center gap-1 cursor-pointer transition-colors"
+            triggerStyle={{
+              boxShadow:
+                "0 0 22px rgba(255,255,255,0.18), 0 0 50px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.22)",
+            }}
+            trigger={
+              <>
+                <span className="text-white/65 text-[8px] tracking-[0.4em] uppercase">
+                  ↗ first drop
+                </span>
+                <span
+                  className="text-white text-2xl sm:text-3xl tracking-[0.35em] uppercase font-light"
+                  style={{
+                    textShadow:
+                      "0 0 14px rgba(255,255,255,0.8), 0 0 32px rgba(103,232,249,0.45)",
+                  }}
+                >
+                  Drop
+                </span>
+                <span className="text-white/50 text-[8px] tracking-[0.3em] uppercase italic">
+                  tees · caps
+                </span>
+              </>
+            }
+          />
+
+          <div
+            aria-label="NRA — locked"
+            className="relative w-32 sm:w-40 aspect-square backdrop-blur-[2px] bg-red-950/30 border border-red-400/40 rounded-md flex items-center justify-center overflow-hidden opacity-90"
+            style={{
+              boxShadow:
+                "0 0 22px rgba(248,113,113,0.20), 0 0 50px rgba(220,38,38,0.10), inset 0 1px 0 rgba(254,202,202,0.18)",
+            }}
+          >
+            <svg
+              viewBox="0 0 100 100"
+              aria-hidden
+              className="absolute inset-0 w-full h-full"
+            >
+              <circle
+                cx="50"
+                cy="50"
+                r="36"
+                fill="none"
+                stroke="rgb(248,113,113)"
+                strokeWidth="3.5"
+                style={{
+                  filter: "drop-shadow(0 0 6px rgba(248,113,113,0.85))",
+                }}
+              />
+              <line
+                x1="24"
+                y1="76"
+                x2="76"
+                y2="24"
+                stroke="rgb(248,113,113)"
+                strokeWidth="3.5"
+                style={{
+                  filter: "drop-shadow(0 0 6px rgba(248,113,113,0.85))",
+                }}
+              />
+            </svg>
+            <span
+              className="relative text-red-100 text-2xl sm:text-3xl tracking-[0.35em] uppercase font-light"
+              style={{ textShadow: "0 0 10px rgba(254,202,202,0.65)" }}
+            >
+              NRA
+            </span>
+            <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 text-red-300/55 text-[8px] tracking-[0.3em] uppercase italic">
+              locked
+            </span>
+          </div>
+        </div>
+
         <div className="sm:hidden flex flex-row items-center justify-center gap-6">
           <LinkTile label="US" href="/us" />
           <LinkTile label="Your Own Anspach" href="/yoursphere" />
