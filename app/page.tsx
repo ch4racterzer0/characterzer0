@@ -2,7 +2,6 @@ import { HoleInput } from "./hole-input";
 import { IframeTilePopup } from "./iframe-tile-popup";
 import { LinkTile } from "./link-tile";
 import { ZeroThoughts } from "./zero-thoughts";
-import { LyricRotator } from "./lyric-rotator";
 import { MatrixSphere } from "./matrix-sphere";
 import { MobileLanding } from "./mobile-landing";
 import {
@@ -32,9 +31,6 @@ export default function Home() {
         <LinkTile label="Madhu" href="/madhu" large />
 
         <div className="flex flex-col items-center gap-6 sm:gap-10">
-          <div className="hidden sm:block">
-            <LyricRotator />
-          </div>
           <div className="flex flex-row items-center gap-6 sm:gap-8">
             <LinkTile label="Core4" href="/core4" large />
             <div className="hidden sm:block">
