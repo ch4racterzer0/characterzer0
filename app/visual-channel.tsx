@@ -69,7 +69,7 @@ export function CenterFigure() {
         alt=""
         aria-hidden
         draggable={false}
-        className="absolute h-[85vh] w-[85vh] max-w-[85vw] max-h-[85vw] object-contain select-none"
+        className="absolute inset-0 w-full h-full object-cover select-none"
         style={{
           mixBlendMode: "screen",
           opacity: 0.85,
