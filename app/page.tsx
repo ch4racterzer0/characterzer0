@@ -1,4 +1,5 @@
 import { HoleInput } from "./hole-input";
+import { IframeTilePopup } from "./iframe-tile-popup";
 import { LinkTile } from "./link-tile";
 import { ZeroThoughts } from "./zero-thoughts";
 import { LyricRotator } from "./lyric-rotator";
@@ -61,7 +62,39 @@ export default function Home() {
           rightSlot={<LinkTile label="US" href="/us" subline="○ step in" />}
           leftSlot={<HoleInput />}
           leftTop={<TurntableTile />}
-          rightTop={<VisualTile />}
+          rightTop={
+            <div className="flex flex-col items-center gap-3">
+              <IframeTilePopup
+                ariaLabel="olivia — file"
+                src="/olivia"
+                triggerClassName="group w-44 sm:w-48 backdrop-blur-[2px] bg-blue-950/40 hover:bg-blue-950/60 border border-blue-300/55 hover:border-blue-200/85 px-3 py-2 rounded-sm transition-colors flex flex-col items-center gap-0.5 cursor-pointer"
+                triggerStyle={{
+                  boxShadow:
+                    "0 0 22px rgba(96,165,250,0.45), 0 0 50px rgba(59,130,246,0.22), 0 8px 22px -8px rgba(0,0,0,0.65), inset 0 1px 0 rgba(147,197,253,0.30)",
+                }}
+                trigger={
+                  <>
+                    <span className="text-blue-200/80 text-[8px] tracking-[0.4em] uppercase">
+                      ↗ file
+                    </span>
+                    <span
+                      className="text-blue-100 text-xs sm:text-sm tracking-[0.3em] uppercase font-light"
+                      style={{
+                        textShadow:
+                          "0 0 10px rgba(147,197,253,0.85), 0 0 22px rgba(96,165,250,0.55)",
+                      }}
+                    >
+                      olivia
+                    </span>
+                    <span className="text-blue-300/65 text-[8px] tracking-[0.3em] uppercase italic">
+                      pattern observer
+                    </span>
+                  </>
+                }
+              />
+              <VisualTile />
+            </div>
+          }
         />
 
           </main>
