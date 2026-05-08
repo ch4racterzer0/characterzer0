@@ -151,8 +151,8 @@ export default function DropPage() {
             // mouse pad · black · stitched edge
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <HexBox label="mouse pad" view="hex" aspect="aspect-[3/2]" />
             <FigureBox label="mouse pad" view="figure" aspect="aspect-[3/2]" />
+            <HexBox label="mouse pad" view="hex" aspect="aspect-[3/2]" />
           </div>
         </section>
 
