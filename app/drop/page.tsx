@@ -124,14 +124,14 @@ function FigureBox({
         style={{ mixBlendMode: "screen" }}
       />
       <p
-        className="absolute left-1/2 top-[24%] -translate-x-1/2 -translate-y-1/2 z-10 font-mono text-2xl sm:text-3xl tracking-[0.2em]"
+        className="absolute left-1/2 top-[24%] -translate-x-1/2 -translate-y-1/2 z-10 font-mono text-lg sm:text-xl tracking-[0.15em] whitespace-nowrap"
         style={{
           color: "rgba(103,232,249,0.27)",
           textShadow:
             "0 0 6px rgba(103,232,249,0.22), 0 0 14px rgba(59,130,246,0.12)",
         }}
       >
-        零
+        零号
       </p>
       <p
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 font-mono text-sm sm:text-base tracking-[0.4em] whitespace-nowrap"
