@@ -332,7 +332,7 @@ function ScoftiPopup({ onClose }: { onClose: () => void }) {
   );
 }
 
-function HomeSphere() {
+export function HomeSphere() {
   return (
     <div
       aria-hidden
@@ -363,7 +363,6 @@ export function MatrixSphere() {
 
   return (
     <>
-      <HomeSphere />
       <ScoftiTile onClick={() => setOpen(true)} />
       {open && mounted && <ScoftiPopup onClose={() => setOpen(false)} />}
     </>
