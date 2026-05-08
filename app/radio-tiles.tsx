@@ -296,7 +296,7 @@ export function FigureWithTilesDesktop({
   centerTop?: ReactNode;
 } = {}) {
   return (
-    <div className="flex items-end justify-center gap-4 sm:gap-8">
+    <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] items-end justify-items-center gap-4 sm:gap-8 w-full">
       <div className="hidden sm:flex flex-col items-center gap-4">
         {leftTop}
         {leftSlot ?? <RadioTile label="SLOW" />}

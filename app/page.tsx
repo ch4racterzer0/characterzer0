@@ -144,7 +144,7 @@ export default function Home() {
             </div>
           }
           leftTop={
-            <div className="flex flex-col items-center gap-3">
+            <div className="flex flex-row items-center gap-3">
               <IframeTilePopup
                 ariaLabel="eliza — file"
                 src="/eliza"
@@ -177,7 +177,7 @@ export default function Home() {
             </div>
           }
           rightTop={
-            <div className="flex flex-col items-center gap-3">
+            <div className="flex flex-row-reverse items-center gap-3">
               <IframeTilePopup
                 ariaLabel="olivia — file"
                 src="/olivia"
