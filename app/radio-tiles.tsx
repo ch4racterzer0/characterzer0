@@ -316,14 +316,13 @@ export function FigureWithTilesDesktop({
         <TetherClock />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/figures/front.png"
+          src="/figures/back.png"
           alt=""
           aria-hidden
           draggable={false}
           className="absolute inset-0 w-full h-full object-contain pointer-events-none select-none"
           style={{
             mixBlendMode: "screen",
-            animation: "figure-mask-breath 24s ease-in-out infinite",
           }}
         />
       </div>
