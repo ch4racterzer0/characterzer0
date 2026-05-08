@@ -336,7 +336,7 @@ export function HomeSphere() {
   return (
     <div
       aria-hidden
-      className="fixed inset-0 z-[2] pointer-events-none flex items-start justify-center pt-[12vh]"
+      className="fixed inset-0 z-[2] pointer-events-none flex items-start justify-center pt-[17vh]"
       style={{
         opacity: 0,
         animation: "home-sphere-place 30s linear forwards",
@@ -346,7 +346,8 @@ export function HomeSphere() {
         className="relative aspect-square w-[40vh] max-w-[520px] rounded-full"
         style={{
           border: "1px solid rgba(147,197,253,0.9)",
-          animation: "home-sphere-shimmer 6s ease-in-out infinite",
+          animation:
+            "home-sphere-shimmer 6s ease-in-out infinite, home-sphere-expand 75s ease-out 30s forwards",
         }}
       />
     </div>

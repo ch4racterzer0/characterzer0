@@ -213,6 +213,15 @@ body,
   }
 }
 
+@keyframes home-sphere-expand {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.18);
+  }
+}
+
 @keyframes tether-rise {
   0%, 100% {
     opacity: 0.45;

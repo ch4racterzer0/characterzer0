@@ -26,23 +26,13 @@ export function MorselsRibbon() {
         boxShadow: "0 4px 20px -4px rgba(59,130,246,0.20)",
       }}
     >
-      <div className="relative h-7 sm:h-8 flex items-center overflow-hidden">
-        <div
-          className="flex whitespace-nowrap will-change-transform"
-          style={{
-            animation: "morsels-scroll 180s linear infinite",
-          }}
+      <div className="relative h-7 sm:h-8 flex items-center justify-center overflow-hidden px-4">
+        <span
+          className="font-mono text-blue-200/65 text-[10px] sm:text-xs tracking-[0.2em] truncate"
+          style={{ textShadow: "0 0 8px rgba(96,165,250,0.4)" }}
         >
-          <span
-            className="font-mono text-blue-200/65 text-[10px] sm:text-xs tracking-[0.2em] pr-12"
-            style={{ textShadow: "0 0 8px rgba(96,165,250,0.4)" }}
-          >
-            {stream}
-            {SEPARATOR}
-            {stream}
-            {SEPARATOR}
-          </span>
-        </div>
+          {stream}
+        </span>
       </div>
     </div>
   );

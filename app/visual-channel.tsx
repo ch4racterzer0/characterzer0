@@ -61,7 +61,7 @@ export function CenterFigure() {
   return (
     <div
       aria-hidden
-      className="fixed inset-0 z-[1] flex items-start justify-center pt-[18vh] pointer-events-none"
+      className="fixed inset-0 z-[1] flex items-start justify-center pt-[23vh] pointer-events-none"
     >
       <div className="relative h-[32vh] aspect-[3/2]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
