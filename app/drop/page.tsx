@@ -54,7 +54,7 @@ function FigureBox({
 }) {
   return (
     <div
-      className={`relative rounded-md border border-white/25 bg-black flex items-end justify-center overflow-hidden ${aspect}`}
+      className={`relative rounded-md border border-white/25 bg-black overflow-hidden ${aspect}`}
       style={{
         boxShadow:
           "0 0 30px rgba(255,255,255,0.10), 0 0 60px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.18)",
@@ -73,6 +73,14 @@ function FigureBox({
       </div>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
+        src="/itsyoursphere-cover.png"
+        alt=""
+        aria-hidden
+        draggable={false}
+        className="absolute inset-0 w-full h-full object-cover select-none"
+      />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         src="/figures/front.png"
         alt=""
         aria-hidden
@@ -81,10 +89,11 @@ function FigureBox({
         style={{ mixBlendMode: "screen" }}
       />
       <p
-        className="relative z-10 mb-[28%] text-white font-mono text-5xl sm:text-7xl tracking-[0.2em]"
+        className="absolute left-1/2 top-[24%] -translate-x-1/2 -translate-y-1/2 z-10 font-mono text-2xl sm:text-3xl tracking-[0.2em]"
         style={{
+          color: "rgba(103,232,249,0.55)",
           textShadow:
-            "0 0 16px rgba(255,255,255,0.85), 0 0 38px rgba(103,232,249,0.55), 0 0 70px rgba(59,130,246,0.35)",
+            "0 0 8px rgba(103,232,249,0.45), 0 0 18px rgba(59,130,246,0.25)",
         }}
       >
         零
