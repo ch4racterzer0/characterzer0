@@ -1,22 +1,19 @@
 export const dynamic = "force-dynamic";
 
-const FRONT_LOGO = "丫工5山Μ丁";
 const HEX_LINE = "59 49 53 57 4D 54";
 
-function GarmentBox({
+function HexBox({
   label,
   view,
-  text,
-  small,
+  aspect = "aspect-[4/5]",
 }: {
   label: string;
   view: string;
-  text: string;
-  small?: boolean;
+  aspect?: string;
 }) {
   return (
     <div
-      className="relative rounded-md border border-white/25 bg-black flex flex-col items-center justify-center gap-3 aspect-[4/5] overflow-hidden"
+      className={`relative rounded-md border border-white/25 bg-black flex items-center justify-center overflow-hidden ${aspect}`}
       style={{
         boxShadow:
           "0 0 30px rgba(255,255,255,0.10), 0 0 60px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.18)",
@@ -34,15 +31,63 @@ function GarmentBox({
         {view}
       </div>
       <p
-        className={`relative text-white font-mono tracking-[0.3em] sm:tracking-[0.4em] text-center px-4 ${
-          small ? "text-[10px] sm:text-xs" : "text-2xl sm:text-4xl"
-        }`}
+        className="relative text-white font-mono tracking-[0.3em] sm:tracking-[0.4em] text-center px-4 text-[10px] sm:text-xs"
         style={{
           textShadow:
             "0 0 14px rgba(255,255,255,0.85), 0 0 32px rgba(103,232,249,0.55), 0 0 60px rgba(59,130,246,0.35)",
         }}
       >
-        {text}
+        {HEX_LINE}
+      </p>
+    </div>
+  );
+}
+
+function FigureBox({
+  label,
+  view,
+  aspect = "aspect-[4/5]",
+}: {
+  label: string;
+  view: string;
+  aspect?: string;
+}) {
+  return (
+    <div
+      className={`relative rounded-md border border-white/25 bg-black flex items-end justify-center overflow-hidden ${aspect}`}
+      style={{
+        boxShadow:
+          "0 0 30px rgba(255,255,255,0.10), 0 0 60px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.18)",
+      }}
+    >
+      <div className="absolute top-3 left-3 flex items-center gap-2 text-[8px] sm:text-[10px] tracking-[0.4em] uppercase text-white/45 z-10">
+        <span
+          aria-hidden
+          className="block w-1 h-1 rounded-full bg-cyan-300"
+          style={{ boxShadow: "0 0 6px rgba(103,232,249,0.85)" }}
+        />
+        <span>{label}</span>
+      </div>
+      <div className="absolute top-3 right-3 text-[8px] sm:text-[10px] tracking-[0.3em] uppercase italic text-white/35 z-10">
+        {view}
+      </div>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/figures/front.png"
+        alt=""
+        aria-hidden
+        draggable={false}
+        className="absolute inset-0 w-full h-full object-cover select-none"
+        style={{ mixBlendMode: "screen" }}
+      />
+      <p
+        className="relative z-10 mb-[28%] text-white font-mono text-5xl sm:text-7xl tracking-[0.2em]"
+        style={{
+          textShadow:
+            "0 0 16px rgba(255,255,255,0.85), 0 0 38px rgba(103,232,249,0.55), 0 0 70px rgba(59,130,246,0.35)",
+        }}
+      >
+        零
       </p>
     </div>
   );
@@ -75,28 +120,38 @@ export default function DropPage() {
             // tee · black · 100% cotton
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <GarmentBox label="t-shirt" view="front" text={FRONT_LOGO} />
-            <GarmentBox
-              label="t-shirt"
-              view="inside collar"
-              text={HEX_LINE}
-              small
-            />
+            <HexBox label="t-shirt" view="front" />
+            <FigureBox label="t-shirt" view="back" />
           </div>
         </section>
 
         <section className="space-y-4">
           <p className="text-cyan-300/80 text-[10px] sm:text-xs tracking-[0.4em] uppercase">
-            // fitted cap · flat brim · structured
+            // hoodie · black · heavyweight cotton fleece
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <GarmentBox label="cap" view="front panel" text={FRONT_LOGO} />
-            <GarmentBox
-              label="cap"
-              view="back strap"
-              text={HEX_LINE}
-              small
-            />
+            <HexBox label="hoodie" view="front" />
+            <FigureBox label="hoodie" view="back" />
+          </div>
+        </section>
+
+        <section className="space-y-4">
+          <p className="text-cyan-300/80 text-[10px] sm:text-xs tracking-[0.4em] uppercase">
+            // mug · black ceramic · 11oz
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <HexBox label="mug" view="hex side" aspect="aspect-square" />
+            <FigureBox label="mug" view="figure side" aspect="aspect-square" />
+          </div>
+        </section>
+
+        <section className="space-y-4">
+          <p className="text-cyan-300/80 text-[10px] sm:text-xs tracking-[0.4em] uppercase">
+            // mouse pad · black · stitched edge
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <HexBox label="mouse pad" view="hex" aspect="aspect-[3/2]" />
+            <FigureBox label="mouse pad" view="figure" aspect="aspect-[3/2]" />
           </div>
         </section>
 
