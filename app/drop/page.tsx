@@ -200,6 +200,16 @@ export default function DropPage() {
 
         <section className="space-y-4">
           <p className="text-cyan-300/80 text-[10px] sm:text-xs tracking-[0.4em] uppercase">
+            // yeti tumbler · black stainless · 20oz
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <HexBox label="yeti" view="hex side" aspect="aspect-[3/4]" />
+            <FigureBox label="yeti" view="figure side" aspect="aspect-[3/4]" />
+          </div>
+        </section>
+
+        <section className="space-y-4">
+          <p className="text-cyan-300/80 text-[10px] sm:text-xs tracking-[0.4em] uppercase">
             // mouse pad · black · stitched edge
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
