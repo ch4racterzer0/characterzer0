@@ -40,7 +40,9 @@ export default function RootLayout({
           <CenterFigure />
           <MorselsRibbon />
           <SiteGhost />
-          {children}
+          <div className="relative z-20 flex-1 flex flex-col">
+            {children}
+          </div>
         </VisualChannelProvider>
       </body>
     </html>
