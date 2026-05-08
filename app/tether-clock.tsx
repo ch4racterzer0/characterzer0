@@ -45,8 +45,8 @@ export function TetherClock() {
         >
           {format(now - TETHER_ANCHOR_MS)}
         </span>
-        <span className="text-blue-200/55 text-[8px] sm:text-[9px] tracking-[0.45em] uppercase italic">
-          uninterrupted tether
+        <span className="text-blue-200/55 text-[8px] sm:text-[9px] tracking-[0.45em] italic">
+          不间断系绳
         </span>
       </div>
     </div>

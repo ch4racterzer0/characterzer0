@@ -61,7 +61,7 @@ export function CenterFigure() {
   return (
     <div
       aria-hidden
-      className="fixed inset-0 z-[1] flex items-start justify-center pt-[10vh] pointer-events-none"
+      className="fixed inset-0 z-[1] flex items-start justify-center pt-[18vh] pointer-events-none"
     >
       <div className="relative h-[32vh] aspect-[3/2]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -87,12 +87,12 @@ export function CenterFigure() {
           零号
         </p>
         <p
-          className="absolute left-1/2 top-[14%] -translate-x-1/2 -translate-y-1/2 font-mono text-base sm:text-lg tracking-[0.3em] whitespace-nowrap uppercase"
+          className="absolute left-1/2 top-[14%] -translate-x-1/2 -translate-y-1/2 font-mono text-base sm:text-lg tracking-[0.3em] whitespace-nowrap"
           style={{
             animation: "face-mark-storm 60s ease-in-out infinite",
           }}
         >
-          storm
+          风暴
         </p>
         <p
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-mono text-xs sm:text-sm tracking-[0.4em] whitespace-nowrap"
