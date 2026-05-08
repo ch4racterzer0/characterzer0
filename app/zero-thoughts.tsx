@@ -1,22 +1,65 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 const STORAGE_KEY = "zero-thoughts-v1";
+const SAVE_DEBOUNCE_MS = 600;
+const POLL_INTERVAL_MS = 15_000;
+
+export function useZeroThoughtsBroadcast() {
+  const [text, setText] = useState("");
+
+  useEffect(() => {
+    let cancelled = false;
+    async function load() {
+      try {
+        const r = await fetch("/api/thoughts", { cache: "no-store" });
+        if (!r.ok) return;
+        const j = (await r.json()) as { text?: string };
+        if (!cancelled && typeof j.text === "string") setText(j.text);
+      } catch {}
+    }
+    load();
+    const id = setInterval(load, POLL_INTERVAL_MS);
+    return () => {
+      cancelled = true;
+      clearInterval(id);
+    };
+  }, []);
+
+  return text;
+}
 
 export function ZeroThoughts() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [text, setText] = useState("");
   const [savedAt, setSavedAt] = useState<number | null>(null);
+  const [broadcasting, setBroadcasting] = useState<"idle" | "saving" | "live" | "error">(
+    "idle",
+  );
+  const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     setMounted(true);
+    let cached = "";
     try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) setText(saved);
+      cached = localStorage.getItem(STORAGE_KEY) ?? "";
+      if (cached) setText(cached);
     } catch {}
+    fetch("/api/thoughts", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j: { text?: string } | null) => {
+        if (j && typeof j.text === "string") {
+          setText(j.text);
+          try {
+            localStorage.setItem(STORAGE_KEY, j.text);
+          } catch {}
+          setBroadcasting("live");
+        }
+      })
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -32,6 +75,25 @@ export function ZeroThoughts() {
     };
   }, [open]);
 
+  function broadcast(value: string) {
+    setBroadcasting("saving");
+    fetch("/api/thoughts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text: value }),
+    })
+      .then((r) => {
+        if (!r.ok) throw new Error("save failed");
+        setBroadcasting("live");
+      })
+      .catch(() => setBroadcasting("error"));
+  }
+
+  function scheduleBroadcast(value: string) {
+    if (saveTimer.current) clearTimeout(saveTimer.current);
+    saveTimer.current = setTimeout(() => broadcast(value), SAVE_DEBOUNCE_MS);
+  }
+
   function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     const next = e.target.value;
     setText(next);
@@ -39,6 +101,7 @@ export function ZeroThoughts() {
       localStorage.setItem(STORAGE_KEY, next);
       setSavedAt(Date.now());
     } catch {}
+    scheduleBroadcast(next);
   }
 
   function clearAll() {
@@ -51,6 +114,7 @@ export function ZeroThoughts() {
       localStorage.removeItem(STORAGE_KEY);
       setSavedAt(Date.now());
     } catch {}
+    broadcast("");
   }
 
   function copyAll() {
@@ -157,7 +221,7 @@ export function ZeroThoughts() {
               <textarea
                 value={text}
                 onChange={handleChange}
-                placeholder="anything you want to come back to.&#10;&#10;writes only to your browser. nobody else sees it unless you copy it out and hand it to them."
+                placeholder="anything you want to come back to.&#10;&#10;this broadcasts. whatever you write here lights up inside every sphere."
                 spellCheck={false}
                 className="flex-1 min-h-[40vh] w-full bg-transparent text-blue-100 text-sm sm:text-base leading-relaxed font-mono px-5 py-5 sm:px-7 sm:py-6 outline-none resize-none placeholder:text-blue-100/30"
                 autoFocus
@@ -167,8 +231,22 @@ export function ZeroThoughts() {
                   {lineCount} {lineCount === 1 ? "line" : "lines"} ·{" "}
                   {charCount.toLocaleString()} chars
                 </span>
-                <span className="text-blue-300/45 italic">
-                  {savedAt ? "saved · localstorage" : "auto-saves as you type"}
+                <span
+                  className={`italic ${
+                    broadcasting === "error"
+                      ? "text-red-300/70"
+                      : broadcasting === "saving"
+                        ? "text-blue-200/70"
+                        : "text-blue-300/55"
+                  }`}
+                >
+                  {broadcasting === "saving"
+                    ? "broadcasting…"
+                    : broadcasting === "error"
+                      ? "save failed · cached locally"
+                      : broadcasting === "live"
+                        ? "● live in every sphere"
+                        : "○ ready"}
                 </span>
               </footer>
             </div>

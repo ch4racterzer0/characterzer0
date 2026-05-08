@@ -2,6 +2,28 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { useZeroThoughtsBroadcast } from "./zero-thoughts";
+
+function ThoughtsOverlay() {
+  const text = useZeroThoughtsBroadcast();
+  if (!text) return null;
+  return (
+    <div
+      aria-hidden
+      className="absolute inset-0 z-10 pointer-events-none flex items-center justify-center px-6 sm:px-10"
+    >
+      <p
+        className="text-blue-100/85 text-[11px] sm:text-sm leading-relaxed font-mono whitespace-pre-wrap text-center max-w-[68%]"
+        style={{
+          textShadow:
+            "0 0 10px rgba(59,130,246,0.85), 0 0 22px rgba(96,165,250,0.45), 0 0 38px rgba(30,64,175,0.35)",
+        }}
+      >
+        {text}
+      </p>
+    </div>
+  );
+}
 
 function SphereGrid({ size = 560 }: { size?: number }) {
   const spacing = 28;
@@ -196,6 +218,7 @@ function LiveSphere({
         ref={canvasRef}
         className="absolute inset-0 block w-full h-full opacity-35 mix-blend-screen pointer-events-none"
       />
+      <ThoughtsOverlay />
     </div>
   );
 }
@@ -352,6 +375,7 @@ function HomeSphere() {
         }}
       >
         <SphereGrid size={640} />
+      <ThoughtsOverlay />
       </div>
     </div>
   );
