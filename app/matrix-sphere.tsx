@@ -332,6 +332,13 @@ function ScoftiPopup({ onClose }: { onClose: () => void }) {
   );
 }
 
+const ORB_TILES = [
+  { label: "Madhu", angle: 0, radius: 15 },
+  { label: "Quest", angle: 92, radius: 14 },
+  { label: "Drop", angle: 180, radius: 15 },
+  { label: "US", angle: 248, radius: 14 },
+];
+
 export function HomeSphere() {
   return (
     <div
@@ -342,14 +349,32 @@ export function HomeSphere() {
         animation: "home-sphere-place 30s linear forwards",
       }}
     >
-      <div
-        className="relative aspect-square w-[40vh] max-w-[520px] rounded-full"
-        style={{
-          border: "1px solid rgba(147,197,253,0.9)",
-          animation:
-            "home-sphere-shimmer 6s ease-in-out infinite, home-sphere-expand 75s ease-out 30s forwards",
-        }}
-      />
+      <div className="relative w-[40vh] h-[44vh] max-w-[520px]">
+        <div
+          className="absolute inset-0 rounded-full"
+          style={{
+            border: "1px solid rgba(147,197,253,0.9)",
+            transformOrigin: "50% 0%",
+            animation:
+              "home-sphere-shimmer 6s ease-in-out infinite, home-sphere-expand 75s ease-out 30s forwards",
+          }}
+        />
+        {ORB_TILES.map((t, i) => (
+          <span
+            key={t.label}
+            className="absolute top-1/2 left-1/2 font-mono text-blue-100/85 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase whitespace-nowrap"
+            style={{
+              opacity: 0,
+              transform: `translate(-50%, -50%) rotate(${t.angle}deg) translateY(-${t.radius}vh) rotate(${-t.angle}deg)`,
+              animation: `orb-tile-pulse 60s linear ${i * 13}s infinite`,
+              textShadow:
+                "0 0 8px rgba(96,165,250,0.85), 0 0 18px rgba(59,130,246,0.5)",
+            }}
+          >
+            {t.label}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
