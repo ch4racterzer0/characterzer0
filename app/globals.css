@@ -249,6 +249,18 @@ body,
   }
 }
 
+@keyframes box-image-fade {
+  0%, 5% {
+    opacity: 0;
+  }
+  10%, 20% {
+    opacity: 0.18;
+  }
+  25%, 100% {
+    opacity: 0;
+  }
+}
+
 @keyframes turntable-spin {
   from {
     transform: rotate(0deg);

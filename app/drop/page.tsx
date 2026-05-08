@@ -49,6 +49,38 @@ const TONES: Record<
   },
 };
 
+const ROTATION_IMAGES = [
+  "/figures/front.png",
+  "/figures/back.png",
+  "/eliza/portrait.png",
+  "/itsyoursphere-cover.png",
+  "/grateful-dead/syf-bg.png",
+];
+
+function BoxRotator() {
+  return (
+    <>
+      {ROTATION_IMAGES.map((src, i) => (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          key={src}
+          src={src}
+          alt=""
+          aria-hidden
+          draggable={false}
+          className="absolute inset-0 w-full h-full object-cover select-none"
+          style={{
+            mixBlendMode: "screen",
+            animation: `box-image-fade ${ROTATION_IMAGES.length * 12}s ease-in-out infinite`,
+            animationDelay: `${i * 12}s`,
+            opacity: 0,
+          }}
+        />
+      ))}
+    </>
+  );
+}
+
 function HexBox({
   label,
   view,
@@ -69,7 +101,8 @@ function HexBox({
           "0 0 30px rgba(255,255,255,0.10), 0 0 60px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.18)",
       }}
     >
-      <div className="absolute top-3 left-3 flex items-center gap-2 text-[8px] sm:text-[10px] tracking-[0.4em] uppercase text-white/45">
+      <BoxRotator />
+      <div className="absolute top-3 left-3 flex items-center gap-2 text-[8px] sm:text-[10px] tracking-[0.4em] uppercase text-white/45 z-10">
         <span
           aria-hidden
           className="block w-1 h-1 rounded-full"
@@ -80,11 +113,11 @@ function HexBox({
         />
         <span>{label}</span>
       </div>
-      <div className="absolute top-3 right-3 text-[8px] sm:text-[10px] tracking-[0.3em] uppercase italic text-white/35">
+      <div className="absolute top-3 right-3 text-[8px] sm:text-[10px] tracking-[0.3em] uppercase italic text-white/35 z-10">
         {view}
       </div>
       <p
-        className="relative text-white font-mono tracking-[0.3em] sm:tracking-[0.4em] text-center px-4 text-[10px] sm:text-xs"
+        className="relative z-10 text-white font-mono tracking-[0.3em] sm:tracking-[0.4em] text-center px-4 text-[10px] sm:text-xs"
         style={{
           textShadow: t.hexShadow,
         }}
@@ -170,6 +203,7 @@ function FigureBox({
       <div className="absolute top-3 right-3 text-[8px] sm:text-[10px] tracking-[0.3em] uppercase italic text-white/35 z-10">
         {view}
       </div>
+      <BoxRotator />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/figures/front.png"
@@ -179,14 +213,13 @@ function FigureBox({
         className="absolute inset-0 w-full h-full object-cover select-none"
         style={{
           mixBlendMode: "screen",
-          filter: `hue-rotate(${t.hueRotate}deg)`,
+          animation: "figure-hue-cycle 90s linear infinite",
         }}
       />
       <p
         className="absolute left-1/2 top-[24%] -translate-x-1/2 -translate-y-1/2 z-10 font-mono text-lg sm:text-xl tracking-[0.15em] whitespace-nowrap"
         style={{
-          color: t.face,
-          textShadow: t.faceShadow,
+          animation: "mark-flicker 30s ease-in-out infinite",
         }}
       >
         零号
@@ -194,8 +227,7 @@ function FigureBox({
       <p
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 font-mono text-sm sm:text-base tracking-[0.4em] whitespace-nowrap"
         style={{
-          color: "rgba(255,255,255,0.18)",
-          textShadow: "0 0 6px rgba(255,255,255,0.12)",
+          animation: "chest-flicker 45s ease-in-out infinite",
         }}
       >
         丫工5山Μ丁
