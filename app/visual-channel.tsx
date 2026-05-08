@@ -73,8 +73,9 @@ export function CenterFigure() {
           className="absolute inset-0 w-full h-full object-contain select-none"
           style={{
             mixBlendMode: "screen",
+            transformOrigin: "50% 70%",
             animation:
-              "figure-mask-breath 24s ease-in-out infinite, figure-hue-cycle 90s linear infinite",
+              "figure-mask-breath 24s ease-in-out infinite, figure-hue-cycle 90s linear infinite, figure-turn-toward 9s ease-in-out 2s forwards",
           }}
         />
         <p

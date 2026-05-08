@@ -425,6 +425,15 @@ body,
   }
 }
 
+@keyframes figure-turn-toward {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(45deg);
+  }
+}
+
 @keyframes scofti-pulse {
   0%, 100% {
     opacity: 0.55;
