@@ -187,6 +187,15 @@ body,
   }
 }
 
+@keyframes home-sphere-place {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+
 @keyframes tether-rise {
   0%, 100% {
     opacity: 0.45;

@@ -336,9 +336,13 @@ function HomeSphere() {
   return (
     <div
       aria-hidden
-      className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center"
+      className="fixed inset-0 z-0 pointer-events-none flex items-start justify-center pt-[10vh]"
+      style={{
+        opacity: 0,
+        animation: "home-sphere-place 90s ease-out forwards",
+      }}
     >
-      <div className="relative aspect-square w-full max-w-[640px]">
+      <div className="relative aspect-square w-[48vh] max-w-[640px]">
         <div
           className="absolute inset-0 rounded-full overflow-hidden"
           style={{
@@ -348,11 +352,9 @@ function HomeSphere() {
             WebkitMaskImage:
               "radial-gradient(circle at center, black 30%, rgba(0,0,0,0.4) 60%, transparent 78%)",
             boxShadow:
-              "inset 0 0 80px rgba(59,130,246,0.25), 0 0 60px rgba(59,130,246,0.15)",
-            animation: "home-sphere-breathe 16s ease-in-out infinite",
+              "inset 0 0 80px rgba(59,130,246,0.45), 0 0 60px rgba(59,130,246,0.3)",
           }}
         />
-        <ThoughtsOverlay />
       </div>
     </div>
   );
@@ -366,6 +368,7 @@ export function MatrixSphere() {
 
   return (
     <>
+      <HomeSphere />
       <ScoftiTile onClick={() => setOpen(true)} />
       {open && mounted && <ScoftiPopup onClose={() => setOpen(false)} />}
     </>
