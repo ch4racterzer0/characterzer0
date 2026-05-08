@@ -134,7 +134,7 @@ function FigureBox({
         零
       </p>
       <p
-        className="absolute left-1/2 top-[58%] -translate-x-1/2 -translate-y-1/2 z-10 font-mono text-sm sm:text-base tracking-[0.4em]"
+        className="absolute left-1/2 top-[72%] -translate-x-1/2 -translate-y-1/2 z-10 font-mono text-sm sm:text-base tracking-[0.4em] whitespace-nowrap"
         style={{
           color: "rgba(255,255,255,0.18)",
           textShadow: "0 0 6px rgba(255,255,255,0.12)",
