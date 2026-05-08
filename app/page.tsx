@@ -1,7 +1,6 @@
 import { HoleInput } from "./hole-input";
 import { IframeTilePopup } from "./iframe-tile-popup";
 import { LinkTile } from "./link-tile";
-import { ZeroThoughts } from "./zero-thoughts";
 import { MatrixSphere } from "./matrix-sphere";
 import { MobileLanding } from "./mobile-landing";
 import {
@@ -36,16 +35,13 @@ export default function Home() {
           </div>
         </div>
 
-        <ZeroThoughts />
-
-        <div className="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-10 w-full max-w-md sm:w-auto sm:max-w-none">
+        <div className="hidden sm:grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-10 w-full max-w-md sm:w-auto sm:max-w-none">
           <LinkTile
             label="Current Targets"
             href="/currenttarget"
             subline="○ 02 done · 03 next"
           />
           <LinkTile label="Current Assets" href="/currentassets" />
-          <LinkTile label="WIP" href="/wip" />
           <LinkTile label="Your Own Anspach" href="/yoursphere" />
         </div>
 

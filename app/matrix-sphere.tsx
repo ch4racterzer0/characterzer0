@@ -366,7 +366,6 @@ export function MatrixSphere() {
 
   return (
     <>
-      <HomeSphere />
       <ScoftiTile onClick={() => setOpen(true)} />
       {open && mounted && <ScoftiPopup onClose={() => setOpen(false)} />}
     </>
