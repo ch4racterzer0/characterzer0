@@ -152,7 +152,7 @@ export function TurntableTile() {
   );
 }
 
-export function VisualTile() {
+export function VisualTile({ children }: { children?: ReactNode }) {
   const [armed, setArmed] = useState(false);
 
   const pads = [
@@ -171,13 +171,14 @@ export function VisualTile() {
   ];
 
   return (
-    <button
-      type="button"
-      onClick={() => setArmed((v) => !v)}
-      aria-pressed={armed}
-      aria-label={armed ? "Disarm the visual controller" : "Arm the visual controller"}
-      className="relative cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/60 rounded-md inline-flex flex-col items-center gap-2 group"
-    >
+    <div className="flex flex-col items-center gap-3">
+      <button
+        type="button"
+        onClick={() => setArmed((v) => !v)}
+        aria-pressed={armed}
+        aria-label={armed ? "Disarm the visual controller" : "Arm the visual controller"}
+        className="relative cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/60 rounded-md inline-flex flex-col items-center gap-2 group"
+      >
       <span
         aria-hidden
         className={`absolute left-1/2 -translate-x-1/2 top-0 w-20 h-20 sm:w-24 sm:h-24 rounded-2xl blur-3xl transition-colors ${
@@ -268,6 +269,10 @@ export function VisualTile() {
         {armed ? "● armed" : "○ visual"}
       </span>
     </button>
+      {armed && children ? (
+        <div className="flex flex-col items-center gap-2">{children}</div>
+      ) : null}
+    </div>
   );
 }
 
