@@ -171,7 +171,7 @@ export function VisualTile({ children }: { children?: ReactNode }) {
   ];
 
   return (
-    <div className="flex flex-col items-center gap-3">
+    <div className="relative flex flex-col items-center gap-3">
       <button
         type="button"
         onClick={() => setArmed((v) => !v)}
@@ -270,7 +270,9 @@ export function VisualTile({ children }: { children?: ReactNode }) {
       </span>
     </button>
       {armed && children ? (
-        <div className="flex flex-col items-center gap-2">{children}</div>
+        <div className="absolute left-full top-0 ml-3 flex flex-col items-start gap-2 z-20">
+          {children}
+        </div>
       ) : null}
     </div>
   );
