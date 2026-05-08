@@ -370,8 +370,8 @@ export default function DropPage() {
             // tee · black · 100% cotton
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <HexBox label="t-shirt" view="front" tone="blue" />
-            <FigureBox label="t-shirt" view="back" tone="blue" />
+            <HexBox label="t-shirt" view="back" tone="blue" />
+            <FigureBox label="t-shirt" view="front" tone="blue" />
           </div>
         </section>
 
@@ -380,8 +380,8 @@ export default function DropPage() {
             // hoodie · black · heavyweight cotton fleece
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <HexBox label="hoodie" view="front" tone="green" />
-            <FigureBox label="hoodie" view="back" tone="green" />
+            <HexBox label="hoodie" view="back" tone="green" />
+            <FigureBox label="hoodie" view="front" tone="green" />
           </div>
         </section>
 
