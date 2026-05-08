@@ -261,6 +261,18 @@ body,
   }
 }
 
+@keyframes hex-text-cycle {
+  0%, 1% {
+    opacity: 0;
+  }
+  2.5%, 10% {
+    opacity: 1;
+  }
+  11.5%, 100% {
+    opacity: 0;
+  }
+}
+
 @keyframes turntable-spin {
   from {
     transform: rotate(0deg);
