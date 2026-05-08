@@ -52,7 +52,9 @@ const ROTATION_IMAGES = [
   "/drop-rotation/sharethebyline.png",
   "/drop-rotation/spotlight.png",
   "/drop-rotation/terrapin-station.png",
+  "/drop-rotation/tethered.png",
   "/drop-rotation/thedelos.png",
+  "/drop-rotation/warning.png",
 ];
 
 const HEX_VARIANTS: { text: string; color: string; glow: string }[] = [
