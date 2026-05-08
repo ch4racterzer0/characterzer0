@@ -8,6 +8,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { TetherClock } from "./tether-clock";
 
 const JEMP_STREAM = "https://streaming.radio.co/sd71de59b3/listen";
 
@@ -113,15 +114,18 @@ export function FigureWithTilesDesktop({
         {leftTop}
         <RadioTile label="SLOW" />
       </div>
-      <Image
-        src="/characterzer0-figure.png"
-        alt="character zer0"
-        width={1536}
-        height={1024}
-        priority
-        sizes="(max-width: 640px) 50vw, 30vw"
-        className="h-[28vh] w-auto"
-      />
+      <div className="relative h-[28vh]">
+        <TetherClock />
+        <Image
+          src="/characterzer0-figure.png"
+          alt="character zer0"
+          width={1536}
+          height={1024}
+          priority
+          sizes="(max-width: 640px) 50vw, 30vw"
+          className="h-full w-auto"
+        />
+      </div>
       <div className="hidden sm:flex flex-col items-center gap-4">
         {rightTop}
         {rightSlot ?? <RadioTile label="READY" />}

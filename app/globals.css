@@ -187,6 +187,17 @@ body,
   }
 }
 
+@keyframes tether-rise {
+  0%, 100% {
+    opacity: 0.45;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.85;
+    transform: translateY(-8px);
+  }
+}
+
 @keyframes site-breathe {
   0%, 100% {
     opacity: 1;
