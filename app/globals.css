@@ -266,6 +266,26 @@ body,
   }
 }
 
+@keyframes orb-rear-light-rise {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes orb-sphere-3d-rise {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 @keyframes orb-wallpaper-fade {
   0%, 4% {
     opacity: 0;

@@ -349,6 +349,28 @@ const ORB_WALLPAPERS = [
   "/drop-rotation/warning.png",
 ];
 
+export function OrbRearLight() {
+  return (
+    <div
+      aria-hidden
+      className="fixed inset-0 z-[0] pointer-events-none flex items-start justify-center pt-[8vh]"
+      style={{
+        opacity: 0,
+        animation: "orb-rear-light-rise 50s ease-out 6s forwards",
+      }}
+    >
+      <div
+        className="relative w-[70vh] h-[70vh] max-w-[820px] rounded-full"
+        style={{
+          background:
+            "radial-gradient(circle at 50% 50%, rgba(191,219,254,0.42) 0%, rgba(147,197,253,0.30) 18%, rgba(96,165,250,0.22) 32%, rgba(59,130,246,0.14) 48%, rgba(30,64,175,0.07) 62%, transparent 78%)",
+          filter: "blur(34px)",
+        }}
+      />
+    </div>
+  );
+}
+
 export function OrbWallpapers() {
   const cycle = ORB_WALLPAPERS.length * 14;
   return (
@@ -394,6 +416,17 @@ export function HomeSphere() {
       }}
     >
       <div className="relative w-[40vh] h-[44vh] max-w-[520px]">
+        <div
+          aria-hidden
+          className="absolute inset-0 rounded-full pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(circle at 35% 28%, rgba(255,255,255,0.22) 0%, rgba(191,219,254,0.14) 22%, rgba(96,165,250,0.06) 42%, transparent 60%), radial-gradient(circle at 70% 80%, rgba(15,23,42,0.55) 0%, rgba(15,23,42,0.20) 35%, transparent 60%)",
+            mixBlendMode: "screen",
+            opacity: 0,
+            animation: "orb-sphere-3d-rise 45s ease-out 10s forwards",
+          }}
+        />
         <div
           className="absolute inset-0 rounded-full"
           style={{
