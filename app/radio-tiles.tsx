@@ -104,13 +104,13 @@ export function TurntableTile() {
     >
       <span
         aria-hidden
-        className={`absolute left-1/2 -translate-x-1/2 top-0 w-24 h-24 sm:w-28 sm:h-28 rounded-full blur-3xl transition-colors ${
+        className={`absolute left-1/2 -translate-x-1/2 top-0 w-20 h-20 sm:w-24 sm:h-24 rounded-full blur-3xl transition-colors ${
           playing ? "bg-blue-400/55" : "bg-blue-500/20"
         }`}
       />
       <span
         aria-hidden
-        className="relative block w-24 h-24 sm:w-28 sm:h-28 rounded-full border border-blue-400/45 transition-shadow duration-500"
+        className="relative block w-20 h-20 sm:w-24 sm:h-24 rounded-full border border-blue-400/45 transition-shadow duration-500"
         style={{
           background:
             "radial-gradient(circle at center, rgba(15,23,42,0.95) 0%, rgba(0,0,0,1) 55%, rgba(30,58,138,0.45) 100%), repeating-radial-gradient(circle at center, rgba(96,165,250,0.12) 0px, rgba(96,165,250,0.12) 1px, transparent 1px, transparent 4px)",
@@ -123,7 +123,7 @@ export function TurntableTile() {
       >
         <span
           aria-hidden
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-blue-300/55 bg-blue-950/85 flex items-center justify-center"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-blue-300/55 bg-blue-950/85 flex items-center justify-center"
           style={{
             boxShadow: "inset 0 0 12px rgba(59,130,246,0.35)",
           }}
@@ -180,13 +180,13 @@ export function VisualTile() {
     >
       <span
         aria-hidden
-        className={`absolute left-1/2 -translate-x-1/2 top-0 w-24 h-24 sm:w-28 sm:h-28 rounded-2xl blur-3xl transition-colors ${
+        className={`absolute left-1/2 -translate-x-1/2 top-0 w-20 h-20 sm:w-24 sm:h-24 rounded-2xl blur-3xl transition-colors ${
           armed ? "bg-violet-400/40" : "bg-violet-500/15"
         }`}
       />
       <span
         aria-hidden
-        className="relative block w-24 h-24 sm:w-28 sm:h-28 rounded-md border border-violet-400/45 transition-shadow duration-500 overflow-hidden"
+        className="relative block w-20 h-20 sm:w-24 sm:h-24 rounded-md border border-violet-400/45 transition-shadow duration-500 overflow-hidden"
         style={{
           background:
             "linear-gradient(180deg, rgba(15,10,30,0.95) 0%, rgba(0,0,0,1) 55%, rgba(46,16,101,0.45) 100%)",

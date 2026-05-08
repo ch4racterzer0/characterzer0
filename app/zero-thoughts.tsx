@@ -131,7 +131,7 @@ export function ZeroThoughts() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="open zer0's thoughts"
-        className="hidden sm:flex relative items-center justify-between gap-3 w-full max-w-md sm:max-w-lg px-4 py-3 sm:px-5 sm:py-3 rounded-md border border-blue-400/35 bg-blue-950/15 hover:bg-blue-950/30 hover:border-blue-300/60 cursor-pointer transition-colors"
+        className="hidden sm:flex relative flex-col items-start justify-center gap-1 w-full max-w-md sm:max-w-lg px-4 py-3 sm:px-5 sm:py-3 rounded-md border border-blue-400/35 bg-blue-950/15 hover:bg-blue-950/30 hover:border-blue-300/60 cursor-pointer transition-colors text-left"
         style={{
           boxShadow:
             "inset 0 0 30px rgba(59,130,246,0.15), 0 0 18px rgba(59,130,246,0.18)",
@@ -146,8 +146,14 @@ export function ZeroThoughts() {
         >
           // zer0&rsquo;s thoughts
         </span>
-        <span className="text-blue-300/55 text-[8px] sm:text-[10px] tracking-[0.3em] uppercase italic">
-          open ↗
+        <span
+          className="text-blue-200/85 text-[10px] sm:text-xs tracking-[0.18em] normal-case leading-relaxed"
+          style={{
+            textShadow:
+              "0 0 8px rgba(96,165,250,0.45), 0 0 18px rgba(59,130,246,0.22)",
+          }}
+        >
+          details coming tonight on how this could be your sphere
         </span>
       </button>
 

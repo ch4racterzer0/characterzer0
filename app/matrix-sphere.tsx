@@ -97,9 +97,11 @@ function SphereGrid({ size = 560 }: { size?: number }) {
 function LiveSphere({
   size = 560,
   videoId = "yLLN6g1BkkI",
+  videoless = false,
 }: {
   size?: number;
   videoId?: string;
+  videoless?: boolean;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -194,16 +196,18 @@ function LiveSphere({
           "inset 0 0 80px rgba(59,130,246,0.25), 0 0 60px rgba(59,130,246,0.15)",
       }}
     >
-      <iframe
-        key={videoId}
-        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&playsinline=1&iv_load_policy=3&disablekb=1`}
-        title="character zer0 — sphere ghost video"
-        allow="autoplay; encrypted-media; picture-in-picture"
-        referrerPolicy="strict-origin"
-        loading="lazy"
-        className="absolute top-0 left-1/2 -translate-x-1/2 h-full block border-0 opacity-40"
-        style={{ aspectRatio: "16 / 9" }}
-      />
+      {!videoless && (
+        <iframe
+          key={videoId}
+          src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&playsinline=1&iv_load_policy=3&disablekb=1`}
+          title="character zer0 — sphere ghost video"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          referrerPolicy="strict-origin"
+          loading="lazy"
+          className="absolute top-0 left-1/2 -translate-x-1/2 h-full block border-0 opacity-40"
+          style={{ aspectRatio: "16 / 9" }}
+        />
+      )}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/sphere/trey-wrigley.webp"
@@ -229,7 +233,7 @@ function ScoftiTile({ onClick }: { onClick: () => void }) {
       type="button"
       onClick={onClick}
       aria-label="scofti — entertainment · open the live cast"
-      className="group absolute top-12 right-3 sm:top-14 sm:right-5 z-20 w-32 sm:w-40 backdrop-blur-[2px] bg-amber-950/35 hover:bg-amber-950/55 border border-amber-400/55 hover:border-amber-300/85 rounded-md px-3 py-3 sm:px-4 sm:py-3 transition-colors cursor-pointer flex flex-col items-center gap-1 overflow-hidden"
+      className="group absolute top-12 right-3 sm:top-14 sm:right-5 z-20 w-24 sm:w-28 backdrop-blur-[2px] bg-amber-950/35 hover:bg-amber-950/55 border border-amber-400/55 hover:border-amber-300/85 rounded-md px-2.5 py-2 sm:px-3 sm:py-2 transition-colors cursor-pointer flex flex-col items-center gap-0.5 overflow-hidden"
       style={{
         boxShadow:
           "0 0 30px rgba(251,191,36,0.30), 0 0 70px rgba(146,64,14,0.30), 0 8px 22px -8px rgba(0,0,0,0.65), inset 0 1px 0 rgba(254,243,199,0.30)",
@@ -257,10 +261,10 @@ function ScoftiTile({ onClick }: { onClick: () => void }) {
         </span>
       </div>
       <span
-        className="relative text-amber-100 text-lg sm:text-2xl tracking-[0.35em] uppercase font-light group-hover:text-amber-50 transition-colors"
+        className="relative text-amber-100 text-sm sm:text-base tracking-[0.3em] uppercase font-light group-hover:text-amber-50 transition-colors"
         style={{
           textShadow:
-            "0 0 12px rgba(252,211,77,0.85), 0 0 28px rgba(251,191,36,0.55), 0 0 60px rgba(146,64,14,0.4)",
+            "0 0 10px rgba(252,211,77,0.85), 0 0 22px rgba(251,191,36,0.55), 0 0 48px rgba(146,64,14,0.4)",
           fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
         }}
       >
@@ -276,13 +280,7 @@ function ScoftiTile({ onClick }: { onClick: () => void }) {
   );
 }
 
-const DEFAULT_VIDEO_ID = "yLLN6g1BkkI";
-const BEST_SONG_VIDEO_ID = "VohLOhZ_5pM";
-
 function ScoftiPopup({ onClose }: { onClose: () => void }) {
-  const [videoId, setVideoId] = useState<string>(DEFAULT_VIDEO_ID);
-  const isBestSong = videoId === BEST_SONG_VIDEO_ID;
-
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -328,24 +326,7 @@ function ScoftiPopup({ onClose }: { onClose: () => void }) {
         >
           // scofti · entertainment · live
         </p>
-        <LiveSphere videoId={videoId} />
-        <button
-          type="button"
-          onClick={() =>
-            setVideoId((v) =>
-              v === BEST_SONG_VIDEO_ID ? DEFAULT_VIDEO_ID : BEST_SONG_VIDEO_ID,
-            )
-          }
-          aria-pressed={isBestSong}
-          className="text-amber-100 text-[10px] sm:text-xs tracking-[0.4em] uppercase border border-amber-400/55 hover:border-amber-300/85 bg-amber-950/40 hover:bg-amber-900/55 rounded-sm px-5 py-2.5 transition-colors"
-          style={{
-            textShadow: "0 0 10px rgba(251,191,36,0.55)",
-            boxShadow:
-              "0 0 18px rgba(251,191,36,0.25), inset 0 1px 0 rgba(254,243,199,0.25)",
-          }}
-        >
-          {isBestSong ? "← back to tweezer" : "best song ever"}
-        </button>
+        <LiveSphere videoless />
         <p className="text-amber-300/55 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase italic">
           esc to close
         </p>
