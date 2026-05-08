@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useZeroThoughtsBroadcast } from "./zero-thoughts";
 
@@ -55,17 +55,22 @@ function SphereGrid({ size = 560 }: { size?: number }) {
     );
   }
 
-  const sparkles = useMemo(() => {
+  const [sparkles, setSparkles] = useState<
+    Array<{ i: number; cx: number; cy: number; delay: number; duration: number }>
+  >([]);
+
+  useEffect(() => {
     const xs = Math.floor(size / spacing);
     const ys = Math.floor(size / spacing);
-    return Array.from({ length: 32 }, (_, i) => {
-      const cx = (1 + Math.floor(Math.random() * (xs - 1))) * spacing;
-      const cy = (1 + Math.floor(Math.random() * (ys - 1))) * spacing;
-      const delay = Math.random() * 5;
-      const duration = 2.4 + Math.random() * 3;
-      return { i, cx, cy, delay, duration };
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setSparkles(
+      Array.from({ length: 32 }, (_, i) => {
+        const cx = (1 + Math.floor(Math.random() * (xs - 1))) * spacing;
+        const cy = (1 + Math.floor(Math.random() * (ys - 1))) * spacing;
+        const delay = Math.random() * 5;
+        const duration = 2.4 + Math.random() * 3;
+        return { i, cx, cy, delay, duration };
+      }),
+    );
   }, [size]);
 
   return (

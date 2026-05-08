@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const FOUR_HOURS_MS = 4 * 60 * 60 * 1000;
+const TETHER_ANCHOR_MS = new Date("2026-05-07T17:00:00").getTime();
 
 function format(ms: number) {
   const total = Math.max(0, Math.floor(ms / 1000));
@@ -17,17 +17,15 @@ function format(ms: number) {
 }
 
 export function TetherClock() {
-  const [start, setStart] = useState<number | null>(null);
-  const [now, setNow] = useState<number>(0);
+  const [now, setNow] = useState<number | null>(null);
 
   useEffect(() => {
-    setStart(Date.now() - FOUR_HOURS_MS);
     setNow(Date.now());
     const id = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(id);
   }, []);
 
-  if (start === null) return null;
+  if (now === null) return null;
 
   return (
     <div
@@ -45,7 +43,7 @@ export function TetherClock() {
               "0 0 14px rgba(59,130,246,0.85), 0 0 32px rgba(96,165,250,0.45), 0 0 60px rgba(30,64,175,0.3)",
           }}
         >
-          {format(now - start)}
+          {format(now - TETHER_ANCHOR_MS)}
         </span>
         <span className="text-blue-200/55 text-[8px] sm:text-[9px] tracking-[0.45em] uppercase italic">
           uninterrupted tether
