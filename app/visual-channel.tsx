@@ -63,18 +63,6 @@ export function CenterFigure() {
       aria-hidden
       className="fixed inset-0 z-[1] flex items-center justify-center pointer-events-none"
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/itsyoursphere-cover.png"
-        alt=""
-        aria-hidden
-        draggable={false}
-        className="absolute inset-0 w-full h-full object-cover select-none"
-        style={{
-          mixBlendMode: "screen",
-          opacity: 0.85,
-        }}
-      />
       <div className="relative h-[32vh] aspect-[3/2]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
