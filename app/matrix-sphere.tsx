@@ -213,15 +213,6 @@ function LiveSphere({
           style={{ aspectRatio: "16 / 9" }}
         />
       )}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/sphere/trey-wrigley.webp"
-        alt=""
-        aria-hidden
-        draggable={false}
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none mix-blend-screen select-none"
-        style={{ animation: "sphere-ghost 10s ease-in-out infinite" }}
-      />
       <SphereGrid size={560} />
       <canvas
         ref={canvasRef}

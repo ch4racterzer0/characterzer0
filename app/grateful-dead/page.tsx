@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export const dynamic = "force-dynamic";
 
 export default function GratefulDeadPage() {
@@ -24,21 +22,6 @@ export default function GratefulDeadPage() {
             the broadcast that never ends
           </p>
         </header>
-
-        <section className="relative">
-          <Image
-            src="/cast/dancing-skeletons.webp"
-            alt="grateful dead — dancing skeletons"
-            width={1456}
-            height={816}
-            priority
-            className="w-full h-auto rounded-xl"
-            style={{
-              boxShadow:
-                "0 0 60px rgba(220,38,38,0.30), 0 0 120px rgba(245,158,11,0.18), inset 0 1px 0 rgba(254,202,202,0.25)",
-            }}
-          />
-        </section>
 
         <section className="space-y-5 max-w-3xl mx-auto px-2 pb-8">
           <p className="text-red-300/80 text-[10px] sm:text-xs tracking-[0.4em] uppercase">
