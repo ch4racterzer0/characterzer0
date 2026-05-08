@@ -92,63 +92,50 @@ export function RadioTile({ label }: { label: string }) {
 }
 
 export function TurntableTile() {
-  const { playing, toggle } = useRadio();
-
   return (
-    <button
-      type="button"
-      onClick={toggle}
-      aria-pressed={playing}
-      aria-label={playing ? "Stop the audio stream" : "Play the audio stream"}
-      className="relative cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60 rounded-full inline-flex flex-col items-center gap-2 group"
+    <div
+      aria-hidden
+      aria-label="audio is off-air — broadcast handles sound"
+      className="relative inline-flex flex-col items-center gap-2 opacity-50"
     >
       <span
         aria-hidden
-        className={`absolute left-1/2 -translate-x-1/2 top-0 w-20 h-20 sm:w-24 sm:h-24 rounded-full blur-3xl transition-colors ${
-          playing ? "bg-blue-400/55" : "bg-blue-500/20"
-        }`}
+        className="absolute left-1/2 -translate-x-1/2 top-0 w-20 h-20 sm:w-24 sm:h-24 rounded-full blur-3xl bg-blue-500/10"
       />
       <span
         aria-hidden
-        className="relative block w-20 h-20 sm:w-24 sm:h-24 rounded-full border border-blue-400/45 transition-shadow duration-500"
+        className="relative block w-20 h-20 sm:w-24 sm:h-24 rounded-full border border-blue-400/30"
         style={{
           background:
-            "radial-gradient(circle at center, rgba(15,23,42,0.95) 0%, rgba(0,0,0,1) 55%, rgba(30,58,138,0.45) 100%), repeating-radial-gradient(circle at center, rgba(96,165,250,0.12) 0px, rgba(96,165,250,0.12) 1px, transparent 1px, transparent 4px)",
+            "radial-gradient(circle at center, rgba(15,23,42,0.95) 0%, rgba(0,0,0,1) 55%, rgba(30,58,138,0.30) 100%), repeating-radial-gradient(circle at center, rgba(96,165,250,0.08) 0px, rgba(96,165,250,0.08) 1px, transparent 1px, transparent 4px)",
           backgroundBlendMode: "screen",
-          boxShadow: playing
-            ? "0 0 40px rgba(96,165,250,0.65), 0 0 90px rgba(96,165,250,0.30), inset 0 0 22px rgba(59,130,246,0.40)"
-            : "0 0 22px rgba(59,130,246,0.35), 0 0 50px rgba(59,130,246,0.16), inset 0 0 18px rgba(59,130,246,0.18)",
-          animation: playing ? "turntable-spin 4s linear infinite" : "none",
+          boxShadow:
+            "0 0 14px rgba(59,130,246,0.20), inset 0 0 12px rgba(59,130,246,0.12)",
         }}
       >
         <span
           aria-hidden
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-blue-300/55 bg-blue-950/85 flex items-center justify-center"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-blue-300/35 bg-blue-950/85 flex items-center justify-center"
           style={{
-            boxShadow: "inset 0 0 12px rgba(59,130,246,0.35)",
+            boxShadow: "inset 0 0 10px rgba(59,130,246,0.20)",
           }}
         >
           <span
-            className="text-blue-100 text-[8px] sm:text-[9px] tracking-[0.35em] uppercase font-light"
-            style={{ textShadow: "0 0 8px rgba(96,165,250,0.55)" }}
+            className="text-blue-100/65 text-[8px] sm:text-[9px] tracking-[0.35em] uppercase font-light"
+            style={{ textShadow: "0 0 6px rgba(96,165,250,0.35)" }}
           >
             audio
           </span>
         </span>
         <span
           aria-hidden
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-blue-200"
-          style={{ boxShadow: "0 0 8px rgba(191,219,254,0.95)" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-blue-200/45"
         />
       </span>
-      <span
-        className={`text-[8px] sm:text-[9px] tracking-[0.35em] uppercase whitespace-nowrap transition-colors ${
-          playing ? "text-blue-200" : "text-blue-300/55"
-        }`}
-      >
-        {playing ? "● on air" : "○ tap to play"}
+      <span className="text-[8px] sm:text-[9px] tracking-[0.35em] uppercase whitespace-nowrap text-blue-300/40">
+        ○ off-air
       </span>
-    </button>
+    </div>
   );
 }
 
