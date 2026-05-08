@@ -34,13 +34,12 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hidden sm:grid grid-cols-2 gap-3 sm:gap-10 w-full max-w-md sm:w-auto sm:max-w-none">
+        <div className="hidden sm:flex justify-center">
           <LinkTile
             label="Current Targets"
             href="/currenttarget"
             subline="○ 02 done · 03 next"
           />
-          <LinkTile label="Your Own Anspach" href="/yoursphere" />
         </div>
 
         <div className="sm:hidden flex flex-row items-center justify-center gap-6">
@@ -49,9 +48,6 @@ export default function Home() {
         </div>
 
         <FigureWithTilesDesktop
-          centerTop={
-            <LinkTile label="Current Assets" href="/currentassets" />
-          }
           rightSlot={
             <div className="flex flex-row items-center gap-4 sm:gap-6">
               <LinkTile label="US" href="/us" subline="○ step in" />
@@ -204,6 +200,11 @@ export default function Home() {
             </div>
           }
         />
+
+        <div className="hidden sm:flex w-full justify-between items-end px-2">
+          <LinkTile label="Current Assets" href="/currentassets" />
+          <LinkTile label="Your Own Anspach" href="/yoursphere" />
+        </div>
 
           </main>
           </ThemeShifter>
