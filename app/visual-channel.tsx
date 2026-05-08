@@ -65,11 +65,23 @@ export function CenterFigure() {
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
+        src="/itsyoursphere-cover.png"
+        alt=""
+        aria-hidden
+        draggable={false}
+        className="absolute h-[85vh] w-[85vh] max-w-[85vw] max-h-[85vw] object-contain select-none"
+        style={{
+          mixBlendMode: "screen",
+          opacity: 0.85,
+        }}
+      />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         src="/figures/front.png"
         alt=""
         aria-hidden
         draggable={false}
-        className="h-[60vh] w-auto select-none"
+        className="relative h-[32vh] w-auto select-none"
         style={{
           mixBlendMode: "screen",
           animation: "figure-mask-breath 24s ease-in-out infinite",
