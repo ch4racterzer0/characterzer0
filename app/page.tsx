@@ -61,7 +61,39 @@ export default function Home() {
         <FigureWithTilesDesktop
           rightSlot={<LinkTile label="US" href="/us" subline="○ step in" />}
           leftSlot={<HoleInput />}
-          leftTop={<TurntableTile />}
+          leftTop={
+            <div className="flex flex-col items-center gap-3">
+              <IframeTilePopup
+                ariaLabel="eliza — file"
+                src="/eliza"
+                triggerClassName="group w-44 sm:w-48 backdrop-blur-[2px] bg-rose-950/40 hover:bg-rose-950/60 border border-rose-300/55 hover:border-rose-200/85 px-3 py-2 rounded-sm transition-colors flex flex-col items-center gap-0.5 cursor-pointer"
+                triggerStyle={{
+                  boxShadow:
+                    "0 0 22px rgba(251,113,133,0.45), 0 0 50px rgba(225,29,72,0.22), 0 8px 22px -8px rgba(0,0,0,0.65), inset 0 1px 0 rgba(254,205,211,0.30)",
+                }}
+                trigger={
+                  <>
+                    <span className="text-rose-200/80 text-[8px] tracking-[0.4em] uppercase">
+                      ↗ file
+                    </span>
+                    <span
+                      className="text-rose-100 text-xs sm:text-sm tracking-[0.3em] uppercase font-light"
+                      style={{
+                        textShadow:
+                          "0 0 10px rgba(254,205,211,0.85), 0 0 22px rgba(251,113,133,0.55)",
+                      }}
+                    >
+                      eliza
+                    </span>
+                    <span className="text-rose-300/65 text-[8px] tracking-[0.3em] uppercase italic">
+                      long memory
+                    </span>
+                  </>
+                }
+              />
+              <TurntableTile />
+            </div>
+          }
           rightTop={
             <div className="flex flex-col items-center gap-3">
               <IframeTilePopup
