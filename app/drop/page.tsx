@@ -369,7 +369,7 @@ export default function DropPage() {
               purple
             </span>
             <span className="text-white/35 italic normal-case tracking-normal">
-              every piece available in all three.
+              pick your color variation and your character — character zer0 or storm available.
             </span>
           </p>
         </header>
