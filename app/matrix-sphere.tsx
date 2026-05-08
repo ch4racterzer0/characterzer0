@@ -72,7 +72,13 @@ function SphereGrid({ size = 560 }: { size?: number }) {
   );
 }
 
-function LiveSphere({ size = 560 }: { size?: number }) {
+function LiveSphere({
+  size = 560,
+  videoId = "yLLN6g1BkkI",
+}: {
+  size?: number;
+  videoId?: string;
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -167,7 +173,8 @@ function LiveSphere({ size = 560 }: { size?: number }) {
       }}
     >
       <iframe
-        src="https://www.youtube.com/embed/yLLN6g1BkkI?autoplay=1&mute=0&loop=1&playlist=yLLN6g1BkkI&controls=0&modestbranding=1&rel=0&playsinline=1&iv_load_policy=3&disablekb=1"
+        key={videoId}
+        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&playsinline=1&iv_load_policy=3&disablekb=1`}
         title="character zer0 — sphere ghost video"
         allow="autoplay; encrypted-media; picture-in-picture"
         referrerPolicy="strict-origin"
@@ -246,7 +253,13 @@ function ScoftiTile({ onClick }: { onClick: () => void }) {
   );
 }
 
+const DEFAULT_VIDEO_ID = "yLLN6g1BkkI";
+const BEST_SONG_VIDEO_ID = "VohLOhZ_5pM";
+
 function ScoftiPopup({ onClose }: { onClose: () => void }) {
+  const [videoId, setVideoId] = useState<string>(DEFAULT_VIDEO_ID);
+  const isBestSong = videoId === BEST_SONG_VIDEO_ID;
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -292,7 +305,24 @@ function ScoftiPopup({ onClose }: { onClose: () => void }) {
         >
           // scofti · entertainment · live
         </p>
-        <LiveSphere />
+        <LiveSphere videoId={videoId} />
+        <button
+          type="button"
+          onClick={() =>
+            setVideoId((v) =>
+              v === BEST_SONG_VIDEO_ID ? DEFAULT_VIDEO_ID : BEST_SONG_VIDEO_ID,
+            )
+          }
+          aria-pressed={isBestSong}
+          className="text-amber-100 text-[10px] sm:text-xs tracking-[0.4em] uppercase border border-amber-400/55 hover:border-amber-300/85 bg-amber-950/40 hover:bg-amber-900/55 rounded-sm px-5 py-2.5 transition-colors"
+          style={{
+            textShadow: "0 0 10px rgba(251,191,36,0.55)",
+            boxShadow:
+              "0 0 18px rgba(251,191,36,0.25), inset 0 1px 0 rgba(254,243,199,0.25)",
+          }}
+        >
+          {isBestSong ? "← back to tweezer" : "best song ever"}
+        </button>
         <p className="text-amber-300/55 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase italic">
           esc to close
         </p>
