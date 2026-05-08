@@ -266,6 +266,18 @@ body,
   }
 }
 
+@keyframes orb-wallpaper-fade {
+  0%, 4% {
+    opacity: 0;
+  }
+  10%, 20% {
+    opacity: 0.13;
+  }
+  26%, 100% {
+    opacity: 0;
+  }
+}
+
 @keyframes storm-rain {
   0%, 88%, 100% {
     opacity: 0;

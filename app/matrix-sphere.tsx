@@ -339,6 +339,50 @@ const ORB_TILES = [
   { label: "US", angle: 248, radius: 14 },
 ];
 
+const ORB_WALLPAPERS = [
+  "/drop-rotation/itethered.png",
+  "/drop-rotation/sharethebyline.png",
+  "/drop-rotation/spotlight.png",
+  "/drop-rotation/terrapin-station.png",
+  "/drop-rotation/tethered.png",
+  "/drop-rotation/thedelos.png",
+  "/drop-rotation/warning.png",
+];
+
+export function OrbWallpapers() {
+  const cycle = ORB_WALLPAPERS.length * 14;
+  return (
+    <div
+      aria-hidden
+      className="fixed inset-0 z-[0] pointer-events-none flex items-start justify-center pt-[17vh]"
+      style={{
+        opacity: 0,
+        animation: "home-sphere-place 30s linear forwards",
+      }}
+    >
+      <div className="relative w-[40vh] h-[44vh] max-w-[520px] rounded-full overflow-hidden">
+        {ORB_WALLPAPERS.map((src, i) => (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={src}
+            src={src}
+            alt=""
+            aria-hidden
+            draggable={false}
+            className="absolute inset-0 w-full h-full object-cover select-none"
+            style={{
+              mixBlendMode: "screen",
+              opacity: 0,
+              animation: `orb-wallpaper-fade ${cycle}s ease-in-out infinite`,
+              animationDelay: `${i * 14}s`,
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function HomeSphere() {
   return (
     <div
