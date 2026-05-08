@@ -30,7 +30,7 @@ export function TetherClock() {
   return (
     <div
       aria-hidden
-      className="absolute left-1/2 -translate-x-1/2 top-3 sm:top-5 z-10 pointer-events-none select-none"
+      className="absolute left-1/2 -translate-x-1/2 bottom-1 sm:bottom-2 z-10 pointer-events-none select-none"
     >
       <div
         className="flex flex-col items-center gap-0.5"
