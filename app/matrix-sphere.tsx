@@ -336,26 +336,22 @@ function HomeSphere() {
   return (
     <div
       aria-hidden
-      className="fixed inset-0 z-0 pointer-events-none flex items-start justify-center pt-[10vh]"
+      className="fixed inset-0 z-[2] pointer-events-none flex items-start justify-center pt-[6vh]"
       style={{
         opacity: 0,
-        animation: "home-sphere-place 90s ease-out forwards",
+        animation: "home-sphere-place 90s linear forwards",
+        mixBlendMode: "screen",
       }}
     >
-      <div className="relative aspect-square w-[48vh] max-w-[640px]">
-        <div
-          className="absolute inset-0 rounded-full overflow-hidden"
-          style={{
-            transform: "perspective(1100px) rotateX(15deg) rotateY(-8deg)",
-            maskImage:
-              "radial-gradient(circle at center, black 30%, rgba(0,0,0,0.4) 60%, transparent 78%)",
-            WebkitMaskImage:
-              "radial-gradient(circle at center, black 30%, rgba(0,0,0,0.4) 60%, transparent 78%)",
-            boxShadow:
-              "inset 0 0 80px rgba(59,130,246,0.45), 0 0 60px rgba(59,130,246,0.3)",
-          }}
-        />
-      </div>
+      <div
+        className="relative aspect-square w-[44vh] max-w-[560px] rounded-full"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(147,197,253,1) 0%, rgba(59,130,246,0.85) 28%, rgba(30,64,175,0.45) 55%, rgba(15,23,42,0.15) 75%, transparent 88%)",
+          boxShadow:
+            "0 0 90px rgba(96,165,250,0.7), 0 0 180px rgba(59,130,246,0.4)",
+        }}
+      />
     </div>
   );
 }

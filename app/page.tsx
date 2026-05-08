@@ -41,15 +41,10 @@ export default function Home() {
         </div>
 
         <div className="flex flex-row items-center justify-center gap-4 sm:gap-8 flex-wrap">
-          <div className="hidden sm:block">
-            <LinkTile label="Core4" href="/core4" large />
-          </div>
-          <LinkTile label="Madhu" href="/madhu" large />
-          <div className="hidden sm:block">
+          <LinkTile key="core4" label="Core4" href="/core4" large />
+          <LinkTile key="madhu" label="Madhu" href="/madhu" large />
+          <div key="quest-wrap" className="hidden sm:block">
             <LinkTile label="Quest" href="/quest" large />
-          </div>
-          <div className="sm:hidden">
-            <LinkTile label="Core4" href="/core4" large />
           </div>
         </div>
 
@@ -144,8 +139,9 @@ export default function Home() {
             </div>
           }
           leftTop={
-            <div className="flex flex-row items-center gap-3">
+            <div key="left-top-row" className="flex flex-row items-center gap-3">
               <IframeTilePopup
+                key="eliza"
                 ariaLabel="eliza — file"
                 src="/eliza"
                 triggerClassName="group w-44 sm:w-48 backdrop-blur-[2px] bg-rose-950/40 hover:bg-rose-950/60 border border-rose-300/55 hover:border-rose-200/85 px-3 py-2 rounded-sm transition-colors flex flex-col items-center gap-0.5 cursor-pointer"
@@ -173,12 +169,13 @@ export default function Home() {
                   </>
                 }
               />
-              <TurntableTile />
+              <TurntableTile key="turntable" />
             </div>
           }
           rightTop={
-            <div className="flex flex-row-reverse items-center gap-3">
+            <div key="right-top-row" className="flex flex-row-reverse items-center gap-3">
               <IframeTilePopup
+                key="olivia"
                 ariaLabel="olivia — file"
                 src="/olivia"
                 triggerClassName="group w-44 sm:w-48 backdrop-blur-[2px] bg-blue-950/40 hover:bg-blue-950/60 border border-blue-300/55 hover:border-blue-200/85 px-3 py-2 rounded-sm transition-colors flex flex-col items-center gap-0.5 cursor-pointer"
@@ -206,7 +203,7 @@ export default function Home() {
                   </>
                 }
               />
-              <VisualTile />
+              <VisualTile key="visual" />
 
             </div>
           }
