@@ -14,7 +14,6 @@ import {
 } from "./radio-tiles";
 import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
 import { ChannelBackground } from "./visual-channel";
-import { GratefulDeadChip } from "./channel-chips";
 
 export default function Home() {
   return (
@@ -127,9 +126,8 @@ export default function Home() {
                   </>
                 }
               />
-              <VisualTile>
-                <GratefulDeadChip />
-              </VisualTile>
+              <VisualTile />
+
             </div>
           }
         />
