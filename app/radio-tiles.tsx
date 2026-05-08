@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import {
   ReactNode,
   createContext,
@@ -313,20 +312,8 @@ export function FigureWithTilesDesktop({
         {leftTop}
         {leftSlot ?? <RadioTile label="SLOW" />}
       </div>
-      <div className="relative h-[28vh]">
+      <div className="relative h-[28vh] aspect-[3/2]">
         <TetherClock />
-        <Image
-          src="/characterzer0-figure.png"
-          alt="character zer0"
-          width={1536}
-          height={1024}
-          priority
-          sizes="(max-width: 640px) 50vw, 30vw"
-          className="h-full w-auto"
-          style={{
-            mixBlendMode: "screen",
-          }}
-        />
       </div>
       <div className="hidden sm:flex flex-col items-center gap-4">
         {rightTop}
