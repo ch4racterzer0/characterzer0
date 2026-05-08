@@ -287,11 +287,13 @@ export function FigureWithTilesDesktop({
   leftSlot,
   leftTop,
   rightTop,
+  centerTop,
 }: {
   rightSlot?: ReactNode;
   leftSlot?: ReactNode;
   leftTop?: ReactNode;
   rightTop?: ReactNode;
+  centerTop?: ReactNode;
 } = {}) {
   return (
     <div className="flex items-end justify-center gap-4 sm:gap-8">
@@ -299,19 +301,22 @@ export function FigureWithTilesDesktop({
         {leftTop}
         {leftSlot ?? <RadioTile label="SLOW" />}
       </div>
-      <div className="relative h-[28vh] aspect-[3/2]">
-        <TetherClock />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/figures/back.png"
-          alt=""
-          aria-hidden
-          draggable={false}
-          className="absolute inset-0 w-full h-full object-contain object-bottom pointer-events-none select-none"
-          style={{
-            mixBlendMode: "screen",
-          }}
-        />
+      <div className="flex flex-col items-center gap-4">
+        {centerTop}
+        <div className="relative h-[28vh] aspect-[3/2]">
+          <TetherClock />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/figures/back.png"
+            alt=""
+            aria-hidden
+            draggable={false}
+            className="absolute inset-0 w-full h-full object-contain object-bottom pointer-events-none select-none"
+            style={{
+              mixBlendMode: "screen",
+            }}
+          />
+        </div>
       </div>
       <div className="hidden sm:flex flex-col items-center gap-4">
         {rightTop}

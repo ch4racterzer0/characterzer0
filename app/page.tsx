@@ -24,9 +24,8 @@ export default function Home() {
         <MatrixSphere />
         <RadioTilesMobileTop />
 
-        <LinkTile label="Madhu" href="/madhu" large />
-
-        <div className="flex flex-col items-center gap-6 sm:gap-10">
+        <div className="flex flex-col items-center gap-4 sm:gap-6">
+          <LinkTile label="Madhu" href="/madhu" large />
           <div className="flex flex-row items-center gap-6 sm:gap-8">
             <LinkTile label="Core4" href="/core4" large />
             <div className="hidden sm:block">
@@ -35,13 +34,12 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hidden sm:grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-10 w-full max-w-md sm:w-auto sm:max-w-none">
+        <div className="hidden sm:grid grid-cols-2 gap-3 sm:gap-10 w-full max-w-md sm:w-auto sm:max-w-none">
           <LinkTile
             label="Current Targets"
             href="/currenttarget"
             subline="○ 02 done · 03 next"
           />
-          <LinkTile label="Current Assets" href="/currentassets" />
           <LinkTile label="Your Own Anspach" href="/yoursphere" />
         </div>
 
@@ -51,6 +49,9 @@ export default function Home() {
         </div>
 
         <FigureWithTilesDesktop
+          centerTop={
+            <LinkTile label="Current Assets" href="/currentassets" />
+          }
           rightSlot={
             <div className="flex flex-row items-center gap-4 sm:gap-6">
               <LinkTile label="US" href="/us" subline="○ step in" />
