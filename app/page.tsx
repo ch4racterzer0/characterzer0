@@ -32,14 +32,6 @@ export default function Home() {
           />
         </div>
 
-        <div className="hidden sm:block absolute bottom-3 left-3 sm:bottom-5 sm:left-5 z-20">
-          <LinkTile label="Current Assets" href="/currentassets" />
-        </div>
-
-        <div className="hidden sm:block absolute bottom-3 right-3 sm:bottom-5 sm:right-5 z-20">
-          <LinkTile label="Your Own Anspach" href="/yoursphere" />
-        </div>
-
         <div className="flex flex-row items-center justify-center gap-4 sm:gap-8 flex-wrap">
           <LinkTile key="core4" label="Core4" href="/core4" large />
           <LinkTile key="madhu" label="Madhu" href="/madhu" large />

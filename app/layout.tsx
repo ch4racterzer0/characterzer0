@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { FacebookTile } from "./facebook-tile";
 import { HomeSphere } from "./matrix-sphere";
 import { MorselsRibbon } from "./morsels-ribbon";
 import { SiteGhost } from "./site-ghost";
@@ -41,7 +40,6 @@ export default function RootLayout({
           <ChannelBackground />
           <HomeSphere />
           <CenterFigure />
-          <FacebookTile />
           <MorselsRibbon />
           <SiteGhost />
           <div className="relative z-20 flex-1 flex flex-col">
