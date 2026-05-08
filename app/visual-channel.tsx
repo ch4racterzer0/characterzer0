@@ -75,18 +75,37 @@ export function CenterFigure() {
           opacity: 0.85,
         }}
       />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/figures/front.png"
-        alt=""
-        aria-hidden
-        draggable={false}
-        className="relative h-[32vh] w-auto select-none"
-        style={{
-          mixBlendMode: "screen",
-          animation: "figure-mask-breath 24s ease-in-out infinite",
-        }}
-      />
+      <div className="relative h-[32vh] aspect-[3/2]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/figures/front.png"
+          alt=""
+          aria-hidden
+          draggable={false}
+          className="absolute inset-0 w-full h-full object-contain select-none"
+          style={{
+            mixBlendMode: "screen",
+            animation:
+              "figure-mask-breath 24s ease-in-out infinite, figure-hue-cycle 90s linear infinite",
+          }}
+        />
+        <p
+          className="absolute left-1/2 top-[24%] -translate-x-1/2 -translate-y-1/2 font-mono text-base sm:text-lg tracking-[0.15em] whitespace-nowrap"
+          style={{
+            animation: "mark-flicker 30s ease-in-out infinite",
+          }}
+        >
+          零号
+        </p>
+        <p
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-mono text-xs sm:text-sm tracking-[0.4em] whitespace-nowrap"
+          style={{
+            animation: "chest-flicker 45s ease-in-out infinite",
+          }}
+        >
+          丫工5山Μ丁
+        </p>
+      </div>
     </div>
   );
 }
