@@ -91,6 +91,67 @@ export function RadioTile({ label }: { label: string }) {
   );
 }
 
+export function TurntableTile() {
+  const { playing, toggle } = useRadio();
+
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      aria-pressed={playing}
+      aria-label={playing ? "Stop the slow radio" : "Play the slow radio"}
+      className="relative cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60 rounded-full inline-flex flex-col items-center gap-3 group"
+    >
+      <span
+        aria-hidden
+        className={`absolute left-1/2 -translate-x-1/2 top-0 w-32 h-32 sm:w-36 sm:h-36 rounded-full blur-3xl transition-colors ${
+          playing ? "bg-blue-400/55" : "bg-blue-500/20"
+        }`}
+      />
+      <span
+        aria-hidden
+        className="relative block w-32 h-32 sm:w-36 sm:h-36 rounded-full border border-blue-400/45 transition-shadow duration-500"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(15,23,42,0.95) 0%, rgba(0,0,0,1) 55%, rgba(30,58,138,0.45) 100%), repeating-radial-gradient(circle at center, rgba(96,165,250,0.12) 0px, rgba(96,165,250,0.12) 1px, transparent 1px, transparent 4px)",
+          backgroundBlendMode: "screen",
+          boxShadow: playing
+            ? "0 0 50px rgba(96,165,250,0.70), 0 0 110px rgba(96,165,250,0.35), inset 0 0 28px rgba(59,130,246,0.45)"
+            : "0 0 26px rgba(59,130,246,0.40), 0 0 60px rgba(59,130,246,0.18), inset 0 0 20px rgba(59,130,246,0.18)",
+          animation: playing ? "turntable-spin 4s linear infinite" : "none",
+        }}
+      >
+        <span
+          aria-hidden
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 sm:w-16 sm:h-16 rounded-full border border-blue-300/55 bg-blue-950/85 flex items-center justify-center"
+          style={{
+            boxShadow: "inset 0 0 14px rgba(59,130,246,0.35)",
+          }}
+        >
+          <span
+            className="text-blue-100 text-[9px] sm:text-[10px] tracking-[0.45em] uppercase font-light"
+            style={{ textShadow: "0 0 8px rgba(96,165,250,0.55)" }}
+          >
+            slow
+          </span>
+        </span>
+        <span
+          aria-hidden
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-blue-200"
+          style={{ boxShadow: "0 0 10px rgba(191,219,254,0.95)" }}
+        />
+      </span>
+      <span
+        className={`text-[9px] sm:text-[10px] tracking-[0.35em] uppercase whitespace-nowrap transition-colors ${
+          playing ? "text-blue-200" : "text-blue-300/55"
+        }`}
+      >
+        {playing ? "● on air" : "○ tap to play"}
+      </span>
+    </button>
+  );
+}
+
 export function RadioTilesMobileTop() {
   return (
     <div className="sm:hidden flex items-center justify-center">
@@ -101,10 +162,12 @@ export function RadioTilesMobileTop() {
 
 export function FigureWithTilesDesktop({
   rightSlot,
+  leftSlot,
   leftTop,
   rightTop,
 }: {
   rightSlot?: ReactNode;
+  leftSlot?: ReactNode;
   leftTop?: ReactNode;
   rightTop?: ReactNode;
 } = {}) {
@@ -112,7 +175,7 @@ export function FigureWithTilesDesktop({
     <div className="flex items-end justify-center gap-4 sm:gap-8">
       <div className="hidden sm:flex flex-col items-center gap-4">
         {leftTop}
-        <RadioTile label="SLOW" />
+        {leftSlot ?? <RadioTile label="SLOW" />}
       </div>
       <div className="relative h-[28vh]">
         <TetherClock />

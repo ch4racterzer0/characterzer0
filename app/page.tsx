@@ -9,6 +9,7 @@ import {
   FigureWithTilesDesktop,
   RadioProvider,
   RadioTilesMobileTop,
+  TurntableTile,
 } from "./radio-tiles";
 import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
 
@@ -43,7 +44,7 @@ export default function Home() {
         <div className="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-10 w-full max-w-md sm:w-auto sm:max-w-none items-end justify-items-center">
           <div />
           <div className="lg:col-span-2 flex justify-center">
-            <HoleInput />
+            <TurntableTile />
           </div>
           <div />
         </div>
@@ -66,6 +67,7 @@ export default function Home() {
 
         <FigureWithTilesDesktop
           rightSlot={<LinkTile label="US" href="/us" subline="○ step in" />}
+          leftSlot={<HoleInput />}
           leftTop={
             <IframeTilePopup
               ariaLabel="shot in the dark — dear nra on spotlight dispatch"
