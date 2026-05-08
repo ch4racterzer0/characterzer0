@@ -199,12 +199,9 @@ export default function Home() {
 
             </div>
           }
+          leftBottom={<LinkTile label="Current Assets" href="/currentassets" />}
+          rightBottom={<LinkTile label="Your Own Anspach" href="/yoursphere" />}
         />
-
-        <div className="hidden sm:flex w-full justify-between items-end px-2">
-          <LinkTile label="Current Assets" href="/currentassets" />
-          <LinkTile label="Your Own Anspach" href="/yoursphere" />
-        </div>
 
           </main>
           </ThemeShifter>
