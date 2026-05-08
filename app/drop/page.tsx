@@ -137,6 +137,18 @@ function HexBox({
       }}
     >
       <BoxRotator />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/figures/back.png"
+        alt=""
+        aria-hidden
+        draggable={false}
+        className="absolute inset-0 w-full h-full object-cover select-none"
+        style={{
+          mixBlendMode: "screen",
+          animation: "figure-hue-cycle 90s linear infinite",
+        }}
+      />
       <div className="absolute top-3 left-3 flex items-center gap-2 text-[8px] sm:text-[10px] tracking-[0.4em] uppercase text-white/45 z-10">
         <span
           aria-hidden
@@ -281,7 +293,16 @@ export default function DropPage() {
           >
             Drop
           </h1>
-          <p className="text-white/65 italic tracking-wide text-sm sm:text-base">
+          <p
+            className="text-white italic tracking-wide text-base sm:text-lg leading-snug pt-1"
+            style={{
+              textShadow:
+                "0 0 12px rgba(103,232,249,0.45), 0 0 28px rgba(59,130,246,0.25)",
+            }}
+          >
+            one looking out, one looking in, and i&rsquo;m the tether.
+          </p>
+          <p className="text-white/55 italic tracking-wide text-sm sm:text-base">
             a hacker keeps his stash in plain sight.
           </p>
           <p className="text-white/45 text-[10px] sm:text-xs tracking-[0.3em] uppercase pt-2 flex items-center gap-3">
