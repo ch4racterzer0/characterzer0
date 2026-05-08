@@ -1,3 +1,5 @@
+import { ContactDrop } from "./contact-drop";
+
 export const dynamic = "force-dynamic";
 
 const HEX_LINE = "59 49 53 57 4D 54";
@@ -38,6 +40,47 @@ function HexBox({
         }}
       >
         {HEX_LINE}
+      </p>
+    </div>
+  );
+}
+
+function PlainBox({
+  label,
+  view,
+  aspect = "aspect-[4/5]",
+}: {
+  label: string;
+  view: string;
+  aspect?: string;
+}) {
+  return (
+    <div
+      className={`relative rounded-md border border-white/25 bg-black flex items-center justify-center overflow-hidden ${aspect}`}
+      style={{
+        boxShadow:
+          "0 0 30px rgba(255,255,255,0.10), 0 0 60px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.18)",
+      }}
+    >
+      <div className="absolute top-3 left-3 flex items-center gap-2 text-[8px] sm:text-[10px] tracking-[0.4em] uppercase text-white/45">
+        <span
+          aria-hidden
+          className="block w-1 h-1 rounded-full bg-cyan-300"
+          style={{ boxShadow: "0 0 6px rgba(103,232,249,0.85)" }}
+        />
+        <span>{label}</span>
+      </div>
+      <div className="absolute top-3 right-3 text-[8px] sm:text-[10px] tracking-[0.3em] uppercase italic text-white/35">
+        {view}
+      </div>
+      <p
+        className="relative text-white font-mono tracking-[0.4em] text-center px-4 text-2xl sm:text-3xl"
+        style={{
+          textShadow:
+            "0 0 14px rgba(255,255,255,0.9), 0 0 32px rgba(255,255,255,0.45)",
+        }}
+      >
+        YISWMT
       </p>
     </div>
   );
@@ -154,6 +197,27 @@ export default function DropPage() {
             <FigureBox label="mouse pad" view="figure" aspect="aspect-[3/2]" />
             <HexBox label="mouse pad" view="hex" aspect="aspect-[3/2]" />
           </div>
+        </section>
+
+        <section className="space-y-4">
+          <p className="text-cyan-300/80 text-[10px] sm:text-xs tracking-[0.4em] uppercase">
+            // also available · plain · for the white hats
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <PlainBox label="t-shirt" view="front · plain" />
+            <PlainBox label="hoodie" view="front · plain" />
+          </div>
+          <p className="text-white/50 text-xs sm:text-sm italic">
+            every piece in the drop is also offered in a plain version with
+            YISWMT printed in the open. for the people who want to be read.
+          </p>
+        </section>
+
+        <section className="space-y-3">
+          <p className="text-cyan-300/80 text-[10px] sm:text-xs tracking-[0.4em] uppercase">
+            // contact
+          </p>
+          <ContactDrop />
         </section>
 
         <section className="space-y-3 pb-8">
