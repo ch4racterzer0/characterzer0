@@ -126,12 +126,21 @@ function FigureBox({
       <p
         className="absolute left-1/2 top-[24%] -translate-x-1/2 -translate-y-1/2 z-10 font-mono text-2xl sm:text-3xl tracking-[0.2em]"
         style={{
-          color: "rgba(103,232,249,0.55)",
+          color: "rgba(103,232,249,0.27)",
           textShadow:
-            "0 0 8px rgba(103,232,249,0.45), 0 0 18px rgba(59,130,246,0.25)",
+            "0 0 6px rgba(103,232,249,0.22), 0 0 14px rgba(59,130,246,0.12)",
         }}
       >
         零
+      </p>
+      <p
+        className="absolute left-1/2 top-[58%] -translate-x-1/2 -translate-y-1/2 z-10 font-mono text-sm sm:text-base tracking-[0.4em]"
+        style={{
+          color: "rgba(255,255,255,0.18)",
+          textShadow: "0 0 6px rgba(255,255,255,0.12)",
+        }}
+      >
+        丫工5山Μ丁
       </p>
     </div>
   );
