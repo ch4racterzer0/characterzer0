@@ -104,17 +104,9 @@ export default function DropPage() {
           <p className="text-white/45 text-[10px] sm:text-xs tracking-[0.4em] uppercase">
             // notes
           </p>
-          <ul className="text-white/75 text-sm sm:text-base leading-relaxed space-y-1.5 list-none">
-            <li>
-              front glyph reads <span className="text-white">YISWMT</span> in
-              six different scripts &mdash; cyrillic, greek, leet, hebrew,
-              hangul, runic.
-            </li>
-            <li>
-              hex strip on the collar / back panel decodes to the same.
-            </li>
-            <li>nothing on either piece tells you what it stands for.</li>
-          </ul>
+          <p className="text-white/75 text-sm sm:text-base leading-relaxed italic">
+            celebrating our first branded outpost.
+          </p>
         </section>
       </article>
     </main>
