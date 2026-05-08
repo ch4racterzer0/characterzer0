@@ -4,6 +4,7 @@ export const dynamic = "force-dynamic";
 
 const FRAMES = [
   "/cast/phish-sphere-cars.jpg",
+  "/cast/dancing-skeletons.webp",
   "/cast/jerry-smiling.jpg",
   "/cast/phish-sphere-2024.jpg",
   "/sphere/trey-wrigley.webp",
