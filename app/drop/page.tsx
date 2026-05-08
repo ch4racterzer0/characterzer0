@@ -48,11 +48,11 @@ const TONES: Record<
 };
 
 const ROTATION_IMAGES = [
-  "/figures/front.png",
-  "/figures/back.png",
-  "/eliza/portrait.png",
-  "/itsyoursphere-cover.png",
-  "/grateful-dead/syf-bg.png",
+  "/drop-rotation/itethered.png",
+  "/drop-rotation/sharethebyline.png",
+  "/drop-rotation/spotlight.png",
+  "/drop-rotation/terrapin-station.png",
+  "/drop-rotation/thedelos.png",
 ];
 
 const HEX_VARIANTS: { text: string; color: string; glow: string }[] = [
