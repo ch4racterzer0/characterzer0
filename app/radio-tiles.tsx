@@ -314,6 +314,18 @@ export function FigureWithTilesDesktop({
       </div>
       <div className="relative h-[28vh] aspect-[3/2]">
         <TetherClock />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/figures/front.png"
+          alt=""
+          aria-hidden
+          draggable={false}
+          className="absolute inset-0 w-full h-full object-contain pointer-events-none select-none"
+          style={{
+            mixBlendMode: "screen",
+            animation: "figure-mask-breath 24s ease-in-out infinite",
+          }}
+        />
       </div>
       <div className="hidden sm:flex flex-col items-center gap-4">
         {rightTop}

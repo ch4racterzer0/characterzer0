@@ -198,6 +198,15 @@ body,
   }
 }
 
+@keyframes figure-mask-breath {
+  0%, 100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 @keyframes turntable-spin {
   from {
     transform: rotate(0deg);
