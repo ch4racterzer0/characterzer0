@@ -222,6 +222,21 @@ body,
   }
 }
 
+@keyframes orb-tile-pulse {
+  0%, 78%, 96%, 100% {
+    opacity: 0;
+    filter: blur(2px);
+  }
+  84%, 92% {
+    opacity: 0.75;
+    filter: blur(0px);
+  }
+  88% {
+    opacity: 0.95;
+    filter: blur(0px);
+  }
+}
+
 @keyframes tether-rise {
   0%, 100% {
     opacity: 0.45;
