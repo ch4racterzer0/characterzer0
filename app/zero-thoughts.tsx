@@ -129,17 +129,20 @@ export function ZeroThoughts() {
     <>
       <div
         aria-hidden
-        className="hidden sm:flex relative items-center justify-center w-full max-w-md sm:max-w-lg px-4 py-2 sm:px-5 sm:py-2 rounded-md border border-blue-400/35 bg-blue-950/15"
+        className="hidden sm:flex relative items-start justify-center w-full max-w-md sm:max-w-lg h-20 sm:h-24 rounded-md border border-blue-400/35 overflow-hidden bg-black"
         style={{
+          backgroundImage: "url('/itsyoursphere-banner.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           boxShadow:
             "inset 0 0 30px rgba(59,130,246,0.15), 0 0 18px rgba(59,130,246,0.18)",
         }}
       >
         <span
-          className="text-blue-100/85 text-[10px] sm:text-xs tracking-[0.4em] uppercase"
+          className="relative z-10 mt-1.5 text-blue-100/85 text-[10px] sm:text-xs tracking-[0.4em] uppercase"
           style={{
             textShadow:
-              "0 0 10px rgba(96,165,250,0.55), 0 0 22px rgba(59,130,246,0.3)",
+              "0 0 10px rgba(96,165,250,0.55), 0 0 22px rgba(59,130,246,0.3), 0 0 30px rgba(0,0,0,0.85)",
           }}
         >
           // zer0&rsquo;s thoughts
