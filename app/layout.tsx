@@ -3,7 +3,11 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { MorselsRibbon } from "./morsels-ribbon";
 import { SiteGhost } from "./site-ghost";
-import { VisualChannelProvider } from "./visual-channel";
+import {
+  CenterFigure,
+  ChannelBackground,
+  VisualChannelProvider,
+} from "./visual-channel";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +36,8 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <VisualChannelProvider>
+          <ChannelBackground />
+          <CenterFigure />
           <MorselsRibbon />
           <SiteGhost />
           {children}

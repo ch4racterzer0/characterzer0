@@ -12,7 +12,6 @@ import {
   VisualTile,
 } from "./radio-tiles";
 import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
-import { CenterFigure, ChannelBackground } from "./visual-channel";
 
 export default function Home() {
   return (
@@ -22,8 +21,6 @@ export default function Home() {
         <RadioProvider>
           <ThemeShifter>
           <ThemeSwitch />
-          <ChannelBackground />
-          <CenterFigure />
           <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center justify-between gap-6 sm:gap-0 py-4 sm:py-10 px-4">
         <MatrixSphere />
         <RadioTilesMobileTop />
