@@ -2,7 +2,7 @@ import { ContactDrop } from "./contact-drop";
 
 export const dynamic = "force-dynamic";
 
-type Tone = "blue" | "green" | "purple";
+type Tone = "blue" | "green" | "purple" | "red";
 
 const TONES: Record<
   Tone,
@@ -44,6 +44,16 @@ const TONES: Record<
     accentDotShadow: "0 0 6px rgba(216,180,254,0.85)",
     hexShadow:
       "0 0 14px rgba(255,255,255,0.85), 0 0 32px rgba(216,180,254,0.55), 0 0 60px rgba(168,85,247,0.35)",
+  },
+  red: {
+    hueRotate: 180,
+    face: "rgba(248,113,113,0.32)",
+    faceShadow:
+      "0 0 6px rgba(248,113,113,0.25), 0 0 14px rgba(220,38,38,0.15)",
+    accentDot: "rgb(248,113,113)",
+    accentDotShadow: "0 0 6px rgba(248,113,113,0.85)",
+    hexShadow:
+      "0 0 14px rgba(255,255,255,0.85), 0 0 32px rgba(248,113,113,0.55), 0 0 60px rgba(220,38,38,0.35)",
   },
 };
 
@@ -154,20 +164,9 @@ function HexBox({
         style={{
           textShadow:
             "0 0 8px rgba(255,255,255,0.5), 0 0 18px rgba(255,255,255,0.25)",
-          animation: "back-shirt-yiswmt 90s ease-in-out infinite",
         }}
       >
         YISWMT
-      </p>
-      <p
-        className="absolute left-1/2 top-[55%] -translate-x-1/2 -translate-y-1/2 z-10 font-mono text-sm sm:text-base tracking-[0.4em] whitespace-nowrap text-white"
-        style={{
-          textShadow:
-            "0 0 8px rgba(255,255,255,0.5), 0 0 18px rgba(255,255,255,0.25)",
-          animation: "back-shirt-help 90s ease-in-out infinite",
-        }}
-      >
-        HeLppMe
       </p>
       <div className="absolute top-3 left-3 flex items-center gap-2 text-[8px] sm:text-[10px] tracking-[0.4em] uppercase text-white/45 z-10">
         <span
@@ -367,6 +366,17 @@ export default function DropPage() {
                 }}
               />
               purple
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span
+                aria-hidden
+                className="block w-1.5 h-1.5 rounded-full"
+                style={{
+                  backgroundColor: "rgb(248,113,113)",
+                  boxShadow: "0 0 6px rgba(248,113,113,0.85)",
+                }}
+              />
+              red
             </span>
             <span className="text-white/35 italic normal-case tracking-normal">
               pick your color variation and your character — character zer0 or storm available.
