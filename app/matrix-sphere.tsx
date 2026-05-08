@@ -351,9 +351,7 @@ function HomeSphere() {
               "inset 0 0 80px rgba(59,130,246,0.25), 0 0 60px rgba(59,130,246,0.15)",
             animation: "home-sphere-breathe 16s ease-in-out infinite",
           }}
-        >
-          <SphereGrid size={640} />
-        </div>
+        />
         <ThoughtsOverlay />
       </div>
     </div>
