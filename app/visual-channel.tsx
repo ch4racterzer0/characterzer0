@@ -53,23 +53,28 @@ export function ChannelBackground() {
           opacity: channel ? 0.10 : 0,
         }}
       />
-      <div
-        className="absolute inset-0 flex items-center justify-center transition-opacity duration-700 ease-in-out"
-        style={{ opacity: channel ? 1 : 0 }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/figures/front.png"
-          alt=""
-          aria-hidden
-          draggable={false}
-          className="h-[60vh] w-auto select-none"
-          style={{
-            mixBlendMode: "screen",
-            animation: "figure-mask-breath 24s ease-in-out infinite",
-          }}
-        />
-      </div>
+    </div>
+  );
+}
+
+export function CenterFigure() {
+  return (
+    <div
+      aria-hidden
+      className="fixed inset-0 z-[1] flex items-center justify-center pointer-events-none"
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/figures/front.png"
+        alt=""
+        aria-hidden
+        draggable={false}
+        className="h-[60vh] w-auto select-none"
+        style={{
+          mixBlendMode: "screen",
+          animation: "figure-mask-breath 24s ease-in-out infinite",
+        }}
+      />
     </div>
   );
 }
