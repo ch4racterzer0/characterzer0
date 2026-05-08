@@ -99,7 +99,7 @@ export function CenterFigure() {
           零号
         </p>
         <p
-          className="absolute left-1/2 top-[24%] -translate-x-1/2 -translate-y-1/2 font-mono text-base sm:text-lg tracking-[0.3em] whitespace-nowrap uppercase"
+          className="absolute left-1/2 top-[14%] -translate-x-1/2 -translate-y-1/2 font-mono text-base sm:text-lg tracking-[0.3em] whitespace-nowrap uppercase"
           style={{
             animation: "face-mark-storm 60s ease-in-out infinite",
           }}

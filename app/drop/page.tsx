@@ -286,7 +286,7 @@ function FigureBox({
         零号
       </p>
       <p
-        className="absolute left-1/2 top-[24%] -translate-x-1/2 -translate-y-1/2 z-10 font-mono text-lg sm:text-xl tracking-[0.3em] whitespace-nowrap uppercase"
+        className="absolute left-1/2 top-[14%] -translate-x-1/2 -translate-y-1/2 z-10 font-mono text-lg sm:text-xl tracking-[0.3em] whitespace-nowrap uppercase"
         style={{
           animation: "face-mark-storm 60s ease-in-out infinite",
         }}
