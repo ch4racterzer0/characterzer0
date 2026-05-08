@@ -73,14 +73,6 @@ function FigureBox({
       </div>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/itsyoursphere-cover.png"
-        alt=""
-        aria-hidden
-        draggable={false}
-        className="absolute inset-0 w-full h-full object-cover select-none"
-      />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
         src="/figures/front.png"
         alt=""
         aria-hidden
