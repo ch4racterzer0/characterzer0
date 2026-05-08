@@ -132,8 +132,8 @@ export function ZeroThoughts() {
         className="hidden sm:flex relative items-start justify-center w-full max-w-md sm:max-w-lg h-20 sm:h-24 rounded-md border border-blue-400/35 overflow-hidden bg-black"
         style={{
           backgroundImage: "url('/itsyoursphere-banner.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundSize: "200% auto",
+          backgroundPosition: "center 35%",
           boxShadow:
             "inset 0 0 30px rgba(59,130,246,0.15), 0 0 18px rgba(59,130,246,0.18)",
         }}
