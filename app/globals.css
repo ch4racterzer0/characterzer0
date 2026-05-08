@@ -178,6 +178,15 @@ body,
   }
 }
 
+@keyframes home-sphere-breathe {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
 @keyframes site-breathe {
   0%, 100% {
     opacity: 1;
