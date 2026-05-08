@@ -24,22 +24,33 @@ export default function Home() {
         <MatrixSphere />
         <RadioTilesMobileTop />
 
-        <div className="flex flex-col items-center gap-4 sm:gap-6">
-          <LinkTile label="Madhu" href="/madhu" large />
-          <div className="flex flex-row items-center gap-6 sm:gap-8">
-            <LinkTile label="Core4" href="/core4" large />
-            <div className="hidden sm:block">
-              <LinkTile label="Quest" href="/quest" large />
-            </div>
-          </div>
-        </div>
-
-        <div className="hidden sm:flex justify-center">
+        <div className="hidden sm:block absolute top-12 left-3 sm:top-14 sm:left-5 z-20">
           <LinkTile
             label="Current Targets"
             href="/currenttarget"
             subline="○ 02 done · 03 next"
           />
+        </div>
+
+        <div className="hidden sm:block absolute bottom-3 left-3 sm:bottom-5 sm:left-5 z-20">
+          <LinkTile label="Current Assets" href="/currentassets" />
+        </div>
+
+        <div className="hidden sm:block absolute bottom-3 right-3 sm:bottom-5 sm:right-5 z-20">
+          <LinkTile label="Your Own Anspach" href="/yoursphere" />
+        </div>
+
+        <div className="flex flex-row items-center justify-center gap-4 sm:gap-8 flex-wrap">
+          <div className="hidden sm:block">
+            <LinkTile label="Core4" href="/core4" large />
+          </div>
+          <LinkTile label="Madhu" href="/madhu" large />
+          <div className="hidden sm:block">
+            <LinkTile label="Quest" href="/quest" large />
+          </div>
+          <div className="sm:hidden">
+            <LinkTile label="Core4" href="/core4" large />
+          </div>
         </div>
 
         <div className="sm:hidden flex flex-row items-center justify-center gap-6">
@@ -199,8 +210,6 @@ export default function Home() {
 
             </div>
           }
-          leftBottom={<LinkTile label="Current Assets" href="/currentassets" />}
-          rightBottom={<LinkTile label="Your Own Anspach" href="/yoursphere" />}
         />
 
           </main>

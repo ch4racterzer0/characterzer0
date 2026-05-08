@@ -288,23 +288,18 @@ export function FigureWithTilesDesktop({
   leftTop,
   rightTop,
   centerTop,
-  leftBottom,
-  rightBottom,
 }: {
   rightSlot?: ReactNode;
   leftSlot?: ReactNode;
   leftTop?: ReactNode;
   rightTop?: ReactNode;
   centerTop?: ReactNode;
-  leftBottom?: ReactNode;
-  rightBottom?: ReactNode;
 } = {}) {
   return (
     <div className="flex items-end justify-center gap-4 sm:gap-8">
       <div className="hidden sm:flex flex-col items-center gap-4">
         {leftTop}
         {leftSlot ?? <RadioTile label="SLOW" />}
-        {leftBottom}
       </div>
       <div className="flex flex-col items-center gap-4">
         {centerTop}
@@ -326,7 +321,6 @@ export function FigureWithTilesDesktop({
       <div className="hidden sm:flex flex-col items-center gap-4">
         {rightTop}
         {rightSlot ?? <RadioTile label="READY" />}
-        {rightBottom}
       </div>
     </div>
   );
