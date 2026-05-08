@@ -1,8 +1,8 @@
 const MORSELS_LINES = [
-  "I feed from the bottom, you feed from the top",
-  "I live upon morsels you happen to drop",
-  "And coffee that somehow leaks out of your cup",
-  "If nothing comes down then I'm forced to swim up",
+  "我食于底,你食于顶",
+  "我以你落下的碎屑为生",
+  "还有从你杯中漏出的咖啡",
+  "若无物降下,我便上游而求",
   "谢谢飞鱼",
 ];
 
