@@ -4,15 +4,63 @@ export const dynamic = "force-dynamic";
 
 const HEX_LINE = "59 49 53 57 4D 54";
 
+type Tone = "blue" | "green" | "purple";
+
+const TONES: Record<
+  Tone,
+  {
+    hueRotate: number;
+    face: string;
+    faceShadow: string;
+    accentDot: string;
+    accentDotShadow: string;
+    hexShadow: string;
+  }
+> = {
+  blue: {
+    hueRotate: 0,
+    face: "rgba(103,232,249,0.32)",
+    faceShadow:
+      "0 0 6px rgba(103,232,249,0.25), 0 0 14px rgba(59,130,246,0.15)",
+    accentDot: "rgb(103,232,249)",
+    accentDotShadow: "0 0 6px rgba(103,232,249,0.85)",
+    hexShadow:
+      "0 0 14px rgba(255,255,255,0.85), 0 0 32px rgba(103,232,249,0.55), 0 0 60px rgba(59,130,246,0.35)",
+  },
+  green: {
+    hueRotate: 80,
+    face: "rgba(134,239,172,0.32)",
+    faceShadow:
+      "0 0 6px rgba(134,239,172,0.25), 0 0 14px rgba(34,197,94,0.15)",
+    accentDot: "rgb(134,239,172)",
+    accentDotShadow: "0 0 6px rgba(134,239,172,0.85)",
+    hexShadow:
+      "0 0 14px rgba(255,255,255,0.85), 0 0 32px rgba(134,239,172,0.55), 0 0 60px rgba(34,197,94,0.35)",
+  },
+  purple: {
+    hueRotate: 220,
+    face: "rgba(216,180,254,0.32)",
+    faceShadow:
+      "0 0 6px rgba(216,180,254,0.25), 0 0 14px rgba(168,85,247,0.15)",
+    accentDot: "rgb(216,180,254)",
+    accentDotShadow: "0 0 6px rgba(216,180,254,0.85)",
+    hexShadow:
+      "0 0 14px rgba(255,255,255,0.85), 0 0 32px rgba(216,180,254,0.55), 0 0 60px rgba(168,85,247,0.35)",
+  },
+};
+
 function HexBox({
   label,
   view,
   aspect = "aspect-[4/5]",
+  tone = "blue",
 }: {
   label: string;
   view: string;
   aspect?: string;
+  tone?: Tone;
 }) {
+  const t = TONES[tone];
   return (
     <div
       className={`relative rounded-md border border-white/25 bg-black flex items-center justify-center overflow-hidden ${aspect}`}
@@ -24,8 +72,11 @@ function HexBox({
       <div className="absolute top-3 left-3 flex items-center gap-2 text-[8px] sm:text-[10px] tracking-[0.4em] uppercase text-white/45">
         <span
           aria-hidden
-          className="block w-1 h-1 rounded-full bg-cyan-300"
-          style={{ boxShadow: "0 0 6px rgba(103,232,249,0.85)" }}
+          className="block w-1 h-1 rounded-full"
+          style={{
+            backgroundColor: t.accentDot,
+            boxShadow: t.accentDotShadow,
+          }}
         />
         <span>{label}</span>
       </div>
@@ -35,8 +86,7 @@ function HexBox({
       <p
         className="relative text-white font-mono tracking-[0.3em] sm:tracking-[0.4em] text-center px-4 text-[10px] sm:text-xs"
         style={{
-          textShadow:
-            "0 0 14px rgba(255,255,255,0.85), 0 0 32px rgba(103,232,249,0.55), 0 0 60px rgba(59,130,246,0.35)",
+          textShadow: t.hexShadow,
         }}
       >
         {HEX_LINE}
@@ -90,11 +140,14 @@ function FigureBox({
   label,
   view,
   aspect = "aspect-[4/5]",
+  tone = "blue",
 }: {
   label: string;
   view: string;
   aspect?: string;
+  tone?: Tone;
 }) {
+  const t = TONES[tone];
   return (
     <div
       className={`relative rounded-md border border-white/25 bg-black overflow-hidden ${aspect}`}
@@ -106,8 +159,11 @@ function FigureBox({
       <div className="absolute top-3 left-3 flex items-center gap-2 text-[8px] sm:text-[10px] tracking-[0.4em] uppercase text-white/45 z-10">
         <span
           aria-hidden
-          className="block w-1 h-1 rounded-full bg-cyan-300"
-          style={{ boxShadow: "0 0 6px rgba(103,232,249,0.85)" }}
+          className="block w-1 h-1 rounded-full"
+          style={{
+            backgroundColor: t.accentDot,
+            boxShadow: t.accentDotShadow,
+          }}
         />
         <span>{label}</span>
       </div>
@@ -121,14 +177,16 @@ function FigureBox({
         aria-hidden
         draggable={false}
         className="absolute inset-0 w-full h-full object-cover select-none"
-        style={{ mixBlendMode: "screen" }}
+        style={{
+          mixBlendMode: "screen",
+          filter: `hue-rotate(${t.hueRotate}deg)`,
+        }}
       />
       <p
         className="absolute left-1/2 top-[24%] -translate-x-1/2 -translate-y-1/2 z-10 font-mono text-lg sm:text-xl tracking-[0.15em] whitespace-nowrap"
         style={{
-          color: "rgba(103,232,249,0.27)",
-          textShadow:
-            "0 0 6px rgba(103,232,249,0.22), 0 0 14px rgba(59,130,246,0.12)",
+          color: t.face,
+          textShadow: t.faceShadow,
         }}
       >
         零号
@@ -166,6 +224,44 @@ export default function DropPage() {
           <p className="text-white/65 italic tracking-wide text-sm sm:text-base">
             a hacker keeps his stash in plain sight.
           </p>
+          <p className="text-white/45 text-[10px] sm:text-xs tracking-[0.3em] uppercase pt-2 flex items-center gap-3">
+            <span className="flex items-center gap-1.5">
+              <span
+                aria-hidden
+                className="block w-1.5 h-1.5 rounded-full"
+                style={{
+                  backgroundColor: "rgb(103,232,249)",
+                  boxShadow: "0 0 6px rgba(103,232,249,0.85)",
+                }}
+              />
+              blue
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span
+                aria-hidden
+                className="block w-1.5 h-1.5 rounded-full"
+                style={{
+                  backgroundColor: "rgb(134,239,172)",
+                  boxShadow: "0 0 6px rgba(134,239,172,0.85)",
+                }}
+              />
+              green
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span
+                aria-hidden
+                className="block w-1.5 h-1.5 rounded-full"
+                style={{
+                  backgroundColor: "rgb(216,180,254)",
+                  boxShadow: "0 0 6px rgba(216,180,254,0.85)",
+                }}
+              />
+              purple
+            </span>
+            <span className="text-white/35 italic normal-case tracking-normal">
+              every piece available in all three.
+            </span>
+          </p>
         </header>
 
         <section className="space-y-4">
@@ -173,8 +269,8 @@ export default function DropPage() {
             // tee · black · 100% cotton
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <HexBox label="t-shirt" view="front" />
-            <FigureBox label="t-shirt" view="back" />
+            <HexBox label="t-shirt" view="front" tone="blue" />
+            <FigureBox label="t-shirt" view="back" tone="blue" />
           </div>
         </section>
 
@@ -183,8 +279,8 @@ export default function DropPage() {
             // hoodie · black · heavyweight cotton fleece
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <HexBox label="hoodie" view="front" />
-            <FigureBox label="hoodie" view="back" />
+            <HexBox label="hoodie" view="front" tone="green" />
+            <FigureBox label="hoodie" view="back" tone="green" />
           </div>
         </section>
 
@@ -193,8 +289,8 @@ export default function DropPage() {
             // mug · black ceramic · 11oz
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <HexBox label="mug" view="hex side" aspect="aspect-square" />
-            <FigureBox label="mug" view="figure side" aspect="aspect-square" />
+            <HexBox label="mug" view="hex side" aspect="aspect-square" tone="purple" />
+            <FigureBox label="mug" view="figure side" aspect="aspect-square" tone="purple" />
           </div>
         </section>
 
@@ -203,8 +299,8 @@ export default function DropPage() {
             // yeti tumbler · black stainless · 20oz
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <HexBox label="yeti" view="hex side" aspect="aspect-[3/4]" />
-            <FigureBox label="yeti" view="figure side" aspect="aspect-[3/4]" />
+            <HexBox label="yeti" view="hex side" aspect="aspect-[3/4]" tone="blue" />
+            <FigureBox label="yeti" view="figure side" aspect="aspect-[3/4]" tone="blue" />
           </div>
         </section>
 
@@ -213,8 +309,8 @@ export default function DropPage() {
             // mouse pad · black · stitched edge
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <FigureBox label="mouse pad" view="figure" aspect="aspect-[3/2]" />
-            <HexBox label="mouse pad" view="hex" aspect="aspect-[3/2]" />
+            <FigureBox label="mouse pad" view="figure" aspect="aspect-[3/2]" tone="green" />
+            <HexBox label="mouse pad" view="hex" aspect="aspect-[3/2]" tone="green" />
           </div>
         </section>
 

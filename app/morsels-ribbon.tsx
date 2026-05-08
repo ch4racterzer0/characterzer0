@@ -3,6 +3,7 @@ const MORSELS_LINES = [
   "I live upon morsels you happen to drop",
   "And coffee that somehow leaks out of your cup",
   "If nothing comes down then I'm forced to swim up",
+  "谢谢飞鱼",
 ];
 
 const SEPARATOR = "  ◆  ";
