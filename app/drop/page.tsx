@@ -149,6 +149,26 @@ function HexBox({
           animation: "figure-hue-cycle 90s linear infinite",
         }}
       />
+      <p
+        className="absolute left-1/2 top-[55%] -translate-x-1/2 -translate-y-1/2 z-10 font-mono text-sm sm:text-base tracking-[0.4em] whitespace-nowrap text-white"
+        style={{
+          textShadow:
+            "0 0 8px rgba(255,255,255,0.5), 0 0 18px rgba(255,255,255,0.25)",
+          animation: "back-shirt-yiswmt 90s ease-in-out infinite",
+        }}
+      >
+        YISWMT
+      </p>
+      <p
+        className="absolute left-1/2 top-[55%] -translate-x-1/2 -translate-y-1/2 z-10 font-mono text-sm sm:text-base tracking-[0.4em] whitespace-nowrap text-white"
+        style={{
+          textShadow:
+            "0 0 8px rgba(255,255,255,0.5), 0 0 18px rgba(255,255,255,0.25)",
+          animation: "back-shirt-help 90s ease-in-out infinite",
+        }}
+      >
+        HeLppMe
+      </p>
       <div className="absolute top-3 left-3 flex items-center gap-2 text-[8px] sm:text-[10px] tracking-[0.4em] uppercase text-white/45 z-10">
         <span
           aria-hidden
