@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useVisualChannel } from "./visual-channel";
 
 const FRAMES = [
   "/cast/phish-sphere-cars.jpg",
@@ -23,6 +24,8 @@ const CROSSFADE_MS = 4000;
 
 export function SiteGhost() {
   const [index, setIndex] = useState(0);
+  const { channel } = useVisualChannel();
+  const channelActive = channel !== null;
 
   useEffect(() => {
     if (FRAMES.length <= 1) return;
@@ -35,8 +38,11 @@ export function SiteGhost() {
   return (
     <div
       aria-hidden
-      className="fixed inset-0 z-[50] pointer-events-none overflow-hidden"
-      style={{ mixBlendMode: "screen", opacity: 0.22 }}
+      className="fixed inset-0 z-[50] pointer-events-none overflow-hidden transition-opacity duration-700 ease-in-out"
+      style={{
+        mixBlendMode: "screen",
+        opacity: channelActive ? 0 : 0.22,
+      }}
     >
       {FRAMES.map((src, i) => (
         // eslint-disable-next-line @next/next/no-img-element

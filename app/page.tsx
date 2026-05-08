@@ -13,7 +13,7 @@ import {
   VisualTile,
 } from "./radio-tiles";
 import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
-import { ChannelBackground, VisualChannelProvider } from "./visual-channel";
+import { ChannelBackground } from "./visual-channel";
 import { GratefulDeadChip } from "./channel-chips";
 
 export default function Home() {
@@ -21,7 +21,6 @@ export default function Home() {
     <>
       <MobileLanding />
       <div className="hidden sm:block">
-        <VisualChannelProvider>
         <RadioProvider>
           <ThemeShifter>
           <ThemeSwitch />
@@ -138,7 +137,6 @@ export default function Home() {
           </main>
           </ThemeShifter>
         </RadioProvider>
-        </VisualChannelProvider>
       </div>
     </>
   );
