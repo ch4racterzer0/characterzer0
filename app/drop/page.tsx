@@ -67,41 +67,6 @@ const ROTATION_IMAGES = [
   "/drop-rotation/warning.png",
 ];
 
-const HEX_VARIANTS: { text: string; color: string; glow: string }[] = [
-  { text: "59 49 53 57 4D 54", color: "rgba(103,232,249,1)", glow: "rgba(103,232,249,0.6)" },
-  { text: "丫工5山Μ丁", color: "rgba(190,242,100,1)", glow: "rgba(190,242,100,0.6)" },
-  { text: "ҮΙ$ШΜТ", color: "rgba(244,114,182,1)", glow: "rgba(244,114,182,0.6)" },
-  { text: "ΥΙΣΨΜΤ", color: "rgba(251,191,36,1)", glow: "rgba(251,191,36,0.6)" },
-  { text: "Y15WM7", color: "rgba(248,113,113,1)", glow: "rgba(248,113,113,0.6)" },
-  { text: "ᚣᛁᛋᚹᛗᛏ", color: "rgba(167,139,250,1)", glow: "rgba(167,139,250,0.6)" },
-  { text: "𝒀𝑰𝑺𝑾𝑴𝑻", color: "rgba(251,146,60,1)", glow: "rgba(251,146,60,0.6)" },
-  { text: "-.-- .. ... .-- -- -", color: "rgba(94,234,212,1)", glow: "rgba(94,234,212,0.6)" },
-];
-
-function HexCycle() {
-  const cycleSec = HEX_VARIANTS.length * 12;
-  const slotSec = 12;
-  return (
-    <>
-      {HEX_VARIANTS.map((v, i) => (
-        <p
-          key={i}
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 font-mono tracking-[0.3em] sm:tracking-[0.4em] text-center px-4 text-[10px] sm:text-xs whitespace-nowrap"
-          style={{
-            color: v.color,
-            textShadow: `0 0 14px ${v.color}, 0 0 32px ${v.glow}`,
-            opacity: 0,
-            animation: `hex-text-cycle ${cycleSec}s ease-in-out infinite`,
-            animationDelay: `${i * slotSec}s`,
-          }}
-        >
-          {v.text}
-        </p>
-      ))}
-    </>
-  );
-}
-
 function BoxRotator() {
   return (
     <>
@@ -182,7 +147,6 @@ function HexBox({
       <div className="absolute top-3 right-3 text-[8px] sm:text-[10px] tracking-[0.3em] uppercase italic text-white/35 z-10">
         {view}
       </div>
-      <HexCycle />
     </div>
   );
 }
