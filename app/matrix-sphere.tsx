@@ -336,19 +336,17 @@ export function HomeSphere() {
   return (
     <div
       aria-hidden
-      className="fixed inset-0 z-[2] pointer-events-none flex items-start justify-center pt-[6vh]"
+      className="fixed inset-0 z-[2] pointer-events-none flex items-start justify-center pt-[12vh]"
       style={{
         opacity: 0,
         animation: "home-sphere-place 30s linear forwards",
       }}
     >
       <div
-        className="relative aspect-square w-[44vh] max-w-[560px] rounded-full"
+        className="relative aspect-square w-[40vh] max-w-[520px] rounded-full"
         style={{
-          background:
-            "radial-gradient(circle at center, rgba(220,235,255,1) 0%, rgba(147,197,253,0.95) 22%, rgba(59,130,246,0.7) 48%, rgba(30,64,175,0.35) 70%, transparent 88%)",
-          boxShadow:
-            "0 0 120px rgba(147,197,253,0.85), 0 0 220px rgba(96,165,250,0.5)",
+          border: "1px solid rgba(147,197,253,0.9)",
+          animation: "home-sphere-shimmer 6s ease-in-out infinite",
         }}
       />
     </div>
