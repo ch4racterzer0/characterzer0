@@ -324,10 +324,7 @@ export function FigureWithTilesDesktop({
           sizes="(max-width: 640px) 50vw, 30vw"
           className="h-full w-auto"
           style={{
-            maskImage:
-              "radial-gradient(ellipse 65% 80% at center, black 50%, rgba(0,0,0,0.7) 75%, transparent 100%)",
-            WebkitMaskImage:
-              "radial-gradient(ellipse 65% 80% at center, black 50%, rgba(0,0,0,0.7) 75%, transparent 100%)",
+            mixBlendMode: "screen",
           }}
         />
       </div>
