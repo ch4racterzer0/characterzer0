@@ -9,6 +9,7 @@ import {
   useState,
 } from "react";
 import { TetherClock } from "./tether-clock";
+import { useVisualChannel } from "./visual-channel";
 
 const JEMP_STREAM = "https://streaming.radio.co/sd71de59b3/listen";
 
@@ -154,6 +155,15 @@ export function TurntableTile() {
 
 export function VisualTile({ children }: { children?: ReactNode }) {
   const [armed, setArmed] = useState(false);
+  const { setChannel } = useVisualChannel();
+
+  function handleToggle() {
+    setArmed((v) => {
+      const next = !v;
+      if (!next) setChannel(null);
+      return next;
+    });
+  }
 
   const pads = [
     { col: 0, row: 0, lit: armed },
@@ -174,7 +184,7 @@ export function VisualTile({ children }: { children?: ReactNode }) {
     <div className="relative flex flex-col items-center gap-3">
       <button
         type="button"
-        onClick={() => setArmed((v) => !v)}
+        onClick={handleToggle}
         aria-pressed={armed}
         aria-label={armed ? "Disarm the visual controller" : "Arm the visual controller"}
         className="relative cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/60 rounded-md inline-flex flex-col items-center gap-2 group"

@@ -13,6 +13,7 @@ export function IframeTilePopup({
   src,
   gated = false,
   content,
+  onTriggerClick,
 }: {
   trigger: ReactNode;
   triggerClassName?: string;
@@ -21,6 +22,7 @@ export function IframeTilePopup({
   src?: string;
   gated?: boolean;
   content?: ReactNode;
+  onTriggerClick?: () => void;
 }) {
   const [open, setOpen] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
@@ -73,7 +75,10 @@ export function IframeTilePopup({
     <>
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          onTriggerClick?.();
+          setOpen(true);
+        }}
         aria-label={ariaLabel}
         className={triggerClassName}
         style={triggerStyle}
