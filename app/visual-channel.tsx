@@ -57,6 +57,8 @@ export function ChannelBackground() {
   );
 }
 
+const STORM_RAIN_CHARS = ["党", "档", "案", "监", "视", "中", "央"];
+
 export function CenterFigure() {
   return (
     <div
@@ -64,6 +66,34 @@ export function CenterFigure() {
       className="fixed inset-0 z-[1] flex items-start justify-center pt-[26vh] pointer-events-none"
     >
       <div className="relative h-[26vh] aspect-[3/2]">
+        <div
+          aria-hidden
+          className="absolute inset-0 -m-[6vh] pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse at 50% 45%, rgba(59,130,246,0.32) 0%, rgba(96,165,250,0.18) 30%, rgba(30,64,175,0.10) 55%, transparent 75%)",
+            filter: "blur(14px)",
+            animation: "storm-glow-breath 24s ease-in-out infinite",
+          }}
+        />
+        {STORM_RAIN_CHARS.map((ch, i) => (
+          <span
+            key={i}
+            aria-hidden
+            className="absolute font-mono text-[10px] sm:text-xs whitespace-nowrap pointer-events-none"
+            style={{
+              top: 0,
+              left: `${18 + i * 9.5}%`,
+              color: "rgba(248,113,113,0.55)",
+              textShadow:
+                "0 0 6px rgba(248,113,113,0.55), 0 0 14px rgba(220,38,38,0.35)",
+              opacity: 0,
+              animation: `storm-rain ${52 + i * 3}s linear ${i * 0.8}s infinite`,
+            }}
+          >
+            {ch}
+          </span>
+        ))}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/figures/front.png"

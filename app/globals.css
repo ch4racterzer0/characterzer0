@@ -257,6 +257,38 @@ body,
   }
 }
 
+@keyframes storm-glow-breath {
+  0%, 100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes storm-rain {
+  0%, 88%, 100% {
+    opacity: 0;
+    transform: translateY(-15%);
+  }
+  3% {
+    opacity: 0.22;
+    transform: translateY(-5%);
+  }
+  8% {
+    opacity: 0.28;
+    transform: translateY(35%);
+  }
+  13% {
+    opacity: 0.18;
+    transform: translateY(75%);
+  }
+  17% {
+    opacity: 0;
+    transform: translateY(110%);
+  }
+}
+
 @keyframes figure-hue-cycle {
   0% {
     filter: hue-rotate(0deg);
