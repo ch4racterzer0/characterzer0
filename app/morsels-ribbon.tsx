@@ -4,6 +4,8 @@ const MORSELS_LINES = [
   "还有从你杯中漏出的咖啡",
   "若无物降下,我便上游而求",
   "谢谢飞鱼",
+  "Ѕеt thе gеаrѕhіft fоr thе hіgh gеаr оf уоur ѕоul!",
+  "Уоu'vе gоt tо run lіkе аn аntеlорe, оut оf соntrоl!",
 ];
 
 const SEPARATOR = "  ◆  ";
