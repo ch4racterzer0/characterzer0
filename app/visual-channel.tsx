@@ -50,7 +50,7 @@ export function ChannelBackground() {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          opacity: channel ? 0.18 : 0,
+          opacity: channel ? 0.10 : 0,
         }}
       />
     </div>
