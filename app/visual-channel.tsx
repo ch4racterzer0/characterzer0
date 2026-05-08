@@ -41,14 +41,18 @@ export function ChannelBackground() {
   return (
     <div
       aria-hidden
-      className="fixed inset-0 z-0 pointer-events-none transition-opacity duration-700 ease-in-out"
-      style={{
-        backgroundImage: url ? `url('${url}')` : "none",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        opacity: channel ? 1 : 0,
-      }}
-    />
+      className="fixed inset-0 z-0 bg-black pointer-events-none"
+    >
+      <div
+        className="absolute inset-0 transition-opacity duration-700 ease-in-out"
+        style={{
+          backgroundImage: url ? `url('${url}')` : "none",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          opacity: channel ? 0.18 : 0,
+        }}
+      />
+    </div>
   );
 }
