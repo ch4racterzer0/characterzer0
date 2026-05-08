@@ -294,6 +294,27 @@ body,
   }
 }
 
+@keyframes face-mark-zero-vis {
+  0%, 86%, 94%, 100% {
+    opacity: 1;
+  }
+  88%, 92% {
+    opacity: 0;
+  }
+}
+
+@keyframes face-mark-storm {
+  0%, 86%, 94%, 100% {
+    opacity: 0;
+  }
+  88%, 92% {
+    opacity: 0.95;
+    color: rgba(165, 243, 252, 0.95);
+    text-shadow: 0 0 10px rgba(103, 232, 249, 0.85),
+      0 0 22px rgba(59, 130, 246, 0.55);
+  }
+}
+
 @keyframes turntable-spin {
   from {
     transform: rotate(0deg);

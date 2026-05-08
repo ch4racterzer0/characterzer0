@@ -279,10 +279,19 @@ function FigureBox({
       <p
         className="absolute left-1/2 top-[24%] -translate-x-1/2 -translate-y-1/2 z-10 font-mono text-lg sm:text-xl tracking-[0.15em] whitespace-nowrap"
         style={{
-          animation: "mark-flicker 30s ease-in-out infinite",
+          animation:
+            "mark-flicker 30s ease-in-out infinite, face-mark-zero-vis 60s ease-in-out infinite",
         }}
       >
         零号
+      </p>
+      <p
+        className="absolute left-1/2 top-[24%] -translate-x-1/2 -translate-y-1/2 z-10 font-mono text-lg sm:text-xl tracking-[0.3em] whitespace-nowrap uppercase"
+        style={{
+          animation: "face-mark-storm 60s ease-in-out infinite",
+        }}
+      >
+        storm
       </p>
       <p
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 font-mono text-sm sm:text-base tracking-[0.4em] whitespace-nowrap"
