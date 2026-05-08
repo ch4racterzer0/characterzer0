@@ -314,8 +314,6 @@ export function FigureWithTilesDesktop({
             className="absolute inset-0 w-full h-full object-contain object-bottom pointer-events-none select-none"
             style={{
               mixBlendMode: "screen",
-              transformOrigin: "50% 100%",
-              animation: "figure-turn-toward 9s ease-in-out 2s forwards",
             }}
           />
         </div>

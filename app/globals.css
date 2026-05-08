@@ -425,12 +425,12 @@ body,
   }
 }
 
-@keyframes figure-turn-toward {
+@keyframes drop-figure-turn-inward {
   from {
-    transform: rotate(0deg);
+    transform: rotateY(0deg);
   }
   to {
-    transform: rotate(45deg);
+    transform: rotateY(-45deg);
   }
 }
 

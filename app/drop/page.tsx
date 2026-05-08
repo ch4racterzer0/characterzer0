@@ -109,6 +109,7 @@ function HexBox({
       style={{
         boxShadow:
           "0 0 30px rgba(255,255,255,0.10), 0 0 60px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.18)",
+        perspective: "1400px",
       }}
     >
       <BoxRotator />
@@ -121,7 +122,9 @@ function HexBox({
         className="absolute inset-0 w-full h-full object-cover select-none"
         style={{
           mixBlendMode: "screen",
-          animation: "figure-hue-cycle 90s linear infinite",
+          transformOrigin: "50% 50%",
+          animation:
+            "figure-hue-cycle 90s linear infinite, drop-figure-turn-inward 9s ease-in-out 2s forwards",
         }}
       />
       <p
@@ -210,6 +213,7 @@ function FigureBox({
       style={{
         boxShadow:
           "0 0 30px rgba(255,255,255,0.10), 0 0 60px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.18)",
+        perspective: "1400px",
       }}
     >
       <div className="absolute top-3 left-3 flex items-center gap-2 text-[8px] sm:text-[10px] tracking-[0.4em] uppercase text-white/45 z-10">
@@ -236,7 +240,9 @@ function FigureBox({
         className="absolute inset-0 w-full h-full object-cover select-none"
         style={{
           mixBlendMode: "screen",
-          animation: "figure-hue-cycle 90s linear infinite",
+          transformOrigin: "50% 50%",
+          animation:
+            "figure-hue-cycle 90s linear infinite, drop-figure-turn-inward 9s ease-in-out 2s forwards",
         }}
       />
       <p
