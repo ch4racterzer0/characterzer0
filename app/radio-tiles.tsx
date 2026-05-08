@@ -320,7 +320,7 @@ export function FigureWithTilesDesktop({
           alt=""
           aria-hidden
           draggable={false}
-          className="absolute inset-0 w-full h-full object-contain pointer-events-none select-none"
+          className="absolute inset-0 w-full h-full object-contain object-bottom pointer-events-none select-none"
           style={{
             mixBlendMode: "screen",
           }}
