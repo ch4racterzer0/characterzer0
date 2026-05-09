@@ -3,14 +3,14 @@
 import {
   ReactNode,
   createContext,
+  useCallback,
   useContext,
+  useEffect,
   useRef,
   useState,
 } from "react";
 import { TetherClock } from "./tether-clock";
 import { useVisualChannel } from "./visual-channel";
-
-const JEMP_STREAM = "https://streaming.radio.co/sd71de59b3/listen";
 
 type RadioCtx = {
   playing: boolean;
@@ -25,30 +25,82 @@ function useRadio(): RadioCtx {
   return ctx;
 }
 
+function trackUrl(name: string) {
+  const parts = name.split("/").map(encodeURIComponent).join("/");
+  return `/api/music/track/${parts}`;
+}
+
 export function RadioProvider({ children }: { children: ReactNode }) {
   const [playing, setPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const playlistRef = useRef<string[]>([]);
+  const indexRef = useRef(0);
 
-  const toggle = async () => {
+  const loadPlaylist = useCallback(async () => {
+    try {
+      const res = await fetch("/api/music/list", { cache: "no-store" });
+      if (!res.ok) return [];
+      const data = (await res.json()) as { tracks?: string[] };
+      return data.tracks ?? [];
+    } catch {
+      return [];
+    }
+  }, []);
+
+  const playIndex = useCallback(async (i: number) => {
+    const audio = audioRef.current;
+    const list = playlistRef.current;
+    if (!audio || list.length === 0) return false;
+    indexRef.current = ((i % list.length) + list.length) % list.length;
+    audio.src = trackUrl(list[indexRef.current]);
+    try {
+      await audio.play();
+      return true;
+    } catch {
+      return false;
+    }
+  }, []);
+
+  const toggle = useCallback(async () => {
     const audio = audioRef.current;
     if (!audio) return;
     if (playing) {
       audio.pause();
       setPlaying(false);
-    } else {
-      try {
-        await audio.play();
-        setPlaying(true);
-      } catch {
-        setPlaying(false);
-      }
+      return;
     }
-  };
+    if (playlistRef.current.length === 0) {
+      playlistRef.current = await loadPlaylist();
+    }
+    if (playlistRef.current.length === 0) {
+      setPlaying(false);
+      return;
+    }
+    const ok = await playIndex(indexRef.current);
+    setPlaying(ok);
+  }, [playing, loadPlaylist, playIndex]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    const onEnded = () => {
+      void playIndex(indexRef.current + 1);
+    };
+    const onError = () => {
+      void playIndex(indexRef.current + 1);
+    };
+    audio.addEventListener("ended", onEnded);
+    audio.addEventListener("error", onError);
+    return () => {
+      audio.removeEventListener("ended", onEnded);
+      audio.removeEventListener("error", onError);
+    };
+  }, [playIndex]);
 
   return (
     <RadioContext.Provider value={{ playing, toggle }}>
       {children}
-      <audio ref={audioRef} src={JEMP_STREAM} preload="none" />
+      <audio ref={audioRef} preload="none" />
     </RadioContext.Provider>
   );
 }
