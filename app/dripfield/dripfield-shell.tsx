@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { EndOfRoadModal } from "../end-of-road-modal";
+import { EndlessTicTacToe } from "../endless-tic-tac-toe";
 import { LayerNav } from "../layer-nav";
 import { LightSwitchMask } from "../light-switch-mask";
 import { BandPrompt } from "./band-prompt";
@@ -16,6 +17,7 @@ const PUNCH_SHADOW =
   "0 0 12px rgba(250,204,21,0.85), 0 0 28px rgba(234,179,8,0.55), 0 0 60px rgba(234,179,8,0.3)";
 
 const FIRSTPLACED_REGISTERED = "2026-05-07T06:35:15Z";
+const PITCH_SEEN_KEY = "lights-pitch-seen";
 
 function NavButton({
   label,
@@ -521,12 +523,32 @@ export function DripfieldShell() {
   const [podcastsOpen, setPodcastsOpen] = useState(false);
   const [defconOpen, setDefconOpen] = useState(false);
   const [endOfRoadOpen, setEndOfRoadOpen] = useState(false);
+  const [endlessTttOpen, setEndlessTttOpen] = useState(false);
+  const [pitchSeen, setPitchSeen] = useState(false);
   const [tttState, setTttState] = useState<TttState>("idle");
   const [inputBuffer, setInputBuffer] = useState("");
   const [mounted, setMounted] = useState(false);
   const lit = true;
 
   useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    try {
+      if (sessionStorage.getItem(PITCH_SEEN_KEY) === "1") setPitchSeen(true);
+    } catch {}
+  }, []);
+
+  function handleLightSwitch() {
+    if (pitchSeen) {
+      setEndlessTttOpen(true);
+      return;
+    }
+    setEndOfRoadOpen(true);
+    setPitchSeen(true);
+    try {
+      sessionStorage.setItem(PITCH_SEEN_KEY, "1");
+    } catch {}
+  }
 
   useEffect(() => {
     const id = setInterval(() => setCursorOn((c) => !c), 530);
@@ -799,10 +821,14 @@ export function DripfieldShell() {
         </footer>
       </div>
 
-      <LightSwitchMask tone="yellow" onSwitch={() => setEndOfRoadOpen(true)} />
+      <LightSwitchMask tone="yellow" onSwitch={handleLightSwitch} />
 
       {endOfRoadOpen && (
         <EndOfRoadModal onClose={() => setEndOfRoadOpen(false)} />
+      )}
+
+      {endlessTttOpen && (
+        <EndlessTicTacToe tone="yellow" onClose={() => setEndlessTttOpen(false)} />
       )}
 
       {podcastsOpen && (

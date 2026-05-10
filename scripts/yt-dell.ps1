@@ -1,6 +1,6 @@
 param(
   [int]$Fps = 30,
-  [int]$BitrateKbps = 4500,
+  [int]$BitrateKbps = 9000,
   [string]$MusicDir
 )
 
@@ -49,8 +49,8 @@ $ffArgs = @(
   '-map','0:v','-map','1:a',
   '-c:v','libx264','-preset','veryfast',
   '-b:v',"${BitrateKbps}k",'-maxrate',"${BitrateKbps}k",'-bufsize',"$($BitrateKbps * 2)k",
-  '-bf','2','-g','60','-keyint_min','60','-sc_threshold','0','-profile:v','high','-pix_fmt','yuv420p',
-  '-c:a','aac','-b:a','160k','-ar','44100',
+  '-bf','2','-g',"$($Fps * 2)",'-keyint_min',"$($Fps * 2)",'-sc_threshold','0','-profile:v','high','-level','4.2','-pix_fmt','yuv420p',
+  '-c:a','aac','-b:a','192k','-ar','48000',
   '-f','flv', $rtmp
 )
 
