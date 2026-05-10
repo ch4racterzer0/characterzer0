@@ -1,7 +1,6 @@
 import { HoleInput } from "./hole-input";
 import { IframeTilePopup } from "./iframe-tile-popup";
 import { LinkTile } from "./link-tile";
-import { MatrixSphere } from "./matrix-sphere";
 import { MobileLanding } from "./mobile-landing";
 import {
   FigureWithTilesDesktop,
@@ -21,7 +20,6 @@ export default function Home() {
           <ThemeShifter>
           <ThemeSwitch />
           <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center justify-between gap-6 sm:gap-0 py-4 sm:py-10 px-4">
-        <MatrixSphere />
         <RadioTilesMobileTop />
 
         <div className="hidden sm:block absolute top-12 left-3 sm:top-14 sm:left-5 z-20">

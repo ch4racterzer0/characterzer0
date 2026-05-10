@@ -154,6 +154,74 @@ function HexBox({
   );
 }
 
+function ArtworkRow() {
+  return (
+    <div
+      className="relative rounded-md border border-white/25 bg-black overflow-hidden aspect-[16/7] flex items-center justify-center"
+      style={{
+        boxShadow:
+          "0 0 30px rgba(255,255,255,0.10), 0 0 60px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.18)",
+      }}
+    >
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-center bg-cover opacity-70"
+        style={{ backgroundImage: "url(/drop-artwork/hero.png)" }}
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.85) 70%, rgba(0,0,0,0.95) 100%)",
+        }}
+      />
+
+      <div className="absolute top-3 left-3 flex items-center gap-2 text-[8px] sm:text-[10px] tracking-[0.4em] uppercase text-white/45 z-10">
+        <span
+          aria-hidden
+          className="block w-1 h-1 rounded-full bg-cyan-300"
+          style={{ boxShadow: "0 0 6px rgba(103,232,249,0.85)" }}
+        />
+        <span>artwork</span>
+      </div>
+      <div className="absolute top-3 right-3 text-[8px] sm:text-[10px] tracking-[0.3em] uppercase italic text-white/35 z-10">
+        original &middot; in-house
+      </div>
+
+      <div className="relative z-10 text-center px-6 sm:px-12 max-w-3xl space-y-4">
+        <p
+          className="text-white text-base sm:text-lg leading-relaxed"
+          style={{
+            textShadow:
+              "0 0 10px rgba(255,255,255,0.45), 0 0 22px rgba(103,232,249,0.25)",
+          }}
+        >
+          character zer0 made every single graphic on this entire site.
+        </p>
+        <p className="text-white/75 text-sm sm:text-base italic leading-relaxed">
+          if you see anything you like, he would be more than happy to help.
+        </p>
+        <p
+          className="text-cyan-300 text-sm sm:text-base font-mono tracking-[0.2em] pt-1 select-all"
+          style={{
+            textShadow:
+              "0 0 12px rgba(103,232,249,0.55), 0 0 28px rgba(59,130,246,0.3)",
+          }}
+        >
+          ch4racterzer0@gmail
+        </p>
+        <a
+          href="/character-zer0"
+          className="inline-block text-white/70 hover:text-white text-[10px] sm:text-xs font-mono tracking-[0.3em] uppercase border-b border-white/30 hover:border-white/70 transition-colors mt-1"
+        >
+          for hire ↗
+        </a>
+      </div>
+    </div>
+  );
+}
+
 function PlainBox({
   label,
   view,
@@ -362,6 +430,13 @@ export default function DropPage() {
             <HexBox label="t-shirt" view="back" tone="blue" />
             <FigureBox label="t-shirt" view="front" tone="blue" />
           </div>
+        </section>
+
+        <section className="space-y-4">
+          <p className="text-cyan-300/80 text-[10px] sm:text-xs tracking-[0.4em] uppercase">
+            // artwork · made in-house · all by character zer0
+          </p>
+          <ArtworkRow />
         </section>
 
         <section className="space-y-4">

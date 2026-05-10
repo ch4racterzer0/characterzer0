@@ -67,7 +67,7 @@ export function HoleInput() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        aria-label="open hole — l"
+        aria-label="wanna chat?"
         className="relative cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60 rounded-xl group inline-block"
       >
         <span
@@ -102,7 +102,7 @@ export function HoleInput() {
                 "0 0 10px rgba(96,165,250,0.55), 0 0 22px rgba(59,130,246,0.3)",
             }}
           >
-            hole &mdash; l
+            wanna chat?
           </span>
         </span>
       </button>
