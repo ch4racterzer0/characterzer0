@@ -11,9 +11,15 @@ type Track = {
 
 const COREY_ENOUGH_MP3 =
   "https://zn9mwq77l82sjlir.public.blob.vercel-storage.com/corey-shelton-enough-to-leave-KF4zfNpTCcB9OhM9eNuBWUePgIPWmH.mp3";
+const COREY_CUT_02_MP3 =
+  "https://zn9mwq77l82sjlir.public.blob.vercel-storage.com/corey-cut-02-lMyzynTJE7eSX8Hyjk5MdiZqfbYZZL.mp3";
+const COREY_CUT_03_MP3 =
+  "https://zn9mwq77l82sjlir.public.blob.vercel-storage.com/corey-cut-03-4Uum15GSdwhXWlUT9kNqjMa6bUlTBm.mp3";
 
 const TRACKS: Track[] = [
   { slot: "01", title: "enough to leave", src: COREY_ENOUGH_MP3 },
+  { slot: "02", title: "cut two", src: COREY_CUT_02_MP3 },
+  { slot: "03", title: "cut three", src: COREY_CUT_03_MP3 },
 ];
 
 function loadTrack(t: Track) {
