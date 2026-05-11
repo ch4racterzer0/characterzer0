@@ -383,7 +383,13 @@ export function OrbWallpapers() {
         animation: "home-sphere-place 30s linear forwards",
       }}
     >
-      <div className="relative w-[20vh] h-[22vh] max-w-[260px] rounded-full overflow-hidden">
+      <div
+        className="relative w-[20vh] h-[22vh] max-w-[260px] rounded-full overflow-hidden"
+        style={{
+          transformOrigin: "50% 0%",
+          animation: "home-sphere-expand 35s ease-out 10s forwards",
+        }}
+      >
         {ORB_WALLPAPERS.map((src, i) => (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -422,7 +428,13 @@ export function HomeSphere() {
           animation: "home-sphere-place 30s linear forwards",
         }}
       >
-        <div className="relative w-[20vh] h-[22vh] max-w-[260px]">
+        <div
+          className="relative w-[20vh] h-[22vh] max-w-[260px]"
+          style={{
+            transformOrigin: "50% 0%",
+            animation: "home-sphere-expand 35s ease-out 10s forwards",
+          }}
+        >
           <div
             aria-hidden
             className="absolute inset-0 rounded-full pointer-events-none"
@@ -438,9 +450,7 @@ export function HomeSphere() {
             className="absolute inset-0 rounded-full"
             style={{
               border: "1px solid rgba(147,197,253,0.9)",
-              transformOrigin: "50% 0%",
-              animation:
-                "home-sphere-shimmer 6s ease-in-out infinite, home-sphere-expand 75s ease-out 30s forwards",
+              animation: "home-sphere-shimmer 6s ease-in-out infinite",
             }}
           />
           {ORB_TILES.map((t, i) => (
