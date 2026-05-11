@@ -112,7 +112,8 @@ $ffArgs = @(
   '-re','-stream_loop','-1','-f','concat','-safe','0','-i', $musicList,
   '-map','0:v:0','-map','1:a:0',
   '-c:v','libx264','-preset','veryfast',
-  '-b:v',"${BitrateKbps}k",'-maxrate',"${BitrateKbps}k",'-bufsize',"$($BitrateKbps * 2)k",
+  '-b:v',"${BitrateKbps}k",'-minrate',"${BitrateKbps}k",'-maxrate',"${BitrateKbps}k",'-bufsize',"${BitrateKbps}k",
+  '-x264-params','nal-hrd=cbr',
   '-bf','2','-g',"$($Fps * 2)",'-keyint_min',"$($Fps * 2)",'-sc_threshold','0','-profile:v','high','-level','4.2','-pix_fmt','yuv420p',
   '-c:a','aac','-b:a','192k','-ar','48000',
   '-f','flv', $rtmp
