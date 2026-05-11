@@ -478,12 +478,12 @@ export function HomeSphere() {
             type="button"
             onClick={() => setFrogOpen(true)}
             aria-label="frog"
-            className="absolute top-1/2 left-1/2 font-mono text-emerald-200/60 hover:text-emerald-100 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase whitespace-nowrap pointer-events-auto cursor-pointer bg-transparent border-0 p-0 transition-colors"
+            className="absolute top-1/2 left-1/2 font-mono text-emerald-200 hover:text-emerald-100 text-xs sm:text-sm tracking-[0.35em] uppercase whitespace-nowrap pointer-events-auto cursor-pointer bg-transparent border-0 p-0 transition-colors"
             style={{
               transform:
-                "translate(-50%, -50%) rotate(315deg) translateY(-7vh) rotate(-315deg)",
+                "translate(-50%, -50%) rotate(95deg) translateY(-18vh) rotate(-95deg)",
               textShadow:
-                "0 0 8px rgba(110,231,183,0.45), 0 0 18px rgba(16,185,129,0.25)",
+                "0 0 10px rgba(110,231,183,0.75), 0 0 22px rgba(16,185,129,0.45), 0 0 44px rgba(34,197,94,0.25)",
             }}
           >
             frog
