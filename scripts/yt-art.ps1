@@ -30,7 +30,7 @@ if (Test-Path $slideshow) {
   $slideTime = (Get-Item $slideshow).LastWriteTime
   if ($slideTime -gt $newestArtTime) {
     $needRender = $false
-    Write-Host "slideshow.mp4 cache is fresh — skipping render"
+    Write-Host "slideshow.mp4 cache is fresh -- skipping render"
   }
 }
 
