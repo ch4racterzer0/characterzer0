@@ -546,3 +546,14 @@ body.warping-out > main {
     rgba(0, 0, 0, 0) 100%
   );
 }
+
+@keyframes frog-fade-a {
+  0%, 40% { opacity: 0.42; }
+  50%, 90% { opacity: 0; }
+  100% { opacity: 0.42; }
+}
+@keyframes frog-fade-b {
+  0%, 40% { opacity: 0; }
+  50%, 90% { opacity: 0.42; }
+  100% { opacity: 0; }
+}

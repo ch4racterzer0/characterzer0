@@ -137,18 +137,46 @@ export default function Home() {
                 key="frog"
                 ariaLabel="frog"
                 src="/frog"
-                triggerClassName="group w-full backdrop-blur-[2px] bg-green-950/40 hover:bg-green-950/60 border border-green-300/55 hover:border-green-200/85 px-3 py-2 rounded-xl transition-colors flex flex-col items-center gap-0.5 cursor-pointer"
+                triggerClassName="group relative overflow-hidden w-full backdrop-blur-[2px] bg-green-950/40 hover:bg-green-950/60 border border-green-300/55 hover:border-green-200/85 px-3 py-2 rounded-xl transition-colors flex flex-col items-center gap-0.5 cursor-pointer"
                 triggerStyle={{
                   boxShadow:
                     "0 0 22px rgba(74,222,128,0.45), 0 0 50px rgba(22,163,74,0.22), 0 8px 22px -8px rgba(0,0,0,0.65), inset 0 1px 0 rgba(187,247,208,0.30)",
                 }}
                 trigger={
                   <>
-                    <span className="text-green-200/80 text-[8px] tracking-[0.4em] uppercase">
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute inset-0"
+                      style={{
+                        backgroundImage:
+                          "url(/Chracterzer%E9%9B%B6%E5%8F%B7/2f92d962-e445-4d9d-bd6f-9cc4046a6976.png)",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        mixBlendMode: "screen",
+                        animation: "frog-fade-a 11s ease-in-out infinite",
+                      }}
+                    />
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute inset-0"
+                      style={{
+                        backgroundImage:
+                          "url(/Chracterzer%E9%9B%B6%E5%8F%B7/f6ff8419-db92-4337-94ba-01bdb28bd2f5.png)",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        mixBlendMode: "screen",
+                        animation: "frog-fade-b 11s ease-in-out infinite",
+                      }}
+                    />
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute inset-0 bg-green-950/35"
+                    />
+                    <span className="relative text-green-200/80 text-[8px] tracking-[0.4em] uppercase">
                       ↗ skip
                     </span>
                     <span
-                      className="text-green-100 text-base sm:text-lg tracking-[0.25em] uppercase font-light"
+                      className="relative text-green-100 text-base sm:text-lg tracking-[0.25em] uppercase font-light"
                       style={{
                         textShadow:
                           "0 0 10px rgba(187,247,208,0.85), 0 0 22px rgba(74,222,128,0.55)",
@@ -156,7 +184,7 @@ export default function Home() {
                     >
                       frog
                     </span>
-                    <span className="text-green-300/65 text-[8px] tracking-[0.3em] uppercase italic">
+                    <span className="relative text-green-300/65 text-[8px] tracking-[0.3em] uppercase italic">
                       ribbit
                     </span>
                   </>
