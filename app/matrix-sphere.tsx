@@ -395,9 +395,21 @@ export function OrbWallpapers() {
   const [currentSource, setCurrentSource] = useState<string>("default");
   const [mckPics, setMckPics] = useState<string[]>([]);
   const [mckIndex, setMckIndex] = useState(0);
+  const [radioOn, setRadioOn] = useState(false);
   const hidden = useOrbHidden();
 
   const mckMode = currentSource === "mckinley" && playing && mckPics.length > 0;
+
+  useEffect(() => {
+    const on = () => setRadioOn(true);
+    const off = () => setRadioOn(false);
+    window.addEventListener("character-zero:radio-play", on);
+    window.addEventListener("character-zero:radio-stop", off);
+    return () => {
+      window.removeEventListener("character-zero:radio-play", on);
+      window.removeEventListener("character-zero:radio-stop", off);
+    };
+  }, []);
 
   useEffect(() => {
     const a = audioRef.current;
@@ -568,44 +580,46 @@ export function OrbWallpapers() {
             />
           );
         })}
-        <button
-          type="button"
-          onClick={togglePlay}
-          aria-label={
-            mckMode
-              ? "Tap to pause"
-              : playing
-                ? "Pause podcast"
-                : "Play podcast"
-          }
-          aria-pressed={playing}
-          className={
-            mckMode
-              ? "absolute inset-0 w-full h-full pointer-events-auto z-20 cursor-pointer bg-transparent border-0"
-              : "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full pointer-events-auto z-20 flex items-center justify-center bg-blue-950/45 hover:bg-blue-900/70 border border-blue-300/65 hover:border-blue-200/85 backdrop-blur-sm transition-colors cursor-pointer"
-          }
-          style={
-            mckMode
-              ? undefined
-              : {
-                  boxShadow:
-                    "0 0 24px rgba(96,165,250,0.55), 0 0 60px rgba(59,130,246,0.30), inset 0 1px 0 rgba(191,219,254,0.40)",
-                }
-          }
-        >
-          {mckMode ? null : (
-            <span
-              aria-hidden
-              className="block text-blue-100 text-lg sm:text-xl leading-none translate-x-[1px]"
-              style={{
-                textShadow: "0 0 8px rgba(191,219,254,0.85)",
-                fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
-              }}
-            >
-              {playing ? "❚❚" : "▶"}
-            </span>
-          )}
-        </button>
+        {radioOn ? null : (
+          <button
+            type="button"
+            onClick={togglePlay}
+            aria-label={
+              mckMode
+                ? "Tap to pause"
+                : playing
+                  ? "Pause podcast"
+                  : "Play podcast"
+            }
+            aria-pressed={playing}
+            className={
+              mckMode
+                ? "absolute inset-0 w-full h-full pointer-events-auto z-20 cursor-pointer bg-transparent border-0"
+                : "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full pointer-events-auto z-20 flex items-center justify-center bg-blue-950/45 hover:bg-blue-900/70 border border-blue-300/65 hover:border-blue-200/85 backdrop-blur-sm transition-colors cursor-pointer"
+            }
+            style={
+              mckMode
+                ? undefined
+                : {
+                    boxShadow:
+                      "0 0 24px rgba(96,165,250,0.55), 0 0 60px rgba(59,130,246,0.30), inset 0 1px 0 rgba(191,219,254,0.40)",
+                  }
+            }
+          >
+            {mckMode ? null : (
+              <span
+                aria-hidden
+                className="block text-blue-100 text-lg sm:text-xl leading-none translate-x-[1px]"
+                style={{
+                  textShadow: "0 0 8px rgba(191,219,254,0.85)",
+                  fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+                }}
+              >
+                {playing ? "❚❚" : "▶"}
+              </span>
+            )}
+          </button>
+        )}
       </div>
     </div>
   );

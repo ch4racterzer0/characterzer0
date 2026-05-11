@@ -64,6 +64,7 @@ export function RadioProvider({ children }: { children: ReactNode }) {
     if (playing) {
       audio.pause();
       setPlaying(false);
+      window.dispatchEvent(new Event("character-zero:radio-stop"));
       return;
     }
     if (playlistRef.current.length === 0) {
@@ -75,6 +76,7 @@ export function RadioProvider({ children }: { children: ReactNode }) {
     }
     const ok = await playIndex(indexRef.current);
     setPlaying(ok);
+    if (ok) window.dispatchEvent(new Event("character-zero:radio-play"));
   }, [playing, loadPlaylist, playIndex]);
 
   useEffect(() => {
@@ -112,6 +114,7 @@ export function RadioProvider({ children }: { children: ReactNode }) {
           audio.pause();
           audio.volume = startVol;
           setPlaying(false);
+          window.dispatchEvent(new Event("character-zero:radio-stop"));
         }
       }, durationMs / steps);
     };
@@ -375,6 +378,40 @@ export function RadioTilesMobileTop() {
   );
 }
 
+function RadioStopTile() {
+  const { playing, toggle } = useRadio();
+  if (!playing) return null;
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      aria-label="Stop radio"
+      className="absolute left-[-3.5rem] sm:left-[-4rem] top-1/2 -translate-y-1/2 z-20 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60 rounded-lg"
+    >
+      <span
+        aria-hidden
+        className="absolute -inset-3 rounded-full blur-2xl bg-blue-400/35"
+      />
+      <span
+        className="relative flex flex-col items-center gap-1 rounded-lg border border-blue-300/55 hover:border-blue-200/85 bg-blue-950/55 hover:bg-blue-900/70 backdrop-blur-sm px-2.5 py-2 transition-colors"
+        style={{
+          boxShadow:
+            "0 0 22px rgba(96,165,250,0.55), 0 0 50px rgba(59,130,246,0.25), inset 0 1px 0 rgba(191,219,254,0.40)",
+        }}
+      >
+        <span
+          aria-hidden
+          className="block w-3 h-3 bg-blue-100 rounded-[1px]"
+          style={{ boxShadow: "0 0 6px rgba(191,219,254,0.85)" }}
+        />
+        <span className="text-blue-100/85 text-[7px] tracking-[0.35em] uppercase font-light">
+          stop
+        </span>
+      </span>
+    </button>
+  );
+}
+
 export function FigureWithTilesDesktop({
   rightSlot,
   leftSlot,
@@ -398,6 +435,7 @@ export function FigureWithTilesDesktop({
         {centerTop}
         <div className="relative h-[28vh] aspect-[3/2]">
           <TetherClock />
+          <RadioStopTile />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/figures/back.png"
