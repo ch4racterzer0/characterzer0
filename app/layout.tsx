@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { HomeSphere, OrbRearLight, OrbWallpapers } from "./matrix-sphere";
+import { KPTile } from "./kp-tile";
 import { MorselsRibbon } from "./morsels-ribbon";
 import { SemperFiTile } from "./semper-fi-tile";
 import { SiteGhost } from "./site-ghost";
@@ -45,6 +46,7 @@ export default function RootLayout({
           <CenterFigure />
           <MorselsRibbon />
           <SemperFiTile />
+          <KPTile />
           <SiteGhost />
           <div className="relative z-20 flex-1 flex flex-col">
             {children}
