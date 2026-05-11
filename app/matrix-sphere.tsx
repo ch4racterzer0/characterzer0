@@ -390,19 +390,11 @@ export function OrbWallpapers() {
           animation: "home-sphere-expand 35s ease-out 10s forwards",
         }}
       >
-        <iframe
-          src="https://www.itethered.com/terrapin/the-summons"
-          title="orb interior — itethered/terrapin/the-summons"
-          loading="lazy"
-          referrerPolicy="strict-origin"
-          allow="autoplay; encrypted-media; picture-in-picture; clipboard-read; clipboard-write"
-          className="absolute top-0 left-0 block border-0 pointer-events-auto"
-          style={{
-            width: "1400px",
-            height: "1400px",
-            transform: "scale(0.2)",
-            transformOrigin: "0 0",
-          }}
+        <audio
+          controls
+          preload="metadata"
+          src="https://rrri5gycujcgopya.public.blob.vercel-storage.com/ep011-hy0rf1c2Ld1BgpPxbwrV9EPZ4DR63J.mp3"
+          className="absolute bottom-3 left-1/2 -translate-x-1/2 w-[85%] pointer-events-auto z-10"
         />
         {ORB_WALLPAPERS.map((src, i) => (
           // eslint-disable-next-line @next/next/no-img-element
