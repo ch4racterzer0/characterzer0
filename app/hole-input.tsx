@@ -68,39 +68,60 @@ export function HoleInput() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="零号"
-        className="group w-full backdrop-blur-[2px] bg-blue-950/40 hover:bg-blue-950/60 border border-blue-300/55 hover:border-blue-200/85 px-3 py-2 rounded-xl transition-colors flex flex-col items-center gap-0.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60"
+        className="group relative w-full min-h-[5.25rem] overflow-hidden backdrop-blur-[2px] bg-blue-950/40 hover:bg-blue-950/55 border border-blue-300/55 hover:border-blue-200/85 rounded-xl transition-colors flex items-center justify-center cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60"
         style={{
           boxShadow:
-            "0 0 22px rgba(96,165,250,0.45), 0 0 50px rgba(59,130,246,0.22), 0 8px 22px -8px rgba(0,0,0,0.65), inset 0 1px 0 rgba(147,197,253,0.30)",
+            "0 0 22px rgba(96,165,250,0.45), 0 0 50px rgba(59,130,246,0.22), 0 10px 26px -8px rgba(0,0,0,0.75), inset 0 1px 0 rgba(147,197,253,0.30)",
         }}
       >
-        <span className="flex items-center gap-1.5 text-blue-200/80 text-[8px] tracking-[0.4em] uppercase">
-          <span
-            aria-hidden
-            className="block w-2 h-2 rounded-full"
-            style={{
-              background: `
-                radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 28%, rgba(30,58,138,0.85) 52%, rgba(0,0,0,0) 100%),
-                conic-gradient(from 220deg at 50% 50%, #000 0deg, #1e3a8a 80deg, #1e40af 160deg, #000 240deg, #1e3a8a 320deg, #000 360deg)
-              `,
-              boxShadow:
-                "inset 0 0 4px rgba(0,0,0,0.95), 0 0 6px rgba(59,130,246,0.55)",
-              animation: "blackhole-spin 8s linear infinite",
-            }}
-          />
-          ↗ hole
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-30 group-hover:opacity-45 transition-opacity"
+          style={{
+            backgroundImage: "url(/figures/back.png)",
+            backgroundSize: "contain",
+            backgroundPosition: "center bottom",
+            backgroundRepeat: "no-repeat",
+            mixBlendMode: "screen",
+          }}
+        />
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at 50% 55%, rgba(59,130,246,0.18) 0%, rgba(0,0,0,0) 65%)",
+          }}
+        />
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-x-3 top-1 h-px bg-gradient-to-r from-transparent via-blue-200/60 to-transparent"
+        />
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-x-3 bottom-1 h-px bg-gradient-to-r from-transparent via-blue-200/60 to-transparent"
+        />
+        <span
+          aria-hidden
+          className="pointer-events-none absolute left-1.5 top-1.5 text-blue-200/70 text-[7px] tracking-[0.4em] uppercase font-mono"
+        >
+          0:0
         </span>
         <span
-          className="text-blue-100 text-base sm:text-lg tracking-[0.25em]"
+          aria-hidden
+          className="pointer-events-none absolute right-1.5 top-1.5 flex items-center gap-1 text-blue-200/70 text-[7px] tracking-[0.4em] uppercase font-mono"
+        >
+          <span className="block w-1.5 h-1.5 rounded-full bg-blue-300 shadow-[0_0_6px_rgba(147,197,253,0.9)] animate-pulse" />
+          live
+        </span>
+        <span
+          className="relative text-blue-100 text-3xl sm:text-4xl tracking-[0.15em] font-light"
           style={{
             textShadow:
-              "0 0 10px rgba(147,197,253,0.85), 0 0 22px rgba(96,165,250,0.55)",
+              "0 0 14px rgba(147,197,253,1), 0 0 32px rgba(96,165,250,0.8), 0 0 60px rgba(59,130,246,0.55)",
           }}
         >
           零号
-        </span>
-        <span className="text-blue-300/65 text-[8px] tracking-[0.3em] uppercase italic">
-          drops to eliza
         </span>
       </button>
 
