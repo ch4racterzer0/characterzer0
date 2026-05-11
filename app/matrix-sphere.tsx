@@ -381,13 +381,23 @@ const DEFAULT_ORB_PODCAST = {
   title: "ep011 — the summons",
 };
 
+const MCK_HOLD_MS = 6500;
+const MCK_FADE_MS = 1800;
+
 export function OrbWallpapers() {
   const cycle = ORB_WALLPAPERS.length * 14;
   const audioRef = useRef<HTMLAudioElement>(null);
   const switchingRef = useRef(false);
+  const mckPicsCacheRef = useRef<string[] | null>(null);
+  const mckTickRef = useRef<number | null>(null);
   const [playing, setPlaying] = useState(false);
   const [episode, setEpisode] = useState(DEFAULT_ORB_PODCAST);
+  const [currentSource, setCurrentSource] = useState<string>("default");
+  const [mckPics, setMckPics] = useState<string[]>([]);
+  const [mckIndex, setMckIndex] = useState(0);
   const hidden = useOrbHidden();
+
+  const mckMode = currentSource === "mckinley" && playing && mckPics.length > 0;
 
   useEffect(() => {
     const a = audioRef.current;
@@ -408,16 +418,36 @@ export function OrbWallpapers() {
   }, []);
 
   useEffect(() => {
-    const onSet = (e: Event) => {
-      const detail = (e as CustomEvent<{ src: string; title?: string }>).detail;
+    const onSet = async (e: Event) => {
+      const detail = (
+        e as CustomEvent<{ src: string; title?: string; source?: string }>
+      ).detail;
       if (!detail || !detail.src) return;
       const a = audioRef.current;
       if (!a) return;
+      const src = detail.src;
+      const source = detail.source ?? "default";
+      setCurrentSource(source);
+      if (source === "mckinley" && !mckPicsCacheRef.current) {
+        try {
+          const res = await fetch("/api/mckinley/pics", { cache: "no-store" });
+          const data = (await res.json()) as { pics?: string[] };
+          const pics = Array.isArray(data.pics) ? data.pics : [];
+          mckPicsCacheRef.current = pics;
+          setMckPics(pics);
+          setMckIndex(0);
+        } catch {
+          mckPicsCacheRef.current = [];
+        }
+      } else if (source === "mckinley" && mckPicsCacheRef.current) {
+        setMckPics(mckPicsCacheRef.current);
+        setMckIndex(0);
+      }
       switchingRef.current = true;
       try {
         a.pause();
       } catch {}
-      a.src = detail.src;
+      a.src = src;
       a.load();
       const onCanPlay = () => {
         a.removeEventListener("canplay", onCanPlay);
@@ -425,12 +455,26 @@ export function OrbWallpapers() {
         a.play().catch(() => {});
       };
       a.addEventListener("canplay", onCanPlay);
-      setEpisode({ src: detail.src, title: detail.title ?? "" });
+      setEpisode({ src, title: detail.title ?? "" });
     };
     window.addEventListener("character-zero:set-podcast", onSet);
     return () =>
       window.removeEventListener("character-zero:set-podcast", onSet);
   }, []);
+
+  useEffect(() => {
+    if (!mckMode) return;
+    if (mckTickRef.current !== null) window.clearInterval(mckTickRef.current);
+    mckTickRef.current = window.setInterval(() => {
+      setMckIndex((i) => (i + 1) % mckPics.length);
+    }, MCK_HOLD_MS);
+    return () => {
+      if (mckTickRef.current !== null) {
+        window.clearInterval(mckTickRef.current);
+        mckTickRef.current = null;
+      }
+    };
+  }, [mckMode, mckPics.length]);
 
   const togglePlay = () => {
     const a = audioRef.current;
@@ -492,30 +536,62 @@ export function OrbWallpapers() {
               opacity: 0,
               animation: `orb-wallpaper-fade ${cycle}s ease-in-out infinite`,
               animationDelay: `${i * 14}s`,
+              visibility: mckMode ? "hidden" : undefined,
+            }}
+          />
+        ))}
+        {mckPics.map((src, i) => (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={src}
+            src={src}
+            alt=""
+            aria-hidden
+            draggable={false}
+            className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
+            style={{
+              opacity: mckMode && i === mckIndex ? 0.92 : 0,
+              transition: `opacity ${MCK_FADE_MS}ms ease-in-out`,
             }}
           />
         ))}
         <button
           type="button"
           onClick={togglePlay}
-          aria-label={playing ? "Pause podcast" : "Play podcast"}
+          aria-label={
+            mckMode
+              ? "Tap to pause"
+              : playing
+                ? "Pause podcast"
+                : "Play podcast"
+          }
           aria-pressed={playing}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full pointer-events-auto z-20 flex items-center justify-center bg-blue-950/45 hover:bg-blue-900/70 border border-blue-300/65 hover:border-blue-200/85 backdrop-blur-sm transition-colors cursor-pointer"
-          style={{
-            boxShadow:
-              "0 0 24px rgba(96,165,250,0.55), 0 0 60px rgba(59,130,246,0.30), inset 0 1px 0 rgba(191,219,254,0.40)",
-          }}
+          className={
+            mckMode
+              ? "absolute inset-0 w-full h-full pointer-events-auto z-20 cursor-pointer bg-transparent border-0"
+              : "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full pointer-events-auto z-20 flex items-center justify-center bg-blue-950/45 hover:bg-blue-900/70 border border-blue-300/65 hover:border-blue-200/85 backdrop-blur-sm transition-colors cursor-pointer"
+          }
+          style={
+            mckMode
+              ? undefined
+              : {
+                  boxShadow:
+                    "0 0 24px rgba(96,165,250,0.55), 0 0 60px rgba(59,130,246,0.30), inset 0 1px 0 rgba(191,219,254,0.40)",
+                }
+          }
         >
-          <span
-            aria-hidden
-            className="block text-blue-100 text-lg sm:text-xl leading-none translate-x-[1px]"
-            style={{
-              textShadow: "0 0 8px rgba(191,219,254,0.85)",
-              fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
-            }}
-          >
-            {playing ? "❚❚" : "▶"}
-          </span>
+          {mckMode ? null : (
+            <span
+              aria-hidden
+              className="block text-blue-100 text-lg sm:text-xl leading-none translate-x-[1px]"
+              style={{
+                textShadow: "0 0 8px rgba(191,219,254,0.85)",
+                fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+              }}
+            >
+              {playing ? "❚❚" : "▶"}
+            </span>
+          )}
         </button>
       </div>
     </div>
