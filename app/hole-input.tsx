@@ -67,7 +67,7 @@ export function HoleInput() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        aria-label="wanna chat?"
+        aria-label="零号"
         className="relative cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60 rounded-xl group inline-block"
       >
         <span
@@ -96,13 +96,13 @@ export function HoleInput() {
             }}
           />
           <span
-            className="text-blue-100 font-light uppercase whitespace-nowrap text-xs sm:text-sm md:text-base tracking-[0.3em] sm:tracking-[0.35em]"
+            className="text-blue-100 font-light whitespace-nowrap text-base sm:text-lg md:text-xl tracking-[0.2em]"
             style={{
               textShadow:
                 "0 0 10px rgba(96,165,250,0.55), 0 0 22px rgba(59,130,246,0.3)",
             }}
           >
-            wanna chat?
+            零号
           </span>
         </span>
       </button>
