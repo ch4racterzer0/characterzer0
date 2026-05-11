@@ -396,7 +396,13 @@ export function OrbWallpapers() {
           loading="lazy"
           referrerPolicy="strict-origin"
           allow="autoplay; encrypted-media; picture-in-picture; clipboard-read; clipboard-write"
-          className="absolute inset-0 w-full h-full block border-0 pointer-events-auto"
+          className="absolute top-0 left-0 block border-0 pointer-events-auto"
+          style={{
+            width: "1400px",
+            height: "1400px",
+            transform: "scale(0.2)",
+            transformOrigin: "0 0",
+          }}
         />
         {ORB_WALLPAPERS.map((src, i) => (
           // eslint-disable-next-line @next/next/no-img-element
