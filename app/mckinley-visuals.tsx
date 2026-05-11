@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const HOLD_MS = 5500;
-const FADE_MS = 1100;
+const HOLD_MS = 6500;
+const FADE_MS = 1800;
 
 type ShowState = {
   src: string;
@@ -93,10 +93,10 @@ export function McKinleyVisuals() {
     <>
       <div
         aria-hidden
-        className="fixed inset-0 z-[60] pointer-events-none overflow-hidden bg-black"
+        className="fixed inset-0 z-[60] pointer-events-none overflow-hidden bg-black flex items-center justify-center"
       >
         {show.pics.length === 0 ? (
-          <div className="absolute inset-0 flex items-center justify-center text-white/40 text-xs tracking-[0.3em] uppercase">
+          <div className="text-white/40 text-xs tracking-[0.3em] uppercase">
             no pics in mckinley/
           </div>
         ) : (
@@ -108,10 +108,12 @@ export function McKinleyVisuals() {
               alt=""
               aria-hidden
               draggable={false}
-              className="absolute inset-0 w-full h-full object-cover select-none"
+              className="absolute max-w-[52vw] max-h-[62vh] w-auto h-auto object-contain select-none rounded-md"
               style={{
-                opacity: i === index ? 1 : 0,
+                opacity: i === index ? 0.78 : 0,
                 transition: `opacity ${FADE_MS}ms ease-in-out`,
+                boxShadow:
+                  "0 0 60px rgba(0,0,0,0.85), 0 0 120px rgba(0,0,0,0.55)",
               }}
             />
           ))
@@ -121,7 +123,7 @@ export function McKinleyVisuals() {
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.40) 78%, rgba(0,0,0,0.85) 100%)",
+              "radial-gradient(ellipse at center, transparent 18%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.92) 92%)",
           }}
         />
       </div>
