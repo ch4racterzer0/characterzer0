@@ -444,9 +444,16 @@ export function OrbWallpapers() {
           onPlay={() => {
             setPlaying(true);
             window.dispatchEvent(new Event("character-zero:stop-radio"));
+            window.dispatchEvent(new Event("character-zero:orb-play"));
           }}
-          onPause={() => setPlaying(false)}
-          onEnded={() => setPlaying(false)}
+          onPause={() => {
+            setPlaying(false);
+            window.dispatchEvent(new Event("character-zero:orb-pause"));
+          }}
+          onEnded={() => {
+            setPlaying(false);
+            window.dispatchEvent(new Event("character-zero:orb-ended"));
+          }}
         />
         {ORB_WALLPAPERS.map((src, i) => (
           // eslint-disable-next-line @next/next/no-img-element

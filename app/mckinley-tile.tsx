@@ -19,7 +19,7 @@ const TRACKS: Track[] = [
 function loadTrack(t: Track) {
   window.dispatchEvent(
     new CustomEvent("character-zero:set-podcast", {
-      detail: { src: t.src, title: `mckinley · ${t.title}` },
+      detail: { src: t.src, title: `mckinley · ${t.title}`, source: "mckinley" },
     }),
   );
 }

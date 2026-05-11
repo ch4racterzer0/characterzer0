@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { HomeSphere, OrbRearLight, OrbWallpapers } from "./matrix-sphere";
+import { McKinleyVisuals } from "./mckinley-visuals";
 import { MorselsRibbon } from "./morsels-ribbon";
 import { SiteGhost } from "./site-ghost";
 import {
@@ -39,6 +40,7 @@ export default function RootLayout({
         <VisualChannelProvider>
           <ChannelBackground />
           <OrbRearLight />
+          <McKinleyVisuals />
           <OrbWallpapers />
           <HomeSphere />
           <CenterFigure />
