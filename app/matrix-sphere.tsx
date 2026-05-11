@@ -385,14 +385,27 @@ export function OrbWallpapers() {
   const [episode, setEpisode] = useState(DEFAULT_ORB_PODCAST);
 
   useEffect(() => {
+    const a = audioRef.current;
+    if (a && !a.src) a.src = DEFAULT_ORB_PODCAST.src;
+  }, []);
+
+  useEffect(() => {
     const onSet = (e: Event) => {
       const detail = (e as CustomEvent<{ src: string; title?: string }>).detail;
       if (!detail || !detail.src) return;
-      setEpisode({ src: detail.src, title: detail.title ?? "" });
       const a = audioRef.current;
       if (!a) return;
+      try {
+        a.pause();
+      } catch {}
       a.src = detail.src;
-      void a.play();
+      a.load();
+      const onCanPlay = () => {
+        a.removeEventListener("canplay", onCanPlay);
+        a.play().catch(() => {});
+      };
+      a.addEventListener("canplay", onCanPlay);
+      setEpisode({ src: detail.src, title: detail.title ?? "" });
     };
     window.addEventListener("character-zero:set-podcast", onSet);
     return () =>
@@ -428,7 +441,6 @@ export function OrbWallpapers() {
         <audio
           ref={audioRef}
           preload="metadata"
-          src={episode.src}
           onPlay={() => {
             setPlaying(true);
             window.dispatchEvent(new Event("character-zero:stop-radio"));
