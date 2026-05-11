@@ -394,6 +394,9 @@ export function OrbWallpapers() {
           controls
           preload="metadata"
           src="https://rrri5gycujcgopya.public.blob.vercel-storage.com/ep011-hy0rf1c2Ld1BgpPxbwrV9EPZ4DR63J.mp3"
+          onPlay={() => {
+            window.dispatchEvent(new Event("character-zero:stop-radio"));
+          }}
           className="absolute bottom-3 left-1/2 -translate-x-1/2 w-[85%] pointer-events-auto z-10"
         />
         {ORB_WALLPAPERS.map((src, i) => (

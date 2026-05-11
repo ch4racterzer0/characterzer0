@@ -94,6 +94,18 @@ export function RadioProvider({ children }: { children: ReactNode }) {
     };
   }, [playIndex]);
 
+  useEffect(() => {
+    const onStopRadio = () => {
+      const audio = audioRef.current;
+      if (!audio) return;
+      audio.pause();
+      setPlaying(false);
+    };
+    window.addEventListener("character-zero:stop-radio", onStopRadio);
+    return () =>
+      window.removeEventListener("character-zero:stop-radio", onStopRadio);
+  }, []);
+
   return (
     <RadioContext.Provider value={{ playing, toggle }}>
       {children}
