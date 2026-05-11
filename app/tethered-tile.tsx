@@ -11,14 +11,8 @@ type Episode = {
 
 const SUMMONS_MP3 =
   "https://rrri5gycujcgopya.public.blob.vercel-storage.com/ep011-hy0rf1c2Ld1BgpPxbwrV9EPZ4DR63J.mp3";
-const TETHERED_MP3 =
-  "https://rrri5gycujcgopya.public.blob.vercel-storage.com/ep011-tX5T0aAibQA0ySuM8p1SBaBvBGjj0e.mp3";
 
 const EPISODES: Episode[] = [
-  { chapter: "11", title: "the summons", src: SUMMONS_MP3 },
-  { chapter: "17", title: "tethered", src: TETHERED_MP3 },
-  { chapter: "18", title: "chapter eighteen", src: SUMMONS_MP3 },
-  { chapter: "19", title: "chapter nineteen", src: SUMMONS_MP3 },
   { chapter: "20", title: "chapter twenty", src: SUMMONS_MP3 },
 ];
 
@@ -75,9 +69,9 @@ function TetheredPopup({ onClose }: { onClose: () => void }) {
           </button>
         </div>
 
-        <ul className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+        <ul className="flex justify-center">
           {EPISODES.map((ep) => (
-            <li key={ep.chapter}>
+            <li key={ep.chapter} className="w-40 sm:w-44">
               <button
                 type="button"
                 onClick={() => {
@@ -114,7 +108,7 @@ function TetheredPopup({ onClose }: { onClose: () => void }) {
         </ul>
 
         <p className="text-indigo-300/55 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase italic text-center">
-          tap a chapter — it loads in the orb. esc to close.
+          one chapter for now — new series in the works. esc to close.
         </p>
       </div>
     </div>,
