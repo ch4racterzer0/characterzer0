@@ -72,14 +72,14 @@ export default function Home() {
               }
             />
           }
-          rightTop={
-            <div key="right-top-row" className="flex flex-col items-stretch gap-3">
+          rightSlot={
+            <div className="grid grid-cols-2 gap-3 items-stretch w-[22rem] sm:w-[24rem]">
               <HoleInput />
               <IframeTilePopup
                 key="eliza"
                 ariaLabel="eliza — file"
                 src="/eliza"
-                triggerClassName="group w-44 sm:w-48 backdrop-blur-[2px] bg-red-950/40 hover:bg-red-950/60 border border-red-300/55 hover:border-red-200/85 px-3 py-2 rounded-xl transition-colors flex flex-col items-center gap-0.5 cursor-pointer"
+                triggerClassName="group w-full backdrop-blur-[2px] bg-red-950/40 hover:bg-red-950/60 border border-red-300/55 hover:border-red-200/85 px-3 py-2 rounded-xl transition-colors flex flex-col items-center gap-0.5 cursor-pointer"
                 triggerStyle={{
                   boxShadow:
                     "0 0 22px rgba(248,113,113,0.45), 0 0 50px rgba(220,38,38,0.22), 0 8px 22px -8px rgba(0,0,0,0.65), inset 0 1px 0 rgba(254,202,202,0.30)",
@@ -104,15 +104,11 @@ export default function Home() {
                   </>
                 }
               />
-            </div>
-          }
-          rightSlot={
-            <div className="flex flex-col items-stretch gap-3">
               <IframeTilePopup
                 key="olivia"
                 ariaLabel="olivia — file"
                 src="/olivia"
-                triggerClassName="group w-44 sm:w-48 backdrop-blur-[2px] bg-purple-950/40 hover:bg-purple-950/60 border border-purple-300/55 hover:border-purple-200/85 px-3 py-2 rounded-xl transition-colors flex flex-col items-center gap-0.5 cursor-pointer"
+                triggerClassName="group w-full backdrop-blur-[2px] bg-purple-950/40 hover:bg-purple-950/60 border border-purple-300/55 hover:border-purple-200/85 px-3 py-2 rounded-xl transition-colors flex flex-col items-center gap-0.5 cursor-pointer"
                 triggerStyle={{
                   boxShadow:
                     "0 0 22px rgba(192,132,252,0.45), 0 0 50px rgba(147,51,234,0.22), 0 8px 22px -8px rgba(0,0,0,0.65), inset 0 1px 0 rgba(233,213,255,0.30)",
@@ -141,7 +137,7 @@ export default function Home() {
                 key="frog"
                 ariaLabel="frog"
                 src="/frog"
-                triggerClassName="group w-44 sm:w-48 backdrop-blur-[2px] bg-green-950/40 hover:bg-green-950/60 border border-green-300/55 hover:border-green-200/85 px-3 py-2 rounded-xl transition-colors flex flex-col items-center gap-0.5 cursor-pointer"
+                triggerClassName="group w-full backdrop-blur-[2px] bg-green-950/40 hover:bg-green-950/60 border border-green-300/55 hover:border-green-200/85 px-3 py-2 rounded-xl transition-colors flex flex-col items-center gap-0.5 cursor-pointer"
                 triggerStyle={{
                   boxShadow:
                     "0 0 22px rgba(74,222,128,0.45), 0 0 50px rgba(22,163,74,0.22), 0 8px 22px -8px rgba(0,0,0,0.65), inset 0 1px 0 rgba(187,247,208,0.30)",

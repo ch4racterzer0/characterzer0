@@ -68,7 +68,7 @@ export function HoleInput() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="零号"
-        className="group w-44 sm:w-48 backdrop-blur-[2px] bg-blue-950/40 hover:bg-blue-950/60 border border-blue-300/55 hover:border-blue-200/85 px-3 py-2 rounded-xl transition-colors flex flex-col items-center gap-0.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60"
+        className="group w-full backdrop-blur-[2px] bg-blue-950/40 hover:bg-blue-950/60 border border-blue-300/55 hover:border-blue-200/85 px-3 py-2 rounded-xl transition-colors flex flex-col items-center gap-0.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60"
         style={{
           boxShadow:
             "0 0 22px rgba(96,165,250,0.45), 0 0 50px rgba(59,130,246,0.22), 0 8px 22px -8px rgba(0,0,0,0.65), inset 0 1px 0 rgba(147,197,253,0.30)",
