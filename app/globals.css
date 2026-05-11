@@ -22,7 +22,7 @@
 .cz-chrome {
   transition: opacity 1.2s ease;
 }
-body[data-mckinley-focus="on"] .cz-chrome {
+body[data-show-mode="on"] .cz-chrome {
   opacity: 0;
 }
 

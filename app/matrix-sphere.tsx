@@ -395,6 +395,19 @@ export function OrbWallpapers() {
   }, []);
 
   useEffect(() => {
+    const onCloseShow = () => {
+      const a = audioRef.current;
+      if (!a) return;
+      try {
+        a.pause();
+      } catch {}
+    };
+    window.addEventListener("character-zero:close-show", onCloseShow);
+    return () =>
+      window.removeEventListener("character-zero:close-show", onCloseShow);
+  }, []);
+
+  useEffect(() => {
     const onSet = (e: Event) => {
       const detail = (e as CustomEvent<{ src: string; title?: string }>).detail;
       if (!detail || !detail.src) return;
