@@ -80,12 +80,27 @@ export function McKinleyVisuals() {
   }, [active, pics.length]);
 
   const hidden = useOrbHidden();
+
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    if (active && !hidden) {
+      document.body.dataset.mckinleyFocus = "on";
+    } else {
+      delete document.body.dataset.mckinleyFocus;
+    }
+    return () => {
+      if (typeof document !== "undefined") {
+        delete document.body.dataset.mckinleyFocus;
+      }
+    };
+  }, [active, hidden]);
+
   if (!active || pics.length === 0) return null;
 
   return (
     <div
       aria-hidden
-      className="fixed inset-0 z-[5] pointer-events-none overflow-hidden bg-black"
+      className="fixed inset-0 z-[22] pointer-events-none overflow-hidden bg-black"
       style={{ visibility: hidden ? "hidden" : undefined }}
     >
       {pics.map((src, i) => (

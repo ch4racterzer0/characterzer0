@@ -5,7 +5,7 @@ export function MorselsRibbon() {
   return (
     <div
       aria-hidden
-      className="fixed top-0 inset-x-0 z-[40] pointer-events-none overflow-hidden bg-black/60 backdrop-blur-sm border-b border-blue-400/20"
+      className="cz-chrome fixed top-0 inset-x-0 z-[40] pointer-events-none overflow-hidden bg-black/60 backdrop-blur-sm border-b border-blue-400/20"
       style={{
         boxShadow: "0 4px 20px -4px rgba(59,130,246,0.20)",
       }}
