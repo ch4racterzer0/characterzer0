@@ -7,8 +7,8 @@ param(
   [string]$MusicDir     = 'C:\Users\mcfow\.stream\music\edm\starfrosch-mostwanted',
   [int]$Fps             = 30,
   [int]$BitrateKbps     = 6000,
-  [double]$DisplaySec   = 30,
-  [double]$FadeSec      = 6
+  [double]$DisplaySec   = 4,
+  [double]$FadeSec      = 2
 )
 
 $ErrorActionPreference = 'Continue'

@@ -3,8 +3,8 @@ param(
   [string]$MusicDir     = 'C:\Users\mcfow\.stream\music\edm\starfrosch-mostwanted',
   [int]$Fps             = 30,
   [int]$BitrateKbps     = 6000,
-  [double]$DisplaySec   = 30,
-  [double]$FadeSec      = 6,
+  [double]$DisplaySec   = 4,
+  [double]$FadeSec      = 2,
   [int]$MinImageBytes   = 200000
 )
 
@@ -22,7 +22,7 @@ if ($images.Count -lt 2) { throw "Need at least 2 drop-artwork PNGs in $ArtDir; 
 Write-Host "Drop-artwork: cycling $($images.Count) frames (display ${DisplaySec}s, fade ${FadeSec}s)"
 
 # ----- Decide whether to re-render: cache slideshow.mp4 unless drop-artwork is newer -----
-$slideshow = Join-Path $env:TEMP 'yt-art-slideshow.mp4'
+$slideshow = Join-Path $env:TEMP ("yt-art-slideshow_d{0}_f{1}.mp4" -f $DisplaySec, $FadeSec)
 $newestArtTime = ($images | Sort-Object LastWriteTime -Descending | Select-Object -First 1).LastWriteTime
 
 $needRender = $true
