@@ -381,8 +381,8 @@ const DEFAULT_ORB_PODCAST = {
   title: "ep011 — the summons",
 };
 
-const MCK_HOLD_MS = 6500;
-const MCK_FADE_MS = 1800;
+const MCK_HOLD_MS = 7000;
+const MCK_FADE_MS = 2600;
 
 export function OrbWallpapers() {
   const cycle = ORB_WALLPAPERS.length * 14;
@@ -540,21 +540,34 @@ export function OrbWallpapers() {
             }}
           />
         ))}
-        {mckPics.map((src, i) => (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            key={src}
-            src={src}
-            alt=""
-            aria-hidden
-            draggable={false}
-            className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
-            style={{
-              opacity: mckMode && i === mckIndex ? 0.92 : 0,
-              transition: `opacity ${MCK_FADE_MS}ms ease-in-out`,
-            }}
-          />
-        ))}
+        {mckPics.map((src, i) => {
+          const active = mckMode && i === mckIndex;
+          return (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              key={src}
+              src={src}
+              alt=""
+              aria-hidden
+              draggable={false}
+              className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
+              style={{
+                opacity: active ? 0.88 : 0,
+                transform: active
+                  ? "scale(1) rotate(0deg)"
+                  : "scale(1.18) rotate(-2deg)",
+                filter: active
+                  ? "blur(0) hue-rotate(0deg) saturate(1) contrast(1.05)"
+                  : "blur(14px) hue-rotate(-45deg) saturate(1.6) contrast(1.25)",
+                mixBlendMode: "screen",
+                transition: `opacity ${MCK_FADE_MS}ms ease-in-out, transform ${MCK_FADE_MS}ms ease-in-out, filter ${MCK_FADE_MS}ms ease-in-out`,
+                animation: active
+                  ? "mck-breath 5.5s ease-in-out infinite"
+                  : undefined,
+              }}
+            />
+          );
+        })}
         <button
           type="button"
           onClick={togglePlay}
