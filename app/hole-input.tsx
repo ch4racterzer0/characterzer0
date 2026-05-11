@@ -68,42 +68,39 @@ export function HoleInput() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="零号"
-        className="relative cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60 rounded-xl group inline-block"
+        className="group w-44 sm:w-48 backdrop-blur-[2px] bg-blue-950/40 hover:bg-blue-950/60 border border-blue-300/55 hover:border-blue-200/85 px-3 py-2 rounded-xl transition-colors flex flex-col items-center gap-0.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60"
+        style={{
+          boxShadow:
+            "0 0 22px rgba(96,165,250,0.45), 0 0 50px rgba(59,130,246,0.22), 0 8px 22px -8px rgba(0,0,0,0.65), inset 0 1px 0 rgba(147,197,253,0.30)",
+        }}
       >
-        <span
-          aria-hidden
-          className="absolute -inset-6 rounded-full blur-3xl bg-blue-500/15 group-hover:bg-blue-500/25 transition-colors"
-        />
-        <span
-          className="relative flex items-center justify-center gap-3 sm:gap-4 rounded-xl border border-blue-400/40 bg-blue-950/40 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-0.5 px-5 sm:px-7 py-3 sm:py-4"
-          style={{
-            transform: "perspective(1200px) rotateX(-8deg)",
-            boxShadow:
-              "0 0 30px rgba(59, 130, 246, 0.40), 0 0 60px rgba(59, 130, 246, 0.18), 0 12px 28px -10px rgba(59, 130, 246, 0.40), inset 0 1px 0 rgba(147, 197, 253, 0.35)",
-          }}
-        >
+        <span className="flex items-center gap-1.5 text-blue-200/80 text-[8px] tracking-[0.4em] uppercase">
           <span
             aria-hidden
-            className="block w-7 h-7 sm:w-8 sm:h-8 rounded-full shrink-0"
+            className="block w-2 h-2 rounded-full"
             style={{
               background: `
                 radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 28%, rgba(30,58,138,0.85) 52%, rgba(0,0,0,0) 100%),
                 conic-gradient(from 220deg at 50% 50%, #000 0deg, #1e3a8a 80deg, #1e40af 160deg, #000 240deg, #1e3a8a 320deg, #000 360deg)
               `,
               boxShadow:
-                "inset 0 0 14px rgba(0,0,0,0.95), 0 0 18px rgba(59,130,246,0.45), 0 0 4px rgba(0,0,0,1)",
+                "inset 0 0 4px rgba(0,0,0,0.95), 0 0 6px rgba(59,130,246,0.55)",
               animation: "blackhole-spin 8s linear infinite",
             }}
           />
-          <span
-            className="text-blue-100 font-light whitespace-nowrap text-base sm:text-lg md:text-xl tracking-[0.2em]"
-            style={{
-              textShadow:
-                "0 0 10px rgba(96,165,250,0.55), 0 0 22px rgba(59,130,246,0.3)",
-            }}
-          >
-            零号
-          </span>
+          ↗ hole
+        </span>
+        <span
+          className="text-blue-100 text-base sm:text-lg tracking-[0.25em]"
+          style={{
+            textShadow:
+              "0 0 10px rgba(147,197,253,0.85), 0 0 22px rgba(96,165,250,0.55)",
+          }}
+        >
+          零号
+        </span>
+        <span className="text-blue-300/65 text-[8px] tracking-[0.3em] uppercase italic">
+          drops to eliza
         </span>
       </button>
 
