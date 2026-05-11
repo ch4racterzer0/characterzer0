@@ -1,4 +1,5 @@
 import { Cam } from "./cam";
+import { Fairest } from "./fairest";
 
 export default function Mirror() {
   return (
@@ -23,6 +24,8 @@ export default function Mirror() {
         </header>
 
         <Cam />
+
+        <Fairest />
 
         <hr className="border-blue-100/15" />
 

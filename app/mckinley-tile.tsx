@@ -3,6 +3,11 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
+// Soft lock — the tile only appears for visitors who have answered the
+// mirror's question. Unlocked at /mirror by typing "mckinley".
+const UNLOCK_KEY = "cz0-fairest";
+const UNLOCK_EVENT = "character-zero:fairest-unlock";
+
 type Track = {
   slot: string;
   title: string;
@@ -125,7 +130,19 @@ function McKinleyPopup({ onClose }: { onClose: () => void }) {
 export function McKinleyTile() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const [unlocked, setUnlocked] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    try {
+      if (sessionStorage.getItem(UNLOCK_KEY) === "1") setUnlocked(true);
+    } catch {}
+    const onUnlock = () => setUnlocked(true);
+    window.addEventListener(UNLOCK_EVENT, onUnlock);
+    return () => window.removeEventListener(UNLOCK_EVENT, onUnlock);
+  }, []);
+
+  if (!unlocked) return null;
 
   return (
     <>
