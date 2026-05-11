@@ -2,6 +2,37 @@ export default function Frog() {
   return (
     <main className="min-h-screen bg-black text-blue-100 px-6 py-10 sm:px-10 sm:py-14">
       <article className="max-w-3xl mx-auto flex flex-col gap-10 font-light leading-relaxed">
+        <div
+          aria-hidden
+          className="relative w-full aspect-[16/9] rounded-md overflow-hidden border border-emerald-400/25 bg-black"
+          style={{
+            boxShadow:
+              "0 0 30px rgba(110,231,183,0.18), 0 0 70px rgba(16,185,129,0.10), inset 0 1px 0 rgba(167,243,208,0.18)",
+          }}
+        >
+          <span
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "url(/Chracterzer%E9%9B%B6%E5%8F%B7/2f92d962-e445-4d9d-bd6f-9cc4046a6976.png)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              mixBlendMode: "screen",
+              animation: "frog-fade-a 11s ease-in-out infinite",
+            }}
+          />
+          <span
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "url(/Chracterzer%E9%9B%B6%E5%8F%B7/f6ff8419-db92-4337-94ba-01bdb28bd2f5.png)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              mixBlendMode: "screen",
+              animation: "frog-fade-b 11s ease-in-out infinite",
+            }}
+          />
+        </div>
         <header className="space-y-3">
           <p className="text-emerald-300/70 text-xs sm:text-sm tracking-[0.4em] uppercase">
             // the soundtrack &middot; the only other human in this room
