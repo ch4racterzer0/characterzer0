@@ -338,6 +338,7 @@ const ORB_TILES = [
   { label: "Quest", angle: 92, radius: 7 },
   { label: "Drop", angle: 180, radius: 7.5 },
   { label: "US", angle: 248, radius: 7 },
+  { label: "Chracterzer零号", angle: 315, radius: 7 },
 ];
 
 const ORB_WALLPAPERS = [
@@ -374,6 +375,19 @@ export function OrbRearLight() {
 
 export function OrbWallpapers() {
   const cycle = ORB_WALLPAPERS.length * 14;
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [playing, setPlaying] = useState(false);
+
+  const togglePlay = () => {
+    const a = audioRef.current;
+    if (!a) return;
+    if (a.paused) {
+      void a.play();
+    } else {
+      a.pause();
+    }
+  };
+
   return (
     <div
       aria-hidden
@@ -391,13 +405,15 @@ export function OrbWallpapers() {
         }}
       >
         <audio
-          controls
+          ref={audioRef}
           preload="metadata"
           src="https://rrri5gycujcgopya.public.blob.vercel-storage.com/ep011-hy0rf1c2Ld1BgpPxbwrV9EPZ4DR63J.mp3"
           onPlay={() => {
+            setPlaying(true);
             window.dispatchEvent(new Event("character-zero:stop-radio"));
           }}
-          className="absolute bottom-3 left-1/2 -translate-x-1/2 w-[85%] pointer-events-auto z-10"
+          onPause={() => setPlaying(false)}
+          onEnded={() => setPlaying(false)}
         />
         {ORB_WALLPAPERS.map((src, i) => (
           // eslint-disable-next-line @next/next/no-img-element
@@ -407,7 +423,7 @@ export function OrbWallpapers() {
             alt=""
             aria-hidden
             draggable={false}
-            className="absolute inset-0 w-full h-full object-cover select-none"
+            className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
             style={{
               mixBlendMode: "screen",
               opacity: 0,
@@ -416,6 +432,28 @@ export function OrbWallpapers() {
             }}
           />
         ))}
+        <button
+          type="button"
+          onClick={togglePlay}
+          aria-label={playing ? "Pause podcast" : "Play podcast"}
+          aria-pressed={playing}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full pointer-events-auto z-20 flex items-center justify-center bg-blue-950/45 hover:bg-blue-900/70 border border-blue-300/65 hover:border-blue-200/85 backdrop-blur-sm transition-colors cursor-pointer"
+          style={{
+            boxShadow:
+              "0 0 24px rgba(96,165,250,0.55), 0 0 60px rgba(59,130,246,0.30), inset 0 1px 0 rgba(191,219,254,0.40)",
+          }}
+        >
+          <span
+            aria-hidden
+            className="block text-blue-100 text-lg sm:text-xl leading-none translate-x-[1px]"
+            style={{
+              textShadow: "0 0 8px rgba(191,219,254,0.85)",
+              fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+            }}
+          >
+            {playing ? "❚❚" : "▶"}
+          </span>
+        </button>
       </div>
     </div>
   );
