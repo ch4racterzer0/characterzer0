@@ -98,8 +98,22 @@ export function RadioProvider({ children }: { children: ReactNode }) {
     const onStopRadio = () => {
       const audio = audioRef.current;
       if (!audio) return;
-      audio.pause();
-      setPlaying(false);
+      if (audio.paused) return;
+      const startVol = audio.volume;
+      const durationMs = 900;
+      const steps = 18;
+      let i = 0;
+      const id = window.setInterval(() => {
+        i++;
+        const next = startVol * (1 - i / steps);
+        audio.volume = next < 0 ? 0 : next;
+        if (i >= steps) {
+          window.clearInterval(id);
+          audio.pause();
+          audio.volume = startVol;
+          setPlaying(false);
+        }
+      }, durationMs / steps);
     };
     window.addEventListener("character-zero:stop-radio", onStopRadio);
     return () =>
