@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useOrbHidden } from "./use-orb-hidden";
 
 const HOLD_MS = 5500;
 const FADE_MS = 1100;
@@ -78,12 +79,14 @@ export function McKinleyVisuals() {
     };
   }, [active, pics.length]);
 
+  const hidden = useOrbHidden();
   if (!active || pics.length === 0) return null;
 
   return (
     <div
       aria-hidden
       className="fixed inset-0 z-[5] pointer-events-none overflow-hidden bg-black"
+      style={{ visibility: hidden ? "hidden" : undefined }}
     >
       {pics.map((src, i) => (
         // eslint-disable-next-line @next/next/no-img-element

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useZeroThoughtsBroadcast } from "./zero-thoughts";
 import { InceptionPopup } from "./inception-popup";
+import { useOrbHidden } from "./use-orb-hidden";
 
 function ThoughtsOverlay() {
   const text = useZeroThoughtsBroadcast();
@@ -352,6 +353,7 @@ const ORB_WALLPAPERS = [
 ];
 
 export function OrbRearLight() {
+  const hidden = useOrbHidden();
   return (
     <div
       aria-hidden
@@ -359,6 +361,7 @@ export function OrbRearLight() {
       style={{
         opacity: 0,
         animation: "orb-rear-light-rise 50s ease-out 6s forwards",
+        visibility: hidden ? "hidden" : undefined,
       }}
     >
       <div
@@ -383,6 +386,7 @@ export function OrbWallpapers() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
   const [episode, setEpisode] = useState(DEFAULT_ORB_PODCAST);
+  const hidden = useOrbHidden();
 
   useEffect(() => {
     const a = audioRef.current;
@@ -429,6 +433,7 @@ export function OrbWallpapers() {
       style={{
         opacity: 0,
         animation: "home-sphere-place 30s linear forwards",
+        visibility: hidden ? "hidden" : undefined,
       }}
     >
       <div
@@ -502,6 +507,7 @@ export function OrbWallpapers() {
 export function HomeSphere() {
   const [inceptionOpen, setInceptionOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const hidden = useOrbHidden();
 
   useEffect(() => setMounted(true), []);
 
@@ -513,6 +519,7 @@ export function HomeSphere() {
         style={{
           opacity: 0,
           animation: "home-sphere-place 30s linear forwards",
+          visibility: hidden ? "hidden" : undefined,
         }}
       >
         <div
