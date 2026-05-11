@@ -29,6 +29,17 @@ export function proxy(request: NextRequest) {
     return NextResponse.rewrite(url);
   }
 
+  const isYiswmt =
+    host === "yiswmt.com" || host === "www.yiswmt.com";
+  if (isYiswmt) {
+    if (path === "/") {
+      const url = request.nextUrl.clone();
+      url.pathname = "/yiswmt";
+      return NextResponse.rewrite(url);
+    }
+    return NextResponse.next();
+  }
+
   const isCharacterzer0 =
     host === "characterzer0.com" || host === "www.characterzer0.com";
   if (!isCharacterzer0) {
