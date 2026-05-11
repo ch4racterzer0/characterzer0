@@ -384,6 +384,7 @@ const DEFAULT_ORB_PODCAST = {
 export function OrbWallpapers() {
   const cycle = ORB_WALLPAPERS.length * 14;
   const audioRef = useRef<HTMLAudioElement>(null);
+  const switchingRef = useRef(false);
   const [playing, setPlaying] = useState(false);
   const [episode, setEpisode] = useState(DEFAULT_ORB_PODCAST);
   const hidden = useOrbHidden();
@@ -399,6 +400,7 @@ export function OrbWallpapers() {
       if (!detail || !detail.src) return;
       const a = audioRef.current;
       if (!a) return;
+      switchingRef.current = true;
       try {
         a.pause();
       } catch {}
@@ -406,6 +408,7 @@ export function OrbWallpapers() {
       a.load();
       const onCanPlay = () => {
         a.removeEventListener("canplay", onCanPlay);
+        switchingRef.current = false;
         a.play().catch(() => {});
       };
       a.addEventListener("canplay", onCanPlay);
@@ -453,7 +456,9 @@ export function OrbWallpapers() {
           }}
           onPause={() => {
             setPlaying(false);
-            window.dispatchEvent(new Event("character-zero:orb-pause"));
+            if (!switchingRef.current) {
+              window.dispatchEvent(new Event("character-zero:orb-pause"));
+            }
           }}
           onEnded={() => {
             setPlaying(false);
