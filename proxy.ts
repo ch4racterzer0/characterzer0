@@ -39,6 +39,13 @@ export function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // Tile routes that should serve their real content on the apex instead of the
+  // /frame iframe (clicked from the home-sphere tiles).
+  const apexPassthrough = ["/frog", "/us"];
+  if (apexPassthrough.some((p) => path === p || path.startsWith(`${p}/`))) {
+    return NextResponse.next();
+  }
+
   const url = request.nextUrl.clone();
   url.pathname = "/frame";
   return NextResponse.rewrite(url);
