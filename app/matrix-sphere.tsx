@@ -333,10 +333,10 @@ function ScoftiPopup({ onClose }: { onClose: () => void }) {
 }
 
 const ORB_TILES = [
-  { label: "Madhu", angle: 0, radius: 15 },
-  { label: "Quest", angle: 92, radius: 14 },
-  { label: "Drop", angle: 180, radius: 15 },
-  { label: "US", angle: 248, radius: 14 },
+  { label: "Madhu", angle: 0, radius: 7.5 },
+  { label: "Quest", angle: 92, radius: 7 },
+  { label: "Drop", angle: 180, radius: 7.5 },
+  { label: "US", angle: 248, radius: 7 },
 ];
 
 const ORB_WALLPAPERS = [
@@ -382,7 +382,7 @@ export function OrbWallpapers() {
         animation: "home-sphere-place 30s linear forwards",
       }}
     >
-      <div className="relative w-[40vh] h-[44vh] max-w-[520px] rounded-full overflow-hidden">
+      <div className="relative w-[20vh] h-[22vh] max-w-[260px] rounded-full overflow-hidden">
         {ORB_WALLPAPERS.map((src, i) => (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -415,7 +415,7 @@ export function HomeSphere() {
         animation: "home-sphere-place 30s linear forwards",
       }}
     >
-      <div className="relative w-[40vh] h-[44vh] max-w-[520px]">
+      <div className="relative w-[20vh] h-[22vh] max-w-[260px]">
         <div
           aria-hidden
           className="absolute inset-0 rounded-full pointer-events-none"
