@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useZeroThoughtsBroadcast } from "./zero-thoughts";
 import { InceptionPopup } from "./inception-popup";
+import { FrogPopup } from "./frog-popup";
 
 function ThoughtsOverlay() {
   const text = useZeroThoughtsBroadcast();
@@ -408,6 +409,7 @@ export function OrbWallpapers() {
 
 export function HomeSphere() {
   const [inceptionOpen, setInceptionOpen] = useState(false);
+  const [frogOpen, setFrogOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
@@ -472,10 +474,27 @@ export function HomeSphere() {
           >
             Inception
           </button>
+          <button
+            type="button"
+            onClick={() => setFrogOpen(true)}
+            aria-label="frog"
+            className="absolute top-1/2 left-1/2 font-mono text-emerald-200/60 hover:text-emerald-100 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase whitespace-nowrap pointer-events-auto cursor-pointer bg-transparent border-0 p-0 transition-colors"
+            style={{
+              transform:
+                "translate(-50%, -50%) rotate(315deg) translateY(-7vh) rotate(-315deg)",
+              textShadow:
+                "0 0 8px rgba(110,231,183,0.45), 0 0 18px rgba(16,185,129,0.25)",
+            }}
+          >
+            frog
+          </button>
         </div>
       </div>
       {inceptionOpen && mounted && (
         <InceptionPopup onClose={() => setInceptionOpen(false)} />
+      )}
+      {frogOpen && mounted && (
+        <FrogPopup onClose={() => setFrogOpen(false)} />
       )}
     </>
   );
