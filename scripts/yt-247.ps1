@@ -1,4 +1,4 @@
-# 24/7 broadcaster watchdog — keeps the drop-artwork + starfrosch stream alive across
+# 24/7 broadcaster watchdog -- keeps the drop-artwork + starfrosch stream alive across
 # ffmpeg crashes, network blips, and YouTube ingest resets. Disables system sleep on
 # AC power for the duration of the run so the box stays awake without a monitor.
 
@@ -13,50 +13,58 @@ param(
 
 $ErrorActionPreference = 'Continue'
 
-# ----- Disable system sleep while we're streaming -----
+# ----- Disable sleep + display timeouts on AC power -----
 "[watchdog] disabling sleep on AC power..."
-& powercfg /change standby-timeout-ac 0 | Out-Null
+& powercfg /change standby-timeout-ac 0   | Out-Null
 & powercfg /change hibernate-timeout-ac 0 | Out-Null
-& powercfg /change monitor-timeout-ac 0 | Out-Null
+& powercfg /change monitor-timeout-ac 0   | Out-Null
 
-# Layer 2: SetThreadExecutionState pins the system-required + away-mode flags
-# until this process exits — survives even if powercfg gets overridden.
-Add-Type @"
+# Layer 2: pin ES_CONTINUOUS | ES_SYSTEM_REQUIRED | ES_AWAYMODE_REQUIRED for this process.
+if (-not ('SleepGuard' -as [type])) {
+  Add-Type @'
 using System;
 using System.Runtime.InteropServices;
 public static class SleepGuard {
   [DllImport("kernel32.dll")]
   public static extern uint SetThreadExecutionState(uint esFlags);
 }
-"@ -ErrorAction SilentlyContinue
-# ES_CONTINUOUS (0x80000000) | ES_SYSTEM_REQUIRED (0x00000001) | ES_AWAYMODE_REQUIRED (0x00000040)
-[void][SleepGuard]::SetThreadExecutionState(0x80000041)
+'@
+}
+[void][SleepGuard]::SetThreadExecutionState([uint32]2147483713)  # 0x80000041
 "[watchdog] sleep guards armed"
 
 $logDir = Join-Path $env:LOCALAPPDATA 'chracterzer0-stream'
 New-Item -ItemType Directory -Force -Path $logDir | Out-Null
 
+$ytArt = Join-Path $PSScriptRoot 'yt-art.ps1'
 $attempts = 0
 while ($true) {
   $attempts++
   $stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
-  $log = Join-Path $logDir ("stream-$stamp.log")
+  $log    = Join-Path $logDir "stream-$stamp.out.log"
+  $errlog = Join-Path $logDir "stream-$stamp.err.log"
   "[watchdog] attempt #$attempts -> $log"
 
+  # Run yt-art.ps1 in a fresh PowerShell process so we don't inherit ErrorActionPreference
+  # quirks and ffmpeg's stderr stays cleanly redirected to its own file.
   $start = Get-Date
-  try {
-    & "$PSScriptRoot\yt-art.ps1" `
-      -ArtDir $ArtDir -MusicDir $MusicDir -Fps $Fps -BitrateKbps $BitrateKbps `
-      -DisplaySec $DisplaySec -FadeSec $FadeSec `
-      *>&1 | Tee-Object -FilePath $log
-  } catch {
-    "[watchdog] yt-art.ps1 threw: $_" | Tee-Object -FilePath $log -Append
-  }
+  $psArgs = @(
+    '-NoProfile','-ExecutionPolicy','Bypass','-File', $ytArt,
+    '-ArtDir',     $ArtDir,
+    '-MusicDir',   $MusicDir,
+    '-Fps',        $Fps,
+    '-BitrateKbps',$BitrateKbps,
+    '-DisplaySec', $DisplaySec,
+    '-FadeSec',    $FadeSec
+  )
+  $proc = Start-Process -FilePath 'powershell.exe' -ArgumentList $psArgs `
+            -NoNewWindow -PassThru -Wait `
+            -RedirectStandardOutput $log -RedirectStandardError $errlog
   $end = Get-Date
   $elapsed = [int]($end - $start).TotalSeconds
-  "[watchdog] yt-art.ps1 exited after ${elapsed}s"
+  "[watchdog] yt-art.ps1 exited (code $($proc.ExitCode)) after ${elapsed}s"
 
-  # Backoff: fast failures (under 30s) usually mean a persistent issue
+  # Backoff: fast failures (under 30s) usually mean a persistent issue.
   $waitSec = if ($elapsed -lt 30) { 30 } else { 5 }
   "[watchdog] waiting ${waitSec}s before relaunch..."
   Start-Sleep -Seconds $waitSec
