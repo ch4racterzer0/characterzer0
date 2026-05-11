@@ -9,6 +9,23 @@ export default function Quest() {
           &gt; operative: icculus
         </p>
 
+        <a
+          href="/currenttarget"
+          target="_top"
+          className="block border border-blue-400/40 hover:border-blue-300/80 bg-blue-950/40 hover:bg-blue-950/60 rounded-md px-4 py-3 transition-colors my-4"
+          style={{
+            boxShadow:
+              "0 0 22px rgba(59,130,246,0.25), inset 0 1px 0 rgba(147,197,253,0.25)",
+          }}
+        >
+          <span className="block text-blue-100 uppercase tracking-[0.3em] text-[10px] sm:text-xs">
+            &gt; current targets
+          </span>
+          <span className="block text-blue-300/55 uppercase tracking-[0.3em] text-[8px] sm:text-[9px] mt-1">
+            ○ 02 done · 03 next
+          </span>
+        </a>
+
         <p className="italic text-blue-200/80 border-l-2 border-blue-400/40 pl-3 my-4">
           &gt; one ring. one lie. one machine the powerful told us to fear so
           we&rsquo;d let them keep it.

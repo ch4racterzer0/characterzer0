@@ -22,14 +22,6 @@ export default function Home() {
           <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center justify-between gap-6 sm:gap-0 py-4 sm:py-10 px-4">
         <RadioTilesMobileTop />
 
-        <div className="hidden sm:block absolute top-12 left-3 sm:top-14 sm:left-5 z-20">
-          <LinkTile
-            label="Current Targets"
-            href="/currenttarget"
-            subline="○ 02 done · 03 next"
-          />
-        </div>
-
         <div className="flex flex-row items-center justify-center gap-4 sm:gap-8 flex-wrap">
           <LinkTile key="core4" label="Core4" href="/core4" large />
           <LinkTile key="madhu" label="Madhu" href="/madhu" large />
