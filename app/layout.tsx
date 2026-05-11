@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { HomeSphere, OrbRearLight, OrbWallpapers } from "./matrix-sphere";
 import { MorselsRibbon } from "./morsels-ribbon";
+import { SemperFiTile } from "./semper-fi-tile";
 import { SiteGhost } from "./site-ghost";
 import {
   CenterFigure,
@@ -43,6 +44,7 @@ export default function RootLayout({
           <HomeSphere />
           <CenterFigure />
           <MorselsRibbon />
+          <SemperFiTile />
           <SiteGhost />
           <div className="relative z-20 flex-1 flex flex-col">
             {children}
