@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useZeroThoughtsBroadcast } from "./zero-thoughts";
+import Link from "next/link";
 import { InceptionPopup } from "./inception-popup";
-import { FrogPopup } from "./frog-popup";
 
 function ThoughtsOverlay() {
   const text = useZeroThoughtsBroadcast();
@@ -409,7 +409,6 @@ export function OrbWallpapers() {
 
 export function HomeSphere() {
   const [inceptionOpen, setInceptionOpen] = useState(false);
-  const [frogOpen, setFrogOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
@@ -474,11 +473,10 @@ export function HomeSphere() {
           >
             Inception
           </button>
-          <button
-            type="button"
-            onClick={() => setFrogOpen(true)}
+          <Link
+            href="/frog"
             aria-label="frog"
-            className="absolute top-1/2 left-1/2 font-mono text-emerald-200 hover:text-emerald-100 text-xs sm:text-sm tracking-[0.35em] uppercase whitespace-nowrap pointer-events-auto cursor-pointer bg-transparent border-0 p-0 transition-colors"
+            className="absolute top-1/2 left-1/2 font-mono text-emerald-200 hover:text-emerald-100 text-xs sm:text-sm tracking-[0.35em] uppercase whitespace-nowrap pointer-events-auto cursor-pointer bg-transparent transition-colors no-underline"
             style={{
               transform:
                 "translate(-50%, -50%) rotate(95deg) translateY(-18vh) rotate(-95deg)",
@@ -487,14 +485,11 @@ export function HomeSphere() {
             }}
           >
             frog
-          </button>
+          </Link>
         </div>
       </div>
       {inceptionOpen && mounted && (
         <InceptionPopup onClose={() => setInceptionOpen(false)} />
-      )}
-      {frogOpen && mounted && (
-        <FrogPopup onClose={() => setFrogOpen(false)} />
       )}
     </>
   );
