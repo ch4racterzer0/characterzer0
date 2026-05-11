@@ -66,14 +66,22 @@ function SemperFiPopup({ onClose }: { onClose: () => void }) {
 
         <div className="space-y-4 text-red-100/90 text-base sm:text-lg leading-relaxed font-light">
           <p>
-            some of us went to college. some of us built companies. some of
-            us picked up a rifle and stood at the post nobody else wanted.
-            they came home with footage in their head we will never see.
+            the man you&rsquo;re hearing right now is{" "}
+            <span className="text-amber-200/95 italic">corey</span>
+            &nbsp;&mdash; a marine, and later a k-9 officer. the
+            McKinley tile is named for his granddaughter. that&rsquo;s
+            who he plays for.
           </p>
           <p>
-            the bills for that have been quietly due for a very long time.
-            tonight, while you&rsquo;re listening, you can pay one of
-            them.
+            some of us went to college. some of us built companies. corey
+            picked up a rifle and stood at the post nobody else wanted.
+            men like him came home with footage in their head we will
+            never see.
+          </p>
+          <p>
+            the bills for that have been quietly due for a very long
+            time. tonight, while you&rsquo;re listening, you can pay one
+            of them.
           </p>
           <p>
             the{" "}
@@ -87,8 +95,8 @@ function SemperFiPopup({ onClose }: { onClose: () => void }) {
           </p>
           <p className="text-red-200/85 italic text-sm sm:text-base">
             this isn&rsquo;t character zer0&rsquo;s ask. it&rsquo;s
-            mckinley&rsquo;s, by way of a friend who hadn&rsquo;t seen
-            him in twenty-five years.
+            corey&rsquo;s, by way of a friend who hadn&rsquo;t seen him
+            in twenty-five years.
           </p>
         </div>
 
@@ -161,7 +169,7 @@ export function SemperFiTile() {
     };
   }, []);
 
-  const visible = currentSource === "mckinley" && playing;
+  const visible = currentSource === "McKinley" && playing;
   if (!visible) return null;
 
   return (
@@ -170,7 +178,7 @@ export function SemperFiTile() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="semper fi — open"
-        className="fixed top-3 right-3 z-[35] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60 rounded-xl pointer-events-auto"
+        className="fixed top-[40vh] left-3 sm:left-6 z-[35] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60 rounded-xl pointer-events-auto"
       >
         <span
           aria-hidden

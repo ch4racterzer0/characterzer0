@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
-function KPPopup({ onClose }: { onClose: () => void }) {
+function K9Popup({ onClose }: { onClose: () => void }) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -66,26 +66,34 @@ function KPPopup({ onClose }: { onClose: () => void }) {
 
         <div className="space-y-4 text-sky-100/90 text-base sm:text-lg leading-relaxed font-light">
           <p>
+            after the marines, corey put on a different uniform. he ran
+            with a k-9 partner. he knows the work this tile is for from
+            the inside &mdash; not the headline version, the one where
+            the dog comes home with you because you&rsquo;re both still
+            breathing.
+          </p>
+          <p>
             most of us never have to think about who keeps the line. you
             sleep, you wake up, the day works because somebody walked it
             for you in the dark. quietly. without a thank you.
           </p>
           <p>
-            this one is for them &mdash; the officers and the dogs they
-            run with. the partners who don&rsquo;t get a pension, who go
-            in first, who come out with a wound in the side and a wagging
-            tail and no complaint about either.
+            this one is for the officers and the dogs they run with. the
+            partners who don&rsquo;t get a pension, who go in first, who
+            come out with a wound in the side and a wagging tail and no
+            complaint about either.
           </p>
           <p>
             the{" "}
             <span className="text-sky-200/95 italic">
               charleston police k-9 unit
             </span>{" "}
-            takes the call when the call is the worst one. learn what they
-            do, support them however you can.
+            takes the call when the call is the worst one. learn what
+            they do, support them however you can.
           </p>
           <p className="text-sky-200/85 italic text-sm sm:text-base">
-            this one&rsquo;s on mckinley too. he knows the cost.
+            this one&rsquo;s corey&rsquo;s ask, by way of his
+            granddaughter McKinley.
           </p>
         </div>
 
@@ -116,7 +124,7 @@ function KPPopup({ onClose }: { onClose: () => void }) {
   );
 }
 
-export function KPTile() {
+export function K9Tile() {
   const [currentSource, setCurrentSource] = useState<string>("default");
   const [playing, setPlaying] = useState(false);
   const [open, setOpen] = useState(false);
@@ -154,8 +162,8 @@ export function KPTile() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        aria-label="kp — open"
-        className="fixed top-[72px] right-3 z-[35] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60 rounded-xl pointer-events-auto"
+        aria-label="k9 — open"
+        className="fixed top-[40vh] right-3 sm:right-6 z-[35] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60 rounded-xl pointer-events-auto"
       >
         <span
           aria-hidden
@@ -181,11 +189,11 @@ export function KPTile() {
                 "0 0 10px rgba(186,230,253,0.85), 0 0 22px rgba(56,189,248,0.55)",
             }}
           >
-            KP
+            K-9
           </span>
         </span>
       </button>
-      {open && mounted && <KPPopup onClose={() => setOpen(false)} />}
+      {open && mounted && <K9Popup onClose={() => setOpen(false)} />}
     </>
   );
 }
