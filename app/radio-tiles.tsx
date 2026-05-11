@@ -12,6 +12,8 @@ import {
 import { TetherClock } from "./tether-clock";
 import { useVisualChannel } from "./visual-channel";
 
+type Track = { name: string; url: string };
+
 type RadioCtx = {
   playing: boolean;
   toggle: () => void;
@@ -25,22 +27,81 @@ function useRadio(): RadioCtx {
   return ctx;
 }
 
-function trackUrl(name: string) {
-  const parts = name.split("/").map(encodeURIComponent).join("/");
-  return `/api/music/track/${parts}`;
+const CREDIT_SEEN_KEY = "starfrosch-credit-seen";
+
+function StarfroschCredit({ onDismiss }: { onDismiss: () => void }) {
+  useEffect(() => {
+    const id = setTimeout(onDismiss, 9000);
+    return () => clearTimeout(id);
+  }, [onDismiss]);
+
+  return (
+    <div
+      role="status"
+      aria-live="polite"
+      className="fixed bottom-5 left-1/2 -translate-x-1/2 z-[90] max-w-[calc(100vw-2rem)] sm:max-w-md font-mono"
+      style={{ animation: "starfrosch-credit-in 240ms ease-out both" }}
+    >
+      <div
+        className="relative border border-blue-300/55 bg-blue-950/85 backdrop-blur-md rounded-md px-5 py-4 sm:px-6 sm:py-5 text-blue-100"
+        style={{
+          boxShadow:
+            "0 0 30px rgba(59,130,246,0.45), 0 0 70px rgba(59,130,246,0.25), inset 0 1px 0 rgba(147,197,253,0.30)",
+        }}
+      >
+        <button
+          type="button"
+          onClick={onDismiss}
+          aria-label="dismiss"
+          className="absolute top-1.5 right-2 text-blue-200/70 hover:text-blue-100 text-base leading-none w-5 h-5 flex items-center justify-center"
+        >
+          ×
+        </button>
+        <p
+          className="text-blue-300/65 text-[9px] sm:text-[10px] tracking-[0.4em] uppercase mb-2"
+          style={{ textShadow: "0 0 6px rgba(96,165,250,0.55)" }}
+        >
+          // soundtrack credit
+        </p>
+        <p
+          className="text-blue-100 text-sm sm:text-base leading-snug"
+          style={{
+            textShadow:
+              "0 0 8px rgba(96,165,250,0.55), 0 0 18px rgba(59,130,246,0.30)",
+          }}
+        >
+          thank you,{" "}
+          <a
+            href="https://starfrosch.ch"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={onDismiss}
+            className="text-cyan-300 hover:text-cyan-200 underline underline-offset-4"
+          >
+            starfrosch
+          </a>
+          , for the soundtrack to this universe.
+        </p>
+        <p className="text-blue-300/55 text-[10px] sm:text-xs italic mt-2">
+          adrian zwyssig &middot; cc by 3.0 &middot; he earned this.
+        </p>
+      </div>
+    </div>
+  );
 }
 
 export function RadioProvider({ children }: { children: ReactNode }) {
   const [playing, setPlaying] = useState(false);
+  const [showCredit, setShowCredit] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
-  const playlistRef = useRef<string[]>([]);
+  const playlistRef = useRef<Track[]>([]);
   const indexRef = useRef(0);
 
-  const loadPlaylist = useCallback(async () => {
+  const loadPlaylist = useCallback(async (): Promise<Track[]> => {
     try {
       const res = await fetch("/api/music/list", { cache: "no-store" });
       if (!res.ok) return [];
-      const data = (await res.json()) as { tracks?: string[] };
+      const data = (await res.json()) as { tracks?: Track[] };
       return data.tracks ?? [];
     } catch {
       return [];
@@ -52,7 +113,7 @@ export function RadioProvider({ children }: { children: ReactNode }) {
     const list = playlistRef.current;
     if (!audio || list.length === 0) return false;
     indexRef.current = ((i % list.length) + list.length) % list.length;
-    audio.src = trackUrl(list[indexRef.current]);
+    audio.src = list[indexRef.current].url;
     try {
       await audio.play();
       return true;
@@ -78,6 +139,14 @@ export function RadioProvider({ children }: { children: ReactNode }) {
     }
     const ok = await playIndex(indexRef.current);
     setPlaying(ok);
+    if (ok) {
+      try {
+        if (!localStorage.getItem(CREDIT_SEEN_KEY)) {
+          setShowCredit(true);
+          localStorage.setItem(CREDIT_SEEN_KEY, "1");
+        }
+      } catch {}
+    }
   }, [playing, loadPlaylist, playIndex]);
 
   useEffect(() => {
@@ -101,6 +170,7 @@ export function RadioProvider({ children }: { children: ReactNode }) {
     <RadioContext.Provider value={{ playing, toggle }}>
       {children}
       <audio ref={audioRef} preload="none" />
+      {showCredit && <StarfroschCredit onDismiss={() => setShowCredit(false)} />}
     </RadioContext.Provider>
   );
 }
