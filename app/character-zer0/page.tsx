@@ -168,7 +168,7 @@ export default function CharacterZer0() {
               </span>
             </a>
             <a
-              href="https://www.youtube.com/@ItsYourSphere"
+              href="https://www.youtube.com/@chracterzer0"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-baseline justify-between gap-3 text-sm sm:text-base hover:bg-blue-900/20 -mx-1 px-1 py-1 rounded-sm transition-colors"

@@ -167,14 +167,14 @@ export default function Madhu() {
           </h2>
 
           <Link
-            href="https://www.youtube.com/@ItsYourSphere"
+            href="https://www.youtube.com/@chracterzer0"
             target="_blank"
             rel="noopener noreferrer"
             className="block -mx-6 sm:-mx-10 group"
           >
             <Image
               src="/itsyoursphere-banner.png"
-              alt="itsyoursphere"
+              alt="chracter zer0 channel"
               width={1672}
               height={941}
               priority

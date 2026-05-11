@@ -1,5 +1,5 @@
-const CHANNEL_ID = "UCYmL7UZfguRrtqjlZUoScCQ";
-const CHANNEL_HANDLE = "ItsYourSphere";
+const CHANNEL_ID = "UC5YJKt8uXkf_pqZDGWGU1sg";
+const CHANNEL_HANDLE = "chracterzer0";
 const CHANNEL_URL = `https://www.youtube.com/@${CHANNEL_HANDLE}`;
 const LIVE_URL = `${CHANNEL_URL}/live`;
 
@@ -15,7 +15,7 @@ export default function Stream() {
           />
           <div className="min-w-0">
             <p className="text-blue-100 font-light tracking-[0.2em] uppercase text-sm sm:text-base truncate">
-              itsyoursphere
+              chracter zer0
             </p>
             <p className="text-blue-100/50 text-[10px] tracking-[0.25em] uppercase truncate">
               the video arm
@@ -46,7 +46,7 @@ export default function Stream() {
       <div className="flex-1 relative bg-black">
         <iframe
           src={`https://www.youtube.com/embed/live_stream?channel=${CHANNEL_ID}&autoplay=0&rel=0&modestbranding=1`}
-          title="FullSendBash live stream"
+          title="chracter zer0 live stream"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
           allowFullScreen
           className="absolute inset-0 w-full h-full border-0"
