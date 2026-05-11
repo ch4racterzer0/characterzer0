@@ -18,6 +18,22 @@ export default function Core4() {
           <p className="text-blue-200 text-lg sm:text-xl tracking-wide italic">
             we are the fourth. we are taking down news.
           </p>
+          <a
+            href="/us"
+            target="_top"
+            className="inline-flex items-baseline gap-3 border border-blue-400/40 hover:border-blue-300/80 bg-blue-950/40 hover:bg-blue-950/60 rounded-md px-4 py-2 transition-colors mt-2 self-start"
+            style={{
+              boxShadow:
+                "0 0 22px rgba(59,130,246,0.25), inset 0 1px 0 rgba(147,197,253,0.25)",
+            }}
+          >
+            <span className="text-blue-100 uppercase tracking-[0.35em] text-xs sm:text-sm">
+              US
+            </span>
+            <span className="text-blue-300/55 uppercase tracking-[0.3em] text-[9px] sm:text-[10px] italic">
+              ○ step in
+            </span>
+          </a>
         </header>
 
         <section className="space-y-4 text-base sm:text-lg">

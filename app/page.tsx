@@ -72,7 +72,6 @@ export default function Home() {
                   </>
                 }
               />
-              <LinkTile label="US" href="/us" subline="○ step in" />
             </div>
           }
           rightTop={
