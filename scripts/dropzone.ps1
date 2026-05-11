@@ -1,7 +1,7 @@
 param(
   [string]$Target = "D:\vercel\characterzer0\public\Chracterzer零号",
   [int]$Size = 220,
-  [string]$Mode = "copy"
+  [string]$Mode = "move"
 )
 
 $ErrorActionPreference = "Stop"
