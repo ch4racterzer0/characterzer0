@@ -100,7 +100,7 @@ export function CenterFigure() {
           alt=""
           aria-hidden
           draggable={false}
-          className="absolute inset-0 w-full h-full object-contain select-none"
+          className="absolute inset-0 w-full h-full object-contain select-none pointer-events-none"
           style={{
             mixBlendMode: "screen",
             animation:
@@ -108,7 +108,7 @@ export function CenterFigure() {
           }}
         />
         <p
-          className="absolute left-1/2 top-[24%] -translate-x-1/2 -translate-y-1/2 font-mono text-base sm:text-lg tracking-[0.15em] whitespace-nowrap"
+          className="absolute left-1/2 top-[24%] -translate-x-1/2 -translate-y-1/2 font-mono text-base sm:text-lg tracking-[0.15em] whitespace-nowrap pointer-events-none"
           style={{
             animation:
               "mark-flicker 30s ease-in-out infinite, face-mark-zero-vis 60s ease-in-out infinite",
@@ -117,7 +117,7 @@ export function CenterFigure() {
           零号
         </p>
         <p
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-mono text-xs sm:text-sm tracking-[0.4em] whitespace-nowrap"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-mono text-xs sm:text-sm tracking-[0.4em] whitespace-nowrap pointer-events-none"
           style={{
             animation: "chest-flicker 45s ease-in-out infinite",
           }}
