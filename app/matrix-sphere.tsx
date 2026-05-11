@@ -435,7 +435,7 @@ export function HomeSphere() {
         }}
       >
         <div
-          className="relative w-[22vh] h-[22vh] max-w-[280px] max-h-[280px]"
+          className="relative w-[22vh] h-[22vh] max-w-[280px] max-h-[280px] pointer-events-none"
           style={{
             transformOrigin: "50% 0%",
             animation: "home-sphere-expand 35s ease-out 10s forwards",
@@ -453,7 +453,7 @@ export function HomeSphere() {
             }}
           />
           <div
-            className="absolute inset-0 rounded-full"
+            className="absolute inset-0 rounded-full pointer-events-none"
             style={{
               border: "1px solid rgba(147,197,253,0.9)",
               animation: "home-sphere-shimmer 6s ease-in-out infinite",
@@ -462,7 +462,7 @@ export function HomeSphere() {
           {ORB_TILES.map((t, i) => (
             <span
               key={t.label}
-              className="absolute top-1/2 left-1/2 font-mono text-blue-100/85 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase whitespace-nowrap"
+              className="absolute top-1/2 left-1/2 font-mono text-blue-100/85 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase whitespace-nowrap pointer-events-none"
               style={{
                 opacity: 0,
                 transform: `translate(-50%, -50%) rotate(${t.angle}deg) translateY(-${t.radius}vh) rotate(${-t.angle}deg)`,

@@ -65,7 +65,7 @@ export function CenterFigure() {
       aria-hidden
       className="fixed inset-0 z-[1] flex items-start justify-center pt-[26vh] pointer-events-none"
     >
-      <div className="relative h-[26vh] aspect-[3/2]">
+      <div className="relative h-[26vh] aspect-[3/2] pointer-events-none">
         <div
           aria-hidden
           className="absolute inset-0 -m-[6vh] pointer-events-none"
