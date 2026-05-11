@@ -2,18 +2,79 @@
 
 import { useEffect, useState } from "react";
 
+type Tint = "blue" | "red" | "purple" | "green";
+
+const TINTS: Record<
+  Tint,
+  {
+    halo: string;
+    border: string;
+    bg: string;
+    text: string;
+    subline: string;
+    shadow: (large: boolean) => string;
+  }
+> = {
+  blue: {
+    halo: "bg-blue-500/15",
+    border: "border-blue-400/40",
+    bg: "bg-blue-950/40",
+    text: "text-blue-100",
+    subline: "text-blue-300/40",
+    shadow: (large) =>
+      large
+        ? "0 0 45px rgba(59, 130, 246, 0.50), 0 0 90px rgba(59, 130, 246, 0.25), 0 18px 38px -10px rgba(59, 130, 246, 0.45), inset 0 1px 0 rgba(147, 197, 253, 0.40)"
+        : "0 0 30px rgba(59, 130, 246, 0.40), 0 0 60px rgba(59, 130, 246, 0.18), 0 12px 28px -10px rgba(59, 130, 246, 0.40), inset 0 1px 0 rgba(147, 197, 253, 0.35)",
+  },
+  red: {
+    halo: "bg-red-500/15",
+    border: "border-red-400/40",
+    bg: "bg-red-950/40",
+    text: "text-red-100",
+    subline: "text-red-300/40",
+    shadow: (large) =>
+      large
+        ? "0 0 45px rgba(248, 113, 113, 0.50), 0 0 90px rgba(220, 38, 38, 0.25), 0 18px 38px -10px rgba(220, 38, 38, 0.45), inset 0 1px 0 rgba(254, 202, 202, 0.40)"
+        : "0 0 30px rgba(248, 113, 113, 0.40), 0 0 60px rgba(220, 38, 38, 0.18), 0 12px 28px -10px rgba(220, 38, 38, 0.40), inset 0 1px 0 rgba(254, 202, 202, 0.35)",
+  },
+  purple: {
+    halo: "bg-purple-500/15",
+    border: "border-purple-400/40",
+    bg: "bg-purple-950/40",
+    text: "text-purple-100",
+    subline: "text-purple-300/40",
+    shadow: (large) =>
+      large
+        ? "0 0 45px rgba(192, 132, 252, 0.50), 0 0 90px rgba(147, 51, 234, 0.25), 0 18px 38px -10px rgba(147, 51, 234, 0.45), inset 0 1px 0 rgba(233, 213, 255, 0.40)"
+        : "0 0 30px rgba(192, 132, 252, 0.40), 0 0 60px rgba(147, 51, 234, 0.18), 0 12px 28px -10px rgba(147, 51, 234, 0.40), inset 0 1px 0 rgba(233, 213, 255, 0.35)",
+  },
+  green: {
+    halo: "bg-green-500/15",
+    border: "border-green-400/40",
+    bg: "bg-green-950/40",
+    text: "text-green-100",
+    subline: "text-green-300/40",
+    shadow: (large) =>
+      large
+        ? "0 0 45px rgba(74, 222, 128, 0.50), 0 0 90px rgba(22, 163, 74, 0.25), 0 18px 38px -10px rgba(22, 163, 74, 0.45), inset 0 1px 0 rgba(187, 247, 208, 0.40)"
+        : "0 0 30px rgba(74, 222, 128, 0.40), 0 0 60px rgba(22, 163, 74, 0.18), 0 12px 28px -10px rgba(22, 163, 74, 0.40), inset 0 1px 0 rgba(187, 247, 208, 0.35)",
+  },
+};
+
 export function LinkTile({
   label,
   href,
   large = false,
   password,
   subline,
+  tint = "blue",
 }: {
   label: string;
   href: string;
   large?: boolean;
   password?: string;
   subline?: string;
+  tint?: Tint;
 }) {
   const [open, setOpen] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
@@ -39,10 +100,9 @@ export function LinkTile({
   const text = large
     ? "text-xs sm:text-sm md:text-base tracking-[0.3em] sm:tracking-[0.35em]"
     : "text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.3em]";
-  const halo = large ? "-inset-10 bg-blue-500/18" : "-inset-6 bg-blue-500/15";
-  const shadow = large
-    ? "0 0 45px rgba(59, 130, 246, 0.50), 0 0 90px rgba(59, 130, 246, 0.25), 0 18px 38px -10px rgba(59, 130, 246, 0.45), inset 0 1px 0 rgba(147, 197, 253, 0.40)"
-    : "0 0 30px rgba(59, 130, 246, 0.40), 0 0 60px rgba(59, 130, 246, 0.18), 0 12px 28px -10px rgba(59, 130, 246, 0.40), inset 0 1px 0 rgba(147, 197, 253, 0.35)";
+  const palette = TINTS[tint];
+  const halo = `${large ? "-inset-10" : "-inset-6"} ${palette.halo}`;
+  const shadow = palette.shadow(large);
 
   const locked = !!password && !unlocked;
   const external = /^https?:\/\//i.test(href);
@@ -63,19 +123,19 @@ export function LinkTile({
     <>
       <span aria-hidden className={`absolute rounded-full blur-3xl ${halo}`} />
       <span
-        className={`relative block rounded-xl border border-blue-400/40 bg-blue-950/40 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-0.5 ${padding}`}
+        className={`relative block rounded-xl border ${palette.border} ${palette.bg} backdrop-blur-sm transition-transform duration-300 hover:-translate-y-0.5 ${padding}`}
         style={{
           transform: "perspective(1200px) rotateX(-8deg)",
           boxShadow: shadow,
         }}
       >
         <span
-          className={`block text-blue-100 font-light uppercase whitespace-nowrap ${text}`}
+          className={`block ${palette.text} font-light uppercase whitespace-nowrap ${text}`}
         >
           {label}
         </span>
         {subline && (
-          <span className="mt-1 block text-[8px] sm:text-[9px] tracking-[0.3em] uppercase text-blue-300/40">
+          <span className={`mt-1 block text-[8px] sm:text-[9px] tracking-[0.3em] uppercase ${palette.subline}`}>
             {subline}
           </span>
         )}

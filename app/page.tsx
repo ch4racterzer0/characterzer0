@@ -36,9 +36,10 @@ export default function Home() {
         </div>
 
         <FigureWithTilesDesktop
-          rightSlot={
-            <div className="flex flex-row items-center gap-4 sm:gap-6">
-              <LinkTile label="US" href="/us" subline="○ step in" />
+          leftTop={
+            <div key="left-top-row" className="flex flex-row items-center gap-3">
+              <TurntableTile key="turntable" />
+              <VisualTile key="visual" />
             </div>
           }
           leftSlot={
@@ -71,77 +72,75 @@ export default function Home() {
                   </>
                 }
               />
-              <HoleInput />
-              <LinkTile label="frog" href="/frog" />
+              <LinkTile label="US" href="/us" subline="○ step in" />
             </div>
           }
-          leftTop={
-            <div key="left-top-row" className="flex flex-row items-center gap-3">
+          rightTop={
+            <div key="right-top-row" className="flex flex-col items-center gap-3">
+              <HoleInput />
               <IframeTilePopup
                 key="eliza"
                 ariaLabel="eliza — file"
                 src="/eliza"
-                triggerClassName="group w-44 sm:w-48 backdrop-blur-[2px] bg-rose-950/40 hover:bg-rose-950/60 border border-rose-300/55 hover:border-rose-200/85 px-3 py-2 rounded-sm transition-colors flex flex-col items-center gap-0.5 cursor-pointer"
+                triggerClassName="group w-44 sm:w-48 backdrop-blur-[2px] bg-red-950/40 hover:bg-red-950/60 border border-red-300/55 hover:border-red-200/85 px-3 py-2 rounded-sm transition-colors flex flex-col items-center gap-0.5 cursor-pointer"
                 triggerStyle={{
                   boxShadow:
-                    "0 0 22px rgba(251,113,133,0.45), 0 0 50px rgba(225,29,72,0.22), 0 8px 22px -8px rgba(0,0,0,0.65), inset 0 1px 0 rgba(254,205,211,0.30)",
+                    "0 0 22px rgba(248,113,113,0.45), 0 0 50px rgba(220,38,38,0.22), 0 8px 22px -8px rgba(0,0,0,0.65), inset 0 1px 0 rgba(254,202,202,0.30)",
                 }}
                 trigger={
                   <>
-                    <span className="text-rose-200/80 text-[8px] tracking-[0.4em] uppercase">
+                    <span className="text-red-200/80 text-[8px] tracking-[0.4em] uppercase">
                       ↗ file
                     </span>
                     <span
-                      className="text-rose-100 text-xs sm:text-sm tracking-[0.3em] uppercase font-light"
+                      className="text-red-100 text-xs sm:text-sm tracking-[0.3em] uppercase font-light"
                       style={{
                         textShadow:
-                          "0 0 10px rgba(254,205,211,0.85), 0 0 22px rgba(251,113,133,0.55)",
+                          "0 0 10px rgba(254,202,202,0.85), 0 0 22px rgba(248,113,113,0.55)",
                       }}
                     >
                       eliza
                     </span>
-                    <span className="text-rose-300/65 text-[8px] tracking-[0.3em] uppercase italic">
+                    <span className="text-red-300/65 text-[8px] tracking-[0.3em] uppercase italic">
                       long memory
                     </span>
                   </>
                 }
               />
-              <TurntableTile key="turntable" />
             </div>
           }
-          rightTop={
-            <div key="right-top-row" className="flex flex-row-reverse items-center gap-3">
+          rightSlot={
+            <div className="flex flex-col items-center gap-3">
               <IframeTilePopup
                 key="olivia"
                 ariaLabel="olivia — file"
                 src="/olivia"
-                triggerClassName="group w-44 sm:w-48 backdrop-blur-[2px] bg-blue-950/40 hover:bg-blue-950/60 border border-blue-300/55 hover:border-blue-200/85 px-3 py-2 rounded-sm transition-colors flex flex-col items-center gap-0.5 cursor-pointer"
+                triggerClassName="group w-44 sm:w-48 backdrop-blur-[2px] bg-purple-950/40 hover:bg-purple-950/60 border border-purple-300/55 hover:border-purple-200/85 px-3 py-2 rounded-sm transition-colors flex flex-col items-center gap-0.5 cursor-pointer"
                 triggerStyle={{
                   boxShadow:
-                    "0 0 22px rgba(96,165,250,0.45), 0 0 50px rgba(59,130,246,0.22), 0 8px 22px -8px rgba(0,0,0,0.65), inset 0 1px 0 rgba(147,197,253,0.30)",
+                    "0 0 22px rgba(192,132,252,0.45), 0 0 50px rgba(147,51,234,0.22), 0 8px 22px -8px rgba(0,0,0,0.65), inset 0 1px 0 rgba(233,213,255,0.30)",
                 }}
                 trigger={
                   <>
-                    <span className="text-blue-200/80 text-[8px] tracking-[0.4em] uppercase">
+                    <span className="text-purple-200/80 text-[8px] tracking-[0.4em] uppercase">
                       ↗ file
                     </span>
                     <span
-                      className="text-blue-100 text-xs sm:text-sm tracking-[0.3em] uppercase font-light"
+                      className="text-purple-100 text-xs sm:text-sm tracking-[0.3em] uppercase font-light"
                       style={{
                         textShadow:
-                          "0 0 10px rgba(147,197,253,0.85), 0 0 22px rgba(96,165,250,0.55)",
+                          "0 0 10px rgba(233,213,255,0.85), 0 0 22px rgba(192,132,252,0.55)",
                       }}
                     >
                       olivia
                     </span>
-                    <span className="text-blue-300/65 text-[8px] tracking-[0.3em] uppercase italic">
+                    <span className="text-purple-300/65 text-[8px] tracking-[0.3em] uppercase italic">
                       pattern observer
                     </span>
                   </>
                 }
               />
-              <VisualTile key="visual" />
-
+              <LinkTile label="frog" href="/frog" tint="green" />
             </div>
           }
         />
