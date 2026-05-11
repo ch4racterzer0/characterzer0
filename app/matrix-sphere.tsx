@@ -373,10 +373,31 @@ export function OrbRearLight() {
   );
 }
 
+const DEFAULT_ORB_PODCAST = {
+  src: "https://rrri5gycujcgopya.public.blob.vercel-storage.com/ep011-hy0rf1c2Ld1BgpPxbwrV9EPZ4DR63J.mp3",
+  title: "ep011 — the summons",
+};
+
 export function OrbWallpapers() {
   const cycle = ORB_WALLPAPERS.length * 14;
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
+  const [episode, setEpisode] = useState(DEFAULT_ORB_PODCAST);
+
+  useEffect(() => {
+    const onSet = (e: Event) => {
+      const detail = (e as CustomEvent<{ src: string; title?: string }>).detail;
+      if (!detail || !detail.src) return;
+      setEpisode({ src: detail.src, title: detail.title ?? "" });
+      const a = audioRef.current;
+      if (!a) return;
+      a.src = detail.src;
+      void a.play();
+    };
+    window.addEventListener("character-zero:set-podcast", onSet);
+    return () =>
+      window.removeEventListener("character-zero:set-podcast", onSet);
+  }, []);
 
   const togglePlay = () => {
     const a = audioRef.current;
@@ -407,7 +428,7 @@ export function OrbWallpapers() {
         <audio
           ref={audioRef}
           preload="metadata"
-          src="https://rrri5gycujcgopya.public.blob.vercel-storage.com/ep011-hy0rf1c2Ld1BgpPxbwrV9EPZ4DR63J.mp3"
+          src={episode.src}
           onPlay={() => {
             setPlaying(true);
             window.dispatchEvent(new Event("character-zero:stop-radio"));
