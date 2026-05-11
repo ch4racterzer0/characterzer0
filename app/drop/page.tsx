@@ -323,14 +323,6 @@ function FigureBox({
         零号
       </p>
       <p
-        className="absolute left-1/2 top-[14%] -translate-x-1/2 -translate-y-1/2 z-10 font-mono text-lg sm:text-xl tracking-[0.3em] whitespace-nowrap uppercase"
-        style={{
-          animation: "face-mark-storm 60s ease-in-out infinite",
-        }}
-      >
-        storm
-      </p>
-      <p
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 font-mono text-sm sm:text-base tracking-[0.4em] whitespace-nowrap"
         style={{
           animation: "chest-flicker 45s ease-in-out infinite",
@@ -417,7 +409,7 @@ export default function DropPage() {
               red
             </span>
             <span className="text-white/35 italic normal-case tracking-normal">
-              pick your color variation and your character — character zer0 or storm available.
+              pick your color variation — every print is character zer0, just a different shade of him.
             </span>
           </p>
         </header>
