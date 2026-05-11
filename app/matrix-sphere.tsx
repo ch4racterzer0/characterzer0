@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useZeroThoughtsBroadcast } from "./zero-thoughts";
-import Link from "next/link";
 import { InceptionPopup } from "./inception-popup";
+import { LinkTile } from "./link-tile";
 
 function ThoughtsOverlay() {
   const text = useZeroThoughtsBroadcast();
@@ -473,19 +473,15 @@ export function HomeSphere() {
           >
             Inception
           </button>
-          <Link
-            href="/frog"
-            aria-label="frog"
-            className="absolute top-1/2 left-1/2 font-mono text-emerald-200 hover:text-emerald-100 text-xs sm:text-sm tracking-[0.35em] uppercase whitespace-nowrap pointer-events-auto cursor-pointer bg-transparent transition-colors no-underline"
+          <div
+            className="absolute top-1/2 left-1/2 pointer-events-auto"
             style={{
               transform:
                 "translate(-50%, -50%) rotate(95deg) translateY(-18vh) rotate(-95deg)",
-              textShadow:
-                "0 0 10px rgba(110,231,183,0.75), 0 0 22px rgba(16,185,129,0.45), 0 0 44px rgba(34,197,94,0.25)",
             }}
           >
-            frog
-          </Link>
+            <LinkTile label="frog" href="/frog" />
+          </div>
         </div>
       </div>
       {inceptionOpen && mounted && (
