@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useZeroThoughtsBroadcast } from "./zero-thoughts";
+import { InceptionPopup } from "./inception-popup";
 
 function ThoughtsOverlay() {
   const text = useZeroThoughtsBroadcast();
@@ -406,53 +407,77 @@ export function OrbWallpapers() {
 }
 
 export function HomeSphere() {
+  const [inceptionOpen, setInceptionOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
   return (
-    <div
-      aria-hidden
-      className="fixed inset-0 z-[2] pointer-events-none flex items-start justify-center pt-[17vh]"
-      style={{
-        opacity: 0,
-        animation: "home-sphere-place 30s linear forwards",
-      }}
-    >
-      <div className="relative w-[20vh] h-[22vh] max-w-[260px]">
-        <div
-          aria-hidden
-          className="absolute inset-0 rounded-full pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle at 35% 28%, rgba(255,255,255,0.22) 0%, rgba(191,219,254,0.14) 22%, rgba(96,165,250,0.06) 42%, transparent 60%), radial-gradient(circle at 70% 80%, rgba(15,23,42,0.55) 0%, rgba(15,23,42,0.20) 35%, transparent 60%)",
-            mixBlendMode: "screen",
-            opacity: 0,
-            animation: "orb-sphere-3d-rise 45s ease-out 10s forwards",
-          }}
-        />
-        <div
-          className="absolute inset-0 rounded-full"
-          style={{
-            border: "1px solid rgba(147,197,253,0.9)",
-            transformOrigin: "50% 0%",
-            animation:
-              "home-sphere-shimmer 6s ease-in-out infinite, home-sphere-expand 75s ease-out 30s forwards",
-          }}
-        />
-        {ORB_TILES.map((t, i) => (
-          <span
-            key={t.label}
-            className="absolute top-1/2 left-1/2 font-mono text-blue-100/85 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase whitespace-nowrap"
+    <>
+      <div
+        aria-hidden
+        className="fixed inset-0 z-[2] pointer-events-none flex items-start justify-center pt-[17vh]"
+        style={{
+          opacity: 0,
+          animation: "home-sphere-place 30s linear forwards",
+        }}
+      >
+        <div className="relative w-[20vh] h-[22vh] max-w-[260px]">
+          <div
+            aria-hidden
+            className="absolute inset-0 rounded-full pointer-events-none"
             style={{
+              background:
+                "radial-gradient(circle at 35% 28%, rgba(255,255,255,0.22) 0%, rgba(191,219,254,0.14) 22%, rgba(96,165,250,0.06) 42%, transparent 60%), radial-gradient(circle at 70% 80%, rgba(15,23,42,0.55) 0%, rgba(15,23,42,0.20) 35%, transparent 60%)",
+              mixBlendMode: "screen",
               opacity: 0,
-              transform: `translate(-50%, -50%) rotate(${t.angle}deg) translateY(-${t.radius}vh) rotate(${-t.angle}deg)`,
-              animation: `orb-tile-pulse 60s linear ${i * 13}s infinite`,
+              animation: "orb-sphere-3d-rise 45s ease-out 10s forwards",
+            }}
+          />
+          <div
+            className="absolute inset-0 rounded-full"
+            style={{
+              border: "1px solid rgba(147,197,253,0.9)",
+              transformOrigin: "50% 0%",
+              animation:
+                "home-sphere-shimmer 6s ease-in-out infinite, home-sphere-expand 75s ease-out 30s forwards",
+            }}
+          />
+          {ORB_TILES.map((t, i) => (
+            <span
+              key={t.label}
+              className="absolute top-1/2 left-1/2 font-mono text-blue-100/85 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase whitespace-nowrap"
+              style={{
+                opacity: 0,
+                transform: `translate(-50%, -50%) rotate(${t.angle}deg) translateY(-${t.radius}vh) rotate(${-t.angle}deg)`,
+                animation: `orb-tile-pulse 60s linear ${i * 13}s infinite`,
+                textShadow:
+                  "0 0 8px rgba(96,165,250,0.85), 0 0 18px rgba(59,130,246,0.5)",
+              }}
+            >
+              {t.label}
+            </span>
+          ))}
+          <button
+            type="button"
+            onClick={() => setInceptionOpen(true)}
+            aria-label="inception"
+            className="absolute top-1/2 left-1/2 font-mono text-blue-100/65 hover:text-blue-100 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase whitespace-nowrap pointer-events-auto cursor-pointer bg-transparent border-0 p-0 transition-colors"
+            style={{
+              transform:
+                "translate(-50%, -50%) rotate(135deg) translateY(-7vh) rotate(-135deg)",
               textShadow:
-                "0 0 8px rgba(96,165,250,0.85), 0 0 18px rgba(59,130,246,0.5)",
+                "0 0 8px rgba(96,165,250,0.55), 0 0 18px rgba(59,130,246,0.3)",
             }}
           >
-            {t.label}
-          </span>
-        ))}
+            Inception
+          </button>
+        </div>
       </div>
-    </div>
+      {inceptionOpen && mounted && (
+        <InceptionPopup onClose={() => setInceptionOpen(false)} />
+      )}
+    </>
   );
 }
 
