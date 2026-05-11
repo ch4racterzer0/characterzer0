@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useZeroThoughtsBroadcast } from "./zero-thoughts";
 import { InceptionPopup } from "./inception-popup";
-import { LinkTile } from "./link-tile";
 
 function ThoughtsOverlay() {
   const text = useZeroThoughtsBroadcast();
@@ -473,15 +472,6 @@ export function HomeSphere() {
           >
             Inception
           </button>
-          <div
-            className="absolute top-1/2 left-1/2 pointer-events-auto"
-            style={{
-              transform:
-                "translate(-50%, -50%) rotate(95deg) translateY(-18vh) rotate(-95deg)",
-            }}
-          >
-            <LinkTile label="frog" href="/frog" />
-          </div>
         </div>
       </div>
       {inceptionOpen && mounted && (

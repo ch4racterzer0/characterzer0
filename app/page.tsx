@@ -126,6 +126,7 @@ export default function Home() {
                 }
               />
               <HoleInput />
+              <LinkTile label="frog" href="/frog" />
             </div>
           }
           leftTop={
