@@ -384,7 +384,7 @@ export function OrbWallpapers() {
       }}
     >
       <div
-        className="relative w-[20vh] h-[22vh] max-w-[260px] rounded-full overflow-hidden"
+        className="relative w-[22vh] h-[22vh] max-w-[280px] max-h-[280px] rounded-full overflow-hidden"
         style={{
           transformOrigin: "50% 0%",
           animation: "home-sphere-expand 35s ease-out 10s forwards",
@@ -429,7 +429,7 @@ export function HomeSphere() {
         }}
       >
         <div
-          className="relative w-[20vh] h-[22vh] max-w-[260px]"
+          className="relative w-[22vh] h-[22vh] max-w-[280px] max-h-[280px]"
           style={{
             transformOrigin: "50% 0%",
             animation: "home-sphere-expand 35s ease-out 10s forwards",
