@@ -39,52 +39,6 @@ export default function Home() {
           rightSlot={
             <div className="flex flex-row items-center gap-4 sm:gap-6">
               <LinkTile label="US" href="/us" subline="○ step in" />
-              <div
-                aria-label="NRA — locked"
-                className="relative w-24 sm:w-28 aspect-square backdrop-blur-[2px] bg-red-950/30 border border-red-400/40 rounded-md flex items-center justify-center overflow-hidden opacity-90"
-                style={{
-                  boxShadow:
-                    "0 0 22px rgba(248,113,113,0.20), 0 0 50px rgba(220,38,38,0.10), inset 0 1px 0 rgba(254,202,202,0.18)",
-                }}
-              >
-                <svg
-                  viewBox="0 0 100 100"
-                  aria-hidden
-                  className="absolute inset-0 w-full h-full"
-                >
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="36"
-                    fill="none"
-                    stroke="rgb(248,113,113)"
-                    strokeWidth="3.5"
-                    style={{
-                      filter: "drop-shadow(0 0 6px rgba(248,113,113,0.85))",
-                    }}
-                  />
-                  <line
-                    x1="24"
-                    y1="76"
-                    x2="76"
-                    y2="24"
-                    stroke="rgb(248,113,113)"
-                    strokeWidth="3.5"
-                    style={{
-                      filter: "drop-shadow(0 0 6px rgba(248,113,113,0.85))",
-                    }}
-                  />
-                </svg>
-                <span
-                  className="relative text-red-100 text-lg sm:text-xl tracking-[0.35em] uppercase font-light"
-                  style={{ textShadow: "0 0 10px rgba(254,202,202,0.65)" }}
-                >
-                  NRA
-                </span>
-                <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 text-red-300/55 text-[8px] tracking-[0.3em] uppercase italic">
-                  locked
-                </span>
-              </div>
             </div>
           }
           leftSlot={

@@ -9,22 +9,70 @@ export default function Quest() {
           &gt; operative: icculus
         </p>
 
-        <a
-          href="/currenttarget"
-          target="_top"
-          className="block border border-blue-400/40 hover:border-blue-300/80 bg-blue-950/40 hover:bg-blue-950/60 rounded-md px-4 py-3 transition-colors my-4"
-          style={{
-            boxShadow:
-              "0 0 22px rgba(59,130,246,0.25), inset 0 1px 0 rgba(147,197,253,0.25)",
-          }}
-        >
-          <span className="block text-blue-100 uppercase tracking-[0.3em] text-[10px] sm:text-xs">
-            &gt; current targets
-          </span>
-          <span className="block text-blue-300/55 uppercase tracking-[0.3em] text-[8px] sm:text-[9px] mt-1">
-            ○ 02 done · 03 next
-          </span>
-        </a>
+        <div className="flex flex-row items-stretch gap-3 my-4">
+          <a
+            href="/currenttarget"
+            target="_top"
+            className="flex-1 block border border-blue-400/40 hover:border-blue-300/80 bg-blue-950/40 hover:bg-blue-950/60 rounded-md px-4 py-3 transition-colors"
+            style={{
+              boxShadow:
+                "0 0 22px rgba(59,130,246,0.25), inset 0 1px 0 rgba(147,197,253,0.25)",
+            }}
+          >
+            <span className="block text-blue-100 uppercase tracking-[0.3em] text-[10px] sm:text-xs">
+              &gt; current targets
+            </span>
+            <span className="block text-blue-300/55 uppercase tracking-[0.3em] text-[8px] sm:text-[9px] mt-1">
+              ○ 02 done · 03 next
+            </span>
+          </a>
+          <div
+            aria-label="NRA — locked"
+            className="relative w-20 sm:w-24 aspect-square shrink-0 backdrop-blur-[2px] bg-red-950/30 border border-red-400/40 rounded-md flex items-center justify-center overflow-hidden opacity-90"
+            style={{
+              boxShadow:
+                "0 0 22px rgba(248,113,113,0.20), 0 0 50px rgba(220,38,38,0.10), inset 0 1px 0 rgba(254,202,202,0.18)",
+            }}
+          >
+            <svg
+              viewBox="0 0 100 100"
+              aria-hidden
+              className="absolute inset-0 w-full h-full"
+            >
+              <circle
+                cx="50"
+                cy="50"
+                r="36"
+                fill="none"
+                stroke="rgb(248,113,113)"
+                strokeWidth="3.5"
+                style={{
+                  filter: "drop-shadow(0 0 6px rgba(248,113,113,0.85))",
+                }}
+              />
+              <line
+                x1="24"
+                y1="76"
+                x2="76"
+                y2="24"
+                stroke="rgb(248,113,113)"
+                strokeWidth="3.5"
+                style={{
+                  filter: "drop-shadow(0 0 6px rgba(248,113,113,0.85))",
+                }}
+              />
+            </svg>
+            <span
+              className="relative text-red-100 text-base sm:text-lg tracking-[0.35em] uppercase font-light"
+              style={{ textShadow: "0 0 10px rgba(254,202,202,0.65)" }}
+            >
+              NRA
+            </span>
+            <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 text-red-300/55 text-[8px] tracking-[0.3em] uppercase italic">
+              locked
+            </span>
+          </div>
+        </div>
 
         <p className="italic text-blue-200/80 border-l-2 border-blue-400/40 pl-3 my-4">
           &gt; one ring. one lie. one machine the powerful told us to fear so
