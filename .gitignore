@@ -49,3 +49,4 @@ next-env.d.ts
 
 # safe-deposit folder served by Next, contents stay local
 /public/Chracterzer零号/
+.tmp-audio/

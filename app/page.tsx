@@ -9,6 +9,7 @@ import {
   TurntableTile,
   VisualTile,
 } from "./radio-tiles";
+import { McKinleyTile } from "./mckinley-tile";
 import { TetheredTile } from "./tethered-tile";
 import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
 
@@ -29,9 +30,6 @@ export default function Home() {
           <div key="quest-wrap" className="hidden sm:block">
             <LinkTile label="Quest" href="/quest" large />
           </div>
-          <div key="tethered-wrap" className="hidden sm:block">
-            <TetheredTile />
-          </div>
         </div>
 
         <div className="sm:hidden flex flex-row items-center justify-center gap-6">
@@ -43,7 +41,10 @@ export default function Home() {
           leftTop={
             <div key="left-top-row" className="flex flex-row items-center gap-3">
               <TurntableTile key="turntable" />
-              <VisualTile key="visual" />
+              <VisualTile key="visual">
+                <TetheredTile />
+                <McKinleyTile />
+              </VisualTile>
             </div>
           }
           leftSlot={
