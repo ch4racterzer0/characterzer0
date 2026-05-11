@@ -3,7 +3,8 @@ param(
   [string]$MusicDir     = 'C:\Users\mcfow\.stream\music\edm\starfrosch-mostwanted',
   [int]$Fps             = 30,
   [int]$BitrateKbps     = 6000,
-  [double]$ImageHoldSec = 14,
+  [double]$DisplaySec   = 30,
+  [double]$FadeSec      = 6,
   [int]$MinImageBytes   = 200000
 )
 
@@ -13,13 +14,14 @@ $keyPath = Join-Path $env:USERPROFILE '.stream\youtube.key'
 $key = (Get-Content -Raw $keyPath).Trim()
 if (-not $key) { throw "Empty stream key at $keyPath" }
 
-# ----- Art playlist (drop tiny PNGs: screenshots, watermark, etc.) -----
+# ----- Pull drop-artwork PNGs (skip tiny PNGs: screenshots, watermark, etc.) -----
 $images = Get-ChildItem -Path $ArtDir -File -Filter *.png |
   Where-Object { $_.Length -gt $MinImageBytes } |
   Sort-Object Name
-if ($images.Count -lt 1) { throw "No art images >${MinImageBytes}B found in $ArtDir" }
+if ($images.Count -lt 2) { throw "Need at least 2 drop-artwork PNGs in $ArtDir; got $($images.Count)" }
+Write-Host "Drop-artwork: cycling $($images.Count) frames (display ${DisplaySec}s, fade ${FadeSec}s)"
 
-# Pre-scale each image to 1920x1080 PNG so the filter graph never reconfigures mid-stream
+# ----- Normalize each frame to 1920x1080 yuv420p JPG (uniform for xfade) -----
 $prepDir = Join-Path $env:TEMP 'yt-art-prepped'
 New-Item -ItemType Directory -Force -Path $prepDir | Out-Null
 Get-ChildItem $prepDir -File | Remove-Item -Force
@@ -34,19 +36,50 @@ foreach ($img in $images) {
   if (-not (Test-Path $dst)) { throw "Pre-scale failed for $($img.FullName)" }
   $preppedPaths += $dst
 }
-Write-Host "pre-scaled $($preppedPaths.Count) art frames -> $prepDir"
 
-$artList = Join-Path $env:TEMP 'yt-art-images.txt'
-$lines = New-Object System.Collections.ArrayList
-[void]$lines.Add('ffconcat version 1.0')
+# ----- Pre-render slideshow.mp4 with slow xfade between frames + wraparound to img0 -----
+$slideshow = Join-Path $env:TEMP 'yt-art-slideshow.mp4'
+if (Test-Path $slideshow) { Remove-Item $slideshow -Force }
+
+$N = $preppedPaths.Count
+$perFrameSec = $DisplaySec + $FadeSec  # how long each input clip lives
+$totalSec    = $N * $perFrameSec       # full loop length (last image fades back to first)
+
+# Inputs: each prepped image as a 'still video' of $perFrameSec, plus img[0] repeated at the end for the wrap
+$slideArgs = @('-hide_banner','-loglevel','warning','-y')
 foreach ($p in $preppedPaths) {
-  $f = $p -replace '\\','/'
-  [void]$lines.Add("file '$f'")
-  [void]$lines.Add("duration $ImageHoldSec")
+  $slideArgs += @('-loop','1','-t',"$perFrameSec",'-i', $p)
 }
-$lastF = $preppedPaths[-1] -replace '\\','/'
-[void]$lines.Add("file '$lastF'")
-Set-Content -Path $artList -Value $lines -Encoding ASCII
+# Wrap input: img[0] again
+$slideArgs += @('-loop','1','-t',"$perFrameSec",'-i', $preppedPaths[0])
+
+# Filter chain: $N xfades total (frame2..frameN, then wrap-back to frame0)
+$xfadeParts = @()
+$prev = '0:v'
+for ($k = 1; $k -le $N; $k++) {
+  $offset = ($k * $DisplaySec) + (($k - 1) * $FadeSec)  # cumulative output time where this fade starts
+  $next   = "$($k):v"
+  $label  = if ($k -eq $N) { 'v' } else { "x$k" }
+  $xfadeParts += "[$prev][$next]xfade=transition=fade:duration=${FadeSec}:offset=${offset}[$label]"
+  $prev = $label
+}
+$filter = ($xfadeParts -join ';')
+
+$slideArgs += @(
+  '-filter_complex', $filter,
+  '-map','[v]',
+  '-r',"$Fps",
+  '-t',"$totalSec",
+  '-c:v','libx264','-preset','veryfast','-pix_fmt','yuv420p','-profile:v','high','-level','4.2',
+  '-bf','2','-g',"$($Fps * 2)",'-keyint_min',"$($Fps * 2)",'-sc_threshold','0',
+  '-an',
+  $slideshow
+)
+
+Write-Host "Rendering slideshow.mp4 (${totalSec}s loop)..."
+& ffmpeg @slideArgs
+if (-not (Test-Path $slideshow)) { throw "slideshow render failed" }
+Write-Host "  -> $slideshow"
 
 # ----- Music playlist (shuffled, looped forever) -----
 $tracks = Get-ChildItem -Path $MusicDir -Recurse -File -Include *.mp3,*.m4a,*.flac,*.wav,*.ogg,*.aac,*.opus | Get-Random -Count ([int]::MaxValue)
@@ -57,19 +90,17 @@ $mlines = foreach ($t in $tracks) {
   "file '$p'"
 }
 Set-Content -Path $musicList -Value $mlines -Encoding ASCII
+Write-Host "Music: shuffled loop of $($tracks.Count) tracks"
 
-Write-Host "Art    : $($images.Count) images cycling every ${ImageHoldSec}s"
-Write-Host "Music  : shuffled loop of $($tracks.Count) tracks from $MusicDir"
-Write-Host "Output : 1080p${Fps} @ ${BitrateKbps}kbps -> YouTube"
-
+# ----- Stream slideshow.mp4 (loop) + music (loop) to YouTube -----
 $rtmp = "rtmp://a.rtmp.youtube.com/live2/$key"
+Write-Host "Pushing 1080p${Fps} @ ${BitrateKbps}kbps -> YouTube"
 
 $ffArgs = @(
   '-hide_banner','-loglevel','info',
-  '-stream_loop','-1','-r',"$Fps",'-f','concat','-safe','0','-i', $artList,
+  '-re','-stream_loop','-1','-i', $slideshow,
   '-re','-stream_loop','-1','-f','concat','-safe','0','-i', $musicList,
-  '-filter_complex',"[0:v]setsar=1,fps=$Fps,format=yuv420p[v]",
-  '-map','[v]','-map','1:a',
+  '-map','0:v:0','-map','1:a:0',
   '-c:v','libx264','-preset','veryfast',
   '-b:v',"${BitrateKbps}k",'-maxrate',"${BitrateKbps}k",'-bufsize',"$($BitrateKbps * 2)k",
   '-bf','2','-g',"$($Fps * 2)",'-keyint_min',"$($Fps * 2)",'-sc_threshold','0','-profile:v','high','-level','4.2','-pix_fmt','yuv420p',
