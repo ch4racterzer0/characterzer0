@@ -169,7 +169,7 @@ export function SemperFiTile() {
     };
   }, []);
 
-  const visible = currentSource === "McKinley" && playing;
+  const visible = currentSource === "mckinley" && playing;
   if (!visible) return null;
 
   return (
