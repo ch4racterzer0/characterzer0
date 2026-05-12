@@ -26,9 +26,15 @@ export default function Home() {
           <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center justify-between gap-6 sm:gap-0 py-4 sm:py-10 px-4">
         <RadioTilesMobileTop />
 
-        <div className="sm:hidden flex flex-row items-center justify-center gap-4 flex-wrap">
-          <LinkTile label="Core4" href="/core4" />
-          <LinkTile label="Madhu" href="/madhu" />
+        <div className="flex flex-row items-center justify-center gap-4 sm:gap-8 flex-wrap">
+          <LinkTile key="core4" label="Core4" href="/core4" large />
+          <LinkTile key="madhu" label="Madhu" href="/madhu" large />
+          <div key="quest-wrap" className="hidden sm:block">
+            <LinkTile label="Quest" href="/quest" large />
+          </div>
+        </div>
+
+        <div className="sm:hidden flex flex-row items-center justify-center gap-6">
           <LinkTile label="US" href="/us" />
           <LinkTile label="Your Own Anspach" href="/yoursphere" />
         </div>
@@ -105,14 +111,6 @@ export default function Home() {
                   </>
                 }
               />
-              <div
-                key="core-madhu-quest"
-                className="col-span-2 backdrop-blur-[2px] bg-white/5 border border-white/30 rounded-xl px-3 py-3 flex flex-row items-center justify-around gap-2"
-              >
-                <LinkTile label="Core4" href="/core4" />
-                <LinkTile label="Madhu" href="/madhu" />
-                <LinkTile label="Quest" href="/quest" />
-              </div>
               <IframeTilePopup
                 key="olivia"
                 ariaLabel="olivia — file"
