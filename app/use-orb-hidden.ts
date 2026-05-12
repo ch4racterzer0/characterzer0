@@ -20,5 +20,5 @@ export function useOrbHidden(): boolean {
     return () => obs.disconnect();
   }, []);
 
-  return (pathname !== "/" && pathname !== "/yiswmt") || popupOpen;
+  return pathname !== "/" || popupOpen;
 }

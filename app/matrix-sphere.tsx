@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { usePathname } from "next/navigation";
 import { useZeroThoughtsBroadcast } from "./zero-thoughts";
 import { InceptionPopup } from "./inception-popup";
 import { useOrbHidden } from "./use-orb-hidden";
@@ -630,8 +629,6 @@ export function HomeSphere() {
   const [inceptionOpen, setInceptionOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const hidden = useOrbHidden();
-  const pathname = usePathname();
-  const isYiswmt = pathname === "/yiswmt";
 
   useEffect(() => setMounted(true), []);
 
@@ -671,7 +668,7 @@ export function HomeSphere() {
               animation: "home-sphere-shimmer 6s ease-in-out infinite",
             }}
           />
-          {!isYiswmt && ORB_TILES.map((t, i) => (
+          {ORB_TILES.map((t, i) => (
             <span
               key={t.label}
               className="absolute top-1/2 left-1/2 font-mono text-blue-100/85 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase whitespace-nowrap pointer-events-none"
@@ -686,22 +683,20 @@ export function HomeSphere() {
               {t.label}
             </span>
           ))}
-          {!isYiswmt && (
-            <button
-              type="button"
-              onClick={() => setInceptionOpen(true)}
-              aria-label="inception"
-              className="absolute top-1/2 left-1/2 font-mono text-blue-100/65 hover:text-blue-100 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase whitespace-nowrap pointer-events-auto cursor-pointer bg-transparent border-0 p-0 transition-colors"
-              style={{
-                transform:
-                  "translate(-50%, -50%) rotate(135deg) translateY(-7vh) rotate(-135deg)",
-                textShadow:
-                  "0 0 8px rgba(96,165,250,0.55), 0 0 18px rgba(59,130,246,0.3)",
-              }}
-            >
-              Inception
-            </button>
-          )}
+          <button
+            type="button"
+            onClick={() => setInceptionOpen(true)}
+            aria-label="inception"
+            className="absolute top-1/2 left-1/2 font-mono text-blue-100/65 hover:text-blue-100 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase whitespace-nowrap pointer-events-auto cursor-pointer bg-transparent border-0 p-0 transition-colors"
+            style={{
+              transform:
+                "translate(-50%, -50%) rotate(135deg) translateY(-7vh) rotate(-135deg)",
+              textShadow:
+                "0 0 8px rgba(96,165,250,0.55), 0 0 18px rgba(59,130,246,0.3)",
+            }}
+          >
+            Inception
+          </button>
         </div>
       </div>
       {inceptionOpen && mounted && (

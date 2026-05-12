@@ -13,9 +13,6 @@ import { McKinleyTile } from "./mckinley-tile";
 import { TetheredTile } from "./tethered-tile";
 import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
 
-// Force dynamic so proxy.ts middleware fires on every request to `/` regardless
-// of host. Required for the yiswmt.com host rewrite to bypass Vercel's CDN cache
-// for prerendered static `/` responses.
 export const dynamic = "force-dynamic";
 
 export default function Home() {
