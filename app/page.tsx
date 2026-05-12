@@ -111,6 +111,49 @@ export default function Home() {
                   </>
                 }
               />
+              <div
+                key="joshua"
+                aria-label="joshua"
+                className="relative col-span-2 rounded-md border border-amber-300/40 bg-amber-950/30 backdrop-blur-[2px] flex items-center justify-between gap-3 px-3 py-1.5"
+                style={{
+                  boxShadow:
+                    "0 0 14px rgba(251,191,36,0.20), 0 0 32px rgba(217,119,6,0.12), inset 0 1px 0 rgba(253,230,138,0.20)",
+                }}
+              >
+                <span className="text-amber-300/55 text-[7px] tracking-[0.45em] uppercase shrink-0">
+                  // shall we play a game
+                </span>
+                <div className="flex flex-row items-center gap-3">
+                  {(
+                    [
+                      ["Core4", "/core4"],
+                      ["Madhu", "/madhu"],
+                      ["Quest", "/quest"],
+                    ] as const
+                  ).map(([label, href]) => (
+                    <IframeTilePopup
+                      key={label}
+                      ariaLabel={label.toLowerCase()}
+                      src={href}
+                      triggerClassName="text-amber-100 hover:text-amber-50 text-[11px] sm:text-xs tracking-[0.35em] uppercase font-mono cursor-pointer transition-colors"
+                      triggerStyle={{
+                        textShadow:
+                          "0 0 8px rgba(253,230,138,0.75), 0 0 18px rgba(251,191,36,0.45)",
+                      }}
+                      trigger={label}
+                    />
+                  ))}
+                </div>
+                <a
+                  href="/hungersite"
+                  target="_top"
+                  rel="noopener"
+                  aria-label="wopr"
+                  className="text-amber-300/55 hover:text-amber-200/85 text-[7px] tracking-[0.4em] uppercase italic shrink-0 transition-colors"
+                >
+                  ↗ wopr
+                </a>
+              </div>
               <IframeTilePopup
                 key="olivia"
                 ariaLabel="olivia — file"
