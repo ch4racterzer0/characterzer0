@@ -23,7 +23,7 @@ export default function Home() {
         <RadioProvider>
           <ThemeShifter>
           <ThemeSwitch />
-          <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center justify-between gap-6 sm:gap-0 py-4 sm:py-10 px-4">
+          <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center justify-end gap-6 sm:gap-0 py-4 sm:py-10 px-4">
         <RadioTilesMobileTop />
 
         <div className="sm:hidden flex flex-row items-center justify-center gap-4 flex-wrap">
