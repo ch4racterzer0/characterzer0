@@ -357,7 +357,7 @@ export function OrbRearLight() {
   return (
     <div
       aria-hidden
-      className="fixed inset-0 z-[0] pointer-events-none flex items-start justify-center pt-[8vh]"
+      className="fixed inset-0 z-[0] pointer-events-none flex items-start justify-center pt-[0vh]"
       style={{
         opacity: 0,
         animation: "orb-rear-light-rise 50s ease-out 6s forwards",
@@ -365,7 +365,7 @@ export function OrbRearLight() {
       }}
     >
       <div
-        className="relative w-[70vh] h-[70vh] max-w-[820px] rounded-full"
+        className="relative w-[82vh] h-[82vh] max-w-[960px] rounded-full"
         style={{
           background:
             "radial-gradient(circle at 50% 50%, rgba(191,219,254,0.42) 0%, rgba(147,197,253,0.30) 18%, rgba(96,165,250,0.22) 32%, rgba(59,130,246,0.14) 48%, rgba(30,64,175,0.07) 62%, transparent 78%)",
@@ -501,7 +501,7 @@ export function OrbWallpapers() {
   return (
     <div
       aria-hidden
-      className="fixed inset-0 z-[25] pointer-events-none flex items-start justify-center pt-[17vh]"
+      className="fixed inset-0 z-[25] pointer-events-none flex items-start justify-center pt-[3vh]"
       style={{
         opacity: 0,
         animation: "home-sphere-place 30s linear forwards",
@@ -509,7 +509,7 @@ export function OrbWallpapers() {
       }}
     >
       <div
-        className="relative w-[22vh] h-[22vh] max-w-[280px] max-h-[280px] rounded-full overflow-hidden"
+        className="relative w-[28vh] h-[28vh] max-w-[360px] max-h-[360px] rounded-full overflow-hidden"
         style={{
           transformOrigin: "50% 0%",
           animation: "home-sphere-expand 35s ease-out 10s forwards",
@@ -636,7 +636,7 @@ export function HomeSphere() {
     <>
       <div
         aria-hidden
-        className="fixed inset-0 z-[26] pointer-events-none flex items-start justify-center pt-[17vh]"
+        className="fixed inset-0 z-[26] pointer-events-none flex items-start justify-center pt-[3vh]"
         style={{
           opacity: 0,
           animation: "home-sphere-place 30s linear forwards",
@@ -644,7 +644,7 @@ export function HomeSphere() {
         }}
       >
         <div
-          className="relative w-[22vh] h-[22vh] max-w-[280px] max-h-[280px] pointer-events-none"
+          className="relative w-[28vh] h-[28vh] max-w-[360px] max-h-[360px] pointer-events-none"
           style={{
             transformOrigin: "50% 0%",
             animation: "home-sphere-expand 35s ease-out 10s forwards",
