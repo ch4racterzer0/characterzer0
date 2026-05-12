@@ -26,15 +26,9 @@ export default function Home() {
           <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center justify-between gap-6 sm:gap-0 py-4 sm:py-10 px-4">
         <RadioTilesMobileTop />
 
-        <div className="flex flex-row items-center justify-center gap-4 sm:gap-8 flex-wrap">
-          <LinkTile key="core4" label="Core4" href="/core4" large />
-          <LinkTile key="madhu" label="Madhu" href="/madhu" large />
-          <div key="quest-wrap" className="hidden sm:block">
-            <LinkTile label="Quest" href="/quest" large />
-          </div>
-        </div>
-
-        <div className="sm:hidden flex flex-row items-center justify-center gap-6">
+        <div className="sm:hidden flex flex-row items-center justify-center gap-4 flex-wrap">
+          <LinkTile label="Core4" href="/core4" />
+          <LinkTile label="Madhu" href="/madhu" />
           <LinkTile label="US" href="/us" />
           <LinkTile label="Your Own Anspach" href="/yoursphere" />
         </div>
@@ -111,49 +105,33 @@ export default function Home() {
                   </>
                 }
               />
-              <div
+              <IframeTilePopup
                 key="joshua"
-                aria-label="joshua"
-                className="relative col-span-2 rounded-md border border-amber-300/40 bg-amber-950/30 backdrop-blur-[2px] flex items-center justify-between gap-3 px-3 py-1.5"
-                style={{
+                ariaLabel="joshua"
+                triggerClassName="relative col-span-2 rounded-md border border-amber-300/40 hover:border-amber-200/70 bg-amber-950/30 hover:bg-amber-900/45 backdrop-blur-[2px] flex items-center justify-center px-3 py-1.5 transition-colors cursor-pointer"
+                triggerStyle={{
                   boxShadow:
                     "0 0 14px rgba(251,191,36,0.20), 0 0 32px rgba(217,119,6,0.12), inset 0 1px 0 rgba(253,230,138,0.20)",
                 }}
-              >
-                <span className="text-amber-300/55 text-[7px] tracking-[0.45em] uppercase shrink-0">
-                  // shall we play a game
-                </span>
-                <div className="flex flex-row items-center gap-3">
-                  {(
-                    [
-                      ["Core4", "/core4"],
-                      ["Madhu", "/madhu"],
-                      ["Quest", "/quest"],
-                    ] as const
-                  ).map(([label, href]) => (
-                    <IframeTilePopup
-                      key={label}
-                      ariaLabel={label.toLowerCase()}
-                      src={href}
-                      triggerClassName="text-amber-100 hover:text-amber-50 text-[11px] sm:text-xs tracking-[0.35em] uppercase font-mono cursor-pointer transition-colors"
-                      triggerStyle={{
-                        textShadow:
-                          "0 0 8px rgba(253,230,138,0.75), 0 0 18px rgba(251,191,36,0.45)",
-                      }}
-                      trigger={label}
-                    />
-                  ))}
-                </div>
-                <a
-                  href="/hungersite"
-                  target="_top"
-                  rel="noopener"
-                  aria-label="wopr"
-                  className="text-amber-300/55 hover:text-amber-200/85 text-[7px] tracking-[0.4em] uppercase italic shrink-0 transition-colors"
-                >
-                  ↗ wopr
-                </a>
-              </div>
+                trigger={
+                  <span
+                    className="text-amber-100 text-[11px] sm:text-xs tracking-[0.45em] uppercase font-mono"
+                    style={{
+                      textShadow:
+                        "0 0 8px rgba(253,230,138,0.75), 0 0 18px rgba(251,191,36,0.45)",
+                    }}
+                  >
+                    JOSHUA
+                  </span>
+                }
+                content={
+                  <div className="min-h-full w-full flex flex-row items-center justify-center gap-6 sm:gap-10 flex-wrap p-6">
+                    <LinkTile label="Core4" href="/core4" large />
+                    <LinkTile label="Madhu" href="/madhu" large />
+                    <LinkTile label="Quest" href="/quest" large />
+                  </div>
+                }
+              />
               <IframeTilePopup
                 key="olivia"
                 ariaLabel="olivia — file"
