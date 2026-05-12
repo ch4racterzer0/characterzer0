@@ -358,7 +358,7 @@ export function OrbRearLight() {
   return (
     <div
       aria-hidden
-      className="fixed inset-0 z-[0] pointer-events-none flex items-start justify-center pt-[3vh]"
+      className="fixed inset-0 z-[0] pointer-events-none flex items-start justify-center pt-[8vh]"
       style={{
         opacity: 0,
         animation: "orb-rear-light-rise 50s ease-out 6s forwards",
@@ -502,7 +502,7 @@ export function OrbWallpapers() {
   return (
     <div
       aria-hidden
-      className="fixed inset-0 z-[25] pointer-events-none flex items-start justify-center pt-[12vh]"
+      className="fixed inset-0 z-[25] pointer-events-none flex items-start justify-center pt-[17vh]"
       style={{
         opacity: 0,
         animation: "home-sphere-place 30s linear forwards",
@@ -510,7 +510,7 @@ export function OrbWallpapers() {
       }}
     >
       <div
-        className="relative w-[26vh] h-[26vh] max-w-[320px] max-h-[320px] rounded-full overflow-hidden"
+        className="relative w-[22vh] h-[22vh] max-w-[280px] max-h-[280px] rounded-full overflow-hidden"
         style={{
           transformOrigin: "50% 0%",
           animation: "home-sphere-expand 35s ease-out 10s forwards",
@@ -639,7 +639,7 @@ export function HomeSphere() {
     <>
       <div
         aria-hidden
-        className="fixed inset-0 z-[26] pointer-events-none flex items-start justify-center pt-[12vh]"
+        className="fixed inset-0 z-[26] pointer-events-none flex items-start justify-center pt-[17vh]"
         style={{
           opacity: 0,
           animation: "home-sphere-place 30s linear forwards",
@@ -647,7 +647,7 @@ export function HomeSphere() {
         }}
       >
         <div
-          className="relative w-[26vh] h-[26vh] max-w-[320px] max-h-[320px] pointer-events-none"
+          className="relative w-[22vh] h-[22vh] max-w-[280px] max-h-[280px] pointer-events-none"
           style={{
             transformOrigin: "50% 0%",
             animation: "home-sphere-expand 35s ease-out 10s forwards",
