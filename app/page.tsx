@@ -107,11 +107,7 @@ export default function Home() {
               />
               <div
                 key="core-madhu-quest"
-                className="col-span-2 backdrop-blur-sm bg-white/10 border border-white/50 rounded-xl px-4 py-3 flex flex-row items-center justify-around gap-3"
-                style={{
-                  boxShadow:
-                    "0 0 22px rgba(255,255,255,0.18), 0 0 50px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.25)",
-                }}
+                className="col-span-2 backdrop-blur-[2px] bg-white/5 border border-white/30 rounded-xl px-3 py-3 flex flex-row items-center justify-around gap-2"
               >
                 <LinkTile label="Core4" href="/core4" />
                 <LinkTile label="Madhu" href="/madhu" />
