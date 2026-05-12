@@ -33,6 +33,36 @@ export default function Home() {
           <LinkTile label="Your Own Anspach" href="/yoursphere" />
         </div>
 
+        <div className="hidden sm:flex w-full justify-center pt-2">
+          <IframeTilePopup
+            key="joshua"
+            ariaLabel="joshua"
+            triggerClassName="relative rounded-md border border-amber-300/40 hover:border-amber-200/70 bg-amber-950/30 hover:bg-amber-900/45 backdrop-blur-[2px] flex items-center justify-center px-10 py-2 transition-colors cursor-pointer"
+            triggerStyle={{
+              boxShadow:
+                "0 0 14px rgba(251,191,36,0.20), 0 0 32px rgba(217,119,6,0.12), inset 0 1px 0 rgba(253,230,138,0.20)",
+            }}
+            trigger={
+              <span
+                className="text-amber-100 text-xs sm:text-sm tracking-[0.45em] uppercase font-mono"
+                style={{
+                  textShadow:
+                    "0 0 8px rgba(253,230,138,0.75), 0 0 18px rgba(251,191,36,0.45)",
+                }}
+              >
+                JOSHUA
+              </span>
+            }
+            content={
+              <div className="min-h-full w-full flex flex-row items-center justify-center gap-6 sm:gap-10 flex-wrap p-6">
+                <LinkTile label="Core4" href="/core4" large />
+                <LinkTile label="Madhu" href="/madhu" large />
+                <LinkTile label="Quest" href="/quest" large />
+              </div>
+            }
+          />
+        </div>
+
         <FigureWithTilesDesktop
           leftTop={
             <div key="left-top-row" className="flex flex-row items-center gap-3">
@@ -194,36 +224,6 @@ export default function Home() {
             </div>
           }
         />
-
-        <div className="hidden sm:flex w-full justify-center pb-2">
-          <IframeTilePopup
-            key="joshua"
-            ariaLabel="joshua"
-            triggerClassName="relative rounded-md border border-amber-300/40 hover:border-amber-200/70 bg-amber-950/30 hover:bg-amber-900/45 backdrop-blur-[2px] flex items-center justify-center px-10 py-2 transition-colors cursor-pointer"
-            triggerStyle={{
-              boxShadow:
-                "0 0 14px rgba(251,191,36,0.20), 0 0 32px rgba(217,119,6,0.12), inset 0 1px 0 rgba(253,230,138,0.20)",
-            }}
-            trigger={
-              <span
-                className="text-amber-100 text-xs sm:text-sm tracking-[0.45em] uppercase font-mono"
-                style={{
-                  textShadow:
-                    "0 0 8px rgba(253,230,138,0.75), 0 0 18px rgba(251,191,36,0.45)",
-                }}
-              >
-                JOSHUA
-              </span>
-            }
-            content={
-              <div className="min-h-full w-full flex flex-row items-center justify-center gap-6 sm:gap-10 flex-wrap p-6">
-                <LinkTile label="Core4" href="/core4" large />
-                <LinkTile label="Madhu" href="/madhu" large />
-                <LinkTile label="Quest" href="/quest" large />
-              </div>
-            }
-          />
-        </div>
 
           </main>
           </ThemeShifter>
