@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { HomeSphere, OrbRearLight, OrbWallpapers } from "./matrix-sphere";
+import {
+  HomeSphere,
+  McKinleyFlagBackdrop,
+  OrbRearLight,
+  OrbWallpapers,
+} from "./matrix-sphere";
 import { K9Tile } from "./k9-tile";
 import { MorselsRibbon } from "./morsels-ribbon";
 import { SemperFiTile } from "./semper-fi-tile";
@@ -40,6 +45,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <VisualChannelProvider>
           <ChannelBackground />
+          <McKinleyFlagBackdrop />
           <OrbRearLight />
           <OrbWallpapers />
           <HomeSphere />

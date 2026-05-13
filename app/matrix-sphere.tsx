@@ -391,6 +391,89 @@ const TETHERED_PICS: string[] = [
   "/tethered/Screenshot%202026-05-12%20203247.png",
 ];
 
+const FLAG_STRIPES =
+  "linear-gradient(to bottom," +
+  "#B22234 0%,#B22234 7.69%," +
+  "#FFFFFF 7.69%,#FFFFFF 15.38%," +
+  "#B22234 15.38%,#B22234 23.08%," +
+  "#FFFFFF 23.08%,#FFFFFF 30.77%," +
+  "#B22234 30.77%,#B22234 38.46%," +
+  "#FFFFFF 38.46%,#FFFFFF 46.15%," +
+  "#B22234 46.15%,#B22234 53.85%," +
+  "#FFFFFF 53.85%,#FFFFFF 61.54%," +
+  "#B22234 61.54%,#B22234 69.23%," +
+  "#FFFFFF 69.23%,#FFFFFF 76.92%," +
+  "#B22234 76.92%,#B22234 84.62%," +
+  "#FFFFFF 84.62%,#FFFFFF 92.31%," +
+  "#B22234 92.31%,#B22234 100%)";
+
+export function McKinleyFlagBackdrop() {
+  const [source, setSource] = useState<string>("default");
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    const onSet = (e: Event) => {
+      const detail = (e as CustomEvent<{ source?: string }>).detail;
+      setSource(detail?.source ?? "default");
+    };
+    const onPlay = () => setPlaying(true);
+    const onPause = () => setPlaying(false);
+    const onEnded = () => setPlaying(false);
+    window.addEventListener("character-zero:set-podcast", onSet);
+    window.addEventListener("character-zero:orb-play", onPlay);
+    window.addEventListener("character-zero:orb-pause", onPause);
+    window.addEventListener("character-zero:orb-ended", onEnded);
+    return () => {
+      window.removeEventListener("character-zero:set-podcast", onSet);
+      window.removeEventListener("character-zero:orb-play", onPlay);
+      window.removeEventListener("character-zero:orb-pause", onPause);
+      window.removeEventListener("character-zero:orb-ended", onEnded);
+    };
+  }, []);
+
+  const active = source === "mckinley" && playing;
+
+  return (
+    <div
+      aria-hidden
+      className="fixed inset-0 pointer-events-none z-[2] flex items-center justify-center overflow-hidden"
+      style={{
+        opacity: active ? 0.15 : 0,
+        transition: "opacity 2200ms ease-out",
+      }}
+    >
+      <div
+        className="relative"
+        style={{
+          width: "150vh",
+          maxWidth: "92vw",
+          aspectRatio: "19 / 10",
+          background: FLAG_STRIPES,
+          animation: active
+            ? "mck-flag-wave 18s ease-in-out infinite alternate"
+            : undefined,
+          transformOrigin: "50% 50%",
+          filter: "blur(1px) saturate(0.55) brightness(0.85)",
+          mixBlendMode: "screen",
+        }}
+      >
+        <div
+          className="absolute top-0 left-0"
+          style={{
+            width: "40%",
+            height: "53.85%",
+            backgroundColor: "#3C3B6E",
+            backgroundImage:
+              "radial-gradient(rgba(255,255,255,0.7) 0.7px, transparent 1.4px)",
+            backgroundSize: "calc(100%/12) calc(100%/9)",
+            backgroundPosition: "calc(100%/24) calc(100%/18)",
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
 export function OrbWallpapers() {
   const cycle = ORB_WALLPAPERS.length * 14;
   const audioRef = useRef<HTMLAudioElement>(null);
