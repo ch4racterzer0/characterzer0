@@ -14,10 +14,13 @@ const SUMMONS_MP3 =
 
 const CHINESE_FIRST_MP3 =
   "https://rrri5gycujcgopya.public.blob.vercel-storage.com/ep017-uMgpoCXmnvO8Fr2ecHuDwO28p5mU0m.mp3";
+const FLICKER_MP3 =
+  "https://rrri5gycujcgopya.public.blob.vercel-storage.com/ep014-NBjZ18YXtJvjjDqKvt5i0bThGLYzKQ.mp3";
 
 const EPISODES: Episode[] = [
   { chapter: "01", title: "the summons", src: SUMMONS_MP3 },
   { chapter: "02", title: "chinese first", src: CHINESE_FIRST_MP3 },
+  { chapter: "03", title: "the flicker", src: FLICKER_MP3 },
 ];
 
 function loadEpisode(ep: Episode) {
