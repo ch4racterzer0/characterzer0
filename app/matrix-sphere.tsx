@@ -393,6 +393,7 @@ const TETHERED_PICS: string[] = [
   "/tethered/arya-profile.png",
   "/tethered/olivia-bio-1.png",
   "/tethered/Screenshot%202026-05-12%20203247.png",
+  "/tethered/flicker.png",
 ];
 
 export function OrbEpisodeNav() {
