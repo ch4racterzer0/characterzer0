@@ -699,6 +699,13 @@ export function OrbWallpapers() {
   }, []);
 
   const ensureGain = (target: "audio" | "video", value: number) => {
+    const alreadyWired =
+      target === "audio" ? audioWiredRef.current : videoWiredRef.current;
+    // Skip Web Audio entirely when no boost is needed and we haven't wired
+    // the element yet. Wiring an element through MediaElementAudioSourceNode
+    // makes its output dependent on AudioContext state, which can mute the
+    // element on autoplay-restricted page loads (this was breaking McKinley).
+    if (value === 1 && !alreadyWired) return;
     const W = window as unknown as {
       AudioContext?: typeof AudioContext;
       webkitAudioContext?: typeof AudioContext;
