@@ -24,7 +24,8 @@ export const TETHERED_EPISODES: TetheredEpisode[] = [
   {
     chapter: "02",
     title: "chinese first",
-    src: CHINESE_FIRST_MP3,
+    src: "/tethered/chinese-first.mp4",
+    kind: "video",
     image: "/tethered/secret-weapon.png",
   },
   {
