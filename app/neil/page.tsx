@@ -136,8 +136,13 @@ export default function NeilPage() {
               <span className="text-blue-100/85">
                 a submission-based newsroom. anyone drops a moment; an AI named
                 Ella drafts the article; nothing gets edited by a human before
-                it runs. the transparency is the whole bit, not a footnote.
-                firewalled outbound from the rest of the cosmology on purpose.
+                it runs.{" "}
+                <span className="text-blue-100">
+                  the product is the byline.
+                </span>{" "}
+                not the article. not the traffic. the byline — it runs under
+                the name of whoever shared the moment. firewalled outbound from
+                the rest of the cosmology on purpose.
               </span>
             </li>
             <li>
@@ -278,11 +283,11 @@ export default function NeilPage() {
             <li>
               <span className="text-blue-300/55">—&nbsp;</span>
               <span className="text-blue-100">
-                any of them needing coverage
+                any of them wanting the byline
               </span>{" "}
-              → sharethebyline. submit a moment, Ella drafts it, it runs. no
-              editor decides their story isn&rsquo;t worth a desk&rsquo;s
-              time.
+              → sharethebyline. submit a moment, Ella drafts it, it runs under
+              their name. the byline is the product. no editor decides
+              their story isn&rsquo;t worth a desk&rsquo;s time.
             </li>
             <li>
               <span className="text-blue-300/55">—&nbsp;</span>
