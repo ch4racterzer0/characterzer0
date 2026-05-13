@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { NeilGate } from "./gate";
 
 export const metadata: Metadata = {
   title: "for neil — Chracterzer零号",
@@ -14,6 +15,7 @@ export const viewport: Viewport = {
 
 export default function NeilPage() {
   return (
+    <NeilGate>
     <main className="min-h-screen bg-black text-blue-100 font-mono">
       <div className="max-w-3xl mx-auto px-6 sm:px-10 py-12 sm:py-20 space-y-12">
         <section className="space-y-5">
@@ -363,5 +365,6 @@ export default function NeilPage() {
         </section>
       </div>
     </main>
+    </NeilGate>
   );
 }
