@@ -408,7 +408,7 @@ function LZTile() {
     <a
       href="/"
       aria-label="LZ — landing zone, back to main"
-      className="group absolute right-[-3rem] sm:right-[-3.5rem] top-[calc(50%+1.75rem)] -translate-y-1/2 z-[19] rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400/60"
+      className="group rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400/60 relative"
     >
       <span
         aria-hidden
@@ -458,7 +458,7 @@ function FSTile() {
   return (
     <div
       aria-label="FS"
-      className="absolute right-[-1.5rem] sm:right-[-2rem] top-1/2 -translate-y-1/2 z-20 rounded-lg"
+      className="stage-hide rounded-lg relative"
     >
       <span
         aria-hidden
@@ -573,7 +573,7 @@ export function FigureWithTilesDesktop({
         ? "sepia(1) saturate(5) hue-rotate(245deg) brightness(1.05)"
         : "none";
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] items-end gap-2 sm:gap-3 w-full">
+    <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_auto_1fr] items-end gap-2 sm:gap-3 w-full">
       <div className="hidden sm:flex flex-col items-end gap-3 justify-self-end">
         {leftTop}
         {leftSlot ?? <RadioTile label="SLOW" />}
@@ -583,8 +583,6 @@ export function FigureWithTilesDesktop({
         <div className="relative h-[28vh] aspect-[3/2]">
           <TetherClock />
           <RadioStopTile />
-          <LZTile />
-          <FSTile />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/figures/back.png"
@@ -599,6 +597,10 @@ export function FigureWithTilesDesktop({
             }}
           />
         </div>
+      </div>
+      <div className="hidden sm:flex flex-col items-center justify-end gap-2 pb-2">
+        <FSTile />
+        <LZTile />
       </div>
       <div className="hidden sm:flex flex-col items-start gap-3 justify-self-start">
         {rightTop}
