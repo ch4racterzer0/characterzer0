@@ -9,6 +9,7 @@ import {
   TurntableTile,
   VisualTile,
 } from "./radio-tiles";
+import { ChracterzerTile } from "./chracterzer-tile";
 import { McKinleyTile } from "./mckinley-tile";
 import { TetheredTile } from "./tethered-tile";
 import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
@@ -43,6 +44,7 @@ export default function Home() {
               </VisualTile>
             </div>
           }
+          rightTop={<ChracterzerTile />}
           leftSlot={
             <IframeTilePopup
               ariaLabel="drop — first drop, tees and caps"
