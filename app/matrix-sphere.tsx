@@ -437,7 +437,7 @@ export function OrbEpisodeNav() {
   return (
     <div
       aria-hidden={false}
-      className="fixed top-[14vh] left-0 right-0 z-[27] flex justify-between items-center px-3 sm:px-6 pointer-events-none"
+      className="fixed top-[22vh] left-1/2 -translate-x-1/2 z-[27] flex items-center justify-between gap-[28vh] w-[min(94vw,64vh)] pointer-events-none"
     >
       <div className="pointer-events-auto">
         {prev ? <NavTile ep={prev} side="prev" /> : <div className="w-[14vh]" />}
