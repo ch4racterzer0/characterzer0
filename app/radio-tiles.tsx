@@ -412,6 +412,33 @@ function RadioStopTile() {
   );
 }
 
+function useFigureTint() {
+  const [source, setSource] = useState<string>("default");
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    const onSet = (e: Event) => {
+      const detail = (e as CustomEvent<{ source?: string }>).detail;
+      setSource(detail?.source ?? "default");
+    };
+    const onPlay = () => setPlaying(true);
+    const onPause = () => setPlaying(false);
+    const onEnded = () => setPlaying(false);
+    window.addEventListener("character-zero:set-podcast", onSet);
+    window.addEventListener("character-zero:orb-play", onPlay);
+    window.addEventListener("character-zero:orb-pause", onPause);
+    window.addEventListener("character-zero:orb-ended", onEnded);
+    return () => {
+      window.removeEventListener("character-zero:set-podcast", onSet);
+      window.removeEventListener("character-zero:orb-play", onPlay);
+      window.removeEventListener("character-zero:orb-pause", onPause);
+      window.removeEventListener("character-zero:orb-ended", onEnded);
+    };
+  }, []);
+
+  return source === "mckinley" && playing ? "mckinley" : "default";
+}
+
 export function FigureWithTilesDesktop({
   rightSlot,
   leftSlot,
@@ -425,6 +452,11 @@ export function FigureWithTilesDesktop({
   rightTop?: ReactNode;
   centerTop?: ReactNode;
 } = {}) {
+  const tint = useFigureTint();
+  const filter =
+    tint === "mckinley"
+      ? "sepia(1) saturate(6) hue-rotate(55deg) brightness(1.05)"
+      : "none";
   return (
     <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] items-end gap-2 sm:gap-3 w-full">
       <div className="hidden sm:flex flex-col items-end gap-3 justify-self-end">
@@ -445,6 +477,8 @@ export function FigureWithTilesDesktop({
             className="absolute inset-0 w-full h-full object-contain object-bottom pointer-events-none select-none"
             style={{
               mixBlendMode: "screen",
+              filter,
+              transition: "filter 800ms ease-out",
             }}
           />
         </div>
