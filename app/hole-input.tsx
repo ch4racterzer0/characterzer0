@@ -182,6 +182,76 @@ export function HoleInput() {
                   className="text-blue-200/75 text-[9px] sm:text-[10px] tracking-[0.4em] uppercase"
                   style={{ textShadow: "0 0 8px rgba(96,165,250,0.45)" }}
                 >
+                  // the architect
+                </p>
+
+                <div className="flex items-stretch gap-4 pt-1">
+                  <div
+                    className="relative shrink-0 w-24 sm:w-28 rounded-lg overflow-hidden border border-blue-400/40 bg-blue-950/40"
+                    style={{
+                      boxShadow:
+                        "0 0 18px rgba(59,130,246,0.35), inset 0 1px 0 rgba(147,197,253,0.25)",
+                    }}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/characterzer0-figure.png"
+                      alt="零号"
+                      className="block w-full h-auto"
+                      style={{
+                        filter:
+                          "drop-shadow(0 0 8px rgba(96,165,250,0.55)) drop-shadow(0 0 18px rgba(59,130,246,0.35))",
+                      }}
+                    />
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute inset-0"
+                      style={{
+                        background:
+                          "radial-gradient(ellipse at 50% 110%, rgba(59,130,246,0.25) 0%, rgba(0,0,0,0) 60%)",
+                      }}
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0 space-y-1.5">
+                    <p
+                      className="text-blue-100 text-base sm:text-lg tracking-[0.12em]"
+                      style={{
+                        textShadow:
+                          "0 0 14px rgba(147,197,253,0.85), 0 0 32px rgba(59,130,246,0.5)",
+                      }}
+                    >
+                      零号
+                    </p>
+                    <p className="text-blue-200/70 text-[9px] sm:text-[10px] tracking-[0.35em] uppercase">
+                      architect of nine
+                    </p>
+                    <p className="text-blue-100/90 text-[11px] sm:text-xs leading-snug pt-1">
+                      he writes the lore.
+                      <br />
+                      he ships the code.
+                      <br />
+                      he asks no one.
+                    </p>
+                  </div>
+                </div>
+
+                <p className="pt-1">
+                  he built this.
+                  <br />
+                  he built <span className="text-blue-100">spotlightdispatch</span>.
+                  <br />
+                  he built <span className="text-blue-100">sharethebyline</span>.
+                  <br />
+                  he built <span className="text-blue-100">yiswmt</span>.
+                </p>
+                <p className="text-blue-100/80">
+                  more plans are sealed at{" "}
+                  <span className="text-blue-100">thedelos.com</span>.
+                  <br />
+                  the clues are in your face. you just have to look.
+                </p>
+
+                <p className="text-blue-200/75 text-[9px] sm:text-[10px] tracking-[0.4em] uppercase pt-2">
                   // the goal
                 </p>
                 <p
@@ -197,7 +267,7 @@ export function HoleInput() {
                 <p className="text-blue-200/75 text-[9px] sm:text-[10px] tracking-[0.4em] uppercase pt-2">
                   // the work
                 </p>
-                <p>9 worlds. characterzer0 is the architect.</p>
+                <p>9 worlds. 零号 is the architect.</p>
                 <ul className="pl-1 text-[10px] sm:text-[11px] tabular-nums space-y-0.5">
                   <li>
                     <span className="text-blue-300/70 inline-block w-24">news</span>
@@ -216,10 +286,7 @@ export function HoleInput() {
                   </li>
                 </ul>
                 <p className="text-blue-100/80">
-                  the rest are written and waiting at{" "}
-                  <span className="text-blue-100">thedelos.com</span>.
-                  <br />
-                  they&rsquo;re ours until someone earns one.
+                  the rest are ours until someone earns one.
                 </p>
 
                 <p className="text-blue-200/75 text-[9px] sm:text-[10px] tracking-[0.4em] uppercase pt-2">
