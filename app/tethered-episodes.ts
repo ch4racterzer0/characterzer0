@@ -60,6 +60,13 @@ export const TETHERED_EPISODES: TetheredEpisode[] = [
     kind: "video",
     image: "/tethered/secret-weapon.png",
   },
+  {
+    chapter: "08",
+    title: "the lock · finale",
+    src: "/tethered/the-lock.mp4",
+    kind: "video",
+    image: "/tethered/character-zer0-abstract.png",
+  },
 ];
 
 export function dispatchTetheredEpisode(ep: TetheredEpisode) {
