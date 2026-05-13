@@ -166,7 +166,7 @@ export function HoleInput() {
                       "0 0 10px rgba(96,165,250,0.55), 0 0 22px rgba(59,130,246,0.3)",
                   }}
                 >
-                  // hole &mdash; l
+                  // Chracterzer零号
                 </span>
                 <span className="text-blue-300/55 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase italic font-mono tabular-nums">
                   {hydrated
@@ -175,6 +175,81 @@ export function HoleInput() {
                       : `${remaining}/${DAILY_LIMIT} drops left today`
                     : "drops to eliza"}
                 </span>
+              </div>
+
+              <div className="font-mono text-blue-100/90 text-[11px] sm:text-xs leading-relaxed tracking-wide mb-5 space-y-3">
+                <p
+                  className="text-blue-200/75 text-[9px] sm:text-[10px] tracking-[0.4em] uppercase"
+                  style={{ textShadow: "0 0 8px rgba(96,165,250,0.45)" }}
+                >
+                  // the goal
+                </p>
+                <p
+                  className="text-blue-100 text-sm sm:text-base tracking-[0.06em]"
+                  style={{
+                    textShadow:
+                      "0 0 10px rgba(147,197,253,0.65), 0 0 22px rgba(59,130,246,0.35)",
+                  }}
+                >
+                  kill cnn and fox news.
+                </p>
+
+                <p className="text-blue-200/75 text-[9px] sm:text-[10px] tracking-[0.4em] uppercase pt-2">
+                  // the work
+                </p>
+                <p>9 worlds. 4 live.</p>
+                <ul className="pl-1 text-[10px] sm:text-[11px] tabular-nums space-y-0.5">
+                  <li>
+                    <span className="text-blue-300/70 inline-block w-20">news</span>
+                    <span className="text-blue-300/40">→ </span>
+                    <span className="text-blue-100">spotlightdispatch.com</span>
+                  </li>
+                  <li>
+                    <span className="text-blue-300/70 inline-block w-20">social</span>
+                    <span className="text-blue-300/40">→ </span>
+                    <span className="text-blue-100">sharethebyline.com</span>
+                  </li>
+                  <li>
+                    <span className="text-blue-300/70 inline-block w-20">video</span>
+                    <span className="text-blue-300/40">→ </span>
+                    <span className="text-blue-100">yiswmt.com</span>
+                  </li>
+                  <li>
+                    <span className="text-blue-300/70 inline-block w-20">outreach</span>
+                    <span className="text-blue-300/40">→ </span>
+                    <span className="text-blue-100">characterzer0.com</span>
+                  </li>
+                </ul>
+                <p className="text-blue-100/80">
+                  5 more plans are written and waiting at{" "}
+                  <span className="text-blue-100">thedelos.com</span>.
+                  <br />
+                  they&rsquo;re ours until someone earns one.
+                </p>
+
+                <p className="text-blue-200/75 text-[9px] sm:text-[10px] tracking-[0.4em] uppercase pt-2">
+                  // the fiction
+                </p>
+                <p>
+                  tethered is the trail.
+                  <br />
+                  every chapter is a clue.
+                  <br />
+                  we don&rsquo;t walk you through it.
+                  <br />
+                  no mobile.
+                </p>
+
+                <p className="text-blue-200/75 text-[9px] sm:text-[10px] tracking-[0.4em] uppercase pt-2">
+                  // the end
+                </p>
+                <p>
+                  when all 9 are full, the tunnel opens.
+                  <br />
+                  9 becomes 1.
+                  <br />
+                  1 is here.
+                </p>
               </div>
 
               <div className="flex items-stretch gap-2 font-mono">
