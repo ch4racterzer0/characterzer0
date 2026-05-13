@@ -46,6 +46,13 @@ export const TETHERED_EPISODES: TetheredEpisode[] = [
     kind: "video",
     image: "/tethered/Screenshot%202026-05-12%20203247.png",
   },
+  {
+    chapter: "06",
+    title: "the warning",
+    src: "/tethered/the-warning.mp4",
+    kind: "video",
+    image: "/tethered/olivia-bio-1.png",
+  },
 ];
 
 export function dispatchTetheredEpisode(ep: TetheredEpisode) {
