@@ -458,7 +458,7 @@ function FSTile() {
   return (
     <div
       aria-label="FS"
-      className="stage-hide rounded-lg relative"
+      className="rounded-lg relative"
     >
       <span
         aria-hidden
