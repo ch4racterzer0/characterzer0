@@ -12,8 +12,8 @@ type Episode = {
 const SUMMONS_MP3 =
   "https://rrri5gycujcgopya.public.blob.vercel-storage.com/ep011-hy0rf1c2Ld1BgpPxbwrV9EPZ4DR63J.mp3";
 
-// Chapter 2 audio file pending upload — points to ch1 until the blob is swapped in.
-const CHINESE_FIRST_MP3 = SUMMONS_MP3;
+const CHINESE_FIRST_MP3 =
+  "https://rrri5gycujcgopya.public.blob.vercel-storage.com/ep017-uMgpoCXmnvO8Fr2ecHuDwO28p5mU0m.mp3";
 
 const EPISODES: Episode[] = [
   { chapter: "01", title: "the summons", src: SUMMONS_MP3 },
