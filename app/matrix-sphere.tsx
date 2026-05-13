@@ -437,13 +437,13 @@ export function OrbEpisodeNav() {
   return (
     <div
       aria-hidden={false}
-      className="fixed top-[22vh] left-1/2 -translate-x-1/2 z-[27] flex items-center justify-between gap-[28vh] w-[min(94vw,64vh)] pointer-events-none"
+      className="fixed top-[32vh] left-1/2 -translate-x-1/2 z-[27] flex items-center justify-between w-[min(96vw,90vh)] pointer-events-none"
     >
       <div className="pointer-events-auto">
-        {prev ? <NavTile ep={prev} side="prev" /> : <div className="w-[14vh]" />}
+        {prev ? <NavTile ep={prev} side="prev" /> : <div className="w-[18vh]" />}
       </div>
       <div className="pointer-events-auto">
-        {next ? <NavTile ep={next} side="next" /> : <div className="w-[14vh]" />}
+        {next ? <NavTile ep={next} side="next" /> : <div className="w-[18vh]" />}
       </div>
     </div>
   );
@@ -464,7 +464,7 @@ function NavTile({
         if (full) dispatchTetheredEpisode(full);
       }}
       aria-label={`${side === "prev" ? "previous" : "next"} — ch${ep.chapter} ${ep.title}`}
-      className="group relative w-[14vh] max-w-[140px] aspect-square rounded-md overflow-hidden border border-indigo-400/55 hover:border-indigo-200/85 bg-indigo-950/55 backdrop-blur-[2px] cursor-pointer transition-colors"
+      className="group relative w-[18vh] max-w-[200px] aspect-[3/4] rounded-md overflow-hidden border border-indigo-400/55 hover:border-indigo-200/85 bg-indigo-950/55 backdrop-blur-[2px] cursor-pointer transition-colors"
       style={{
         boxShadow:
           "0 0 22px rgba(129,140,248,0.35), 0 0 50px rgba(99,102,241,0.18), inset 0 1px 0 rgba(199,210,254,0.30)",
