@@ -171,14 +171,39 @@ export function RadioTile({ label }: { label: string }) {
 
 export function TurntableTile() {
   const { playing, toggle } = useRadio();
+  const [orbPlaying, setOrbPlaying] = useState(false);
+
+  useEffect(() => {
+    const onPlay = () => setOrbPlaying(true);
+    const onStop = () => setOrbPlaying(false);
+    window.addEventListener("character-zero:orb-play", onPlay);
+    window.addEventListener("character-zero:orb-pause", onStop);
+    window.addEventListener("character-zero:orb-ended", onStop);
+    return () => {
+      window.removeEventListener("character-zero:orb-play", onPlay);
+      window.removeEventListener("character-zero:orb-pause", onStop);
+      window.removeEventListener("character-zero:orb-ended", onStop);
+    };
+  }, []);
+
+  const dead = orbPlaying && !playing;
+
   return (
     <button
       type="button"
-      onClick={toggle}
+      onClick={dead ? undefined : toggle}
+      disabled={dead}
       aria-pressed={playing}
-      aria-label={playing ? "Stop audio" : "Play audio"}
-      className={`relative inline-flex flex-col items-center gap-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60 rounded-full transition-opacity ${
-        playing ? "opacity-100" : "opacity-80 hover:opacity-100"
+      aria-disabled={dead || undefined}
+      aria-label={
+        dead ? "Audio unavailable while a podcast is playing" : playing ? "Stop audio" : "Play audio"
+      }
+      className={`relative inline-flex flex-col items-center gap-2 rounded-full transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60 ${
+        dead
+          ? "opacity-30 cursor-not-allowed"
+          : playing
+            ? "opacity-100 cursor-pointer"
+            : "opacity-80 hover:opacity-100 cursor-pointer"
       }`}
     >
       <span
