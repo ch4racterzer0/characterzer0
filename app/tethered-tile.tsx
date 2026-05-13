@@ -12,14 +12,22 @@ type Episode = {
 const SUMMONS_MP3 =
   "https://rrri5gycujcgopya.public.blob.vercel-storage.com/ep011-hy0rf1c2Ld1BgpPxbwrV9EPZ4DR63J.mp3";
 
+// Chapter 2 audio file pending upload — points to ch1 until the blob is swapped in.
+const CHINESE_FIRST_MP3 = SUMMONS_MP3;
+
 const EPISODES: Episode[] = [
-  { chapter: "20", title: "chapter twenty", src: SUMMONS_MP3 },
+  { chapter: "01", title: "the summons", src: SUMMONS_MP3 },
+  { chapter: "02", title: "chinese first", src: CHINESE_FIRST_MP3 },
 ];
 
 function loadEpisode(ep: Episode) {
   window.dispatchEvent(
     new CustomEvent("character-zero:set-podcast", {
-      detail: { src: ep.src, title: `ch${ep.chapter} — ${ep.title}` },
+      detail: {
+        src: ep.src,
+        title: `ch${ep.chapter} — ${ep.title}`,
+        source: "tethered",
+      },
     }),
   );
 }
@@ -69,9 +77,9 @@ function TetheredPopup({ onClose }: { onClose: () => void }) {
           </button>
         </div>
 
-        <ul className="flex justify-center">
+        <ul className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {EPISODES.map((ep) => (
-            <li key={ep.chapter} className="w-40 sm:w-44">
+            <li key={ep.chapter}>
               <button
                 type="button"
                 onClick={() => {
@@ -108,7 +116,7 @@ function TetheredPopup({ onClose }: { onClose: () => void }) {
         </ul>
 
         <p className="text-indigo-300/55 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase italic text-center">
-          one chapter for now — new series in the works. esc to close.
+          tracking real life — new chapters drop as life unfolds. esc to close.
         </p>
       </div>
     </div>,
