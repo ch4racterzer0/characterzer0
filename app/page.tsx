@@ -12,6 +12,7 @@ import {
 import { ChracterzerTile } from "./chracterzer-tile";
 import { McKinleyTile } from "./mckinley-tile";
 import { TetheredTile } from "./tethered-tile";
+import { YiswmtTile } from "./yiswmt-tile";
 import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
 
 export const dynamic = "force-dynamic";
@@ -44,7 +45,12 @@ export default function Home() {
               </VisualTile>
             </div>
           }
-          rightTop={<ChracterzerTile />}
+          rightTop={
+            <div className="flex flex-row items-center gap-3">
+              <ChracterzerTile />
+              <YiswmtTile />
+            </div>
+          }
           leftSlot={
             <IframeTilePopup
               ariaLabel="drop — first drop, tees and caps"
