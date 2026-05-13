@@ -1,3 +1,4 @@
+import { ArtworkGalleryButton } from "./artwork-gallery";
 import { ContactDrop } from "./contact-drop";
 
 export const dynamic = "force-dynamic";
@@ -211,12 +212,15 @@ function ArtworkRow() {
         >
           ch4racterzer0@gmail
         </p>
-        <a
-          href="/character-zer0"
-          className="inline-block text-white/70 hover:text-white text-[10px] sm:text-xs font-mono tracking-[0.3em] uppercase border-b border-white/30 hover:border-white/70 transition-colors mt-1"
-        >
-          for hire ↗
-        </a>
+        <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
+          <ArtworkGalleryButton />
+          <a
+            href="/character-zer0"
+            className="inline-block text-white/70 hover:text-white text-[10px] sm:text-xs font-mono tracking-[0.3em] uppercase border-b border-white/30 hover:border-white/70 transition-colors"
+          >
+            for hire ↗
+          </a>
+        </div>
       </div>
     </div>
   );
