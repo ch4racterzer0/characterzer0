@@ -4,6 +4,7 @@ import "./globals.css";
 import {
   HomeSphere,
   McKinleyFlagBackdrop,
+  OrbEpisodeNav,
   OrbRearLight,
   OrbWallpapers,
 } from "./matrix-sphere";
@@ -49,6 +50,7 @@ export default function RootLayout({
           <OrbRearLight />
           <OrbWallpapers />
           <HomeSphere />
+          <OrbEpisodeNav />
           <CenterFigure />
           <MorselsRibbon />
           <SemperFiTile />

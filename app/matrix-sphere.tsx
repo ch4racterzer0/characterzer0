@@ -1,6 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import {
+  TETHERED_EPISODES,
+  dispatchTetheredEpisode,
+} from "./tethered-episodes";
 import { createPortal } from "react-dom";
 import { useZeroThoughtsBroadcast } from "./zero-thoughts";
 import { useOrbHidden } from "./use-orb-hidden";
@@ -390,6 +394,116 @@ const TETHERED_PICS: string[] = [
   "/tethered/olivia-bio-1.png",
   "/tethered/Screenshot%202026-05-12%20203247.png",
 ];
+
+export function OrbEpisodeNav() {
+  const [source, setSource] = useState<string>("default");
+  const [title, setTitle] = useState<string>("");
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    const onSet = (e: Event) => {
+      const detail = (
+        e as CustomEvent<{ source?: string; title?: string }>
+      ).detail;
+      setSource(detail?.source ?? "default");
+      setTitle(detail?.title ?? "");
+    };
+    const onPlay = () => setPlaying(true);
+    const onPause = () => setPlaying(false);
+    const onEnded = () => setPlaying(false);
+    window.addEventListener("character-zero:set-podcast", onSet);
+    window.addEventListener("character-zero:orb-play", onPlay);
+    window.addEventListener("character-zero:orb-pause", onPause);
+    window.addEventListener("character-zero:orb-ended", onEnded);
+    return () => {
+      window.removeEventListener("character-zero:set-podcast", onSet);
+      window.removeEventListener("character-zero:orb-play", onPlay);
+      window.removeEventListener("character-zero:orb-pause", onPause);
+      window.removeEventListener("character-zero:orb-ended", onEnded);
+    };
+  }, []);
+
+  if (source !== "tethered" || !playing) return null;
+
+  const chMatch = title.match(/ch(\d{2})/);
+  if (!chMatch) return null;
+  const idx = TETHERED_EPISODES.findIndex((e) => e.chapter === chMatch[1]);
+  if (idx < 0) return null;
+  const prev = idx > 0 ? TETHERED_EPISODES[idx - 1] : null;
+  const next =
+    idx < TETHERED_EPISODES.length - 1 ? TETHERED_EPISODES[idx + 1] : null;
+
+  return (
+    <div
+      aria-hidden={false}
+      className="fixed top-[14vh] left-0 right-0 z-[27] flex justify-between items-center px-3 sm:px-6 pointer-events-none"
+    >
+      <div className="pointer-events-auto">
+        {prev ? <NavTile ep={prev} side="prev" /> : <div className="w-[14vh]" />}
+      </div>
+      <div className="pointer-events-auto">
+        {next ? <NavTile ep={next} side="next" /> : <div className="w-[14vh]" />}
+      </div>
+    </div>
+  );
+}
+
+function NavTile({
+  ep,
+  side,
+}: {
+  ep: { chapter: string; title: string; image: string };
+  side: "prev" | "next";
+}) {
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        const full = TETHERED_EPISODES.find((x) => x.chapter === ep.chapter);
+        if (full) dispatchTetheredEpisode(full);
+      }}
+      aria-label={`${side === "prev" ? "previous" : "next"} — ch${ep.chapter} ${ep.title}`}
+      className="group relative w-[14vh] max-w-[140px] aspect-square rounded-md overflow-hidden border border-indigo-400/55 hover:border-indigo-200/85 bg-indigo-950/55 backdrop-blur-[2px] cursor-pointer transition-colors"
+      style={{
+        boxShadow:
+          "0 0 22px rgba(129,140,248,0.35), 0 0 50px rgba(99,102,241,0.18), inset 0 1px 0 rgba(199,210,254,0.30)",
+      }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={ep.image}
+        alt=""
+        draggable={false}
+        className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:opacity-95 transition-opacity select-none"
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(15,12,46,0.05) 0%, rgba(15,12,46,0.75) 75%, rgba(15,12,46,0.92) 100%)",
+        }}
+      />
+      <div
+        className={`absolute top-2 ${side === "prev" ? "left-2" : "right-2"} text-indigo-200/85 text-[9px] tracking-[0.4em] uppercase`}
+        style={{ textShadow: "0 0 8px rgba(165,180,252,0.6)" }}
+      >
+        {side === "prev" ? "← prev" : "next →"}
+      </div>
+      <div className="absolute bottom-2 left-2 right-2 flex flex-col gap-0.5">
+        <span className="text-indigo-300/70 text-[8px] tracking-[0.35em] uppercase">
+          ch {ep.chapter}
+        </span>
+        <span
+          className="text-indigo-100 text-[11px] sm:text-xs tracking-[0.2em] uppercase italic leading-tight"
+          style={{ textShadow: "0 0 8px rgba(199,210,254,0.7)" }}
+        >
+          {ep.title}
+        </span>
+      </div>
+    </button>
+  );
+}
 
 function FlagSVG() {
   const stripeH = 100 / 13;
