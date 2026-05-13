@@ -378,6 +378,40 @@ export function RadioTilesMobileTop() {
   );
 }
 
+function FSTile() {
+  return (
+    <div
+      aria-label="FS"
+      className="absolute right-[-3.5rem] sm:right-[-4rem] top-1/2 -translate-y-1/2 z-20 rounded-lg"
+    >
+      <span
+        aria-hidden
+        className="absolute -inset-3 rounded-full blur-2xl bg-red-500/25"
+      />
+      <span
+        className="relative flex flex-col items-center gap-1 rounded-lg border border-red-300/65 bg-blue-950/65 backdrop-blur-sm px-3 py-2"
+        style={{
+          boxShadow:
+            "0 0 22px rgba(239,68,68,0.45), 0 0 50px rgba(37,99,235,0.30), inset 0 1px 0 rgba(255,255,255,0.45)",
+          backgroundImage:
+            "linear-gradient(to bottom, rgba(220,38,38,0.35) 0%, rgba(220,38,38,0.35) 33%, rgba(255,255,255,0.18) 33%, rgba(255,255,255,0.18) 66%, rgba(37,99,235,0.45) 66%, rgba(37,99,235,0.45) 100%)",
+        }}
+      >
+        <span
+          className="text-white text-sm sm:text-base font-semibold tracking-[0.25em]"
+          style={{
+            textShadow:
+              "0 0 8px rgba(255,255,255,0.85), 0 0 18px rgba(255,255,255,0.45)",
+            fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+          }}
+        >
+          FS
+        </span>
+      </span>
+    </div>
+  );
+}
+
 function RadioStopTile() {
   const { playing, toggle } = useRadio();
   if (!playing) return null;
@@ -412,6 +446,36 @@ function RadioStopTile() {
   );
 }
 
+function useFigureTint() {
+  const [source, setSource] = useState<string>("default");
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    const onSet = (e: Event) => {
+      const detail = (e as CustomEvent<{ source?: string }>).detail;
+      setSource(detail?.source ?? "default");
+    };
+    const onPlay = () => setPlaying(true);
+    const onPause = () => setPlaying(false);
+    const onEnded = () => setPlaying(false);
+    window.addEventListener("character-zero:set-podcast", onSet);
+    window.addEventListener("character-zero:orb-play", onPlay);
+    window.addEventListener("character-zero:orb-pause", onPause);
+    window.addEventListener("character-zero:orb-ended", onEnded);
+    return () => {
+      window.removeEventListener("character-zero:set-podcast", onSet);
+      window.removeEventListener("character-zero:orb-play", onPlay);
+      window.removeEventListener("character-zero:orb-pause", onPause);
+      window.removeEventListener("character-zero:orb-ended", onEnded);
+    };
+  }, []);
+
+  if (!playing) return "default";
+  if (source === "mckinley") return "mckinley";
+  if (source === "tethered") return "tethered";
+  return "default";
+}
+
 export function FigureWithTilesDesktop({
   rightSlot,
   leftSlot,
@@ -425,6 +489,13 @@ export function FigureWithTilesDesktop({
   rightTop?: ReactNode;
   centerTop?: ReactNode;
 } = {}) {
+  const tint = useFigureTint();
+  const filter =
+    tint === "mckinley"
+      ? "sepia(1) saturate(6) hue-rotate(55deg) brightness(1.05)"
+      : tint === "tethered"
+        ? "sepia(1) saturate(5) hue-rotate(245deg) brightness(1.05)"
+        : "none";
   return (
     <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] items-end gap-2 sm:gap-3 w-full">
       <div className="hidden sm:flex flex-col items-end gap-3 justify-self-end">
@@ -436,6 +507,7 @@ export function FigureWithTilesDesktop({
         <div className="relative h-[28vh] aspect-[3/2]">
           <TetherClock />
           <RadioStopTile />
+          <FSTile />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/figures/back.png"
@@ -445,6 +517,8 @@ export function FigureWithTilesDesktop({
             className="absolute inset-0 w-full h-full object-contain object-bottom pointer-events-none select-none"
             style={{
               mixBlendMode: "screen",
+              filter,
+              transition: "filter 800ms ease-out",
             }}
           />
         </div>

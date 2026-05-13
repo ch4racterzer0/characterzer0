@@ -7,19 +7,38 @@ type Episode = {
   chapter: string;
   title: string;
   src: string;
+  kind?: "audio" | "video";
 };
 
 const SUMMONS_MP3 =
   "https://rrri5gycujcgopya.public.blob.vercel-storage.com/ep011-hy0rf1c2Ld1BgpPxbwrV9EPZ4DR63J.mp3";
 
+const CHINESE_FIRST_MP3 =
+  "https://rrri5gycujcgopya.public.blob.vercel-storage.com/ep017-uMgpoCXmnvO8Fr2ecHuDwO28p5mU0m.mp3";
+const FLICKER_MP3 =
+  "https://rrri5gycujcgopya.public.blob.vercel-storage.com/ep014-NBjZ18YXtJvjjDqKvt5i0bThGLYzKQ.mp3";
+
 const EPISODES: Episode[] = [
-  { chapter: "20", title: "chapter twenty", src: SUMMONS_MP3 },
+  { chapter: "01", title: "the summons", src: SUMMONS_MP3 },
+  { chapter: "02", title: "chinese first", src: CHINESE_FIRST_MP3 },
+  { chapter: "03", title: "the flicker", src: FLICKER_MP3 },
+  {
+    chapter: "04",
+    title: "the secret",
+    src: "/tethered/the-secret.mp4",
+    kind: "video",
+  },
 ];
 
 function loadEpisode(ep: Episode) {
   window.dispatchEvent(
     new CustomEvent("character-zero:set-podcast", {
-      detail: { src: ep.src, title: `ch${ep.chapter} — ${ep.title}` },
+      detail: {
+        src: ep.src,
+        title: `ch${ep.chapter} — ${ep.title}`,
+        source: "tethered",
+        kind: ep.kind ?? "audio",
+      },
     }),
   );
 }
@@ -69,9 +88,9 @@ function TetheredPopup({ onClose }: { onClose: () => void }) {
           </button>
         </div>
 
-        <ul className="flex justify-center">
+        <ul className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {EPISODES.map((ep) => (
-            <li key={ep.chapter} className="w-40 sm:w-44">
+            <li key={ep.chapter}>
               <button
                 type="button"
                 onClick={() => {
@@ -108,7 +127,7 @@ function TetheredPopup({ onClose }: { onClose: () => void }) {
         </ul>
 
         <p className="text-indigo-300/55 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase italic text-center">
-          one chapter for now — new series in the works. esc to close.
+          tracking real life — new chapters drop as life unfolds. esc to close.
         </p>
       </div>
     </div>,

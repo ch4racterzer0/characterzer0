@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useZeroThoughtsBroadcast } from "./zero-thoughts";
-import { InceptionPopup } from "./inception-popup";
 import { useOrbHidden } from "./use-orb-hidden";
 
 function ThoughtsOverlay() {
@@ -384,21 +383,171 @@ const DEFAULT_ORB_PODCAST = {
 const MCK_HOLD_MS = 7000;
 const MCK_FADE_MS = 2600;
 
+const TETHERED_PICS: string[] = [
+  "/tethered/character-zer0-abstract.png",
+  "/tethered/secret-weapon.png",
+  "/tethered/arya-profile.png",
+  "/tethered/olivia-bio-1.png",
+  "/tethered/Screenshot%202026-05-12%20203247.png",
+];
+
+function FlagSVG() {
+  const stripeH = 100 / 13;
+  const stripes = Array.from({ length: 13 }, (_, i) => (
+    <rect
+      key={i}
+      x={0}
+      y={i * stripeH}
+      width={190}
+      height={stripeH}
+      fill={i % 2 === 0 ? "#B22234" : "#FFFFFF"}
+    />
+  ));
+  const cantonW = 76;
+  const cantonH = stripeH * 7;
+  const starRows = 9;
+  const starCols = 11;
+  const stars: React.ReactElement[] = [];
+  for (let r = 0; r < starRows; r++) {
+    const rowOffset = r % 2 === 0 ? 0 : (cantonW / starCols) / 2;
+    const cols = r % 2 === 0 ? 6 : 5;
+    for (let c = 0; c < cols; c++) {
+      const cx = (c * 2 + 1) * (cantonW / (starCols + 1)) + rowOffset;
+      const cy = (r + 0.7) * (cantonH / (starRows + 0.4));
+      stars.push(
+        <circle
+          key={`s-${r}-${c}`}
+          cx={cx}
+          cy={cy}
+          r={0.9}
+          fill="#FFFFFF"
+        />,
+      );
+    }
+  }
+  return (
+    <svg
+      viewBox="0 0 190 100"
+      preserveAspectRatio="none"
+      width="100%"
+      height="100%"
+      style={{ display: "block" }}
+    >
+      <defs>
+        <filter id="cz0-flag-cloth" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.013 0.022"
+            numOctaves="2"
+            seed="3"
+            result="noise"
+          >
+            <animate
+              attributeName="baseFrequency"
+              dur="14s"
+              values="0.013 0.022;0.010 0.018;0.015 0.026;0.011 0.020;0.013 0.022"
+              repeatCount="indefinite"
+            />
+          </feTurbulence>
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale="9"
+            xChannelSelector="R"
+            yChannelSelector="G"
+          />
+        </filter>
+      </defs>
+      <g filter="url(#cz0-flag-cloth)">
+        {stripes}
+        <rect x={0} y={0} width={cantonW} height={cantonH} fill="#3C3B6E" />
+        {stars}
+      </g>
+    </svg>
+  );
+}
+
+export function McKinleyFlagBackdrop() {
+  const [source, setSource] = useState<string>("default");
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    const onSet = (e: Event) => {
+      const detail = (e as CustomEvent<{ source?: string }>).detail;
+      setSource(detail?.source ?? "default");
+    };
+    const onPlay = () => setPlaying(true);
+    const onPause = () => setPlaying(false);
+    const onEnded = () => setPlaying(false);
+    window.addEventListener("character-zero:set-podcast", onSet);
+    window.addEventListener("character-zero:orb-play", onPlay);
+    window.addEventListener("character-zero:orb-pause", onPause);
+    window.addEventListener("character-zero:orb-ended", onEnded);
+    return () => {
+      window.removeEventListener("character-zero:set-podcast", onSet);
+      window.removeEventListener("character-zero:orb-play", onPlay);
+      window.removeEventListener("character-zero:orb-pause", onPause);
+      window.removeEventListener("character-zero:orb-ended", onEnded);
+    };
+  }, []);
+
+  const active = source === "mckinley" && playing;
+
+  return (
+    <div
+      aria-hidden
+      className="fixed inset-0 pointer-events-none z-[2] flex items-center justify-center overflow-hidden"
+      style={{
+        opacity: active ? 0.16 : 0,
+        transition: "opacity 2200ms ease-out",
+      }}
+    >
+      <div
+        className="relative"
+        style={{
+          width: "150vh",
+          maxWidth: "92vw",
+          aspectRatio: "19 / 10",
+          animation: active
+            ? "mck-flag-wave 18s ease-in-out infinite alternate"
+            : undefined,
+          transformOrigin: "50% 50%",
+          filter: "blur(0.8px) saturate(0.6) brightness(0.85)",
+          mixBlendMode: "screen",
+        }}
+      >
+        <FlagSVG />
+      </div>
+    </div>
+  );
+}
+
 export function OrbWallpapers() {
   const cycle = ORB_WALLPAPERS.length * 14;
   const audioRef = useRef<HTMLAudioElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const switchingRef = useRef(false);
   const mckPicsCacheRef = useRef<string[] | null>(null);
   const mckTickRef = useRef<number | null>(null);
   const [playing, setPlaying] = useState(false);
   const [episode, setEpisode] = useState(DEFAULT_ORB_PODCAST);
   const [currentSource, setCurrentSource] = useState<string>("default");
+  const [currentKind, setCurrentKind] = useState<"audio" | "video">("audio");
   const [mckPics, setMckPics] = useState<string[]>([]);
   const [mckIndex, setMckIndex] = useState(0);
+  const [tetheredIndex, setTetheredIndex] = useState(0);
+  const tetheredTickRef = useRef<number | null>(null);
   const [radioOn, setRadioOn] = useState(false);
   const hidden = useOrbHidden();
 
   const mckMode = currentSource === "mckinley" && playing && mckPics.length > 0;
+  const tetheredMode =
+    currentSource === "tethered" &&
+    currentKind !== "video" &&
+    playing &&
+    TETHERED_PICS.length > 0;
+  const videoMode = currentSource === "tethered" && currentKind === "video";
+  const picMode = mckMode || tetheredMode || videoMode;
 
   useEffect(() => {
     const on = () => setRadioOn(true);
@@ -432,14 +581,22 @@ export function OrbWallpapers() {
   useEffect(() => {
     const onSet = async (e: Event) => {
       const detail = (
-        e as CustomEvent<{ src: string; title?: string; source?: string }>
+        e as CustomEvent<{
+          src: string;
+          title?: string;
+          source?: string;
+          kind?: "audio" | "video";
+        }>
       ).detail;
       if (!detail || !detail.src) return;
       const a = audioRef.current;
+      const v = videoRef.current;
       if (!a) return;
       const src = detail.src;
       const source = detail.source ?? "default";
+      const kind = detail.kind ?? "audio";
       setCurrentSource(source);
+      setCurrentKind(kind);
       if (source === "mckinley" && !mckPicsCacheRef.current) {
         try {
           const res = await fetch("/api/mckinley/pics", { cache: "no-store" });
@@ -456,17 +613,38 @@ export function OrbWallpapers() {
         setMckIndex(0);
       }
       switchingRef.current = true;
-      try {
-        a.pause();
-      } catch {}
-      a.src = src;
-      a.load();
-      const onCanPlay = () => {
-        a.removeEventListener("canplay", onCanPlay);
-        switchingRef.current = false;
-        a.play().catch(() => {});
-      };
-      a.addEventListener("canplay", onCanPlay);
+      if (kind === "video" && v) {
+        try {
+          a.pause();
+        } catch {}
+        v.src = src;
+        v.load();
+        const onCanPlay = () => {
+          v.removeEventListener("canplay", onCanPlay);
+          switchingRef.current = false;
+          v.play().catch(() => {});
+        };
+        v.addEventListener("canplay", onCanPlay);
+      } else {
+        if (v) {
+          try {
+            v.pause();
+            v.removeAttribute("src");
+            v.load();
+          } catch {}
+        }
+        try {
+          a.pause();
+        } catch {}
+        a.src = src;
+        a.load();
+        const onCanPlay = () => {
+          a.removeEventListener("canplay", onCanPlay);
+          switchingRef.current = false;
+          a.play().catch(() => {});
+        };
+        a.addEventListener("canplay", onCanPlay);
+      }
       setEpisode({ src, title: detail.title ?? "" });
     };
     window.addEventListener("character-zero:set-podcast", onSet);
@@ -488,7 +666,32 @@ export function OrbWallpapers() {
     };
   }, [mckMode, mckPics.length]);
 
+  useEffect(() => {
+    if (!tetheredMode) return;
+    if (tetheredTickRef.current !== null)
+      window.clearInterval(tetheredTickRef.current);
+    tetheredTickRef.current = window.setInterval(() => {
+      setTetheredIndex((i) => (i + 1) % TETHERED_PICS.length);
+    }, MCK_HOLD_MS);
+    return () => {
+      if (tetheredTickRef.current !== null) {
+        window.clearInterval(tetheredTickRef.current);
+        tetheredTickRef.current = null;
+      }
+    };
+  }, [tetheredMode]);
+
   const togglePlay = () => {
+    if (currentKind === "video") {
+      const v = videoRef.current;
+      if (!v) return;
+      if (v.paused) {
+        void v.play();
+      } else {
+        v.pause();
+      }
+      return;
+    }
     const a = audioRef.current;
     if (!a) return;
     if (a.paused) {
@@ -534,6 +737,32 @@ export function OrbWallpapers() {
             window.dispatchEvent(new Event("character-zero:orb-ended"));
           }}
         />
+        <video
+          ref={videoRef}
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
+          style={{
+            opacity: videoMode ? 1 : 0,
+            transition: "opacity 600ms ease-out",
+            visibility: videoMode ? undefined : "hidden",
+          }}
+          onPlay={() => {
+            setPlaying(true);
+            window.dispatchEvent(new Event("character-zero:stop-radio"));
+            window.dispatchEvent(new Event("character-zero:orb-play"));
+          }}
+          onPause={() => {
+            setPlaying(false);
+            if (!switchingRef.current) {
+              window.dispatchEvent(new Event("character-zero:orb-pause"));
+            }
+          }}
+          onEnded={() => {
+            setPlaying(false);
+            window.dispatchEvent(new Event("character-zero:orb-ended"));
+          }}
+        />
         {ORB_WALLPAPERS.map((src, i) => (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -548,10 +777,38 @@ export function OrbWallpapers() {
               opacity: 0,
               animation: `orb-wallpaper-fade ${cycle}s ease-in-out infinite`,
               animationDelay: `${i * 14}s`,
-              visibility: mckMode ? "hidden" : undefined,
+              visibility: picMode ? "hidden" : undefined,
             }}
           />
         ))}
+        {TETHERED_PICS.map((src, i) => {
+          const active = tetheredMode && i === tetheredIndex;
+          return (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              key={src}
+              src={src}
+              alt=""
+              aria-hidden
+              draggable={false}
+              className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
+              style={{
+                opacity: active ? 0.88 : 0,
+                transform: active
+                  ? "scale(1) rotate(0deg)"
+                  : "scale(1.18) rotate(-2deg)",
+                filter: active
+                  ? "blur(0) hue-rotate(0deg) saturate(1) contrast(1.05)"
+                  : "blur(14px) hue-rotate(-45deg) saturate(1.6) contrast(1.25)",
+                mixBlendMode: "screen",
+                transition: `opacity ${MCK_FADE_MS}ms ease-in-out, transform ${MCK_FADE_MS}ms ease-in-out, filter ${MCK_FADE_MS}ms ease-in-out`,
+                animation: active
+                  ? "mck-breath 5.5s ease-in-out infinite"
+                  : undefined,
+              }}
+            />
+          );
+        })}
         {mckPics.map((src, i) => {
           const active = mckMode && i === mckIndex;
           return (
@@ -585,7 +842,7 @@ export function OrbWallpapers() {
             type="button"
             onClick={togglePlay}
             aria-label={
-              mckMode
+              picMode
                 ? "Tap to pause"
                 : playing
                   ? "Pause podcast"
@@ -593,12 +850,12 @@ export function OrbWallpapers() {
             }
             aria-pressed={playing}
             className={
-              mckMode
+              picMode
                 ? "absolute inset-0 w-full h-full pointer-events-auto z-20 cursor-pointer bg-transparent border-0"
                 : "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full pointer-events-auto z-20 flex items-center justify-center bg-blue-950/45 hover:bg-blue-900/70 border border-blue-300/65 hover:border-blue-200/85 backdrop-blur-sm transition-colors cursor-pointer"
             }
             style={
-              mckMode
+              picMode
                 ? undefined
                 : {
                     boxShadow:
@@ -606,7 +863,7 @@ export function OrbWallpapers() {
                   }
             }
           >
-            {mckMode ? null : (
+            {picMode ? null : (
               <span
                 aria-hidden
                 className="block text-blue-100 text-lg sm:text-xl leading-none translate-x-[1px]"
@@ -626,11 +883,7 @@ export function OrbWallpapers() {
 }
 
 export function HomeSphere() {
-  const [inceptionOpen, setInceptionOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const hidden = useOrbHidden();
-
-  useEffect(() => setMounted(true), []);
 
   return (
     <>
@@ -683,25 +936,8 @@ export function HomeSphere() {
               {t.label}
             </span>
           ))}
-          <button
-            type="button"
-            onClick={() => setInceptionOpen(true)}
-            aria-label="inception"
-            className="absolute top-1/2 left-1/2 font-mono text-blue-100/65 hover:text-blue-100 text-[9px] sm:text-[10px] tracking-[0.3em] uppercase whitespace-nowrap pointer-events-auto cursor-pointer bg-transparent border-0 p-0 transition-colors"
-            style={{
-              transform:
-                "translate(-50%, -50%) rotate(135deg) translateY(-7vh) rotate(-135deg)",
-              textShadow:
-                "0 0 8px rgba(96,165,250,0.55), 0 0 18px rgba(59,130,246,0.3)",
-            }}
-          >
-            Inception
-          </button>
         </div>
       </div>
-      {inceptionOpen && mounted && (
-        <InceptionPopup onClose={() => setInceptionOpen(false)} />
-      )}
     </>
   );
 }

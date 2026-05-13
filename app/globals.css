@@ -225,6 +225,24 @@ body,
   }
 }
 
+@keyframes mck-flag-wave {
+  0% {
+    transform: perspective(1400px) skewX(-2.4deg) skewY(0.6deg) translateY(0);
+  }
+  25% {
+    transform: perspective(1400px) skewX(1.4deg) skewY(-0.4deg) translateY(-0.6vh);
+  }
+  50% {
+    transform: perspective(1400px) skewX(2.6deg) skewY(0.5deg) translateY(0);
+  }
+  75% {
+    transform: perspective(1400px) skewX(-1.2deg) skewY(-0.5deg) translateY(0.6vh);
+  }
+  100% {
+    transform: perspective(1400px) skewX(-2.4deg) skewY(0.6deg) translateY(0);
+  }
+}
+
 @keyframes home-sphere-expand {
   0% {
     transform: scale(1);
