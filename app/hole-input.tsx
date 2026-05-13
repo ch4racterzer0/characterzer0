@@ -197,31 +197,26 @@ export function HoleInput() {
                 <p className="text-blue-200/75 text-[9px] sm:text-[10px] tracking-[0.4em] uppercase pt-2">
                   // the work
                 </p>
-                <p>9 worlds. 4 live.</p>
+                <p>9 worlds. characterzer0 is the architect.</p>
                 <ul className="pl-1 text-[10px] sm:text-[11px] tabular-nums space-y-0.5">
                   <li>
-                    <span className="text-blue-300/70 inline-block w-20">news</span>
+                    <span className="text-blue-300/70 inline-block w-24">news</span>
                     <span className="text-blue-300/40">→ </span>
                     <span className="text-blue-100">spotlightdispatch.com</span>
                   </li>
                   <li>
-                    <span className="text-blue-300/70 inline-block w-20">social</span>
+                    <span className="text-blue-300/70 inline-block w-24">social</span>
                     <span className="text-blue-300/40">→ </span>
                     <span className="text-blue-100">sharethebyline.com</span>
                   </li>
                   <li>
-                    <span className="text-blue-300/70 inline-block w-20">video</span>
+                    <span className="text-blue-300/70 inline-block w-24">giving back</span>
                     <span className="text-blue-300/40">→ </span>
                     <span className="text-blue-100">yiswmt.com</span>
                   </li>
-                  <li>
-                    <span className="text-blue-300/70 inline-block w-20">outreach</span>
-                    <span className="text-blue-300/40">→ </span>
-                    <span className="text-blue-100">characterzer0.com</span>
-                  </li>
                 </ul>
                 <p className="text-blue-100/80">
-                  5 more plans are written and waiting at{" "}
+                  the rest are written and waiting at{" "}
                   <span className="text-blue-100">thedelos.com</span>.
                   <br />
                   they&rsquo;re ours until someone earns one.
