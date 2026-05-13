@@ -657,10 +657,7 @@ export function OrbWallpapers() {
 
   const mckMode = currentSource === "mckinley" && playing && mckPics.length > 0;
   const tetheredMode =
-    currentSource === "tethered" &&
-    currentKind !== "video" &&
-    playing &&
-    TETHERED_PICS.length > 0;
+    currentSource === "tethered" && playing && TETHERED_PICS.length > 0;
   const videoMode = currentSource === "tethered" && currentKind === "video";
   const picMode = mckMode || tetheredMode || videoMode;
 
