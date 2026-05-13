@@ -641,6 +641,11 @@ export function OrbWallpapers() {
   const cycle = ORB_WALLPAPERS.length * 14;
   const audioRef = useRef<HTMLAudioElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const audioCtxRef = useRef<AudioContext | null>(null);
+  const audioGainRef = useRef<GainNode | null>(null);
+  const videoGainRef = useRef<GainNode | null>(null);
+  const audioWiredRef = useRef(false);
+  const videoWiredRef = useRef(false);
   const switchingRef = useRef(false);
   const mckPicsCacheRef = useRef<string[] | null>(null);
   const mckTickRef = useRef<number | null>(null);
@@ -690,6 +695,45 @@ export function OrbWallpapers() {
       window.removeEventListener("character-zero:close-show", onCloseShow);
   }, []);
 
+  const ensureGain = (target: "audio" | "video", value: number) => {
+    const W = window as unknown as {
+      AudioContext?: typeof AudioContext;
+      webkitAudioContext?: typeof AudioContext;
+    };
+    const Ctx = W.AudioContext ?? W.webkitAudioContext;
+    if (!Ctx) return;
+    if (!audioCtxRef.current) audioCtxRef.current = new Ctx();
+    const ctx = audioCtxRef.current;
+    if (ctx.state === "suspended") ctx.resume().catch(() => {});
+    if (target === "audio") {
+      const a = audioRef.current;
+      if (!a) return;
+      if (!audioWiredRef.current) {
+        try {
+          const src = ctx.createMediaElementSource(a);
+          const gain = ctx.createGain();
+          src.connect(gain).connect(ctx.destination);
+          audioGainRef.current = gain;
+          audioWiredRef.current = true;
+        } catch {}
+      }
+      if (audioGainRef.current) audioGainRef.current.gain.value = value;
+    } else {
+      const v = videoRef.current;
+      if (!v) return;
+      if (!videoWiredRef.current) {
+        try {
+          const src = ctx.createMediaElementSource(v);
+          const gain = ctx.createGain();
+          src.connect(gain).connect(ctx.destination);
+          videoGainRef.current = gain;
+          videoWiredRef.current = true;
+        } catch {}
+      }
+      if (videoGainRef.current) videoGainRef.current.gain.value = value;
+    }
+  };
+
   useEffect(() => {
     const onSet = async (e: Event) => {
       const detail = (
@@ -698,6 +742,7 @@ export function OrbWallpapers() {
           title?: string;
           source?: string;
           kind?: "audio" | "video";
+          gain?: number;
         }>
       ).detail;
       if (!detail || !detail.src) return;
@@ -707,8 +752,10 @@ export function OrbWallpapers() {
       const src = detail.src;
       const source = detail.source ?? "default";
       const kind = detail.kind ?? "audio";
+      const gain = typeof detail.gain === "number" ? detail.gain : 1;
       setCurrentSource(source);
       setCurrentKind(kind);
+      ensureGain(kind, gain);
       if (source === "mckinley" && !mckPicsCacheRef.current) {
         try {
           const res = await fetch("/api/mckinley/pics", { cache: "no-store" });
