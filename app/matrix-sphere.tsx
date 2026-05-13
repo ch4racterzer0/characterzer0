@@ -388,9 +388,13 @@ const MCK_HOLD_MS = 7000;
 const MCK_FADE_MS = 2600;
 
 const TETHERED_PICS: string[] = [
+  "/tethered/character-zer0-abstract.png",
+  "/tethered/secret-weapon.png",
+  "/tethered/arya-profile.png",
+  "/tethered/olivia-bio-1.png",
+  "/tethered/Screenshot%202026-05-12%20203247.png",
+  "/tethered/flicker.png",
   "/tethered/tethered-cover.png",
-  "/tethered/Rupertus_Seated-copy-767x1030.jpg",
-  "/tethered/Screenshot%202026-05-12%20212516.png",
 ];
 
 export function OrbEpisodeNav() {
