@@ -53,6 +53,13 @@ export const TETHERED_EPISODES: TetheredEpisode[] = [
     kind: "video",
     image: "/tethered/olivia-bio-1.png",
   },
+  {
+    chapter: "07",
+    title: "the domain",
+    src: "/tethered/the-domain.mp4",
+    kind: "video",
+    image: "/tethered/secret-weapon.png",
+  },
 ];
 
 export function dispatchTetheredEpisode(ep: TetheredEpisode) {
