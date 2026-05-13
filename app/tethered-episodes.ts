@@ -39,6 +39,13 @@ export const TETHERED_EPISODES: TetheredEpisode[] = [
     kind: "video",
     image: "/tethered/olivia-bio-1.png",
   },
+  {
+    chapter: "05",
+    title: "they knew",
+    src: "/tethered/they-knew.mp4",
+    kind: "video",
+    image: "/tethered/Screenshot%202026-05-12%20203247.png",
+  },
 ];
 
 export function dispatchTetheredEpisode(ep: TetheredEpisode) {
