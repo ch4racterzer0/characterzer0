@@ -4,6 +4,8 @@ export type TetheredEpisode = {
   src: string;
   kind?: "audio" | "video";
   image: string;
+  // playback gain — 1.0 = default, >1.0 boosts via Web Audio gain node
+  gain?: number;
 };
 
 const SUMMONS_MP3 =
@@ -20,6 +22,7 @@ export const TETHERED_EPISODES: TetheredEpisode[] = [
     src: "/tethered/the-summons.mp4",
     kind: "video",
     image: "/tethered/character-zer0-abstract.png",
+    gain: 1.6,
   },
   {
     chapter: "02",
@@ -27,6 +30,7 @@ export const TETHERED_EPISODES: TetheredEpisode[] = [
     src: "/tethered/chinese-first.mp4",
     kind: "video",
     image: "/tethered/secret-weapon.png",
+    gain: 1.6,
   },
   {
     chapter: "03",
@@ -79,6 +83,7 @@ export function dispatchTetheredEpisode(ep: TetheredEpisode) {
         title: `ch${ep.chapter} — ${ep.title}`,
         source: "tethered",
         kind: ep.kind ?? "audio",
+        gain: ep.gain ?? 1,
       },
     }),
   );
