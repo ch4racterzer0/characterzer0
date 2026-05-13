@@ -424,7 +424,10 @@ export function OrbEpisodeNav() {
     };
   }, []);
 
-  if (source !== "tethered" || !playing) return null;
+  if (source !== "tethered") return null;
+  // Keep the prev/next tiles visible after pause/end so users don't lose
+  // their place in the run — only hide them when no Tethered episode has
+  // been picked at all.
 
   const chMatch = title.match(/ch(\d{2})/);
   if (!chMatch) return null;
@@ -437,7 +440,7 @@ export function OrbEpisodeNav() {
   return (
     <div
       aria-hidden={false}
-      className="fixed top-[32vh] left-1/2 -translate-x-1/2 z-[27] flex items-center justify-between w-[min(96vw,90vh)] pointer-events-none"
+      className="fixed top-[32vh] left-4 right-4 sm:left-8 sm:right-8 z-[27] flex items-center justify-between pointer-events-none"
     >
       <div className="pointer-events-auto">
         {prev ? <NavTile ep={prev} side="prev" /> : <div className="w-[18vh]" />}
