@@ -1,19 +1,19 @@
-import { HoleInput } from "../hole-input";
-import { IframeTilePopup } from "../iframe-tile-popup";
-import { LinkTile } from "../link-tile";
-import { MobileLanding } from "../mobile-landing";
+import { HoleInput } from "./hole-input";
+import { IframeTilePopup } from "./iframe-tile-popup";
+import { LinkTile } from "./link-tile";
+import { MobileLanding } from "./mobile-landing";
 import {
   FigureWithTilesDesktop,
   RadioProvider,
   RadioTilesMobileTop,
   TurntableTile,
   VisualTile,
-} from "../radio-tiles";
-import { ChracterzerTile } from "../chracterzer-tile";
-import { McKinleyTile } from "../mckinley-tile";
-import { TetheredTile } from "../tethered-tile";
-import { YiswmtTile } from "../yiswmt-tile";
-import { ThemeShifter, ThemeSwitch } from "../theme-shifter";
+} from "./radio-tiles";
+import { ChracterzerTile } from "./chracterzer-tile";
+import { McKinleyTile } from "./mckinley-tile";
+import { TetheredTile } from "./tethered-tile";
+import { YiswmtTile } from "./yiswmt-tile";
+import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
 
 export const dynamic = "force-dynamic";
 
