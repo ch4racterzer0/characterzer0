@@ -172,7 +172,9 @@ export default function NeilPage() {
               <span className="text-blue-100">yiswmt.com</span>
               <span className="text-blue-300/55"> — </span>
               <span className="text-blue-100/85">
-                giving back. the sphere. own section below.
+                giving back. the sphere. currently parks on
+                characterzer0.com/yiswmt while the standalone build comes
+                together shortly. own section below.
               </span>
             </li>
           </ul>
