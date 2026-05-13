@@ -134,8 +134,10 @@ export default function NeilPage() {
               <span className="text-blue-100">sharethebyline.com</span>
               <span className="text-blue-300/55"> — </span>
               <span className="text-blue-100/85">
-                social arm. firewalled on purpose — every other property points
-                in, it points back to nothing.
+                a submission-based newsroom. anyone drops a moment; an AI named
+                Ella drafts the article; nothing gets edited by a human before
+                it runs. the transparency is the whole bit, not a footnote.
+                firewalled outbound from the rest of the cosmology on purpose.
               </span>
             </li>
             <li>
@@ -151,6 +153,14 @@ export default function NeilPage() {
               <span className="text-blue-300/55"> — </span>
               <span className="text-blue-100/85">
                 video arm. short-form pipeline feeds it.
+              </span>
+            </li>
+            <li>
+              <span className="text-blue-100">itsyoursphere.com</span>
+              <span className="text-blue-300/55"> — </span>
+              <span className="text-blue-100/85">
+                owned, build pending. another sphere in the universe, slot
+                still open.
               </span>
             </li>
             <li>
@@ -263,7 +273,16 @@ export default function NeilPage() {
               <span className="text-blue-100">
                 comedians, actors, influencers
               </span>{" "}
-              → fullsendbash, social, the channel.
+              → fullsendbash, Tethered cameos, the channel.
+            </li>
+            <li>
+              <span className="text-blue-300/55">—&nbsp;</span>
+              <span className="text-blue-100">
+                any of them needing coverage
+              </span>{" "}
+              → sharethebyline. submit a moment, Ella drafts it, it runs. no
+              editor decides their story isn&rsquo;t worth a desk&rsquo;s
+              time.
             </li>
             <li>
               <span className="text-blue-300/55">—&nbsp;</span>
