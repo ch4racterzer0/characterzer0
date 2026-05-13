@@ -17,7 +17,8 @@ export const TETHERED_EPISODES: TetheredEpisode[] = [
   {
     chapter: "01",
     title: "the summons",
-    src: SUMMONS_MP3,
+    src: "/tethered/the-summons.mp4",
+    kind: "video",
     image: "/tethered/character-zer0-abstract.png",
   },
   {
