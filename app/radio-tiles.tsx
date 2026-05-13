@@ -403,11 +403,62 @@ export function RadioTilesMobileTop() {
   );
 }
 
+function LZTile() {
+  return (
+    <a
+      href="/"
+      aria-label="LZ — landing zone, back to main"
+      className="group absolute right-[-3rem] sm:right-[-3.5rem] top-[calc(50%+1.75rem)] -translate-y-1/2 z-[19] rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-400/60"
+    >
+      <span
+        aria-hidden
+        className="absolute -inset-3 rounded-full blur-2xl bg-lime-500/20"
+      />
+      <span
+        className="relative flex flex-row items-center gap-1.5 rounded-lg border border-lime-400/55 bg-stone-900/85 backdrop-blur-sm px-2.5 py-1.5 group-hover:bg-stone-800/85 transition-colors"
+        style={{
+          boxShadow:
+            "0 0 18px rgba(132,204,22,0.35), 0 0 40px rgba(101,163,13,0.20), inset 0 1px 0 rgba(217,249,157,0.35)",
+        }}
+      >
+        <svg
+          aria-hidden
+          viewBox="0 0 24 16"
+          width="18"
+          height="12"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          className="text-lime-200"
+        >
+          <line x1="1" y1="4" x2="17" y2="4" />
+          <line x1="9" y1="4" x2="9" y2="7" />
+          <ellipse cx="9" cy="9" rx="5" ry="2" fill="currentColor" stroke="none" />
+          <rect x="13" y="8" width="7" height="1.4" fill="currentColor" stroke="none" />
+          <line x1="20" y1="6.5" x2="20" y2="11" />
+          <line x1="5" y1="13" x2="13" y2="13" />
+        </svg>
+        <span
+          className="text-lime-100 text-xs sm:text-sm font-semibold tracking-[0.25em]"
+          style={{
+            textShadow:
+              "0 0 6px rgba(217,249,157,0.75), 0 0 14px rgba(132,204,22,0.40)",
+            fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+          }}
+        >
+          LZ
+        </span>
+      </span>
+    </a>
+  );
+}
+
 function FSTile() {
   return (
     <div
       aria-label="FS"
-      className="absolute right-[-3.5rem] sm:right-[-4rem] top-1/2 -translate-y-1/2 z-20 rounded-lg"
+      className="absolute right-[-1.5rem] sm:right-[-2rem] top-1/2 -translate-y-1/2 z-20 rounded-lg"
     >
       <span
         aria-hidden
@@ -532,6 +583,7 @@ export function FigureWithTilesDesktop({
         <div className="relative h-[28vh] aspect-[3/2]">
           <TetherClock />
           <RadioStopTile />
+          <LZTile />
           <FSTile />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
