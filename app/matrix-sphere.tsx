@@ -525,12 +525,14 @@ export function McKinleyFlagBackdrop() {
 export function OrbWallpapers() {
   const cycle = ORB_WALLPAPERS.length * 14;
   const audioRef = useRef<HTMLAudioElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const switchingRef = useRef(false);
   const mckPicsCacheRef = useRef<string[] | null>(null);
   const mckTickRef = useRef<number | null>(null);
   const [playing, setPlaying] = useState(false);
   const [episode, setEpisode] = useState(DEFAULT_ORB_PODCAST);
   const [currentSource, setCurrentSource] = useState<string>("default");
+  const [currentKind, setCurrentKind] = useState<"audio" | "video">("audio");
   const [mckPics, setMckPics] = useState<string[]>([]);
   const [mckIndex, setMckIndex] = useState(0);
   const [tetheredIndex, setTetheredIndex] = useState(0);
@@ -540,8 +542,12 @@ export function OrbWallpapers() {
 
   const mckMode = currentSource === "mckinley" && playing && mckPics.length > 0;
   const tetheredMode =
-    currentSource === "tethered" && playing && TETHERED_PICS.length > 0;
-  const picMode = mckMode || tetheredMode;
+    currentSource === "tethered" &&
+    currentKind !== "video" &&
+    playing &&
+    TETHERED_PICS.length > 0;
+  const videoMode = currentSource === "tethered" && currentKind === "video";
+  const picMode = mckMode || tetheredMode || videoMode;
 
   useEffect(() => {
     const on = () => setRadioOn(true);
@@ -575,14 +581,22 @@ export function OrbWallpapers() {
   useEffect(() => {
     const onSet = async (e: Event) => {
       const detail = (
-        e as CustomEvent<{ src: string; title?: string; source?: string }>
+        e as CustomEvent<{
+          src: string;
+          title?: string;
+          source?: string;
+          kind?: "audio" | "video";
+        }>
       ).detail;
       if (!detail || !detail.src) return;
       const a = audioRef.current;
+      const v = videoRef.current;
       if (!a) return;
       const src = detail.src;
       const source = detail.source ?? "default";
+      const kind = detail.kind ?? "audio";
       setCurrentSource(source);
+      setCurrentKind(kind);
       if (source === "mckinley" && !mckPicsCacheRef.current) {
         try {
           const res = await fetch("/api/mckinley/pics", { cache: "no-store" });
@@ -599,17 +613,38 @@ export function OrbWallpapers() {
         setMckIndex(0);
       }
       switchingRef.current = true;
-      try {
-        a.pause();
-      } catch {}
-      a.src = src;
-      a.load();
-      const onCanPlay = () => {
-        a.removeEventListener("canplay", onCanPlay);
-        switchingRef.current = false;
-        a.play().catch(() => {});
-      };
-      a.addEventListener("canplay", onCanPlay);
+      if (kind === "video" && v) {
+        try {
+          a.pause();
+        } catch {}
+        v.src = src;
+        v.load();
+        const onCanPlay = () => {
+          v.removeEventListener("canplay", onCanPlay);
+          switchingRef.current = false;
+          v.play().catch(() => {});
+        };
+        v.addEventListener("canplay", onCanPlay);
+      } else {
+        if (v) {
+          try {
+            v.pause();
+            v.removeAttribute("src");
+            v.load();
+          } catch {}
+        }
+        try {
+          a.pause();
+        } catch {}
+        a.src = src;
+        a.load();
+        const onCanPlay = () => {
+          a.removeEventListener("canplay", onCanPlay);
+          switchingRef.current = false;
+          a.play().catch(() => {});
+        };
+        a.addEventListener("canplay", onCanPlay);
+      }
       setEpisode({ src, title: detail.title ?? "" });
     };
     window.addEventListener("character-zero:set-podcast", onSet);
@@ -647,6 +682,16 @@ export function OrbWallpapers() {
   }, [tetheredMode]);
 
   const togglePlay = () => {
+    if (currentKind === "video") {
+      const v = videoRef.current;
+      if (!v) return;
+      if (v.paused) {
+        void v.play();
+      } else {
+        v.pause();
+      }
+      return;
+    }
     const a = audioRef.current;
     if (!a) return;
     if (a.paused) {
@@ -676,6 +721,32 @@ export function OrbWallpapers() {
         <audio
           ref={audioRef}
           preload="metadata"
+          onPlay={() => {
+            setPlaying(true);
+            window.dispatchEvent(new Event("character-zero:stop-radio"));
+            window.dispatchEvent(new Event("character-zero:orb-play"));
+          }}
+          onPause={() => {
+            setPlaying(false);
+            if (!switchingRef.current) {
+              window.dispatchEvent(new Event("character-zero:orb-pause"));
+            }
+          }}
+          onEnded={() => {
+            setPlaying(false);
+            window.dispatchEvent(new Event("character-zero:orb-ended"));
+          }}
+        />
+        <video
+          ref={videoRef}
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
+          style={{
+            opacity: videoMode ? 1 : 0,
+            transition: "opacity 600ms ease-out",
+            visibility: videoMode ? undefined : "hidden",
+          }}
           onPlay={() => {
             setPlaying(true);
             window.dispatchEvent(new Event("character-zero:stop-radio"));

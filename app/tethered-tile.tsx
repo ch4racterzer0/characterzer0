@@ -7,6 +7,7 @@ type Episode = {
   chapter: string;
   title: string;
   src: string;
+  kind?: "audio" | "video";
 };
 
 const SUMMONS_MP3 =
@@ -21,6 +22,12 @@ const EPISODES: Episode[] = [
   { chapter: "01", title: "the summons", src: SUMMONS_MP3 },
   { chapter: "02", title: "chinese first", src: CHINESE_FIRST_MP3 },
   { chapter: "03", title: "the flicker", src: FLICKER_MP3 },
+  {
+    chapter: "04",
+    title: "the secret",
+    src: "/tethered/the-secret.mp4",
+    kind: "video",
+  },
 ];
 
 function loadEpisode(ep: Episode) {
@@ -30,6 +37,7 @@ function loadEpisode(ep: Episode) {
         src: ep.src,
         title: `ch${ep.chapter} — ${ep.title}`,
         source: "tethered",
+        kind: ep.kind ?? "audio",
       },
     }),
   );
