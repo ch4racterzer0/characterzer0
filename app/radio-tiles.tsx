@@ -436,7 +436,10 @@ function useFigureTint() {
     };
   }, []);
 
-  return source === "mckinley" && playing ? "mckinley" : "default";
+  if (!playing) return "default";
+  if (source === "mckinley") return "mckinley";
+  if (source === "tethered") return "tethered";
+  return "default";
 }
 
 export function FigureWithTilesDesktop({
@@ -456,7 +459,9 @@ export function FigureWithTilesDesktop({
   const filter =
     tint === "mckinley"
       ? "sepia(1) saturate(6) hue-rotate(55deg) brightness(1.05)"
-      : "none";
+      : tint === "tethered"
+        ? "sepia(1) saturate(5) hue-rotate(245deg) brightness(1.05)"
+        : "none";
   return (
     <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] items-end gap-2 sm:gap-3 w-full">
       <div className="hidden sm:flex flex-col items-end gap-3 justify-self-end">
