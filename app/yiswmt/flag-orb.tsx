@@ -11,16 +11,44 @@ const ORB_FLAGS = [
   "/flags/flag-coastguard.png",
 ];
 
+const ORB_FACES = [
+  "/orb-faces/face-01.avif",
+  "/orb-faces/face-02.jpg",
+  "/orb-faces/face-03.jpg",
+  "/orb-faces/face-04.jpg",
+  "/orb-faces/face-05.webp",
+  "/orb-faces/face-06.jpg",
+  "/orb-faces/face-07.jpg",
+  "/orb-faces/face-08.jpg",
+  "/orb-faces/face-09.jpg",
+  "/orb-faces/face-10.jpg",
+  "/orb-faces/face-11.jpg",
+  "/orb-faces/face-12.jpg",
+  "/orb-faces/face-13.jpg",
+];
+
 const HOLD_MS = 4500;
 const FADE_MS = 1500;
 
+const FACE_HOLD_MS = 5500;
+const FACE_FADE_MS = 2000;
+const FACE_PEAK_OPACITY = 0.55;
+
 export function FlagOrb() {
   const [idx, setIdx] = useState(0);
+  const [faceIdx, setFaceIdx] = useState(0);
 
   useEffect(() => {
     const id = window.setInterval(() => {
       setIdx((i) => (i + 1) % ORB_FLAGS.length);
     }, HOLD_MS);
+    return () => window.clearInterval(id);
+  }, []);
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setFaceIdx((i) => (i + 1) % ORB_FACES.length);
+    }, FACE_HOLD_MS);
     return () => window.clearInterval(id);
   }, []);
 
@@ -77,6 +105,32 @@ export function FlagOrb() {
                   opacity: idx === i ? 1 : 0,
                   transition: `opacity ${FADE_MS}ms ease-in-out`,
                   mixBlendMode: "screen",
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* face fader — overlays the flag, screen-blended, capped at FACE_PEAK_OPACITY so the flag is always visible underneath */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div
+            className="relative"
+            style={{ width: "78%", aspectRatio: "1 / 1" }}
+          >
+            {ORB_FACES.map((src, i) => (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
+                key={src}
+                src={src}
+                alt=""
+                aria-hidden
+                draggable={false}
+                className="absolute inset-0 w-full h-full object-contain select-none pointer-events-none rounded-full"
+                style={{
+                  opacity: faceIdx === i ? FACE_PEAK_OPACITY : 0,
+                  transition: `opacity ${FACE_FADE_MS}ms ease-in-out`,
+                  mixBlendMode: "screen",
+                  filter: "grayscale(0.35) contrast(1.05)",
                 }}
               />
             ))}
