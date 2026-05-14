@@ -1,4 +1,5 @@
 import { MobileLanding } from "./mobile-landing";
+import { ArmyRadioTile, RadioProvider } from "./radio-tiles";
 import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
 
 export const dynamic = "force-dynamic";
@@ -19,9 +20,13 @@ export default function Yiswmt() {
     <>
       <MobileLanding />
       <div className="hidden sm:block">
+        <RadioProvider>
         <ThemeShifter>
           <ThemeSwitch />
           <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center justify-end py-10 px-4">
+            <div className="absolute bottom-8 left-8 sm:left-12">
+              <ArmyRadioTile />
+            </div>
             <div
               className="relative h-[28vh] aspect-[3/2]"
               style={{
@@ -98,6 +103,7 @@ export default function Yiswmt() {
             </div>
           </main>
         </ThemeShifter>
+        </RadioProvider>
       </div>
     </>
   );
