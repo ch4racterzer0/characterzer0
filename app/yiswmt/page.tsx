@@ -23,7 +23,7 @@ export default function Yiswmt() {
           <ThemeSwitch />
           <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center justify-end py-10 px-4">
             <div
-              className="relative h-[55vh] aspect-[3/2]"
+              className="relative h-[28vh] aspect-[3/2]"
               style={{
                 filter:
                   "blur(1.6px) drop-shadow(0 0 18px rgba(220,220,230,0.32)) drop-shadow(0 0 38px rgba(180,190,210,0.18))",
