@@ -303,17 +303,26 @@ function RadioRivets() {
 function ChannelTile({
   label,
   sub,
+  count,
   onClick,
 }: {
   label: string;
   sub: string;
+  count?: number;
   onClick: () => void;
 }) {
+  const empty = count === 0;
   return (
     <button
       type="button"
       onClick={onClick}
-      className="relative inline-flex flex-col items-stretch w-full rounded-md transition-transform hover:-translate-y-0.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/40"
+      disabled={empty}
+      aria-disabled={empty || undefined}
+      className={`relative inline-flex flex-col items-stretch w-full rounded-md transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/40 ${
+        empty
+          ? "opacity-50 cursor-not-allowed"
+          : "hover:-translate-y-0.5 cursor-pointer"
+      }`}
       style={RADIO_BODY_STYLE}
     >
       <RadioRivets />
@@ -327,13 +336,28 @@ function ChannelTile({
         {label}
       </span>
       <span
-        className="block px-2 pb-2 font-mono uppercase text-[7px] tracking-[0.2em] text-center"
+        className="block px-2 pb-0.5 font-mono uppercase text-[7px] tracking-[0.2em] text-center"
         style={{
           color: "rgba(180,175,155,0.7)",
           textShadow: "0 1px 0 rgba(0,0,0,0.7)",
         }}
       >
         {sub}
+      </span>
+      <span
+        className="block px-2 pb-2 pt-0.5 font-mono uppercase text-[7px] tracking-[0.25em] text-center"
+        style={{
+          color: empty
+            ? "rgba(180,175,155,0.55)"
+            : "rgba(255,180,80,0.85)",
+          textShadow: "0 1px 0 rgba(0,0,0,0.7)",
+        }}
+      >
+        {count === undefined
+          ? "· · ·"
+          : empty
+            ? "no tracks yet"
+            : `${count} track${count === 1 ? "" : "s"}`}
       </span>
     </button>
   );
@@ -343,7 +367,26 @@ export function SchoolStereoTile() {
   const { playing, category, playCategory, toggle } = useRadio();
   const [orbPlaying, setOrbPlaying] = useState(false);
   const [pickerOpen, setPickerOpen] = useState(false);
+  const [counts, setCounts] = useState<{ sad?: number; hope?: number }>({});
   const wrapperRef = useRef<HTMLDivElement | null>(null);
+
+  // Fetch track counts for each channel when the picker opens, so the user
+  // can see at a glance which channels have music yet.
+  useEffect(() => {
+    if (!pickerOpen) return;
+    let cancelled = false;
+    const get = (cat: "sad" | "hope") =>
+      fetch(`/api/itsyoursphere-music/list?cat=${cat}`, { cache: "no-store" })
+        .then((r) => (r.ok ? r.json() : { tracks: [] }))
+        .then((d: { tracks?: unknown[] }) => d.tracks?.length ?? 0)
+        .catch(() => 0);
+    void Promise.all([get("sad"), get("hope")]).then(([sad, hope]) => {
+      if (!cancelled) setCounts({ sad, hope });
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [pickerOpen]);
 
   useEffect(() => {
     const onPlay = () => setOrbPlaying(true);
@@ -516,11 +559,13 @@ export function SchoolStereoTile() {
           <ChannelTile
             label="sad"
             sub="be sad with us"
+            count={counts.sad}
             onClick={() => pick("sad")}
           />
           <ChannelTile
             label="hope"
             sub="we still need this"
+            count={counts.hope}
             onClick={() => pick("hope")}
           />
           {playing && (
