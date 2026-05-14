@@ -2,8 +2,8 @@ import { CHARITIES } from "./charity-data";
 import { CharityTile } from "./charity-tile";
 import { FlagOrb } from "./flag-orb";
 import { MissionTile } from "./mission-tile";
-import { MobileLanding } from "./mobile-landing";
 import { ArmyRadioTile, RadioProvider } from "./radio-tiles";
+import { ShareTile } from "./share-tile";
 import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
 
 export const dynamic = "force-dynamic";
@@ -23,16 +23,12 @@ export default function Yiswmt() {
   return (
     <>
       <style>{`.cz-chrome, .cz-orb-center { display: none !important; }`}</style>
-      <MobileLanding />
-      <div className="hidden sm:block">
-        <RadioProvider>
+      <RadioProvider>
         <ThemeShifter>
           <ThemeSwitch />
-          <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center justify-end py-10 px-4">
-            <div className="absolute bottom-8 left-[clamp(2rem,calc(50%-22rem),28rem)]">
-              <ArmyRadioTile />
-            </div>
-            <div className="absolute top-6 left-1/2 -translate-x-1/2 flex flex-row items-stretch gap-2 sm:gap-3">
+          <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center px-3 sm:px-4 pt-3 sm:pt-6 pb-20 sm:pb-10">
+            {/* top tile row — wraps on mobile */}
+            <div className="flex flex-row flex-wrap items-stretch justify-center gap-2 sm:gap-3 max-w-[95vw]">
               {CHARITIES.slice(0, 2).map((c) => (
                 <CharityTile key={c.short} charity={c} />
               ))}
@@ -40,96 +36,106 @@ export default function Yiswmt() {
               {CHARITIES.slice(2).map((c) => (
                 <CharityTile key={c.short} charity={c} />
               ))}
+              <ShareTile />
             </div>
-            <div className="absolute top-[16vh] left-1/2 -translate-x-1/2 flex items-center justify-center">
+
+            {/* flag orb */}
+            <div className="mt-6 sm:mt-8 flex items-center justify-center">
               <FlagOrb />
             </div>
-            <div
-              className="relative h-[28vh] aspect-[3/2]"
-              style={{
-                filter:
-                  "blur(1.6px) drop-shadow(0 0 18px rgba(220,220,230,0.32)) drop-shadow(0 0 38px rgba(180,190,210,0.18))",
-              }}
-            >
-              {/* stripes — 13 alternating deep oxblood / aged bone, masked to figure */}
-              <div
-                aria-hidden
-                className="absolute inset-0"
-                style={{
-                  ...FIGURE_MASK,
-                  backgroundImage:
-                    "repeating-linear-gradient(to bottom, rgba(86,18,22,0.78) 0, rgba(86,18,22,0.78) calc(100%/13), rgba(150,138,122,0.55) calc(100%/13), rgba(150,138,122,0.55) calc(200%/13))",
-                }}
-              />
-              {/* canton — deep midnight navy rectangle in upper-left, masked to figure */}
-              <div
-                aria-hidden
-                className="absolute inset-0"
-                style={{
-                  ...FIGURE_MASK,
-                  backgroundImage:
-                    "linear-gradient(rgba(10,16,40,0.96), rgba(10,16,40,0.96))",
-                  backgroundSize: "40% 53.85%",
-                  backgroundRepeat: "no-repeat",
-                  backgroundPosition: "left top",
-                }}
-              />
-              {/* subtle star field on the canton — small sparse dots, masked to figure */}
-              <div
-                aria-hidden
-                className="absolute inset-0"
-                style={{
-                  ...FIGURE_MASK,
-                  backgroundImage:
-                    "radial-gradient(circle, rgba(180,170,150,0.55) 0.5px, transparent 1.4px)",
-                  backgroundSize: "4% 5%",
-                  backgroundRepeat: "repeat",
-                  backgroundPosition: "0 0",
-                  clipPath: "polygon(0 0, 40% 0, 40% 53.85%, 0 53.85%)",
-                }}
-              />
-              {/* original figure on top — multiply for deeper shading and edge bleed */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/figures/back.png"
-                alt=""
-                aria-hidden
-                draggable={false}
-                className="absolute inset-0 w-full h-full object-contain object-bottom pointer-events-none select-none"
-                style={{ mixBlendMode: "multiply", opacity: 0.85 }}
-              />
-              {/* dark bleed wash — uniform low-opacity black inside the mask, mutes the whole flag */}
-              <div
-                aria-hidden
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  ...FIGURE_MASK,
-                  background: "rgba(0,0,0,0.22)",
-                }}
-              />
-              {/* heavy vignette — pulls shadow into edges and bottom for reverent weight */}
-              <div
-                aria-hidden
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  ...FIGURE_MASK,
-                  background:
-                    "radial-gradient(ellipse at 50% 30%, transparent 18%, rgba(0,0,0,0.55) 80%, rgba(0,0,0,0.78) 100%)",
-                }}
-              />
+
+            {/* figure with flag drape — pushed to bottom on desktop, in-flow on mobile */}
+            <div className="mt-auto pt-6 sm:pt-0 flex flex-col items-center w-full">
+              <div className="relative w-full max-w-md flex justify-center">
+                <div
+                  className="relative h-[22vh] sm:h-[28vh] aspect-[3/2]"
+                  style={{
+                    filter:
+                      "blur(1.6px) drop-shadow(0 0 18px rgba(220,220,230,0.32)) drop-shadow(0 0 38px rgba(180,190,210,0.18))",
+                  }}
+                >
+                  <div
+                    aria-hidden
+                    className="absolute inset-0"
+                    style={{
+                      ...FIGURE_MASK,
+                      backgroundImage:
+                        "repeating-linear-gradient(to bottom, rgba(86,18,22,0.78) 0, rgba(86,18,22,0.78) calc(100%/13), rgba(150,138,122,0.55) calc(100%/13), rgba(150,138,122,0.55) calc(200%/13))",
+                    }}
+                  />
+                  <div
+                    aria-hidden
+                    className="absolute inset-0"
+                    style={{
+                      ...FIGURE_MASK,
+                      backgroundImage:
+                        "linear-gradient(rgba(10,16,40,0.96), rgba(10,16,40,0.96))",
+                      backgroundSize: "40% 53.85%",
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "left top",
+                    }}
+                  />
+                  <div
+                    aria-hidden
+                    className="absolute inset-0"
+                    style={{
+                      ...FIGURE_MASK,
+                      backgroundImage:
+                        "radial-gradient(circle, rgba(180,170,150,0.55) 0.5px, transparent 1.4px)",
+                      backgroundSize: "4% 5%",
+                      backgroundRepeat: "repeat",
+                      backgroundPosition: "0 0",
+                      clipPath: "polygon(0 0, 40% 0, 40% 53.85%, 0 53.85%)",
+                    }}
+                  />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/figures/back.png"
+                    alt=""
+                    aria-hidden
+                    draggable={false}
+                    className="absolute inset-0 w-full h-full object-contain object-bottom pointer-events-none select-none"
+                    style={{ mixBlendMode: "multiply", opacity: 0.85 }}
+                  />
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      ...FIGURE_MASK,
+                      background: "rgba(0,0,0,0.22)",
+                    }}
+                  />
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      ...FIGURE_MASK,
+                      background:
+                        "radial-gradient(ellipse at 50% 30%, transparent 18%, rgba(0,0,0,0.55) 80%, rgba(0,0,0,0.78) 100%)",
+                    }}
+                  />
+                </div>
+              </div>
             </div>
-            <footer className="absolute bottom-2 left-1/2 -translate-x-1/2 text-center pointer-events-none">
+
+            {/* army radio — bottom-left of figure on desktop, centered above footer on mobile */}
+            <div className="mt-5 sm:mt-0 sm:absolute sm:bottom-8 sm:left-[clamp(2rem,calc(50%-22rem),28rem)]">
+              <ArmyRadioTile />
+            </div>
+
+            {/* credit footer */}
+            <footer className="mt-4 sm:mt-0 sm:absolute sm:bottom-2 sm:left-1/2 sm:-translate-x-1/2 text-center px-3">
               <p
-                className="font-mono text-[9px] tracking-[0.25em] uppercase pointer-events-auto"
+                className="font-mono text-[9px] sm:text-[9px] tracking-[0.25em] uppercase leading-relaxed"
                 style={{ color: "rgba(180,175,155,0.45)" }}
               >
-                music: tadashikeiji · sonican · icsilviu · kaazoom · surprising media · music for videos · gregor quendel — via pixabay
+                music: tadashikeiji · sonican · icsilviu · kaazoom · surprising
+                media · music for videos · gregor quendel — via pixabay
               </p>
             </footer>
           </main>
         </ThemeShifter>
-        </RadioProvider>
-      </div>
+      </RadioProvider>
     </>
   );
 }

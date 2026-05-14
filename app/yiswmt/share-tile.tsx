@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 const BODY =
-  "linear-gradient(180deg, rgba(28,42,78,0.97) 0%, rgba(20,32,62,0.97) 55%, rgba(14,22,46,0.98) 100%)";
+  "linear-gradient(180deg, rgba(58,42,68,0.97) 0%, rgba(42,28,52,0.97) 55%, rgba(32,20,42,0.98) 100%)";
 const LID =
-  "linear-gradient(180deg, rgba(22,34,64,0.98) 0%, rgba(14,22,46,0.98) 100%)";
-const BORDER = "rgba(8,14,32,0.92)";
-const TEXT = "rgba(245,235,215,0.96)";
-const SUB = "rgba(245,235,215,0.65)";
+  "linear-gradient(180deg, rgba(50,34,60,0.98) 0%, rgba(36,22,46,0.98) 100%)";
+const BORDER = "rgba(20,12,28,0.92)";
+const TEXT = "rgba(245,235,225,0.95)";
+const SUB = "rgba(245,235,225,0.62)";
 const BADGE =
   "linear-gradient(180deg, rgba(225,180,90,0.97) 0%, rgba(180,140,55,0.97) 100%)";
 const BADGE_TEXT = "rgba(28,18,8,0.92)";
@@ -17,7 +17,7 @@ const BADGE_TEXT = "rgba(28,18,8,0.92)";
 const SCUFF =
   "radial-gradient(circle at 18% 22%, rgba(255,255,255,0.06) 0%, transparent 30%), radial-gradient(circle at 78% 75%, rgba(0,0,0,0.10) 0%, transparent 35%), radial-gradient(circle at 60% 30%, rgba(0,0,0,0.06) 0%, transparent 25%)";
 
-export function MissionTile() {
+export function ShareTile() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -41,13 +41,13 @@ export function MissionTile() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        aria-label="YISWMT — Your Image Stays With Me Tonight"
+        aria-label="SHARE — share your loved one's story"
         className="relative inline-flex flex-col items-stretch w-[5.5rem] sm:w-24 rounded-md overflow-hidden transition-transform hover:-translate-y-0.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/40"
         style={{
           background: BODY,
           border: `1px solid ${BORDER}`,
           boxShadow:
-            "inset 0 1.5px 0 rgba(255,255,255,0.18), inset 0 -2px 0 rgba(0,0,0,0.45), inset 0 0 0 1px rgba(0,0,0,0.22), 0 5px 10px -5px rgba(0,0,0,0.75)",
+            "inset 0 1.5px 0 rgba(255,255,255,0.16), inset 0 -2px 0 rgba(0,0,0,0.40), inset 0 0 0 1px rgba(0,0,0,0.22), 0 5px 10px -5px rgba(0,0,0,0.75)",
         }}
       >
         <span
@@ -62,7 +62,7 @@ export function MissionTile() {
             background: LID,
             borderBottom: `1px solid ${BORDER}`,
             boxShadow:
-              "inset 0 1px 0 rgba(255,255,255,0.18), inset 0 -1px 0 rgba(0,0,0,0.35)",
+              "inset 0 1px 0 rgba(255,255,255,0.16), inset 0 -1px 0 rgba(0,0,0,0.30)",
           }}
         >
           <span
@@ -81,11 +81,11 @@ export function MissionTile() {
             color: TEXT,
             textShadow:
               "0 1px 0 rgba(255,255,255,0.12), 0 -1px 0 rgba(0,0,0,0.45)",
-            fontSize: "10px",
-            letterSpacing: "0.1em",
+            fontSize: "13px",
+            letterSpacing: "0.18em",
           }}
         >
-          YISWMT
+          SHARE
         </span>
         <span
           className="relative block px-1.5 pb-2 text-center font-mono uppercase tracking-[0.18em]"
@@ -96,7 +96,7 @@ export function MissionTile() {
             lineHeight: 1.3,
           }}
         >
-          request a spot
+          their story
         </span>
       </button>
 
@@ -107,7 +107,7 @@ export function MissionTile() {
             className="fixed inset-0 z-[80] flex items-center justify-center p-4 sm:p-8"
             role="dialog"
             aria-modal="true"
-            aria-label="Your Image Stays With Me Tonight"
+            aria-label="Share the byline"
           >
             <button
               type="button"
@@ -123,7 +123,7 @@ export function MissionTile() {
                 background: BODY,
                 border: `1px solid ${BORDER}`,
                 boxShadow:
-                  "inset 0 2px 0 rgba(255,255,255,0.20), inset 0 -3px 0 rgba(0,0,0,0.40), inset 0 0 0 1px rgba(0,0,0,0.25), 0 18px 48px -8px rgba(0,0,0,0.95)",
+                  "inset 0 2px 0 rgba(255,255,255,0.18), inset 0 -3px 0 rgba(0,0,0,0.35), inset 0 0 0 1px rgba(0,0,0,0.22), 0 18px 48px -8px rgba(0,0,0,0.95)",
               }}
             >
               <span
@@ -139,7 +139,7 @@ export function MissionTile() {
                   background: LID,
                   borderBottom: `1px solid ${BORDER}`,
                   boxShadow:
-                    "inset 0 1.5px 0 rgba(255,255,255,0.20), inset 0 -1px 0 rgba(0,0,0,0.35)",
+                    "inset 0 1.5px 0 rgba(255,255,255,0.18), inset 0 -1px 0 rgba(0,0,0,0.30)",
                 }}
               >
                 <span
@@ -149,7 +149,7 @@ export function MissionTile() {
                     background:
                       "linear-gradient(180deg, rgba(60,45,30,0.95) 0%, rgba(30,22,14,0.95) 100%)",
                     boxShadow:
-                      "0 1px 0 rgba(255,255,255,0.18), inset 0 1px 0 rgba(255,255,255,0.10)",
+                      "0 1px 0 rgba(255,255,255,0.16), inset 0 1px 0 rgba(255,255,255,0.10)",
                   }}
                 />
               </div>
@@ -162,7 +162,7 @@ export function MissionTile() {
                 style={{
                   color: TEXT,
                   textShadow:
-                    "0 1px 0 rgba(255,255,255,0.16), 0 -1px 0 rgba(0,0,0,0.35)",
+                    "0 1px 0 rgba(255,255,255,0.14), 0 -1px 0 rgba(0,0,0,0.30)",
                   background: "rgba(0,0,0,0.30)",
                   border: `1px solid ${BORDER}`,
                 }}
@@ -175,51 +175,50 @@ export function MissionTile() {
                   className="font-mono uppercase tracking-[0.35em] text-[9px] mb-2"
                   style={{ color: SUB, textShadow: "0 1px 0 rgba(0,0,0,0.45)" }}
                 >
-                  · YISWMT ·
+                  · share the byline ·
                 </p>
                 <h2
                   className="font-mono text-xl sm:text-2xl uppercase tracking-[0.12em] font-bold mb-5"
                   style={{
                     color: TEXT,
                     textShadow:
-                      "0 1px 0 rgba(255,255,255,0.16), 0 -1px 0 rgba(0,0,0,0.45)",
+                      "0 1px 0 rgba(255,255,255,0.14), 0 -1px 0 rgba(0,0,0,0.45)",
                   }}
                 >
-                  Your Image Stays
-                  <br />
-                  With Me Tonight
+                  Tell their story.
                 </h2>
 
                 <div className="space-y-4 text-sm leading-relaxed" style={{ color: TEXT }}>
                   <p>
-                    A place to remember anyone who died in service to this
-                    country. Not a name in a database — a face, a story, a
-                    moment held in the dark.
+                    This page was built by someone with no military family of
+                    their own — only the shared loneliness, and the need to do
+                    something with it.
                   </p>
                   <p>
-                    Any family of a fallen service member can request a spot
-                    here. We post the picture, the dates, and anything you
-                    want said. Every branch. Every conflict. Every year.
+                    Take what you have of the one you&rsquo;ve lost. Words,
+                    images, what was said at the table on the bad nights. Put
+                    it where someone you have not met yet can find it.
+                  </p>
+                  <p>
+                    <span className="font-semibold">sharethebyline.com</span> is
+                    the place. You write what you want said. An AI helps shape
+                    it if you want help. The byline stays yours.
                   </p>
                   <p
-                    className="font-semibold tracking-[0.08em] uppercase text-center pt-2"
-                    style={{
-                      color: "rgba(245,210,140,0.95)",
-                      textShadow:
-                        "0 1px 0 rgba(0,0,0,0.45), 0 0 14px rgba(225,180,90,0.25)",
-                    }}
+                    className="text-center italic pt-2"
+                    style={{ color: SUB }}
                   >
-                    no charge · no receipt needed
-                  </p>
-                  <p className="text-center text-sm italic" style={{ color: SUB }}>
-                    The promise is in the name. Their image stays with us
-                    tonight.
+                    The ask is small. Leave a trace. Prove from the dark,
+                    from the anonymous, from the deep that bringing your
+                    worlds together makes a difference.
                   </p>
                 </div>
 
                 <div className="mt-7">
                   <a
-                    href="mailto:yiswmt@characterzer0.com?subject=Request%20a%20spot%20-%20YISWMT"
+                    href="https://sharethebyline.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="block w-full text-center font-mono uppercase tracking-[0.3em] text-xs font-bold px-4 py-3 rounded-sm transition-transform hover:-translate-y-0.5"
                     style={{
                       color: BADGE_TEXT,
@@ -231,13 +230,13 @@ export function MissionTile() {
                         "0 1px 0 rgba(255,255,255,0.25), 0 -1px 0 rgba(0,0,0,0.20)",
                     }}
                   >
-                    Request a spot →
+                    Share the byline →
                   </a>
                   <p
                     className="mt-3 font-mono text-[9px] uppercase tracking-[0.25em] text-center"
                     style={{ color: SUB }}
                   >
-                    write to YISWMT — we answer.
+                    external — opens in new tab
                   </p>
                 </div>
               </div>
