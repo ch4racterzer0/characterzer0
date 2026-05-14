@@ -42,7 +42,7 @@ export function ShareTile() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="SHARE — share your loved one's story"
-        className="relative inline-flex flex-col items-stretch w-[5.5rem] sm:w-24 rounded-md overflow-hidden transition-transform hover:-translate-y-0.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/40"
+        className="relative inline-flex flex-col items-stretch w-14 sm:w-24 rounded-md overflow-hidden transition-transform hover:-translate-y-0.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/40"
         style={{
           background: BODY,
           border: `1px solid ${BORDER}`,
@@ -76,13 +76,12 @@ export function ShareTile() {
           />
         </span>
         <span
-          className="relative block px-2 pt-2 pb-0.5 text-center font-mono font-bold uppercase"
+          className="relative block px-1 sm:px-2 pt-2 pb-0.5 text-center font-mono font-bold uppercase text-[10px] sm:text-[13px]"
           style={{
             color: TEXT,
             textShadow:
               "0 1px 0 rgba(255,255,255,0.12), 0 -1px 0 rgba(0,0,0,0.45)",
-            fontSize: "13px",
-            letterSpacing: "0.18em",
+            letterSpacing: "0.12em",
           }}
         >
           SHARE
@@ -118,7 +117,7 @@ export function ShareTile() {
             />
 
             <div
-              className="relative w-full max-w-xl rounded-md overflow-hidden"
+              className="relative w-full max-w-xl rounded-md overflow-hidden max-h-[calc(100vh-2rem)] sm:max-h-[calc(100vh-4rem)] flex flex-col"
               style={{
                 background: BODY,
                 border: `1px solid ${BORDER}`,
@@ -134,7 +133,7 @@ export function ShareTile() {
 
               <div
                 aria-hidden
-                className="relative h-7"
+                className="relative h-7 shrink-0"
                 style={{
                   background: LID,
                   borderBottom: `1px solid ${BORDER}`,
@@ -170,7 +169,7 @@ export function ShareTile() {
                 ×
               </button>
 
-              <div className="relative px-6 sm:px-7 pt-7 pb-7">
+              <div className="relative px-6 sm:px-7 pt-7 pb-7 overflow-y-auto">
                 <p
                   className="font-mono uppercase tracking-[0.35em] text-[9px] mb-2"
                   style={{ color: SUB, textShadow: "0 1px 0 rgba(0,0,0,0.45)" }}

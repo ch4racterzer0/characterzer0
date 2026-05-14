@@ -42,7 +42,7 @@ export function MissionTile() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="YISWMT — Your Image Stays With Me Tonight"
-        className="relative inline-flex flex-col items-stretch w-[5.5rem] sm:w-24 rounded-md overflow-hidden transition-transform hover:-translate-y-0.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/40"
+        className="relative inline-flex flex-col items-stretch w-14 sm:w-24 rounded-md overflow-hidden transition-transform hover:-translate-y-0.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/40"
         style={{
           background: BODY,
           border: `1px solid ${BORDER}`,
@@ -76,13 +76,12 @@ export function MissionTile() {
           />
         </span>
         <span
-          className="relative block px-2 pt-2 pb-0.5 text-center font-mono font-bold uppercase"
+          className="relative block px-1 sm:px-2 pt-2 pb-0.5 text-center font-mono font-bold uppercase text-[8px] sm:text-[10px]"
           style={{
             color: TEXT,
             textShadow:
               "0 1px 0 rgba(255,255,255,0.12), 0 -1px 0 rgba(0,0,0,0.45)",
-            fontSize: "10px",
-            letterSpacing: "0.1em",
+            letterSpacing: "0.08em",
           }}
         >
           YISWMT
@@ -118,7 +117,7 @@ export function MissionTile() {
             />
 
             <div
-              className="relative w-full max-w-xl rounded-md overflow-hidden"
+              className="relative w-full max-w-xl rounded-md overflow-hidden max-h-[calc(100vh-2rem)] sm:max-h-[calc(100vh-4rem)] flex flex-col"
               style={{
                 background: BODY,
                 border: `1px solid ${BORDER}`,
@@ -134,7 +133,7 @@ export function MissionTile() {
 
               <div
                 aria-hidden
-                className="relative h-7"
+                className="relative h-7 shrink-0"
                 style={{
                   background: LID,
                   borderBottom: `1px solid ${BORDER}`,
@@ -170,7 +169,45 @@ export function MissionTile() {
                 ×
               </button>
 
-              <div className="relative px-6 sm:px-7 pt-7 pb-7">
+              <div className="relative px-6 sm:px-7 pt-7 pb-7 overflow-y-auto">
+                {/* mobile-only notice — this site isn't designed for phones */}
+                <div
+                  className="sm:hidden mb-6 rounded-sm px-4 py-4"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, rgba(225,180,90,0.12) 0%, rgba(180,140,55,0.08) 100%)",
+                    border: "1px solid rgba(225,180,90,0.55)",
+                    boxShadow:
+                      "inset 0 1px 0 rgba(255,255,255,0.10), 0 0 22px rgba(225,180,90,0.18)",
+                  }}
+                >
+                  <p
+                    className="font-mono uppercase tracking-[0.30em] text-[8px] mb-2"
+                    style={{
+                      color: "rgba(245,210,140,0.95)",
+                      textShadow: "0 0 10px rgba(225,180,90,0.40)",
+                    }}
+                  >
+                    · a note for mobile ·
+                  </p>
+                  <p
+                    className="text-sm leading-relaxed"
+                    style={{ color: "rgba(245,235,215,0.95)" }}
+                  >
+                    this site is not designed for mobile, but too important to
+                    block you. if you found us here, please enjoy what we are
+                    able to provide — but please come back with a computer.
+                  </p>
+                  <p
+                    className="mt-3 text-sm italic leading-relaxed"
+                    style={{ color: "rgba(245,235,215,0.78)" }}
+                  >
+                    i would salute you all... but i did not earn that right.
+                    this is the only salute i have to offer... this is my
+                    receipt.
+                  </p>
+                </div>
+
                 <p
                   className="font-mono uppercase tracking-[0.35em] text-[9px] mb-2"
                   style={{ color: SUB, textShadow: "0 1px 0 rgba(0,0,0,0.45)" }}

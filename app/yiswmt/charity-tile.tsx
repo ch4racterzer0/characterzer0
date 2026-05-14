@@ -83,7 +83,7 @@ export function CharityTile({ charity }: { charity: Charity }) {
         type="button"
         onClick={() => setOpen(true)}
         aria-label={`${charity.name} — donation info`}
-        className="relative inline-flex flex-col items-stretch w-[5.5rem] sm:w-24 rounded-md overflow-hidden transition-transform hover:-translate-y-0.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/40"
+        className="relative inline-flex flex-col items-stretch w-14 sm:w-24 rounded-md overflow-hidden transition-transform hover:-translate-y-0.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/40"
         style={{
           background: tone.body,
           border: `1px solid ${tone.border}`,
@@ -120,13 +120,16 @@ export function CharityTile({ charity }: { charity: Charity }) {
         </span>
         {/* stamped charity short */}
         <span
-          className="relative block px-2 pt-2 pb-0.5 text-center font-mono font-bold uppercase"
+          className={`relative block px-1 sm:px-2 pt-2 pb-0.5 text-center font-mono font-bold uppercase ${
+            charity.short.length > 3
+              ? "text-[9px] sm:text-[11px]"
+              : "text-[11px] sm:text-[14px]"
+          }`}
           style={{
             color: tone.text,
             textShadow:
               "0 1px 0 rgba(255,255,255,0.18), 0 -1px 0 rgba(0,0,0,0.30)",
-            fontSize: charity.short.length > 3 ? "11px" : "14px",
-            letterSpacing: charity.short.length > 3 ? "0.12em" : "0.22em",
+            letterSpacing: charity.short.length > 3 ? "0.08em" : "0.18em",
           }}
         >
           {charity.short}
@@ -162,7 +165,7 @@ export function CharityTile({ charity }: { charity: Charity }) {
             />
 
             <div
-              className="relative w-full max-w-lg rounded-md overflow-hidden"
+              className="relative w-full max-w-lg rounded-md overflow-hidden max-h-[calc(100vh-2rem)] sm:max-h-[calc(100vh-4rem)] flex flex-col"
               style={{
                 background: tone.body,
                 border: `1px solid ${tone.border}`,
@@ -183,7 +186,7 @@ export function CharityTile({ charity }: { charity: Charity }) {
               {/* lid strip with clasp on the modal */}
               <div
                 aria-hidden
-                className="relative h-7"
+                className="relative h-7 shrink-0"
                 style={{
                   background: tone.lid,
                   borderBottom: `1px solid ${tone.border}`,
@@ -219,7 +222,7 @@ export function CharityTile({ charity }: { charity: Charity }) {
                 ×
               </button>
 
-              <div className="relative px-6 pt-6 pb-6">
+              <div className="relative px-6 pt-6 pb-6 overflow-y-auto">
                 <p
                   className="font-mono uppercase tracking-[0.35em] text-[9px] mb-2"
                   style={{
