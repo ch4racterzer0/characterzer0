@@ -11,32 +11,43 @@ const ORB_FLAGS = [
   "/flags/flag-coastguard.png",
 ];
 
-const ORB_FACES = [
-  "/orb-faces/face-01.avif",
-  "/orb-faces/face-02.jpg",
-  "/orb-faces/face-03.jpg",
-  "/orb-faces/face-04.jpg",
-  "/orb-faces/face-05.webp",
-  "/orb-faces/face-06.jpg",
-  "/orb-faces/face-07.jpg",
-  "/orb-faces/face-08.jpg",
-  "/orb-faces/face-09.jpg",
-  "/orb-faces/face-10.jpg",
-  "/orb-faces/face-11.jpg",
-  "/orb-faces/face-12.jpg",
-  "/orb-faces/face-13.jpg",
+type OrbItem =
+  | { kind: "face"; src: string }
+  | { kind: "word"; text: string };
+
+const ORB_OVERLAY: OrbItem[] = [
+  { kind: "face", src: "/orb-faces/face-01.avif" },
+  { kind: "face", src: "/orb-faces/face-02.jpg" },
+  { kind: "word", text: "REMEMBER" },
+  { kind: "face", src: "/orb-faces/face-03.jpg" },
+  { kind: "face", src: "/orb-faces/face-04.jpg" },
+  { kind: "word", text: "LOVE" },
+  { kind: "face", src: "/orb-faces/face-05.webp" },
+  { kind: "face", src: "/orb-faces/face-06.jpg" },
+  { kind: "word", text: "NEVER FORGET" },
+  { kind: "face", src: "/orb-faces/face-07.jpg" },
+  { kind: "face", src: "/orb-faces/face-08.jpg" },
+  { kind: "word", text: "HONOR" },
+  { kind: "face", src: "/orb-faces/face-09.jpg" },
+  { kind: "face", src: "/orb-faces/face-10.jpg" },
+  { kind: "word", text: "THANK YOU" },
+  { kind: "face", src: "/orb-faces/face-11.jpg" },
+  { kind: "face", src: "/orb-faces/face-12.jpg" },
+  { kind: "word", text: "STILL HERE" },
+  { kind: "face", src: "/orb-faces/face-13.jpg" },
 ];
 
 const HOLD_MS = 4500;
 const FADE_MS = 1500;
 
-const FACE_HOLD_MS = 5500;
-const FACE_FADE_MS = 2000;
-const FACE_PEAK_OPACITY = 0.55;
+const OVERLAY_HOLD_MS = 4500;
+const OVERLAY_FADE_MS = 1800;
+const FACE_PEAK_OPACITY = 0.7;
+const WORD_PEAK_OPACITY = 0.85;
 
 export function FlagOrb() {
   const [idx, setIdx] = useState(0);
-  const [faceIdx, setFaceIdx] = useState(0);
+  const [overlayIdx, setOverlayIdx] = useState(0);
 
   useEffect(() => {
     const id = window.setInterval(() => {
@@ -47,8 +58,8 @@ export function FlagOrb() {
 
   useEffect(() => {
     const id = window.setInterval(() => {
-      setFaceIdx((i) => (i + 1) % ORB_FACES.length);
-    }, FACE_HOLD_MS);
+      setOverlayIdx((i) => (i + 1) % ORB_OVERLAY.length);
+    }, OVERLAY_HOLD_MS);
     return () => window.clearInterval(id);
   }, []);
 
@@ -111,30 +122,54 @@ export function FlagOrb() {
           </div>
         </div>
 
-        {/* face fader — overlays the flag, screen-blended, capped at FACE_PEAK_OPACITY so the flag is always visible underneath */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div
-            className="relative"
-            style={{ width: "78%", aspectRatio: "1 / 1" }}
-          >
-            {ORB_FACES.map((src, i) => (
-              /* eslint-disable-next-line @next/next/no-img-element */
-              <img
-                key={src}
-                src={src}
-                alt=""
-                aria-hidden
-                draggable={false}
-                className="absolute inset-0 w-full h-full object-contain select-none pointer-events-none rounded-full"
+        {/* overlay fader — fills the entire orb interior (clipped to circle by parent overflow-hidden rounded-full). Faces use object-cover so they fill the sphere; words render as large center-anchored mono text. Both screen-blended on top of the flag. */}
+        <div className="absolute inset-0">
+          {ORB_OVERLAY.map((item, i) => {
+            const active = overlayIdx === i;
+            if (item.kind === "face") {
+              return (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  key={`face-${i}`}
+                  src={item.src}
+                  alt=""
+                  aria-hidden
+                  draggable={false}
+                  className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
+                  style={{
+                    opacity: active ? FACE_PEAK_OPACITY : 0,
+                    transition: `opacity ${OVERLAY_FADE_MS}ms ease-in-out`,
+                    mixBlendMode: "screen",
+                    filter: "grayscale(0.30) contrast(1.05)",
+                  }}
+                />
+              );
+            }
+            return (
+              <div
+                key={`word-${i}`}
+                className="absolute inset-0 flex items-center justify-center pointer-events-none"
                 style={{
-                  opacity: faceIdx === i ? FACE_PEAK_OPACITY : 0,
-                  transition: `opacity ${FACE_FADE_MS}ms ease-in-out`,
+                  opacity: active ? WORD_PEAK_OPACITY : 0,
+                  transition: `opacity ${OVERLAY_FADE_MS}ms ease-in-out`,
                   mixBlendMode: "screen",
-                  filter: "grayscale(0.35) contrast(1.05)",
                 }}
-              />
-            ))}
-          </div>
+              >
+                <span
+                  className="font-mono font-bold uppercase text-center leading-tight px-4"
+                  style={{
+                    color: "rgba(245,235,215,0.95)",
+                    fontSize: "clamp(1.5rem, 6vw, 3rem)",
+                    letterSpacing: "0.18em",
+                    textShadow:
+                      "0 0 18px rgba(120,150,210,0.65), 0 0 38px rgba(60,90,160,0.45), 0 2px 0 rgba(0,0,0,0.55)",
+                  }}
+                >
+                  {item.text}
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
