@@ -3,6 +3,17 @@ import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
 
 export const dynamic = "force-dynamic";
 
+const FIGURE_MASK = {
+  WebkitMaskImage: "url(/figures/back.png)",
+  maskImage: "url(/figures/back.png)",
+  WebkitMaskSize: "contain",
+  maskSize: "contain",
+  WebkitMaskRepeat: "no-repeat",
+  maskRepeat: "no-repeat",
+  WebkitMaskPosition: "bottom center",
+  maskPosition: "bottom center",
+} as const;
+
 export default function Yiswmt() {
   return (
     <>
@@ -11,7 +22,47 @@ export default function Yiswmt() {
         <ThemeShifter>
           <ThemeSwitch />
           <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center justify-end py-10 px-4">
-            <div className="relative h-[28vh] aspect-[3/2]">
+            <div className="relative h-[42vh] aspect-[3/2]">
+              {/* stripes — 13 alternating muted red / aged cream, masked to figure */}
+              <div
+                aria-hidden
+                className="absolute inset-0"
+                style={{
+                  ...FIGURE_MASK,
+                  backgroundImage:
+                    "repeating-linear-gradient(to bottom, rgba(140,30,38,0.85) 0, rgba(140,30,38,0.85) calc(100%/13), rgba(240,232,215,0.82) calc(100%/13), rgba(240,232,215,0.82) calc(200%/13))",
+                }}
+              />
+              {/* canton — deep navy rectangle in upper-left, masked to figure */}
+              <div
+                aria-hidden
+                className="absolute inset-0"
+                style={{
+                  ...FIGURE_MASK,
+                  backgroundImage:
+                    "linear-gradient(rgba(20,32,72,0.95), rgba(20,32,72,0.95))",
+                  backgroundSize: "40% 53.85%",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "left top",
+                }}
+              />
+              {/* subtle star field on the canton — small sparse dots, masked to figure */}
+              <div
+                aria-hidden
+                className="absolute inset-0"
+                style={{
+                  ...FIGURE_MASK,
+                  backgroundImage:
+                    "radial-gradient(circle, rgba(240,232,215,0.85) 0.6px, transparent 1.4px)",
+                  backgroundSize: "4% 5%",
+                  backgroundRepeat: "repeat",
+                  backgroundPosition: "0 0",
+                  WebkitMaskComposite: "source-in",
+                  maskComposite: "intersect",
+                  clipPath: "polygon(0 0, 40% 0, 40% 53.85%, 0 53.85%)",
+                }}
+              />
+              {/* original figure on top — very faint, adds shading + edge definition */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/figures/back.png"
@@ -19,7 +70,17 @@ export default function Yiswmt() {
                 aria-hidden
                 draggable={false}
                 className="absolute inset-0 w-full h-full object-contain object-bottom pointer-events-none select-none"
-                style={{ mixBlendMode: "screen" }}
+                style={{ mixBlendMode: "multiply", opacity: 0.55 }}
+              />
+              {/* warm vignette + gentle darken at bottom for reverence */}
+              <div
+                aria-hidden
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  ...FIGURE_MASK,
+                  background:
+                    "radial-gradient(ellipse at 50% 35%, transparent 30%, rgba(0,0,0,0.35) 90%)",
+                }}
               />
             </div>
           </main>
