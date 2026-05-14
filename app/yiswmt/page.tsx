@@ -20,6 +20,7 @@ const FIGURE_MASK = {
 export default function Yiswmt() {
   return (
     <>
+      <style>{`.cz-chrome { display: none !important; }`}</style>
       <MobileLanding />
       <div className="hidden sm:block">
         <RadioProvider>
@@ -29,7 +30,7 @@ export default function Yiswmt() {
             <div className="absolute bottom-8 left-8 sm:left-12">
               <ArmyRadioTile />
             </div>
-            <div className="absolute bottom-8 right-8 sm:right-12 flex flex-row gap-2 sm:gap-3">
+            <div className="absolute top-6 left-1/2 -translate-x-1/2 flex flex-row gap-2 sm:gap-3">
               {CHARITIES.map((c) => (
                 <CharityTile key={c.short} charity={c} />
               ))}
