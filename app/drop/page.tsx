@@ -198,7 +198,7 @@ function ArtworkRow() {
               "0 0 10px rgba(255,255,255,0.45), 0 0 22px rgba(103,232,249,0.25)",
           }}
         >
-          character zer0 made every single graphic on this entire site.
+          Chracterzer零号 made every single graphic on this entire site.
         </p>
         <p className="text-white/75 text-sm sm:text-base italic leading-relaxed">
           if you see anything you like, he would be more than happy to help.
@@ -413,7 +413,7 @@ export default function DropPage() {
               red
             </span>
             <span className="text-white/35 italic normal-case tracking-normal">
-              pick your color variation — every print is character zer0, just a different shade of him.
+              pick your color variation — every print is Chracterzer零号, just a different shade of him.
             </span>
           </p>
         </header>
@@ -430,7 +430,7 @@ export default function DropPage() {
 
         <section className="space-y-4">
           <p className="text-cyan-300/80 text-[10px] sm:text-xs tracking-[0.4em] uppercase">
-            // artwork · made in-house · all by character zer0
+            // artwork · made in-house · all by Chracterzer零号
           </p>
           <ArtworkRow />
         </section>

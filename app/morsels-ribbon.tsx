@@ -1,5 +1,5 @@
 const PHRASE =
-  "БЕГИ 像 ένα アンテロープ, 밖 ИЗ 控制... ευχαριστώ あなた 씨 ТРЕЙ, character zer0";
+  "БЕГИ 像 ένα アンテロープ, 밖 ИЗ 控制... ευχαριστώ あなた 씨 ТРЕЙ, Chracterzer零号";
 
 export function MorselsRibbon() {
   return (

@@ -43,7 +43,7 @@ export default function TreyPage() {
           <p className="text-cyan-100/90 text-base sm:text-lg leading-relaxed font-light">
             the podcast you might have just played in the orb &mdash;
             ep 011, &ldquo;the summons&rdquo; &mdash; that&rsquo;s me
-            and character zer0. i talk on itethered. i&rsquo;m on the
+            and Chracterzer零号. i talk on itethered. i&rsquo;m on the
             mic when the conversation is happening live, not in the
             archive.
           </p>

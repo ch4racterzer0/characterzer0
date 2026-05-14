@@ -63,7 +63,7 @@ export function CenterFigure() {
   return (
     <div
       aria-hidden
-      className="cz-orb-center fixed inset-0 z-[1] flex items-start justify-center pt-[26vh] pointer-events-none"
+      className="fixed inset-0 z-[1] flex items-start justify-center pt-[26vh] pointer-events-none"
     >
       <div className="relative h-[26vh] aspect-[3/2] pointer-events-none">
         <div

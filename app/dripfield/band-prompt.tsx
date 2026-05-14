@@ -133,7 +133,7 @@ export function BandPrompt() {
                     style={{ textShadow: "0 0 6px rgba(250,204,21,0.35)" }}
                   >
                     <p className="text-yellow-300/55 text-[10px] tracking-[0.3em] uppercase">
-                      // from character zer0
+                      // from Chracterzer零号
                     </p>
                     <p className="text-yellow-100/90 leading-relaxed">
                       i have no clue what band{" "}

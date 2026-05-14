@@ -11,7 +11,7 @@ export function ClickTrap() {
       {!open && (
         <button
           type="button"
-          aria-label="character zer0 is away"
+          aria-label="Chracterzer零号 is away"
           onClick={() => setOpen(true)}
           className="fixed inset-0 z-[60] bg-transparent cursor-default"
           style={{ border: "0" }}
@@ -40,7 +40,7 @@ export function ClickTrap() {
             >
               will be back later
               <br />
-              <span className="text-blue-200/80 italic">— character zer0</span>
+              <span className="text-blue-200/80 italic">— Chracterzer零号</span>
             </p>
 
             <TicTacToe />

@@ -94,7 +94,7 @@ function SemperFiPopup({ onClose }: { onClose: () => void }) {
             every dollar goes to a kid&rsquo;s tuition.
           </p>
           <p className="text-red-200/85 italic text-sm sm:text-base">
-            this isn&rsquo;t character zer0&rsquo;s ask. it&rsquo;s
+            this isn&rsquo;t Chracterzer零号&rsquo;s ask. it&rsquo;s
             corey&rsquo;s, by way of a friend who hadn&rsquo;t seen him
             in twenty-five years.
           </p>

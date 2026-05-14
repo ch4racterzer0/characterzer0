@@ -293,7 +293,7 @@ export default function DontForget() {
           >
             <Image
               src="/wip/open-letter-excerpt.png"
-              alt="excerpt: character zer0 could not read it"
+              alt="excerpt: Chracterzer零号 could not read it"
               width={764}
               height={157}
               className="rounded-lg border border-blue-400/20 group-hover:border-blue-300/50 w-full h-auto transition-colors"

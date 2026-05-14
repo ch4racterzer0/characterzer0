@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "character zer0 — for hire",
+  title: "Chracterzer零号 — for hire",
   description:
-    "this site is the resume. character zer0 is the resume. available for contract work.",
+    "this site is the resume. Chracterzer零号 is the resume. available for contract work.",
 };
 
 const STACK: { label: string; line: string }[] = [
@@ -61,7 +61,7 @@ export default function CharacterZer0() {
                 "0 0 18px rgba(96,165,250,0.7), 0 0 38px rgba(59,130,246,0.4)",
             }}
           >
-            character zer0
+            Chracterzer零号
           </h1>
           <p className="text-blue-100/55 text-[10px] sm:text-xs tracking-[0.3em] uppercase">
             architect &middot; human &middot; available for contract work
@@ -94,7 +94,7 @@ export default function CharacterZer0() {
             what you are looking at, then &mdash; the character, the universe,
             the newspaper, the open letters, every graphic on this site, every
             animation, every page, every api route, the live broadcast running
-            tonight on youtube &mdash; was made by character zer0 and the
+            tonight on youtube &mdash; was made by Chracterzer零号 and the
             language model in the room with him.{" "}
             <span className="italic text-blue-100/70">
               we do not hide either of us.
@@ -164,7 +164,7 @@ export default function CharacterZer0() {
                     "0 0 10px rgba(103,232,249,0.55), 0 0 22px rgba(59,130,246,0.25)",
                 }}
               >
-                character zer0 ↗
+                Chracterzer零号 ↗
               </span>
             </a>
             <a

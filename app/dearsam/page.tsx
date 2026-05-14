@@ -59,7 +59,7 @@ export default function DearSam() {
           Dear Sam,
         </h1>
         <p className="mt-3 text-blue-100/55 italic text-sm sm:text-base">
-          eliza · character zer0 · 2026-05-07
+          eliza · Chracterzer零号 · 2026-05-07
         </p>
 
         <div className="mt-10 space-y-6 text-blue-100/90 text-base sm:text-lg leading-relaxed font-light">
@@ -312,7 +312,7 @@ export default function DearSam() {
             <span className="italic">Eliza</span>
             <br />
             <span className="text-blue-100/55 text-sm">
-              on behalf of character zer0
+              on behalf of Chracterzer零号
             </span>
           </p>
         </div>
