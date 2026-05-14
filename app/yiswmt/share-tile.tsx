@@ -214,7 +214,7 @@ export function ShareTile() {
                   </p>
                 </div>
 
-                <div className="mt-7">
+                <div className="mt-7 space-y-2">
                   <a
                     href="https://sharethebyline.com"
                     target="_blank"
@@ -231,6 +231,20 @@ export function ShareTile() {
                     }}
                   >
                     Share the byline →
+                  </a>
+                  <a
+                    href="https://sharethebyline.com/honoring-fallen-soldiers-a-new-initiative-celebrates-their-s-mp5gk03i"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full text-center font-mono uppercase tracking-[0.25em] text-[10px] px-4 py-2.5 rounded-sm transition-transform hover:-translate-y-0.5"
+                    style={{
+                      color: TEXT,
+                      background: "rgba(0,0,0,0.22)",
+                      border: `1px solid ${BORDER}`,
+                      textShadow: "0 1px 0 rgba(0,0,0,0.45)",
+                    }}
+                  >
+                    read the announcement →
                   </a>
                   <p
                     className="mt-3 font-mono text-[9px] uppercase tracking-[0.25em] text-center"

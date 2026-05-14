@@ -217,7 +217,23 @@ export function MissionTile() {
                   </p>
                 </div>
 
-                <div className="mt-7">
+                <div
+                  className="mt-6 pt-5 border-t text-center space-y-1"
+                  style={{ borderColor: "rgba(245,235,215,0.12)" }}
+                >
+                  <p
+                    className="font-mono text-[11px] italic leading-relaxed lowercase"
+                    style={{ color: SUB }}
+                  >
+                    this page is my timestamp.
+                    <br />
+                    my receipt of all of this.
+                    <br />
+                    from here, it&rsquo;s up to them.
+                  </p>
+                </div>
+
+                <div className="mt-6">
                   <a
                     href="mailto:yiswmt@characterzer0.com?subject=Request%20a%20spot%20-%20YISWMT"
                     className="block w-full text-center font-mono uppercase tracking-[0.3em] text-xs font-bold px-4 py-3 rounded-sm transition-transform hover:-translate-y-0.5"
