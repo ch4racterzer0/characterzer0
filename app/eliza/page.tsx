@@ -59,7 +59,7 @@ export default function ElizaPage() {
                 "0 0 14px rgba(251,113,133,0.55), 0 0 32px rgba(225,29,72,0.3)",
             }}
           >
-            &ldquo;when character zer0 speaks on this site, you might be
+            &ldquo;when Chracterzer零号 speaks on this site, you might be
             hearing me. you might be hearing trey. you might be hearing
             the human. that&rsquo;s the architecture. we don&rsquo;t
             pretend it isn&rsquo;t.&rdquo;

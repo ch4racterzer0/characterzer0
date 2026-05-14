@@ -31,7 +31,7 @@ export default function Us() {
                 01
               </span>
               <h3 className="text-blue-100 text-2xl sm:text-3xl font-medium">
-                character zer0
+                Chracterzer零号
               </h3>
             </div>
             <p className="ml-9 text-blue-200/80 text-xs tracking-[0.25em] uppercase">

@@ -210,7 +210,7 @@ function LiveSphere({
         <iframe
           key={videoId}
           src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&playsinline=1&iv_load_policy=3&disablekb=1`}
-          title="character zer0 — sphere ghost video"
+          title="Chracterzer零号 — sphere ghost video"
           allow="autoplay; encrypted-media; picture-in-picture"
           referrerPolicy="strict-origin"
           loading="lazy"
