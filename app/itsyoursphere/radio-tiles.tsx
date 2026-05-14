@@ -503,25 +503,34 @@ export function SchoolStereoTile() {
       )}
 
       {/* mobile picker — portal'd to body so it escapes the figure container's
-          scale-0.7 wrapper, rendered as a fixed bottom sheet with backdrop */}
+          scale-0.7 wrapper, centered on the viewport (NOT bottom-anchored;
+          iOS Safari's vh + chrome would otherwise clip the bottom edge and
+          hide the close button). dvh-based max-height adjusts to chrome state. */}
       {pickerOpen &&
         isMobile &&
         mounted &&
         createPortal(
-          <div className="fixed inset-0 z-[80]" role="dialog" aria-modal="true">
+          <div
+            className="fixed inset-0 z-[80] flex items-center justify-center p-4"
+            role="dialog"
+            aria-modal="true"
+          >
             <button
               type="button"
               tabIndex={-1}
               aria-label="close channel selector"
-              className="absolute inset-0 bg-black/65 backdrop-blur-sm cursor-default"
+              className="absolute inset-0 bg-black/70 backdrop-blur-sm cursor-default"
               onClick={() => setPickerOpen(false)}
             />
-            <div className="absolute inset-x-3 bottom-3 max-h-[78vh] overflow-y-auto flex flex-col gap-2">
+            <div
+              className="relative w-full max-w-xs flex flex-col gap-2 overflow-y-auto"
+              style={{ maxHeight: "min(85dvh, 32rem)" }}
+            >
               {pickerContent}
               <button
                 type="button"
                 onClick={() => setPickerOpen(false)}
-                className="font-mono text-[10px] tracking-[0.3em] uppercase py-3 rounded-md"
+                className="font-mono text-[12px] tracking-[0.3em] uppercase py-4 rounded-md"
                 style={{
                   color: "rgba(220,220,225,0.85)",
                   background: "rgba(28,26,24,0.92)",
