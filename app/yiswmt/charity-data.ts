@@ -33,8 +33,8 @@ export const CHARITIES: Charity[] = [
     name: "Snowball Express — Gary Sinise Foundation",
     mission:
       "Year-round programs and retreats for the children and surviving spouses of fallen military and first-responder heroes. Connection, community, and remembrance so no Gold Star family carries the loss alone.",
-    url: "https://garysinisefoundation.org/programs/honoring-families-of-fallen-heroes/",
-    donateUrl: "https://garysinisefoundation.org/get-involved/donate/",
+    url: "https://www.garysinisefoundation.org/programs/honoring-families-of-fallen-heroes/",
+    donateUrl: "https://www.garysinisefoundation.org/donate",
     tone: "yellow",
   },
   {
