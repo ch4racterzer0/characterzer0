@@ -485,38 +485,6 @@ export function SchoolStereoTile() {
 
   const pickerContent = (
     <>
-      <div
-        className="rounded-md px-3 py-2.5"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(28,26,24,0.92) 0%, rgba(14,14,16,0.92) 100%)",
-          border: "1px solid rgba(180,180,185,0.20)",
-          boxShadow:
-            "inset 0 1px 0 rgba(220,220,225,0.10), 0 4px 10px -4px rgba(0,0,0,0.75)",
-        }}
-      >
-        <p
-          className="font-mono text-[9px] sm:text-[8px] tracking-[0.18em] leading-relaxed text-center"
-          style={{
-            color: "rgba(220,220,225,0.78)",
-            textShadow: "0 1px 0 rgba(0,0,0,0.85)",
-          }}
-        >
-          both have to exist.
-          <br />
-          it is okay to be sad —
-          <br />
-          this is not a happy thing.
-          <br />
-          it is also okay to need hope —
-          <br />
-          this page is also for that.
-          <br />
-          <span style={{ color: "rgba(255,180,80,0.85)" }}>
-            pick whichever you need.
-          </span>
-        </p>
-      </div>
       <ChannelTile
         label="sad"
         sub="be sad with us"
