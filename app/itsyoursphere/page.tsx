@@ -1,6 +1,7 @@
 import { CHARITIES } from "./charity-data";
 import { CharityTile } from "./charity-tile";
 import { FlagOrb } from "./flag-orb";
+import { LeberchTile } from "./leberch-tile";
 import { IysTile } from "./mission-tile";
 import { RadioProvider, SchoolStereoTile } from "./radio-tiles";
 import { Scoreboard } from "./scoreboard";
@@ -32,6 +33,7 @@ export default function ItsYourSphere() {
               ))}
               <ShareTile />
               <IysTile />
+              <LeberchTile />
               {CHARITIES.slice(2).map((c) => (
                 <CharityTile key={c.short} charity={c} />
               ))}
