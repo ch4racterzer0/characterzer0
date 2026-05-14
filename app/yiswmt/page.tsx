@@ -36,13 +36,13 @@ export default function Yiswmt() {
               ))}
             </div>
 
-            {/* flag orb */}
-            <div className="mt-6 sm:mt-8 flex items-center justify-center">
+            {/* flag orb — pushed down on mobile so it sits closer to the figure */}
+            <div className="mt-auto sm:mt-8 flex items-center justify-center">
               <FlagOrb />
             </div>
 
-            {/* figure with flag drape — pushed to bottom on desktop, in-flow on mobile */}
-            <div className="mt-auto pt-6 sm:pt-0 flex flex-col items-center w-full">
+            {/* figure with flag drape — pushed to bottom on desktop, follows orb on mobile */}
+            <div className="mt-6 sm:mt-auto pt-0 sm:pt-0 flex flex-col items-center w-full">
               <div className="relative w-full max-w-md flex justify-center">
                 {/* mobile-only radio, anchored to bottom-left of figure */}
                 <div className="absolute bottom-0 left-0 z-20 origin-bottom-left scale-[0.7] sm:hidden">
