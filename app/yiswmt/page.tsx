@@ -4,7 +4,6 @@ import { FlagOrb } from "./flag-orb";
 import { MissionTile } from "./mission-tile";
 import { ArmyRadioTile, RadioProvider } from "./radio-tiles";
 import { ShareTile } from "./share-tile";
-import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
 
 export const dynamic = "force-dynamic";
 
@@ -24,9 +23,7 @@ export default function Yiswmt() {
     <>
       <style>{`.cz-chrome, .cz-orb-center { display: none !important; }`}</style>
       <RadioProvider>
-        <ThemeShifter>
-          <ThemeSwitch />
-          <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center px-3 sm:px-4 pt-3 sm:pt-6 pb-20 sm:pb-10">
+        <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center px-3 sm:px-4 pt-3 sm:pt-6 pb-20 sm:pb-10">
             {/* top tile row — wraps on mobile */}
             <div className="flex flex-row flex-wrap items-stretch justify-center gap-2 sm:gap-3 max-w-[95vw]">
               {CHARITIES.slice(0, 2).map((c) => (
@@ -134,7 +131,6 @@ export default function Yiswmt() {
               </p>
             </footer>
           </main>
-        </ThemeShifter>
       </RadioProvider>
     </>
   );
