@@ -278,15 +278,15 @@ export function TurntableTile() {
 
 const RADIO_BODY_STYLE = {
   background:
-    "linear-gradient(180deg, rgba(78,90,60,0.96) 0%, rgba(58,70,45,0.96) 45%, rgba(42,52,32,0.97) 100%)",
-  border: "1px solid rgba(30,38,22,0.95)",
+    "linear-gradient(180deg, rgba(48,46,44,0.97) 0%, rgba(30,28,26,0.97) 45%, rgba(18,16,14,0.98) 100%)",
+  border: "1px solid rgba(170,170,175,0.30)",
   boxShadow:
-    "inset 0 1px 0 rgba(180,190,150,0.18), inset 0 -1px 0 rgba(0,0,0,0.55), 0 6px 14px -6px rgba(0,0,0,0.85), 0 0 0 1px rgba(0,0,0,0.4)",
+    "inset 0 1px 0 rgba(220,220,225,0.18), inset 0 -1px 0 rgba(0,0,0,0.65), 0 6px 14px -6px rgba(0,0,0,0.85), 0 0 0 1px rgba(0,0,0,0.5)",
 } as const;
 
 const RIVET_STYLE = {
   background:
-    "radial-gradient(circle, rgba(120,130,95,1) 0%, rgba(40,48,28,1) 80%)",
+    "radial-gradient(circle, rgba(220,220,225,1) 0%, rgba(80,80,85,1) 80%)",
 } as const;
 
 function RadioRivets() {
@@ -339,7 +339,7 @@ function ChannelTile({
   );
 }
 
-export function ArmyRadioTile() {
+export function SchoolStereoTile() {
   const { playing, category, playCategory, toggle } = useRadio();
   const [orbPlaying, setOrbPlaying] = useState(false);
   const [pickerOpen, setPickerOpen] = useState(false);
@@ -408,14 +408,14 @@ export function ArmyRadioTile() {
       {pickerOpen && (
         <div className="absolute bottom-full left-0 right-0 mb-2 flex flex-col gap-1.5 z-30">
           <ChannelTile
-            label="tadashikeiji"
-            sub="country"
-            onClick={() => pick("tadashikeiji")}
+            label="memorial"
+            sub="slow · quiet"
+            onClick={() => pick("memorial")}
           />
           <ChannelTile
-            label="instrumental"
-            sub="anthem · grace"
-            onClick={() => pick("instrumental")}
+            label="tribute"
+            sub="songs · voices"
+            onClick={() => pick("tribute")}
           />
           {playing && (
             <ChannelTile label="stop" sub="off the air" onClick={stop} />
@@ -479,34 +479,34 @@ export function ArmyRadioTile() {
           className="mx-2.5 mt-2 h-8 rounded-sm"
           style={{
             background:
-              "linear-gradient(180deg, rgba(18,22,12,0.95) 0%, rgba(8,10,5,1) 100%)",
+              "linear-gradient(180deg, rgba(12,12,14,0.95) 0%, rgba(4,4,6,1) 100%)",
             backgroundImage:
-              "radial-gradient(circle, rgba(120,130,95,0.45) 0.6px, transparent 1.3px)",
+              "radial-gradient(circle, rgba(190,190,200,0.50) 0.6px, transparent 1.3px)",
             backgroundSize: "4px 4px",
             boxShadow:
-              "inset 0 1px 2px rgba(0,0,0,0.85), inset 0 -1px 0 rgba(160,170,130,0.10)",
+              "inset 0 1px 2px rgba(0,0,0,0.85), inset 0 -1px 0 rgba(220,220,225,0.10)",
           }}
         />
 
-        {/* AUDIO stencil + small PTT mark */}
+        {/* STEREO stencil + small PLAY mark */}
         <div className="relative flex items-end justify-between px-2.5 pb-2 pt-2">
           <span
             className="font-mono text-[10px] tracking-[0.3em] uppercase font-semibold"
             style={{
-              color: "rgba(225,220,200,0.85)",
-              textShadow: "0 1px 0 rgba(0,0,0,0.75)",
+              color: "rgba(230,230,235,0.88)",
+              textShadow: "0 1px 0 rgba(0,0,0,0.85)",
             }}
           >
-            audio
+            stereo
           </span>
           <span
             className="font-mono text-[7px] tracking-[0.25em] uppercase"
             style={{
-              color: "rgba(180,175,155,0.55)",
-              textShadow: "0 1px 0 rgba(0,0,0,0.7)",
+              color: "rgba(190,190,195,0.55)",
+              textShadow: "0 1px 0 rgba(0,0,0,0.85)",
             }}
           >
-            ptt
+            play
           </span>
         </div>
       </button>

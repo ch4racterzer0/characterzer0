@@ -11,39 +11,39 @@ export type Charity = {
 
 export const CHARITIES: Charity[] = [
   {
-    short: "CFP",
-    name: "Children of Fallen Patriots Foundation",
+    short: "SHP",
+    name: "Sandy Hook Promise",
     mission:
-      "College and trade-school scholarships, educational counseling, and career support for military children who lost a parent in the line of duty. Vision: every child of the fallen graduates debt-free.",
-    url: "https://fallenpatriots.org/",
-    donateUrl: "https://fallenpatriots.org/donate/?campaign=721104",
-    tone: "red",
-  },
-  {
-    short: "SOWF",
-    name: "Special Operations Warrior Foundation",
-    mission:
-      "Full college tuition, family services, and lifelong grief support for the surviving children of fallen or seriously wounded U.S. special operations personnel. From kindergarten through the day they graduate.",
-    url: "https://specialops.org/",
-    donateUrl: "https://specialops.org/donate/",
+      "Founded by family members of children and educators killed at Sandy Hook Elementary. Builds youth violence-prevention programs in schools across the country so kids see the warning signs before another child becomes a name.",
+    url: "https://www.sandyhookpromise.org/",
+    donateUrl: "https://www.sandyhookpromise.org/donate/",
     tone: "teal",
   },
   {
-    short: "SBX",
-    name: "Snowball Express — Gary Sinise Foundation",
+    short: "EVT",
+    name: "Everytown for Gun Safety",
     mission:
-      "Year-round programs and retreats for the children and surviving spouses of fallen military and first-responder heroes. Connection, community, and remembrance so no Gold Star family carries the loss alone.",
-    url: "https://www.garysinisefoundation.org/programs/honoring-families-of-fallen-heroes/",
-    donateUrl: "https://www.garysinisefoundation.org/donate",
-    tone: "yellow",
+      "The largest gun-violence-prevention organization in the country. Out-organizes the gun lobby in statehouses and at the ballot box, funds research, supports survivors, and pushes the policy fights that make schools safer.",
+    url: "https://www.everytown.org/",
+    donateUrl: "https://secure.everytown.org/a/donate",
+    tone: "red",
   },
   {
-    short: "ASC",
-    name: "A Soldier's Child Foundation",
+    short: "BDY",
+    name: "Brady — United Against Gun Violence",
     mission:
-      "Birthday celebrations every year until age 18, an annual summer camp, and college scholarships for the children of active-duty military who gave their lives in service to the United States.",
-    url: "https://asoldierschild.org/",
-    donateUrl: "https://asoldierschild.org/donate/",
+      "Named for James Brady, Reagan's press secretary, who was shot and paralyzed in 1981. The longest-running national gun-violence-prevention organization, taking on the gun lobby in court, in Congress, and inside the industry itself.",
+    url: "https://www.bradyunited.org/",
+    donateUrl: "https://www.bradyunited.org/donate",
     tone: "cream",
+  },
+  {
+    short: "MFL",
+    name: "March For Our Lives",
+    mission:
+      "Founded by the surviving students of Marjory Stoneman Douglas High School after the 2018 Parkland shooting. A youth-led movement organizing voters, marches, and policy fights to end gun violence in their generation, not the next one.",
+    url: "https://marchforourlives.com/",
+    donateUrl: "https://marchforourlives.com/donate/",
+    tone: "yellow",
   },
 ];

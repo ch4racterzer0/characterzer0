@@ -17,7 +17,7 @@ const BADGE_TEXT = "rgba(28,18,8,0.92)";
 const SCUFF =
   "radial-gradient(circle at 18% 22%, rgba(255,255,255,0.06) 0%, transparent 30%), radial-gradient(circle at 78% 75%, rgba(0,0,0,0.10) 0%, transparent 35%), radial-gradient(circle at 60% 30%, rgba(0,0,0,0.06) 0%, transparent 25%)";
 
-export function MissionTile() {
+export function IysTile() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -41,7 +41,7 @@ export function MissionTile() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        aria-label="YISWMT — Your Image Stays With Me Tonight"
+        aria-label="IYS — It's Your Sphere"
         className="relative inline-flex flex-col items-stretch w-14 sm:w-24 rounded-md overflow-hidden transition-transform hover:-translate-y-0.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/40"
         style={{
           background: BODY,
@@ -76,15 +76,15 @@ export function MissionTile() {
           />
         </span>
         <span
-          className="relative block px-1 sm:px-2 pt-2 pb-0.5 text-center font-mono font-bold uppercase text-[8px] sm:text-[10px]"
+          className="relative block px-1 sm:px-2 pt-2 pb-0.5 text-center font-mono font-bold uppercase text-[11px] sm:text-[14px]"
           style={{
             color: TEXT,
             textShadow:
               "0 1px 0 rgba(255,255,255,0.12), 0 -1px 0 rgba(0,0,0,0.45)",
-            letterSpacing: "0.08em",
+            letterSpacing: "0.18em",
           }}
         >
-          YISWMT
+          IYS
         </span>
         <span
           className="relative block px-1.5 pb-2 text-center font-mono uppercase tracking-[0.18em]"
@@ -95,7 +95,7 @@ export function MissionTile() {
             lineHeight: 1.3,
           }}
         >
-          request a spot
+          their sphere
         </span>
       </button>
 
@@ -106,7 +106,7 @@ export function MissionTile() {
             className="fixed inset-0 z-[80] flex items-center justify-center p-4 sm:p-8"
             role="dialog"
             aria-modal="true"
-            aria-label="Your Image Stays With Me Tonight"
+            aria-label="It's Your Sphere"
           >
             <button
               type="button"
@@ -213,7 +213,7 @@ export function MissionTile() {
                   className="font-mono uppercase tracking-[0.35em] text-[9px] mb-2"
                   style={{ color: SUB, textShadow: "0 1px 0 rgba(0,0,0,0.45)" }}
                 >
-                  · YISWMT ·
+                  · IYS ·
                 </p>
                 <h2
                   className="font-mono text-xl sm:text-2xl uppercase tracking-[0.12em] font-bold mb-5"
@@ -223,21 +223,23 @@ export function MissionTile() {
                       "0 1px 0 rgba(255,255,255,0.16), 0 -1px 0 rgba(0,0,0,0.45)",
                   }}
                 >
-                  Your Image Stays
+                  It&rsquo;s Your
                   <br />
-                  With Me Tonight
+                  Sphere
                 </h2>
 
                 <div className="space-y-4 text-sm leading-relaxed" style={{ color: TEXT }}>
                   <p>
-                    A place to remember anyone who died in service to this
-                    country. Not a name in a database — a face, a story, a
-                    moment held in the dark.
+                    A place to remember anyone — child, teacher, staff,
+                    parent — killed by a gun inside a school in this country.
+                    Not a casualty count. A face, a name, a story their
+                    family wants the rest of us to know.
                   </p>
                   <p>
-                    Any family of a fallen service member can request a spot
+                    Any family who lost someone this way can request a spot
                     here. We post the picture, the dates, and anything you
-                    want said. Every branch. Every conflict. Every year.
+                    want said. Every grade. Every state. Every year. Until
+                    the year there is nothing new to add.
                   </p>
                   <p
                     className="font-semibold tracking-[0.08em] uppercase text-center pt-2"
@@ -250,64 +252,7 @@ export function MissionTile() {
                     no charge · no receipt needed
                   </p>
                   <p className="text-center text-sm italic" style={{ color: SUB }}>
-                    The promise is in the name. Their image stays with us
-                    tonight.
-                  </p>
-                </div>
-
-                {/* apology callout — about the placeholder faces in the orb */}
-                <div
-                  className="mt-6 rounded-sm px-4 py-4"
-                  style={{
-                    background:
-                      "linear-gradient(180deg, rgba(225,180,90,0.10) 0%, rgba(180,140,55,0.06) 100%)",
-                    border: "1px solid rgba(225,180,90,0.45)",
-                    boxShadow:
-                      "inset 0 1px 0 rgba(255,255,255,0.08), 0 0 18px rgba(225,180,90,0.12)",
-                  }}
-                >
-                  <p
-                    className="font-mono uppercase tracking-[0.30em] text-[8px] mb-2"
-                    style={{
-                      color: "rgba(245,210,140,0.95)",
-                      textShadow: "0 0 10px rgba(225,180,90,0.40)",
-                    }}
-                  >
-                    · about the faces in the orb ·
-                  </p>
-                  <p
-                    className="text-sm leading-relaxed"
-                    style={{ color: "rgba(245,235,215,0.95)" }}
-                  >
-                    i greatly apologize for any offense i may have caused with
-                    the pictures i pulled off the internet. i want these to be
-                    real submissions, but i had to start with something to
-                    illustrate the idea.
-                  </p>
-                  <p
-                    className="mt-3 text-sm leading-relaxed"
-                    style={{ color: "rgba(245,235,215,0.95)" }}
-                  >
-                    they will come down the second you ask. i picked every one
-                    of these for a reason, not on a whim. none of the people
-                    in the pictures, to my best knowledge, have been killed —
-                    i&rsquo;m not suggesting that with my selection.
-                    i&rsquo;m suggesting these are the exact people this site
-                    was made for. i wish everyone out there a safe return,
-                    and this is a place every family can come together.
-                  </p>
-                  <p
-                    className="mt-3 text-sm italic leading-relaxed"
-                    style={{ color: "rgba(245,235,215,0.78)" }}
-                  >
-                    they are just a face for an idea. i&rsquo;m sorry i
-                    &ldquo;stole their face.&rdquo;
-                  </p>
-                  <p
-                    className="mt-2 font-mono text-[10px] tracking-[0.15em]"
-                    style={{ color: "rgba(245,235,215,0.45)" }}
-                  >
-                    (grateful dead hidden message ;)
+                    The promise is in the name. This is their sphere now.
                   </p>
                 </div>
 
@@ -329,7 +274,7 @@ export function MissionTile() {
 
                 <div className="mt-6">
                   <a
-                    href="mailto:yiswmt@characterzer0.com?subject=Request%20a%20spot%20-%20YISWMT"
+                    href="mailto:iys@characterzer0.com?subject=Request%20a%20spot%20-%20IYS"
                     className="block w-full text-center font-mono uppercase tracking-[0.3em] text-xs font-bold px-4 py-3 rounded-sm transition-transform hover:-translate-y-0.5"
                     style={{
                       color: BADGE_TEXT,
@@ -347,7 +292,7 @@ export function MissionTile() {
                     className="mt-3 font-mono text-[9px] uppercase tracking-[0.25em] text-center"
                     style={{ color: SUB }}
                   >
-                    write to YISWMT — we answer.
+                    write to IYS — we answer.
                   </p>
                 </div>
               </div>

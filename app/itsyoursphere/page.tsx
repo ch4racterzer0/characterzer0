@@ -1,8 +1,9 @@
 import { CHARITIES } from "./charity-data";
 import { CharityTile } from "./charity-tile";
 import { FlagOrb } from "./flag-orb";
-import { MissionTile } from "./mission-tile";
-import { ArmyRadioTile, RadioProvider } from "./radio-tiles";
+import { IysTile } from "./mission-tile";
+import { RadioProvider, SchoolStereoTile } from "./radio-tiles";
+import { Scoreboard } from "./scoreboard";
 import { ShareTile } from "./share-tile";
 
 export const dynamic = "force-dynamic";
@@ -24,13 +25,13 @@ export default function ItsYourSphere() {
       <style>{`.cz-chrome, .cz-orb-center { display: none !important; }`}</style>
       <RadioProvider>
         <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center px-2 sm:px-4 pt-3 sm:pt-6 pb-20 sm:pb-10">
-            {/* top tile row — wraps on mobile */}
+            {/* top tile row — 4 anti-gun-violence charities + SHARE + IYS, wraps on mobile */}
             <div className="flex flex-row flex-wrap items-stretch justify-center gap-1 sm:gap-3 max-w-[95vw]">
               {CHARITIES.slice(0, 2).map((c) => (
                 <CharityTile key={c.short} charity={c} />
               ))}
               <ShareTile />
-              <MissionTile />
+              <IysTile />
               {CHARITIES.slice(2).map((c) => (
                 <CharityTile key={c.short} charity={c} />
               ))}
@@ -44,9 +45,13 @@ export default function ItsYourSphere() {
             {/* figure with flag drape — pushed to bottom on desktop, follows orb on mobile */}
             <div className="mt-6 sm:mt-auto pt-0 sm:pt-0 flex flex-col items-center w-full">
               <div className="relative w-full max-w-md flex justify-center">
-                {/* mobile-only radio, anchored to bottom-left of figure */}
+                {/* mobile-only stereo, anchored to bottom-left of figure */}
                 <div className="absolute bottom-0 left-0 z-20 origin-bottom-left scale-[0.7] sm:hidden">
-                  <ArmyRadioTile />
+                  <SchoolStereoTile />
+                </div>
+                {/* mobile-only scoreboard, mirror anchored to bottom-right of figure */}
+                <div className="absolute bottom-0 right-0 z-20 origin-bottom-right scale-[0.7] sm:hidden">
+                  <Scoreboard />
                 </div>
                 <div
                   className="relative h-[22vh] sm:h-[28vh] aspect-[3/2]"
@@ -119,9 +124,14 @@ export default function ItsYourSphere() {
               </div>
             </div>
 
-            {/* army radio — desktop only (mobile copy is anchored to figure container) */}
+            {/* school stereo — desktop only, left of figure (mobile copy is anchored to figure container) */}
             <div className="hidden sm:block sm:absolute sm:bottom-8 sm:left-[clamp(2rem,calc(50%-22rem),28rem)]">
-              <ArmyRadioTile />
+              <SchoolStereoTile />
+            </div>
+
+            {/* scoreboard — desktop only, mirror right of figure */}
+            <div className="hidden sm:block sm:absolute sm:bottom-8 sm:right-[clamp(2rem,calc(50%-22rem),28rem)]">
+              <Scoreboard />
             </div>
 
             {/* credit footer */}
