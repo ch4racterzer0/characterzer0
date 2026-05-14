@@ -67,14 +67,24 @@ export default function ContactPage() {
               telephone
             </dt>
             <dd className="text-blue-100 tracking-[0.15em] tabular-nums">
-              (XXX) XXX-XXXX
+              <a
+                href="tel:+18027344810"
+                className="hover:text-white transition-colors"
+              >
+                (802) 734-4810
+              </a>
             </dd>
 
             <dt className="text-blue-200/65 text-[10px] sm:text-xs tracking-[0.35em] uppercase pt-1">
               electronic
             </dt>
             <dd className="text-blue-100 break-all">
-              characterzer0@characterzer0.com
+              <a
+                href="mailto:characterzer0@characterzer0.com"
+                className="hover:text-white transition-colors"
+              >
+                characterzer0@characterzer0.com
+              </a>
               <br />
               <span className="text-blue-200/55 text-[10px] sm:text-xs tracking-[0.25em] uppercase italic">
                 programmed to only accept its own tld
@@ -85,21 +95,35 @@ export default function ContactPage() {
               press
             </dt>
             <dd className="text-blue-100 break-all">
-              press@characterzer0.com
+              <a
+                href="mailto:press@characterzer0.com"
+                className="hover:text-white transition-colors"
+              >
+                press@characterzer0.com
+              </a>
             </dd>
 
             <dt className="text-blue-200/65 text-[10px] sm:text-xs tracking-[0.35em] uppercase pt-1">
               legal
             </dt>
             <dd className="text-blue-100 break-all">
-              counsel@characterzer0.com
+              <a
+                href="mailto:counsel@characterzer0.com"
+                className="hover:text-white transition-colors"
+              >
+                counsel@characterzer0.com
+              </a>
             </dd>
 
             <dt className="text-blue-200/65 text-[10px] sm:text-xs tracking-[0.35em] uppercase pt-1">
               post
             </dt>
-            <dd className="text-blue-200/55 italic text-xs sm:text-sm">
-              address pending
+            <dd className="text-blue-100 leading-relaxed">
+              Roger Woolfe
+              <br />
+              555 Stange Desine Way
+              <br />
+              Burlington, VT 45047
             </dd>
 
             <dt className="text-blue-200/65 text-[10px] sm:text-xs tracking-[0.35em] uppercase pt-1">
