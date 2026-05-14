@@ -1,5 +1,6 @@
 import { CHARITIES } from "./charity-data";
 import { CharityTile } from "./charity-tile";
+import { FlagOrb } from "./flag-orb";
 import { MobileLanding } from "./mobile-landing";
 import { ArmyRadioTile, RadioProvider } from "./radio-tiles";
 import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
@@ -34,6 +35,9 @@ export default function Yiswmt() {
               {CHARITIES.map((c) => (
                 <CharityTile key={c.short} charity={c} />
               ))}
+            </div>
+            <div className="absolute top-[16vh] left-1/2 -translate-x-1/2 flex items-center justify-center">
+              <FlagOrb />
             </div>
             <div
               className="relative h-[28vh] aspect-[3/2]"
