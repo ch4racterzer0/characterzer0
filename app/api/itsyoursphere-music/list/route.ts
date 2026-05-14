@@ -6,8 +6,7 @@ export const dynamic = "force-dynamic";
 const AUDIO_EXT = /\.(mp3|m4a|flac|ogg|aac|opus|wav)$/i;
 
 const CATEGORIES: Record<string, string> = {
-  sad: "itsyoursphere-music/sad/",
-  hope: "itsyoursphere-music/hope/",
+  still: "itsyoursphere-music/still-with-us/",
 };
 
 function shuffle<T>(arr: T[]): T[] {
@@ -22,7 +21,8 @@ function shuffle<T>(arr: T[]): T[] {
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const cat = searchParams.get("cat");
-  const prefix = cat && CATEGORIES[cat] ? CATEGORIES[cat] : "itsyoursphere-music/";
+  const prefix =
+    cat && CATEGORIES[cat] ? CATEGORIES[cat] : CATEGORIES.still;
 
   let tracks: { name: string; url: string }[] = [];
   try {
