@@ -279,17 +279,19 @@ export function TurntableTile() {
   );
 }
 
+// Kid's record player body — warm cream plastic, vintage Fisher-Price vibe
 const RADIO_BODY_STYLE = {
   background:
-    "linear-gradient(180deg, rgba(48,46,44,0.97) 0%, rgba(30,28,26,0.97) 45%, rgba(18,16,14,0.98) 100%)",
-  border: "1px solid rgba(170,170,175,0.30)",
+    "linear-gradient(180deg, rgba(248,235,200,0.97) 0%, rgba(232,212,170,0.97) 45%, rgba(208,184,140,0.98) 100%)",
+  border: "1px solid rgba(140,98,52,0.65)",
   boxShadow:
-    "inset 0 1px 0 rgba(220,220,225,0.18), inset 0 -1px 0 rgba(0,0,0,0.65), 0 6px 14px -6px rgba(0,0,0,0.85), 0 0 0 1px rgba(0,0,0,0.5)",
+    "inset 0 1.5px 0 rgba(255,250,230,0.65), inset 0 -1.5px 0 rgba(120,80,40,0.40), 0 6px 14px -6px rgba(0,0,0,0.55), 0 0 0 1px rgba(80,55,25,0.35)",
 } as const;
 
+// Small colored "screws" on the toy body
 const RIVET_STYLE = {
   background:
-    "radial-gradient(circle, rgba(220,220,225,1) 0%, rgba(80,80,85,1) 80%)",
+    "radial-gradient(circle, rgba(195,55,40,0.95) 0%, rgba(120,30,20,0.95) 80%)",
 } as const;
 
 function RadioRivets() {
@@ -332,8 +334,8 @@ function ChannelTile({
       <span
         className="block px-2.5 pt-2 pb-0.5 font-mono uppercase text-[10px] tracking-[0.25em] font-semibold text-center"
         style={{
-          color: "rgba(225,220,200,0.92)",
-          textShadow: "0 1px 0 rgba(0,0,0,0.75)",
+          color: "rgba(80,48,18,0.92)",
+          textShadow: "0 1px 0 rgba(255,250,230,0.55)",
         }}
       >
         {label}
@@ -341,8 +343,8 @@ function ChannelTile({
       <span
         className="block px-2 pb-0.5 font-mono uppercase text-[7px] tracking-[0.2em] text-center"
         style={{
-          color: "rgba(180,175,155,0.7)",
-          textShadow: "0 1px 0 rgba(0,0,0,0.7)",
+          color: "rgba(120,80,40,0.78)",
+          textShadow: "0 1px 0 rgba(255,250,230,0.45)",
         }}
       >
         {sub}
@@ -351,9 +353,9 @@ function ChannelTile({
         className="block px-2 pb-2 pt-0.5 font-mono uppercase text-[7px] tracking-[0.25em] text-center"
         style={{
           color: empty
-            ? "rgba(180,175,155,0.55)"
-            : "rgba(255,180,80,0.85)",
-          textShadow: "0 1px 0 rgba(0,0,0,0.7)",
+            ? "rgba(140,100,55,0.55)"
+            : "rgba(180,55,40,0.95)",
+          textShadow: "0 1px 0 rgba(255,250,230,0.40)",
         }}
       >
         {count === undefined
@@ -505,9 +507,9 @@ export function SchoolStereoTile() {
 
   return (
     <div ref={wrapperRef} className="relative inline-flex flex-col items-stretch w-[6.5rem] sm:w-28">
-      {/* desktop picker — inline, anchored above the stereo */}
+      {/* desktop picker — inline, anchored above the stereo at the stereo's own width */}
       {pickerOpen && !isMobile && (
-        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 flex flex-col gap-1.5 z-30 w-[20rem] max-h-[80vh] overflow-y-auto">
+        <div className="absolute bottom-full left-0 right-0 mb-2 flex flex-col gap-1.5 z-30 max-h-[80vh] overflow-y-auto">
           {pickerContent}
         </div>
       )}
@@ -569,67 +571,133 @@ export function SchoolStereoTile() {
       >
         <RadioRivets />
 
-        {/* top status row: lamp + label */}
+        {/* top status row: power lamp + label */}
         <div className="relative flex items-center justify-between px-2.5 pt-2">
           <span
             aria-hidden
             className="relative w-2 h-2 rounded-full"
             style={{
               background: dead
-                ? "rgba(60,55,40,0.9)"
+                ? "rgba(120,90,55,0.6)"
                 : playing
-                  ? "radial-gradient(circle, rgba(255,180,80,1) 0%, rgba(220,80,30,0.95) 60%, rgba(120,30,10,0.95) 100%)"
-                  : "radial-gradient(circle, rgba(150,110,50,0.85) 0%, rgba(90,60,25,0.9) 70%, rgba(50,35,18,0.95) 100%)",
+                  ? "radial-gradient(circle, rgba(255,210,120,1) 0%, rgba(220,80,40,0.95) 60%, rgba(140,40,20,0.95) 100%)"
+                  : "radial-gradient(circle, rgba(180,140,80,0.85) 0%, rgba(120,80,40,0.9) 70%, rgba(80,55,25,0.95) 100%)",
               boxShadow: playing
                 ? "0 0 6px rgba(255,140,40,0.85), 0 0 14px rgba(220,80,30,0.55)"
-                : "0 0 2px rgba(120,80,30,0.4) inset",
+                : "inset 0 1px 1px rgba(0,0,0,0.35)",
             }}
           />
           <span
-            className="font-mono text-[8px] tracking-[0.3em] uppercase"
+            className="font-mono text-[8px] tracking-[0.3em] uppercase font-semibold"
             style={{
-              color: "rgba(220,215,195,0.78)",
-              textShadow: "0 1px 0 rgba(0,0,0,0.7)",
+              color: "rgba(95,55,18,0.85)",
+              textShadow: "0 1px 0 rgba(255,250,230,0.50)",
             }}
           >
             {statusLabel}
           </span>
         </div>
 
-        {/* speaker grille */}
-        <div
-          aria-hidden
-          className="mx-2.5 mt-2 h-8 rounded-sm"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(12,12,14,0.95) 0%, rgba(4,4,6,1) 100%)",
-            backgroundImage:
-              "radial-gradient(circle, rgba(190,190,200,0.50) 0.6px, transparent 1.3px)",
-            backgroundSize: "4px 4px",
-            boxShadow:
-              "inset 0 1px 2px rgba(0,0,0,0.85), inset 0 -1px 0 rgba(220,220,225,0.10)",
-          }}
-        />
-
-        {/* STEREO stencil + small PLAY mark */}
-        <div className="relative flex items-end justify-between px-2.5 pb-2 pt-2">
-          <span
-            className="font-mono text-[10px] tracking-[0.3em] uppercase font-semibold"
+        {/* turntable — vinyl + tone arm + spindle (the kid's-record-player centerpiece) */}
+        <div className="relative mx-3 mt-1.5 mb-1">
+          <div
+            aria-hidden
+            className="relative aspect-square rounded-full overflow-hidden"
             style={{
-              color: "rgba(230,230,235,0.88)",
-              textShadow: "0 1px 0 rgba(0,0,0,0.85)",
+              background:
+                "radial-gradient(circle at 50% 50%, rgba(35,25,18,0.98) 0%, rgba(18,12,8,0.98) 70%, rgba(8,6,4,0.98) 100%)",
+              boxShadow:
+                "inset 0 1px 3px rgba(0,0,0,0.65), inset 0 0 0 1px rgba(120,80,40,0.45), 0 1px 2px rgba(0,0,0,0.45)",
             }}
           >
-            stereo
+            {/* concentric grooves on the vinyl */}
+            <span
+              aria-hidden
+              className="absolute inset-[6%] rounded-full"
+              style={{
+                background:
+                  "repeating-radial-gradient(circle at 50% 50%, rgba(0,0,0,0.8) 0px, rgba(0,0,0,0.8) 1px, rgba(60,42,28,0.55) 2px, rgba(60,42,28,0.55) 3px)",
+                opacity: 0.55,
+              }}
+            />
+            {/* red center label */}
+            <span
+              aria-hidden
+              className="absolute inset-[35%] rounded-full"
+              style={{
+                background:
+                  "radial-gradient(circle at 50% 35%, rgba(220,75,55,0.98) 0%, rgba(170,40,28,0.98) 70%, rgba(120,25,18,0.98) 100%)",
+                boxShadow:
+                  "inset 0 1px 0 rgba(255,180,150,0.45), 0 0 0 0.5px rgba(0,0,0,0.5)",
+              }}
+            />
+            {/* gold spindle in the center */}
+            <span
+              aria-hidden
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+              style={{
+                width: "8%",
+                height: "8%",
+                background:
+                  "radial-gradient(circle, rgba(255,225,150,1) 0%, rgba(200,160,90,1) 60%, rgba(140,100,50,1) 100%)",
+                boxShadow: "0 0 1px rgba(0,0,0,0.55)",
+              }}
+            />
+          </div>
+          {/* chrome tone arm — pivot from upper-right corner, angled across the vinyl */}
+          <span
+            aria-hidden
+            className="absolute"
+            style={{
+              top: "-8%",
+              right: "-6%",
+              width: "62%",
+              height: "12%",
+              background:
+                "linear-gradient(180deg, rgba(235,235,240,0.95) 0%, rgba(190,190,200,0.95) 50%, rgba(140,140,150,0.95) 100%)",
+              transformOrigin: "100% 50%",
+              transform: "rotate(38deg)",
+              borderRadius: "2px 1px 1px 2px",
+              boxShadow:
+                "0 1px 2px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.50)",
+            }}
+          />
+          {/* tone arm pivot dot at the top-right corner */}
+          <span
+            aria-hidden
+            className="absolute rounded-full"
+            style={{
+              top: "-12%",
+              right: "-10%",
+              width: "14%",
+              height: "14%",
+              background:
+                "radial-gradient(circle, rgba(220,220,225,1) 0%, rgba(120,120,130,1) 80%)",
+              boxShadow:
+                "0 1px 2px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.55)",
+            }}
+          />
+        </div>
+
+        {/* PLAY label + small "stereo" mark */}
+        <div className="relative flex items-end justify-between px-2.5 pb-2 pt-1">
+          <span
+            className="font-mono text-[10px] tracking-[0.3em] uppercase font-bold"
+            style={{
+              color: "rgba(180,55,40,0.95)",
+              textShadow: "0 1px 0 rgba(255,250,230,0.55)",
+            }}
+          >
+            play
           </span>
           <span
             className="font-mono text-[7px] tracking-[0.25em] uppercase"
             style={{
-              color: "rgba(190,190,195,0.55)",
-              textShadow: "0 1px 0 rgba(0,0,0,0.85)",
+              color: "rgba(120,80,40,0.65)",
+              textShadow: "0 1px 0 rgba(255,250,230,0.45)",
             }}
           >
-            play
+            stereo
           </span>
         </div>
       </button>
