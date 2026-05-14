@@ -214,7 +214,65 @@ export function ShareTile() {
                   </p>
                 </div>
 
-                <div className="mt-7 space-y-2">
+                {/* Live article preview clipped from sharethebyline */}
+                <a
+                  href="https://sharethebyline.com/honoring-fallen-soldiers-a-new-initiative-celebrates-their-s-mp5gk03i"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block mt-6 rounded-sm px-5 py-5 transition-transform hover:-translate-y-0.5"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, rgba(248,243,232,0.98) 0%, rgba(238,230,210,0.98) 100%)",
+                    border: "1px solid rgba(80,60,40,0.35)",
+                    boxShadow:
+                      "0 4px 12px -2px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.6)",
+                  }}
+                >
+                  <p
+                    className="font-mono text-[9px] tracking-[0.35em] uppercase mb-2"
+                    style={{ color: "rgba(80,60,40,0.65)" }}
+                  >
+                    the world
+                  </p>
+                  <h3
+                    className="text-base sm:text-lg leading-snug mb-2"
+                    style={{
+                      color: "rgba(28,22,16,0.92)",
+                      fontFamily:
+                        "Georgia, 'Times New Roman', Times, serif",
+                      fontWeight: 600,
+                    }}
+                  >
+                    Honoring Fallen Soldiers: A New Initiative Celebrates
+                    Their Stories
+                  </h3>
+                  <p
+                    className="text-xs sm:text-sm italic leading-snug mb-3"
+                    style={{
+                      color: "rgba(60,46,32,0.82)",
+                      fontFamily:
+                        "Georgia, 'Times New Roman', Times, serif",
+                    }}
+                  >
+                    A new platform, www.yiswmt.com, has been launched to honor
+                    the stories and sacrifices of U.S. soldiers who gave their
+                    lives in service.
+                  </p>
+                  <p
+                    className="font-mono text-[9px] tracking-[0.25em] uppercase"
+                    style={{ color: "rgba(80,60,40,0.55)" }}
+                  >
+                    by YISWMT &amp; ELLA · May 14, 2026
+                  </p>
+                  <p
+                    className="mt-3 font-mono text-[8px] tracking-[0.3em] uppercase"
+                    style={{ color: "rgba(80,60,40,0.45)" }}
+                  >
+                    read on sharethebyline →
+                  </p>
+                </a>
+
+                <div className="mt-5">
                   <a
                     href="https://sharethebyline.com"
                     target="_blank"
@@ -231,20 +289,6 @@ export function ShareTile() {
                     }}
                   >
                     Share the byline →
-                  </a>
-                  <a
-                    href="https://sharethebyline.com/honoring-fallen-soldiers-a-new-initiative-celebrates-their-s-mp5gk03i"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full text-center font-mono uppercase tracking-[0.25em] text-[10px] px-4 py-2.5 rounded-sm transition-transform hover:-translate-y-0.5"
-                    style={{
-                      color: TEXT,
-                      background: "rgba(0,0,0,0.22)",
-                      border: `1px solid ${BORDER}`,
-                      textShadow: "0 1px 0 rgba(0,0,0,0.45)",
-                    }}
-                  >
-                    read the announcement →
                   </a>
                   <p
                     className="mt-3 font-mono text-[9px] uppercase tracking-[0.25em] text-center"
