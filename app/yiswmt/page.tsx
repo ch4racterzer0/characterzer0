@@ -32,11 +32,11 @@ export default function Yiswmt() {
               {CHARITIES.slice(0, 2).map((c) => (
                 <CharityTile key={c.short} charity={c} />
               ))}
+              <ShareTile />
               <MissionTile />
               {CHARITIES.slice(2).map((c) => (
                 <CharityTile key={c.short} charity={c} />
               ))}
-              <ShareTile />
             </div>
 
             {/* flag orb */}
