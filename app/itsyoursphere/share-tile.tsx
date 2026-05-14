@@ -170,7 +170,7 @@ export function ShareTile() {
                 ×
               </button>
 
-              <div className="relative px-6 sm:px-7 pt-7 pb-7 overflow-y-auto">
+              <div className="relative px-6 sm:px-7 pt-7 pb-7 overflow-y-auto overscroll-contain">
                 <p
                   className="font-mono uppercase tracking-[0.35em] text-[9px] mb-2"
                   style={{ color: SUB, textShadow: "0 1px 0 rgba(0,0,0,0.45)" }}
@@ -241,6 +241,21 @@ export function ShareTile() {
                     external — opens in new tab
                   </p>
                 </div>
+
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  aria-label="close"
+                  className="mt-6 w-full text-center font-mono uppercase tracking-[0.3em] text-xs px-4 py-4 rounded-sm transition-transform hover:-translate-y-0.5"
+                  style={{
+                    color: TEXT,
+                    background: "rgba(0,0,0,0.30)",
+                    border: `1px solid ${BORDER}`,
+                    textShadow: "0 1px 0 rgba(0,0,0,0.45)",
+                  }}
+                >
+                  × close
+                </button>
               </div>
             </div>
           </div>,

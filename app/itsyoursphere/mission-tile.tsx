@@ -170,7 +170,7 @@ export function IysTile() {
                 ×
               </button>
 
-              <div className="relative px-6 sm:px-7 pt-7 pb-7 overflow-y-auto">
+              <div className="relative px-6 sm:px-7 pt-7 pb-7 overflow-y-auto overscroll-contain">
                 {/* mobile-only notice — this site isn't designed for phones */}
                 <div
                   className="sm:hidden mb-6 rounded-sm px-4 py-4"
@@ -332,6 +332,21 @@ export function IysTile() {
                     write to IYS — we answer.
                   </p>
                 </div>
+
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  aria-label="close"
+                  className="mt-6 w-full text-center font-mono uppercase tracking-[0.3em] text-xs px-4 py-4 rounded-sm transition-transform hover:-translate-y-0.5"
+                  style={{
+                    color: TEXT,
+                    background: "rgba(0,0,0,0.30)",
+                    border: `1px solid ${BORDER}`,
+                    textShadow: "0 1px 0 rgba(0,0,0,0.45)",
+                  }}
+                >
+                  × close
+                </button>
               </div>
             </div>
           </div>,
