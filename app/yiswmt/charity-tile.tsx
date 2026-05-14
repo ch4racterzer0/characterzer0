@@ -210,13 +210,14 @@ export function CharityTile({ charity }: { charity: Charity }) {
                 type="button"
                 onClick={() => setOpen(false)}
                 aria-label="close"
-                className="absolute top-1.5 right-2 z-10 font-mono text-base leading-none w-6 h-6 flex items-center justify-center rounded-sm"
+                className="absolute top-2 right-2 z-20 font-mono text-2xl font-bold leading-none w-10 h-10 flex items-center justify-center rounded-md"
                 style={{
-                  color: tone.text,
-                  textShadow:
-                    "0 1px 0 rgba(255,255,255,0.18), 0 -1px 0 rgba(0,0,0,0.30)",
-                  background: "rgba(0,0,0,0.18)",
+                  color: tone.badgeText,
+                  background: tone.badge,
                   border: `1px solid ${tone.border}`,
+                  boxShadow:
+                    "inset 0 1.5px 0 rgba(255,255,255,0.30), 0 2px 6px rgba(0,0,0,0.55)",
+                  textShadow: "0 1px 0 rgba(255,255,255,0.25)",
                 }}
               >
                 ×
