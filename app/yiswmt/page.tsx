@@ -33,8 +33,11 @@ export default function Yiswmt() {
               <ArmyRadioTile />
             </div>
             <div className="absolute top-6 left-1/2 -translate-x-1/2 flex flex-row items-stretch gap-2 sm:gap-3">
+              {CHARITIES.slice(0, 2).map((c) => (
+                <CharityTile key={c.short} charity={c} />
+              ))}
               <MissionTile />
-              {CHARITIES.map((c) => (
+              {CHARITIES.slice(2).map((c) => (
                 <CharityTile key={c.short} charity={c} />
               ))}
             </div>
