@@ -190,14 +190,16 @@ export function ShareTile() {
 
                 <div className="space-y-4 text-sm leading-relaxed" style={{ color: TEXT }}>
                   <p>
-                    This page was built by someone with no military family of
-                    their own — only the shared loneliness, and the need to do
-                    something with it.
+                    This page was built by someone with no child of their own
+                    inside one of those classrooms — only the disbelief that
+                    we keep doing this, and the need to do something with it.
                   </p>
                   <p>
                     Take what you have of the one you&rsquo;ve lost. Words,
-                    images, what was said at the table on the bad nights. Put
-                    it where someone you have not met yet can find it.
+                    pictures, the joke they told at breakfast that morning,
+                    the drawing on the fridge. Put it where someone you have
+                    not met yet can find it. Make them a person again, not a
+                    body count.
                   </p>
                   <p>
                     <span className="font-semibold">sharethebyline.com</span> is
@@ -209,68 +211,10 @@ export function ShareTile() {
                     style={{ color: SUB }}
                   >
                     The ask is small. Leave a trace. Prove from the dark,
-                    from the anonymous, from the deep that bringing your
-                    worlds together makes a difference.
+                    from the anonymous, from the deep, that the next
+                    classroom door does not have to be the next headline.
                   </p>
                 </div>
-
-                {/* Live article preview clipped from sharethebyline */}
-                <a
-                  href="https://sharethebyline.com/honoring-fallen-soldiers-a-new-initiative-celebrates-their-s-mp5gk03i"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block mt-6 rounded-sm px-5 py-5 transition-transform hover:-translate-y-0.5"
-                  style={{
-                    background:
-                      "linear-gradient(180deg, rgba(248,243,232,0.98) 0%, rgba(238,230,210,0.98) 100%)",
-                    border: "1px solid rgba(80,60,40,0.35)",
-                    boxShadow:
-                      "0 4px 12px -2px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.6)",
-                  }}
-                >
-                  <p
-                    className="font-mono text-[9px] tracking-[0.35em] uppercase mb-2"
-                    style={{ color: "rgba(80,60,40,0.65)" }}
-                  >
-                    the world
-                  </p>
-                  <h3
-                    className="text-base sm:text-lg leading-snug mb-2"
-                    style={{
-                      color: "rgba(28,22,16,0.92)",
-                      fontFamily:
-                        "Georgia, 'Times New Roman', Times, serif",
-                      fontWeight: 600,
-                    }}
-                  >
-                    Honoring Fallen Soldiers: A New Initiative Celebrates
-                    Their Stories
-                  </h3>
-                  <p
-                    className="text-xs sm:text-sm italic leading-snug mb-3"
-                    style={{
-                      color: "rgba(60,46,32,0.82)",
-                      fontFamily:
-                        "Georgia, 'Times New Roman', Times, serif",
-                    }}
-                  >
-                    A new platform, www.yiswmt.com, has been launched to honor
-                    the stories and sacrifices of U.S. soldiers who gave their
-                    lives in service.
-                  </p>
-                  <p
-                    className="font-mono text-[9px] tracking-[0.25em] uppercase"
-                    style={{ color: "rgba(80,60,40,0.55)" }}
-                  >
-                    by YISWMT &amp; ELLA · May 14, 2026
-                  </p>
-                  <p
-                    className="mt-3 font-mono text-[8px] tracking-[0.3em] uppercase"
-                    style={{ color: "rgba(80,60,40,0.45)" }}
-                  >
-                    read on sharethebyline →
-                  </p>
-                </a>
 
                 <div className="mt-5">
                   <a

@@ -1,41 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-const ORB_FLAGS = [
-  "/flags/flag-marines.png",
-  "/flags/flag-army.png",
-  "/flags/flag-navy.png",
-  "/flags/flag-airforce.png",
-  "/flags/flag-spaceforce.png",
-  "/flags/flag-coastguard.png",
+// Flags currently empty for /itsyoursphere — this isn't a service-branch
+// memorial. Add flag/symbol art here when the user picks the right imagery.
+const ORB_FLAGS: string[] = [];
+
+const STATIC_WORDS = [
+  "REMEMBER",
+  "LOVE",
+  "NEVER FORGET",
+  "ENOUGH",
+  "STILL HERE",
+  "THEY MATTERED",
+  "NOT NUMBERS",
+  "ALWAYS",
 ];
 
 type OrbItem =
   | { kind: "face"; src: string }
   | { kind: "word"; text: string };
-
-const ORB_OVERLAY: OrbItem[] = [
-  { kind: "face", src: "/orb-faces/face-01.avif" },
-  { kind: "face", src: "/orb-faces/face-02.jpg" },
-  { kind: "word", text: "REMEMBER" },
-  { kind: "face", src: "/orb-faces/face-03.jpg" },
-  { kind: "face", src: "/orb-faces/face-04.jpg" },
-  { kind: "word", text: "LOVE" },
-  { kind: "face", src: "/orb-faces/face-05.webp" },
-  { kind: "face", src: "/orb-faces/face-06.jpg" },
-  { kind: "word", text: "NEVER FORGET" },
-  { kind: "face", src: "/orb-faces/face-07.jpg" },
-  { kind: "face", src: "/orb-faces/face-08.jpg" },
-  { kind: "word", text: "HONOR" },
-  { kind: "face", src: "/orb-faces/face-09.jpg" },
-  { kind: "face", src: "/orb-faces/face-10.jpg" },
-  { kind: "word", text: "THANK YOU" },
-  { kind: "face", src: "/orb-faces/face-11.jpg" },
-  { kind: "face", src: "/orb-faces/face-12.jpg" },
-  { kind: "word", text: "STILL HERE" },
-  { kind: "face", src: "/orb-faces/face-13.jpg" },
-];
 
 const HOLD_MS = 4500;
 const FADE_MS = 1500;
@@ -48,8 +32,49 @@ const WORD_PEAK_OPACITY = 0.85;
 export function FlagOrb() {
   const [idx, setIdx] = useState(0);
   const [overlayIdx, setOverlayIdx] = useState(0);
+  const [faces, setFaces] = useState<string[]>([]);
+
+  // Pull face URLs from the itsyoursphere-faces Blob namespace.
+  // Empty namespace = no faces, only words cycle.
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/itsyoursphere-faces/list", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : { faces: [] }))
+      .then((d: { faces?: string[] }) => {
+        if (!cancelled) setFaces(d.faces ?? []);
+      })
+      .catch(() => {
+        if (!cancelled) setFaces([]);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // Interleave faces with the static word list. When faces are empty,
+  // the orb just cycles through the words.
+  const overlay = useMemo<OrbItem[]>(() => {
+    if (faces.length === 0) {
+      return STATIC_WORDS.map((text) => ({ kind: "word" as const, text }));
+    }
+    const items: OrbItem[] = [];
+    let wIdx = 0;
+    faces.forEach((src, i) => {
+      items.push({ kind: "face", src });
+      if ((i + 1) % 2 === 0 && wIdx < STATIC_WORDS.length) {
+        items.push({ kind: "word", text: STATIC_WORDS[wIdx] });
+        wIdx++;
+      }
+    });
+    while (wIdx < STATIC_WORDS.length) {
+      items.push({ kind: "word", text: STATIC_WORDS[wIdx] });
+      wIdx++;
+    }
+    return items;
+  }, [faces]);
 
   useEffect(() => {
+    if (ORB_FLAGS.length === 0) return;
     const id = window.setInterval(() => {
       setIdx((i) => (i + 1) % ORB_FLAGS.length);
     }, HOLD_MS);
@@ -57,11 +82,13 @@ export function FlagOrb() {
   }, []);
 
   useEffect(() => {
+    if (overlay.length === 0) return;
+    setOverlayIdx(0);
     const id = window.setInterval(() => {
-      setOverlayIdx((i) => (i + 1) % ORB_OVERLAY.length);
+      setOverlayIdx((i) => (i + 1) % overlay.length);
     }, OVERLAY_HOLD_MS);
     return () => window.clearInterval(id);
-  }, []);
+  }, [overlay.length]);
 
   return (
     <div
@@ -100,37 +127,42 @@ export function FlagOrb() {
             boxShadow: "inset 0 0 30px rgba(0,0,0,0.6)",
           }}
         />
-        {/* flag fader — centered inside the orb */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative" style={{ width: "72%", aspectRatio: "3 / 2" }}>
-            {ORB_FLAGS.map((src, i) => (
-              /* eslint-disable-next-line @next/next/no-img-element */
-              <img
-                key={src}
-                src={src}
-                alt=""
-                aria-hidden
-                draggable={false}
-                className="absolute inset-0 w-full h-full object-contain select-none pointer-events-none"
-                style={{
-                  opacity: idx === i ? 1 : 0,
-                  transition: `opacity ${FADE_MS}ms ease-in-out`,
-                  mixBlendMode: "screen",
-                }}
-              />
-            ))}
+        {/* flag fader — empty for /itsyoursphere; renders nothing while ORB_FLAGS is [] */}
+        {ORB_FLAGS.length > 0 && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div
+              className="relative"
+              style={{ width: "72%", aspectRatio: "3 / 2" }}
+            >
+              {ORB_FLAGS.map((src, i) => (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  key={src}
+                  src={src}
+                  alt=""
+                  aria-hidden
+                  draggable={false}
+                  className="absolute inset-0 w-full h-full object-contain select-none pointer-events-none"
+                  style={{
+                    opacity: idx === i ? 1 : 0,
+                    transition: `opacity ${FADE_MS}ms ease-in-out`,
+                    mixBlendMode: "screen",
+                  }}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* overlay fader — fills the entire orb interior (clipped to circle by parent overflow-hidden rounded-full). Faces use object-cover so they fill the sphere; words render as large center-anchored mono text. Both screen-blended on top of the flag. */}
+        {/* overlay fader — faces fill the orb (clipped to circle); words render center-anchored. Faces dynamically loaded from /api/itsyoursphere-faces/list. Empty list -> only words cycle. */}
         <div className="absolute inset-0">
-          {ORB_OVERLAY.map((item, i) => {
+          {overlay.map((item, i) => {
             const active = overlayIdx === i;
             if (item.kind === "face") {
               return (
                 /* eslint-disable-next-line @next/next/no-img-element */
                 <img
-                  key={`face-${i}`}
+                  key={`face-${i}-${item.src}`}
                   src={item.src}
                   alt=""
                   aria-hidden
@@ -147,7 +179,7 @@ export function FlagOrb() {
             }
             return (
               <div
-                key={`word-${i}`}
+                key={`word-${i}-${item.text}`}
                 className="absolute inset-0 flex items-center justify-center pointer-events-none"
                 style={{
                   opacity: active ? WORD_PEAK_OPACITY : 0,
