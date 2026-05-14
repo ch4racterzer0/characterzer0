@@ -27,8 +27,8 @@ export function FlagOrb() {
   return (
     <div
       aria-hidden
-      className="relative pointer-events-none"
-      style={{ width: "min(38vw, 42vh)", aspectRatio: "1 / 1" }}
+      className="relative pointer-events-none w-[85vw] sm:w-[min(38vw,42vh)]"
+      style={{ aspectRatio: "1 / 1" }}
     >
       {/* outer breathing halo */}
       <div

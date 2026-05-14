@@ -384,12 +384,12 @@ export function ArmyRadioTile() {
 
   function onRadioClick() {
     if (dead) return;
-    if (playing) {
-      void toggle();
-      setPickerOpen(false);
-      return;
-    }
     setPickerOpen((p) => !p);
+  }
+
+  function stop() {
+    setPickerOpen(false);
+    void toggle();
   }
 
   function pick(cat: string) {
@@ -405,7 +405,7 @@ export function ArmyRadioTile() {
 
   return (
     <div ref={wrapperRef} className="relative inline-flex flex-col items-stretch w-[6.5rem] sm:w-28">
-      {pickerOpen && !playing && (
+      {pickerOpen && (
         <div className="absolute bottom-full left-0 right-0 mb-2 flex flex-col gap-1.5 z-30">
           <ChannelTile
             label="tadashikeiji"
@@ -417,6 +417,9 @@ export function ArmyRadioTile() {
             sub="anthem · grace"
             onClick={() => pick("instrumental")}
           />
+          {playing && (
+            <ChannelTile label="stop" sub="off the air" onClick={stop} />
+          )}
         </div>
       )}
 
@@ -430,9 +433,7 @@ export function ArmyRadioTile() {
         aria-label={
           dead
             ? "Radio unavailable while a podcast is playing"
-            : playing
-              ? "Stop radio"
-              : "Open channel selector"
+            : "Open channel selector"
         }
         className={`relative inline-flex flex-col items-stretch select-none rounded-md transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/40 ${
           dead
