@@ -165,7 +165,7 @@ export function CharityTile({ charity }: { charity: Charity }) {
             />
 
             <div
-              className="relative w-full max-w-lg rounded-md overflow-hidden max-h-[calc(100vh-2rem)] sm:max-h-[calc(100vh-4rem)] flex flex-col"
+              className="relative w-full max-w-lg rounded-md overflow-hidden max-h-[calc(100dvh-2rem)] sm:max-h-[calc(100dvh-4rem)] flex flex-col"
               style={{
                 background: tone.body,
                 border: `1px solid ${tone.border}`,

@@ -117,7 +117,7 @@ export function LeberchTile() {
             />
 
             <div
-              className="relative w-full max-w-xl rounded-md overflow-hidden max-h-[calc(100vh-2rem)] sm:max-h-[calc(100vh-4rem)] flex flex-col"
+              className="relative w-full max-w-xl rounded-md overflow-hidden max-h-[calc(100dvh-2rem)] sm:max-h-[calc(100dvh-4rem)] flex flex-col"
               style={{
                 background: BODY,
                 border: `1px solid ${BORDER}`,
