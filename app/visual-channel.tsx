@@ -4,6 +4,7 @@ import {
   ReactNode,
   createContext,
   useContext,
+  useEffect,
   useState,
 } from "react";
 
@@ -57,13 +58,32 @@ export function ChannelBackground() {
   );
 }
 
-const RAIN_CHARS = ["党", "档", "案", "监", "视", "中", "央"];
+const ORB_FLAGS = [
+  "/flags/flag-marines.png",
+  "/flags/flag-army.png",
+  "/flags/flag-navy.png",
+  "/flags/flag-airforce.png",
+  "/flags/flag-spaceforce.png",
+  "/flags/flag-coastguard.png",
+];
+
+const FLAG_HOLD_MS = 4500;
+const FLAG_FADE_MS = 1500;
 
 export function CenterFigure() {
+  const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setIdx((i) => (i + 1) % ORB_FLAGS.length);
+    }, FLAG_HOLD_MS);
+    return () => window.clearInterval(id);
+  }, []);
+
   return (
     <div
       aria-hidden
-      className="fixed inset-0 z-[1] flex items-start justify-center pt-[26vh] pointer-events-none"
+      className="cz-orb-center fixed inset-0 z-[1] flex items-start justify-center pt-[26vh] pointer-events-none"
     >
       <div className="relative h-[26vh] aspect-[3/2] pointer-events-none">
         <div
@@ -76,54 +96,22 @@ export function CenterFigure() {
             animation: "storm-glow-breath 24s ease-in-out infinite",
           }}
         />
-        {RAIN_CHARS.map((ch, i) => (
-          <span
-            key={i}
+        {ORB_FLAGS.map((src, i) => (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            key={src}
+            src={src}
+            alt=""
             aria-hidden
-            className="absolute font-mono text-[10px] sm:text-xs whitespace-nowrap pointer-events-none"
+            draggable={false}
+            className="absolute inset-0 w-full h-full object-contain select-none pointer-events-none"
             style={{
-              top: 0,
-              left: `${18 + i * 9.5}%`,
-              color: "rgba(248,113,113,0.55)",
-              textShadow:
-                "0 0 6px rgba(248,113,113,0.55), 0 0 14px rgba(220,38,38,0.35)",
-              opacity: 0,
-              animation: `storm-rain ${52 + i * 3}s linear ${i * 0.8}s infinite`,
+              opacity: idx === i ? 1 : 0,
+              transition: `opacity ${FLAG_FADE_MS}ms ease-in-out`,
+              mixBlendMode: "screen",
             }}
-          >
-            {ch}
-          </span>
+          />
         ))}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/figures/front.png"
-          alt=""
-          aria-hidden
-          draggable={false}
-          className="absolute inset-0 w-full h-full object-contain select-none pointer-events-none"
-          style={{
-            mixBlendMode: "screen",
-            animation:
-              "figure-mask-breath 24s ease-in-out infinite, figure-hue-cycle 90s linear infinite",
-          }}
-        />
-        <p
-          className="absolute left-1/2 top-[24%] -translate-x-1/2 -translate-y-1/2 font-mono text-base sm:text-lg tracking-[0.15em] whitespace-nowrap pointer-events-none"
-          style={{
-            animation:
-              "mark-flicker 30s ease-in-out infinite, face-mark-zero-vis 60s ease-in-out infinite",
-          }}
-        >
-          零号
-        </p>
-        <p
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-mono text-xs sm:text-sm tracking-[0.4em] whitespace-nowrap pointer-events-none"
-          style={{
-            animation: "chest-flicker 45s ease-in-out infinite",
-          }}
-        >
-          丫工5山Μ丁
-        </p>
       </div>
     </div>
   );

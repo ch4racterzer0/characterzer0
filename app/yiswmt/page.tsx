@@ -20,7 +20,7 @@ const FIGURE_MASK = {
 export default function Yiswmt() {
   return (
     <>
-      <style>{`.cz-chrome { display: none !important; }`}</style>
+      <style>{`.cz-chrome, .cz-orb-center { display: none !important; }`}</style>
       <MobileLanding />
       <div className="hidden sm:block">
         <RadioProvider>
