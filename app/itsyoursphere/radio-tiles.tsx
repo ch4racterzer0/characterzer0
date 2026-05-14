@@ -9,6 +9,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { createPortal } from "react-dom";
 import { TetherClock } from "./tether-clock";
 import { useVisualChannel } from "./visual-channel";
 
@@ -17,7 +18,7 @@ type Track = { name: string; url: string };
 type RadioCtx = {
   playing: boolean;
   category: string | null;
-  playCategory: (cat: string) => Promise<void>;
+  playCategory: (cat: string, prefetched?: Track[]) => Promise<void>;
   toggle: () => Promise<void>;
 };
 
@@ -65,10 +66,12 @@ export function RadioProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const playCategory = useCallback(
-    async (cat: string) => {
+    async (cat: string, prefetched?: Track[]) => {
       const audio = audioRef.current;
       if (!audio) return;
-      const tracks = await loadPlaylist(cat);
+      // If picker pre-fetched the playlist, use it -- keeps the user-gesture
+      // chain tight on mobile (no await between tap and audio.play()).
+      const tracks = prefetched ?? (await loadPlaylist(cat));
       if (tracks.length === 0) return;
       playlistRef.current = tracks;
       indexRef.current = 0;
@@ -367,21 +370,42 @@ export function SchoolStereoTile() {
   const { playing, category, playCategory, toggle } = useRadio();
   const [orbPlaying, setOrbPlaying] = useState(false);
   const [pickerOpen, setPickerOpen] = useState(false);
-  const [counts, setCounts] = useState<{ sad?: number; hope?: number }>({});
+  const [playlists, setPlaylists] = useState<{
+    sad?: Track[];
+    hope?: Track[];
+  }>({});
+  const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
-  // Fetch track counts for each channel when the picker opens, so the user
-  // can see at a glance which channels have music yet.
+  useEffect(() => setMounted(true), []);
+
+  // Track whether we're rendering on a small viewport so we can portal the
+  // picker outside the figure container's scale-0.7 wrapper on mobile.
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  // When the picker opens, fetch the full playlist for each channel in
+  // parallel. This serves two purposes: (1) the channel tiles can show
+  // accurate "N tracks" / "no tracks yet" counts, and (2) clicking a channel
+  // can hand the cached track list straight to playCategory, so audio.play()
+  // fires inside the same tick as the tap -- no await-fetch-then-play gap
+  // that mobile browsers sometimes treat as a non-gesture autoplay attempt.
   useEffect(() => {
     if (!pickerOpen) return;
     let cancelled = false;
-    const get = (cat: "sad" | "hope") =>
+    const get = (cat: "sad" | "hope"): Promise<Track[]> =>
       fetch(`/api/itsyoursphere-music/list?cat=${cat}`, { cache: "no-store" })
         .then((r) => (r.ok ? r.json() : { tracks: [] }))
-        .then((d: { tracks?: unknown[] }) => d.tracks?.length ?? 0)
-        .catch(() => 0);
+        .then((d: { tracks?: Track[] }) => d.tracks ?? [])
+        .catch(() => []);
     void Promise.all([get("sad"), get("hope")]).then(([sad, hope]) => {
-      if (!cancelled) setCounts({ sad, hope });
+      if (!cancelled) setPlaylists({ sad, hope });
     });
     return () => {
       cancelled = true;
@@ -406,22 +430,32 @@ export function SchoolStereoTile() {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setPickerOpen(false);
     };
-    const onClickAway = (e: MouseEvent) => {
-      if (
-        wrapperRef.current &&
-        e.target instanceof Node &&
-        !wrapperRef.current.contains(e.target)
-      ) {
-        setPickerOpen(false);
-      }
-    };
     window.addEventListener("keydown", onKey);
-    window.addEventListener("mousedown", onClickAway);
+    // The window mousedown click-away listener only applies on desktop, where
+    // the picker is rendered inline inside the stereo wrapper. On mobile the
+    // picker is portal'd outside wrapperRef, so a click-away listener would
+    // close it on every channel tap (button is outside the ref). The mobile
+    // bottom-sheet has its own backdrop button to close.
+    if (!isMobile) {
+      const onClickAway = (e: MouseEvent) => {
+        if (
+          wrapperRef.current &&
+          e.target instanceof Node &&
+          !wrapperRef.current.contains(e.target)
+        ) {
+          setPickerOpen(false);
+        }
+      };
+      window.addEventListener("mousedown", onClickAway);
+      return () => {
+        window.removeEventListener("keydown", onKey);
+        window.removeEventListener("mousedown", onClickAway);
+      };
+    }
     return () => {
       window.removeEventListener("keydown", onKey);
-      window.removeEventListener("mousedown", onClickAway);
     };
-  }, [pickerOpen]);
+  }, [pickerOpen, isMobile]);
 
   const dead = orbPlaying && !playing;
 
@@ -435,9 +469,9 @@ export function SchoolStereoTile() {
     void toggle();
   }
 
-  function pick(cat: string) {
+  function pick(cat: "sad" | "hope") {
     setPickerOpen(false);
-    void playCategory(cat);
+    void playCategory(cat, playlists[cat]);
   }
 
   const statusLabel = playing
@@ -446,62 +480,103 @@ export function SchoolStereoTile() {
       : "on net"
     : "stby";
 
+  const sadCount = playlists.sad?.length;
+  const hopeCount = playlists.hope?.length;
+
+  const pickerContent = (
+    <>
+      <div
+        className="rounded-md px-3 py-2.5"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(28,26,24,0.92) 0%, rgba(14,14,16,0.92) 100%)",
+          border: "1px solid rgba(180,180,185,0.20)",
+          boxShadow:
+            "inset 0 1px 0 rgba(220,220,225,0.10), 0 4px 10px -4px rgba(0,0,0,0.75)",
+        }}
+      >
+        <p
+          className="font-mono text-[9px] sm:text-[8px] tracking-[0.18em] leading-relaxed text-center"
+          style={{
+            color: "rgba(220,220,225,0.78)",
+            textShadow: "0 1px 0 rgba(0,0,0,0.85)",
+          }}
+        >
+          both have to exist.
+          <br />
+          it is okay to be sad —
+          <br />
+          this is not a happy thing.
+          <br />
+          it is also okay to need hope —
+          <br />
+          this page is also for that.
+          <br />
+          <span style={{ color: "rgba(255,180,80,0.85)" }}>
+            pick whichever you need.
+          </span>
+        </p>
+      </div>
+      <ChannelTile
+        label="sad"
+        sub="be sad with us"
+        count={sadCount}
+        onClick={() => pick("sad")}
+      />
+      <ChannelTile
+        label="hope"
+        sub="we still need this"
+        count={hopeCount}
+        onClick={() => pick("hope")}
+      />
+      {playing && (
+        <ChannelTile label="stop" sub="off the air" onClick={stop} />
+      )}
+    </>
+  );
+
   return (
     <div ref={wrapperRef} className="relative inline-flex flex-col items-stretch w-[6.5rem] sm:w-28">
-      {pickerOpen && (
-        <div
-          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 flex flex-col gap-1.5 z-30 w-[18rem] sm:w-[20rem] max-h-[80vh] overflow-y-auto"
-        >
-          {/* dual-emotional framing for the channels */}
-          <div
-            className="rounded-md px-2.5 py-2"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(28,26,24,0.92) 0%, rgba(14,14,16,0.92) 100%)",
-              border: "1px solid rgba(180,180,185,0.20)",
-              boxShadow:
-                "inset 0 1px 0 rgba(220,220,225,0.10), 0 4px 10px -4px rgba(0,0,0,0.75)",
-            }}
-          >
-            <p
-              className="font-mono text-[8px] tracking-[0.18em] leading-relaxed text-center"
-              style={{
-                color: "rgba(220,220,225,0.78)",
-                textShadow: "0 1px 0 rgba(0,0,0,0.85)",
-              }}
-            >
-              both have to exist.
-              <br />
-              it is okay to be sad —
-              <br />
-              this is not a happy thing.
-              <br />
-              it is also okay to need hope —
-              <br />
-              this page is also for that.
-              <br />
-              <span style={{ color: "rgba(255,180,80,0.85)" }}>
-                pick whichever you need.
-              </span>
-            </p>
-          </div>
-          <ChannelTile
-            label="sad"
-            sub="be sad with us"
-            count={counts.sad}
-            onClick={() => pick("sad")}
-          />
-          <ChannelTile
-            label="hope"
-            sub="we still need this"
-            count={counts.hope}
-            onClick={() => pick("hope")}
-          />
-          {playing && (
-            <ChannelTile label="stop" sub="off the air" onClick={stop} />
-          )}
+      {/* desktop picker — inline, anchored above the stereo */}
+      {pickerOpen && !isMobile && (
+        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 flex flex-col gap-1.5 z-30 w-[20rem] max-h-[80vh] overflow-y-auto">
+          {pickerContent}
         </div>
       )}
+
+      {/* mobile picker — portal'd to body so it escapes the figure container's
+          scale-0.7 wrapper, rendered as a fixed bottom sheet with backdrop */}
+      {pickerOpen &&
+        isMobile &&
+        mounted &&
+        createPortal(
+          <div className="fixed inset-0 z-[80]" role="dialog" aria-modal="true">
+            <button
+              type="button"
+              tabIndex={-1}
+              aria-label="close channel selector"
+              className="absolute inset-0 bg-black/65 backdrop-blur-sm cursor-default"
+              onClick={() => setPickerOpen(false)}
+            />
+            <div className="absolute inset-x-3 bottom-3 max-h-[78vh] overflow-y-auto flex flex-col gap-2">
+              {pickerContent}
+              <button
+                type="button"
+                onClick={() => setPickerOpen(false)}
+                className="font-mono text-[10px] tracking-[0.3em] uppercase py-3 rounded-md"
+                style={{
+                  color: "rgba(220,220,225,0.85)",
+                  background: "rgba(28,26,24,0.92)",
+                  border: "1px solid rgba(180,180,185,0.20)",
+                  textShadow: "0 1px 0 rgba(0,0,0,0.85)",
+                }}
+              >
+                close
+              </button>
+            </div>
+          </div>,
+          document.body,
+        )}
 
       <button
         type="button"
