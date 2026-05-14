@@ -56,10 +56,10 @@ export default function ContactPage() {
               publisher
             </dt>
             <dd className="text-blue-100">
-              character zer0
+              Chracterzer零号
               <br />
               <span className="text-blue-200/55 text-[10px] sm:text-xs tracking-[0.25em] uppercase italic">
-                architect of nine
+                the architect&rsquo;s seat
               </span>
             </dd>
 
