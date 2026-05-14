@@ -16,7 +16,7 @@ export const CHARITIES: Charity[] = [
     mission:
       "College and trade-school scholarships, educational counseling, and career support for military children who lost a parent in the line of duty. Vision: every child of the fallen graduates debt-free.",
     url: "https://fallenpatriots.org/",
-    donateUrl: "https://fallenpatriots.org/donate/",
+    donateUrl: "https://fallenpatriots.org/donate/?campaign=721104",
     tone: "red",
   },
   {
