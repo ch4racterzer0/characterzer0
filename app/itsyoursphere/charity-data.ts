@@ -25,7 +25,6 @@ export const CHARITIES: Charity[] = [
     mission:
       "The largest gun-violence-prevention organization in the country. Out-organizes the gun lobby in statehouses and at the ballot box, funds research, supports survivors, and pushes the policy fights that make schools safer.",
     url: "https://www.everytown.org/",
-    donateUrl: "https://secure.everytown.org/a/donate",
     tone: "red",
   },
   {
