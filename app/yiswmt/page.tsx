@@ -1,6 +1,7 @@
 import { CHARITIES } from "./charity-data";
 import { CharityTile } from "./charity-tile";
 import { FlagOrb } from "./flag-orb";
+import { MissionTile } from "./mission-tile";
 import { MobileLanding } from "./mobile-landing";
 import { ArmyRadioTile, RadioProvider } from "./radio-tiles";
 import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
@@ -31,7 +32,8 @@ export default function Yiswmt() {
             <div className="absolute bottom-8 left-[clamp(2rem,calc(50%-22rem),28rem)]">
               <ArmyRadioTile />
             </div>
-            <div className="absolute top-6 left-1/2 -translate-x-1/2 flex flex-row gap-2 sm:gap-3">
+            <div className="absolute top-6 left-1/2 -translate-x-1/2 flex flex-row items-stretch gap-2 sm:gap-3">
+              <MissionTile />
               {CHARITIES.map((c) => (
                 <CharityTile key={c.short} charity={c} />
               ))}
