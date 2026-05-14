@@ -22,25 +22,28 @@ export default function Yiswmt() {
         <ThemeShifter>
           <ThemeSwitch />
           <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center justify-end py-10 px-4">
-            <div className="relative h-[42vh] aspect-[3/2]">
-              {/* stripes — 13 alternating muted red / aged cream, masked to figure */}
+            <div
+              className="relative h-[42vh] aspect-[3/2]"
+              style={{ filter: "blur(1.6px)" }}
+            >
+              {/* stripes — 13 alternating deep oxblood / aged bone, masked to figure */}
               <div
                 aria-hidden
                 className="absolute inset-0"
                 style={{
                   ...FIGURE_MASK,
                   backgroundImage:
-                    "repeating-linear-gradient(to bottom, rgba(140,30,38,0.85) 0, rgba(140,30,38,0.85) calc(100%/13), rgba(240,232,215,0.82) calc(100%/13), rgba(240,232,215,0.82) calc(200%/13))",
+                    "repeating-linear-gradient(to bottom, rgba(86,18,22,0.78) 0, rgba(86,18,22,0.78) calc(100%/13), rgba(150,138,122,0.55) calc(100%/13), rgba(150,138,122,0.55) calc(200%/13))",
                 }}
               />
-              {/* canton — deep navy rectangle in upper-left, masked to figure */}
+              {/* canton — deep midnight navy rectangle in upper-left, masked to figure */}
               <div
                 aria-hidden
                 className="absolute inset-0"
                 style={{
                   ...FIGURE_MASK,
                   backgroundImage:
-                    "linear-gradient(rgba(20,32,72,0.95), rgba(20,32,72,0.95))",
+                    "linear-gradient(rgba(10,16,40,0.96), rgba(10,16,40,0.96))",
                   backgroundSize: "40% 53.85%",
                   backgroundRepeat: "no-repeat",
                   backgroundPosition: "left top",
@@ -53,16 +56,14 @@ export default function Yiswmt() {
                 style={{
                   ...FIGURE_MASK,
                   backgroundImage:
-                    "radial-gradient(circle, rgba(240,232,215,0.85) 0.6px, transparent 1.4px)",
+                    "radial-gradient(circle, rgba(180,170,150,0.55) 0.5px, transparent 1.4px)",
                   backgroundSize: "4% 5%",
                   backgroundRepeat: "repeat",
                   backgroundPosition: "0 0",
-                  WebkitMaskComposite: "source-in",
-                  maskComposite: "intersect",
                   clipPath: "polygon(0 0, 40% 0, 40% 53.85%, 0 53.85%)",
                 }}
               />
-              {/* original figure on top — very faint, adds shading + edge definition */}
+              {/* original figure on top — multiply for deeper shading and edge bleed */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/figures/back.png"
@@ -70,16 +71,25 @@ export default function Yiswmt() {
                 aria-hidden
                 draggable={false}
                 className="absolute inset-0 w-full h-full object-contain object-bottom pointer-events-none select-none"
-                style={{ mixBlendMode: "multiply", opacity: 0.55 }}
+                style={{ mixBlendMode: "multiply", opacity: 0.85 }}
               />
-              {/* warm vignette + gentle darken at bottom for reverence */}
+              {/* dark bleed wash — uniform low-opacity black inside the mask, mutes the whole flag */}
+              <div
+                aria-hidden
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  ...FIGURE_MASK,
+                  background: "rgba(0,0,0,0.22)",
+                }}
+              />
+              {/* heavy vignette — pulls shadow into edges and bottom for reverent weight */}
               <div
                 aria-hidden
                 className="absolute inset-0 pointer-events-none"
                 style={{
                   ...FIGURE_MASK,
                   background:
-                    "radial-gradient(ellipse at 50% 35%, transparent 30%, rgba(0,0,0,0.35) 90%)",
+                    "radial-gradient(ellipse at 50% 30%, transparent 18%, rgba(0,0,0,0.55) 80%, rgba(0,0,0,0.78) 100%)",
                 }}
               />
             </div>
