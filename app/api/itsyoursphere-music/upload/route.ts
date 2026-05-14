@@ -32,6 +32,7 @@ export async function POST(req: NextRequest) {
 
   const form = await req.formData();
   const file = form.get("file");
+  const catRaw = form.get("cat");
   if (!(file instanceof File)) {
     return NextResponse.json(
       { ok: false, reason: "no-file" },
@@ -46,8 +47,16 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  const cat = typeof catRaw === "string" ? catRaw : "";
+  if (cat !== "sad" && cat !== "hope") {
+    return NextResponse.json(
+      { ok: false, reason: "bad-channel" },
+      { status: 400 },
+    );
+  }
+
   const safeName = file.name.replace(/[^\w.\- ]+/g, "_");
-  const key = `itsyoursphere-music/${safeName}`;
+  const key = `itsyoursphere-music/${cat}/${safeName}`;
 
   try {
     const blob = await put(key, file, {

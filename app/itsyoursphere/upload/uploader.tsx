@@ -4,10 +4,12 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 type Track = { name: string; url: string };
 type UploadStatus = "queued" | "uploading" | "done" | "error";
+type Channel = "sad" | "hope";
 type UploadItem = {
   id: string;
   file: File;
   status: UploadStatus;
+  cat: Channel;
   reason?: string;
 };
 
@@ -24,6 +26,7 @@ export function Uploader() {
   const [items, setItems] = useState<UploadItem[]>([]);
   const [dragOver, setDragOver] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  const [channel, setChannel] = useState<Channel>("sad");
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const loadTracks = useCallback(async () => {
@@ -55,6 +58,7 @@ export function Uploader() {
 
       const form = new FormData();
       form.append("file", item.file);
+      form.append("cat", item.cat);
 
       try {
         const res = await fetch("/api/itsyoursphere-music/upload", {
@@ -105,10 +109,11 @@ export function Uploader() {
             id,
             file,
             status: "error",
+            cat: channel,
             reason: "not audio",
           });
         } else {
-          accepted.push({ id, file, status: "queued" });
+          accepted.push({ id, file, status: "queued", cat: channel });
         }
       }
       const next = [...accepted, ...rejected];
@@ -118,7 +123,7 @@ export function Uploader() {
         void uploadOne(item);
       }
     },
-    [uploadOne],
+    [uploadOne, channel],
   );
 
   async function deleteTrack(url: string) {
@@ -135,6 +140,36 @@ export function Uploader() {
 
   return (
     <div className="w-full max-w-2xl flex flex-col gap-6">
+      {/* channel picker — required, files land in itsyoursphere-music/<channel>/ */}
+      <div>
+        <p className="text-[10px] tracking-[0.35em] uppercase text-stone-500 mb-2">
+          channel for next upload
+        </p>
+        <div className="flex gap-2">
+          {(["sad", "hope"] as const).map((c) => {
+            const active = channel === c;
+            return (
+              <button
+                key={c}
+                type="button"
+                onClick={() => setChannel(c)}
+                className={`flex-1 py-3 rounded-sm font-mono uppercase tracking-[0.3em] text-sm transition-colors ${
+                  active
+                    ? "bg-stone-200 text-stone-900 font-bold"
+                    : "bg-stone-900/60 text-stone-400 hover:bg-stone-800/60 hover:text-stone-200"
+                }`}
+              >
+                {c}
+              </button>
+            );
+          })}
+        </div>
+        <p className="text-[10px] tracking-[0.25em] uppercase text-stone-500 mt-2">
+          uploads go to <span className="text-stone-300">{channel}</span> —
+          tap above to switch before dropping files
+        </p>
+      </div>
+
       {/* drag-drop zone */}
       <div
         onDragOver={(e) => {
@@ -190,6 +225,9 @@ export function Uploader() {
                 className="flex items-center justify-between gap-3 border border-stone-800 bg-stone-950/40 rounded-sm px-3 py-2 text-xs"
               >
                 <span className="truncate text-stone-300">{item.file.name}</span>
+                <span className="text-stone-400 text-[10px] uppercase tracking-[0.25em] whitespace-nowrap font-bold">
+                  {item.cat}
+                </span>
                 <span className="text-stone-500 text-[10px] uppercase tracking-[0.2em] whitespace-nowrap">
                   {formatBytes(item.file.size)}
                 </span>
