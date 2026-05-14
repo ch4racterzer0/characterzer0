@@ -14,6 +14,7 @@ import { McKinleyTile } from "./mckinley-tile";
 import { TetheredTile } from "./tethered-tile";
 import { YiswmtTile } from "./yiswmt-tile";
 import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
+import { VisualChannelProvider } from "./visual-channel";
 
 export const dynamic = "force-dynamic";
 
@@ -22,6 +23,7 @@ export default function Yiswmt() {
     <>
       <MobileLanding />
       <div className="hidden sm:block">
+        <VisualChannelProvider>
         <RadioProvider>
           <ThemeShifter>
           <ThemeSwitch />
@@ -233,6 +235,7 @@ export default function Yiswmt() {
           </main>
           </ThemeShifter>
         </RadioProvider>
+        </VisualChannelProvider>
       </div>
     </>
   );
