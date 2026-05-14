@@ -28,7 +28,7 @@ export default function Yiswmt() {
         <ThemeShifter>
           <ThemeSwitch />
           <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center justify-end py-10 px-4">
-            <div className="absolute bottom-8 left-8 sm:left-12">
+            <div className="absolute bottom-8 left-[clamp(2rem,calc(50%-22rem),28rem)]">
               <ArmyRadioTile />
             </div>
             <div className="absolute top-6 left-1/2 -translate-x-1/2 flex flex-row gap-2 sm:gap-3">
