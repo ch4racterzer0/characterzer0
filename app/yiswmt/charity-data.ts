@@ -8,35 +8,35 @@ export type Charity = {
 
 export const CHARITIES: Charity[] = [
   {
-    short: "WWP",
-    name: "Wounded Warrior Project",
+    short: "CFP",
+    name: "Children of Fallen Patriots Foundation",
     mission:
-      "Direct programs and services for post-9/11 wounded service members — mental health, physical rehab, peer support, career counseling, and family support.",
-    url: "https://www.woundedwarriorproject.org/",
-    donateUrl: "https://www.woundedwarriorproject.org/donate",
+      "College and trade-school scholarships, educational counseling, and career support for military children who lost a parent in the line of duty. Vision: every child of the fallen graduates debt-free.",
+    url: "https://fallenpatriots.org/",
+    donateUrl: "https://fallenpatriots.org/donate/",
   },
   {
-    short: "FOH",
-    name: "Folds of Honor",
+    short: "SOWF",
+    name: "Special Operations Warrior Foundation",
     mission:
-      "Educational scholarships for the spouses and children of America's fallen and disabled service members. The legacy of those who gave continues through the next generation.",
-    url: "https://foldsofhonor.org/",
-    donateUrl: "https://foldsofhonor.org/donate/",
+      "Full college tuition, family services, and lifelong grief support for the surviving children of fallen or seriously wounded U.S. special operations personnel. From kindergarten through the day they graduate.",
+    url: "https://specialops.org/",
+    donateUrl: "https://specialops.org/donate/",
   },
   {
-    short: "SSS",
-    name: "Stop Soldier Suicide",
+    short: "SBX",
+    name: "Snowball Express — Gary Sinise Foundation",
     mission:
-      "The first veteran-founded, veteran-led suicide prevention nonprofit. Crisis intervention, peer support, and data-driven outreach for service members at risk.",
-    url: "https://stopsoldiersuicide.org/",
-    donateUrl: "https://stopsoldiersuicide.org/donate",
+      "Year-round programs and retreats for the children and surviving spouses of fallen military and first-responder heroes. Connection, community, and remembrance so no Gold Star family carries the loss alone.",
+    url: "https://garysinisefoundation.org/programs/honoring-families-of-fallen-heroes/",
+    donateUrl: "https://garysinisefoundation.org/get-involved/donate/",
   },
   {
-    short: "CFSRF",
-    name: "Children of Fallen Soldiers Relief Fund",
+    short: "ASC",
+    name: "A Soldier's Child Foundation",
     mission:
-      "Financial assistance and college grants for the children and surviving spouses of military service members killed or disabled in combat.",
-    url: "https://www.cfsrf.org/",
-    donateUrl: "https://www.cfsrf.org/donate",
+      "Birthday celebrations every year until age 18, an annual summer camp, and college scholarships for the children of active-duty military who gave their lives in service to the United States.",
+    url: "https://asoldierschild.org/",
+    donateUrl: "https://asoldierschild.org/donate/",
   },
 ];
