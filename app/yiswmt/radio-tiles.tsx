@@ -16,7 +16,9 @@ type Track = { name: string; url: string };
 
 type RadioCtx = {
   playing: boolean;
-  toggle: () => void;
+  category: string | null;
+  playCategory: (cat: string) => Promise<void>;
+  toggle: () => Promise<void>;
 };
 
 const RadioContext = createContext<RadioCtx | null>(null);
@@ -29,13 +31,17 @@ function useRadio(): RadioCtx {
 
 export function RadioProvider({ children }: { children: ReactNode }) {
   const [playing, setPlaying] = useState(false);
+  const [category, setCategory] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   const playlistRef = useRef<Track[]>([]);
   const indexRef = useRef(0);
 
-  const loadPlaylist = useCallback(async (): Promise<Track[]> => {
+  const loadPlaylist = useCallback(async (cat: string): Promise<Track[]> => {
     try {
-      const res = await fetch("/api/yiswmt-music/list", { cache: "no-store" });
+      const res = await fetch(
+        `/api/yiswmt-music/list?cat=${encodeURIComponent(cat)}`,
+        { cache: "no-store" },
+      );
       if (!res.ok) return [];
       const data = (await res.json()) as { tracks?: Track[] };
       return data.tracks ?? [];
@@ -58,6 +64,22 @@ export function RadioProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
+  const playCategory = useCallback(
+    async (cat: string) => {
+      const audio = audioRef.current;
+      if (!audio) return;
+      const tracks = await loadPlaylist(cat);
+      if (tracks.length === 0) return;
+      playlistRef.current = tracks;
+      indexRef.current = 0;
+      setCategory(cat);
+      const ok = await playIndex(0);
+      setPlaying(ok);
+      if (ok) window.dispatchEvent(new Event("character-zero:radio-play"));
+    },
+    [loadPlaylist, playIndex],
+  );
+
   const toggle = useCallback(async () => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -67,17 +89,11 @@ export function RadioProvider({ children }: { children: ReactNode }) {
       window.dispatchEvent(new Event("character-zero:radio-stop"));
       return;
     }
-    if (playlistRef.current.length === 0) {
-      playlistRef.current = await loadPlaylist();
-    }
-    if (playlistRef.current.length === 0) {
-      setPlaying(false);
-      return;
-    }
+    if (playlistRef.current.length === 0) return;
     const ok = await playIndex(indexRef.current);
     setPlaying(ok);
     if (ok) window.dispatchEvent(new Event("character-zero:radio-play"));
-  }, [playing, loadPlaylist, playIndex]);
+  }, [playing, playIndex]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -124,7 +140,7 @@ export function RadioProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <RadioContext.Provider value={{ playing, toggle }}>
+    <RadioContext.Provider value={{ playing, category, playCategory, toggle }}>
       {children}
       <audio ref={audioRef} preload="none" />
     </RadioContext.Provider>
@@ -260,9 +276,74 @@ export function TurntableTile() {
   );
 }
 
+const RADIO_BODY_STYLE = {
+  background:
+    "linear-gradient(180deg, rgba(78,90,60,0.96) 0%, rgba(58,70,45,0.96) 45%, rgba(42,52,32,0.97) 100%)",
+  border: "1px solid rgba(30,38,22,0.95)",
+  boxShadow:
+    "inset 0 1px 0 rgba(180,190,150,0.18), inset 0 -1px 0 rgba(0,0,0,0.55), 0 6px 14px -6px rgba(0,0,0,0.85), 0 0 0 1px rgba(0,0,0,0.4)",
+} as const;
+
+const RIVET_STYLE = {
+  background:
+    "radial-gradient(circle, rgba(120,130,95,1) 0%, rgba(40,48,28,1) 80%)",
+} as const;
+
+function RadioRivets() {
+  return (
+    <>
+      <span aria-hidden className="absolute top-1 left-1 w-1 h-1 rounded-full" style={RIVET_STYLE} />
+      <span aria-hidden className="absolute top-1 right-1 w-1 h-1 rounded-full" style={RIVET_STYLE} />
+      <span aria-hidden className="absolute bottom-1 left-1 w-1 h-1 rounded-full" style={RIVET_STYLE} />
+      <span aria-hidden className="absolute bottom-1 right-1 w-1 h-1 rounded-full" style={RIVET_STYLE} />
+    </>
+  );
+}
+
+function ChannelTile({
+  label,
+  sub,
+  onClick,
+}: {
+  label: string;
+  sub: string;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="relative inline-flex flex-col items-stretch w-full rounded-md transition-transform hover:-translate-y-0.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/40"
+      style={RADIO_BODY_STYLE}
+    >
+      <RadioRivets />
+      <span
+        className="block px-2.5 pt-2 pb-0.5 font-mono uppercase text-[10px] tracking-[0.25em] font-semibold text-center"
+        style={{
+          color: "rgba(225,220,200,0.92)",
+          textShadow: "0 1px 0 rgba(0,0,0,0.75)",
+        }}
+      >
+        {label}
+      </span>
+      <span
+        className="block px-2 pb-2 font-mono uppercase text-[7px] tracking-[0.2em] text-center"
+        style={{
+          color: "rgba(180,175,155,0.7)",
+          textShadow: "0 1px 0 rgba(0,0,0,0.7)",
+        }}
+      >
+        {sub}
+      </span>
+    </button>
+  );
+}
+
 export function ArmyRadioTile() {
-  const { playing, toggle } = useRadio();
+  const { playing, category, playCategory, toggle } = useRadio();
   const [orbPlaying, setOrbPlaying] = useState(false);
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const onPlay = () => setOrbPlaying(true);
@@ -277,131 +358,158 @@ export function ArmyRadioTile() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!pickerOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setPickerOpen(false);
+    };
+    const onClickAway = (e: MouseEvent) => {
+      if (
+        wrapperRef.current &&
+        e.target instanceof Node &&
+        !wrapperRef.current.contains(e.target)
+      ) {
+        setPickerOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("mousedown", onClickAway);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("mousedown", onClickAway);
+    };
+  }, [pickerOpen]);
+
   const dead = orbPlaying && !playing;
 
-  return (
-    <button
-      type="button"
-      onClick={dead ? undefined : toggle}
-      disabled={dead}
-      aria-pressed={playing}
-      aria-disabled={dead || undefined}
-      aria-label={
-        dead
-          ? "Radio unavailable while a podcast is playing"
-          : playing
-            ? "Stop radio"
-            : "Open net — play radio"
-      }
-      className={`relative inline-flex flex-col items-stretch w-[6.5rem] sm:w-28 select-none rounded-md transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/40 ${
-        dead
-          ? "opacity-25 cursor-not-allowed"
-          : playing
-            ? "opacity-100 cursor-pointer"
-            : "opacity-85 hover:opacity-100 cursor-pointer"
-      }`}
-      style={{
-        background:
-          "linear-gradient(180deg, rgba(78,90,60,0.96) 0%, rgba(58,70,45,0.96) 45%, rgba(42,52,32,0.97) 100%)",
-        border: "1px solid rgba(30,38,22,0.95)",
-        boxShadow:
-          "inset 0 1px 0 rgba(180,190,150,0.18), inset 0 -1px 0 rgba(0,0,0,0.55), 0 6px 14px -6px rgba(0,0,0,0.85), 0 0 0 1px rgba(0,0,0,0.4)",
-      }}
-    >
-      {/* corner rivets */}
-      <span
-        aria-hidden
-        className="absolute top-1 left-1 w-1 h-1 rounded-full"
-        style={{
-          background: "radial-gradient(circle, rgba(120,130,95,1) 0%, rgba(40,48,28,1) 80%)",
-        }}
-      />
-      <span
-        aria-hidden
-        className="absolute top-1 right-1 w-1 h-1 rounded-full"
-        style={{
-          background: "radial-gradient(circle, rgba(120,130,95,1) 0%, rgba(40,48,28,1) 80%)",
-        }}
-      />
-      <span
-        aria-hidden
-        className="absolute bottom-1 left-1 w-1 h-1 rounded-full"
-        style={{
-          background: "radial-gradient(circle, rgba(120,130,95,1) 0%, rgba(40,48,28,1) 80%)",
-        }}
-      />
-      <span
-        aria-hidden
-        className="absolute bottom-1 right-1 w-1 h-1 rounded-full"
-        style={{
-          background: "radial-gradient(circle, rgba(120,130,95,1) 0%, rgba(40,48,28,1) 80%)",
-        }}
-      />
+  function onRadioClick() {
+    if (dead) return;
+    if (playing) {
+      void toggle();
+      setPickerOpen(false);
+      return;
+    }
+    setPickerOpen((p) => !p);
+  }
 
-      {/* top status row: lamp + label */}
-      <div className="relative flex items-center justify-between px-2.5 pt-2">
-        <span
+  function pick(cat: string) {
+    setPickerOpen(false);
+    void playCategory(cat);
+  }
+
+  const statusLabel = playing
+    ? category
+      ? `on · ${category.slice(0, 5)}`
+      : "on net"
+    : "stby";
+
+  return (
+    <div ref={wrapperRef} className="relative inline-flex flex-col items-stretch w-[6.5rem] sm:w-28">
+      {pickerOpen && !playing && (
+        <div className="absolute bottom-full left-0 right-0 mb-2 flex flex-col gap-1.5 z-30">
+          <ChannelTile
+            label="tadashikeiji"
+            sub="country"
+            onClick={() => pick("tadashikeiji")}
+          />
+          <ChannelTile
+            label="instrumental"
+            sub="anthem · grace"
+            onClick={() => pick("instrumental")}
+          />
+        </div>
+      )}
+
+      <button
+        type="button"
+        onClick={onRadioClick}
+        disabled={dead}
+        aria-pressed={playing}
+        aria-expanded={pickerOpen}
+        aria-disabled={dead || undefined}
+        aria-label={
+          dead
+            ? "Radio unavailable while a podcast is playing"
+            : playing
+              ? "Stop radio"
+              : "Open channel selector"
+        }
+        className={`relative inline-flex flex-col items-stretch select-none rounded-md transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/40 ${
+          dead
+            ? "opacity-25 cursor-not-allowed"
+            : playing
+              ? "opacity-100 cursor-pointer"
+              : "opacity-85 hover:opacity-100 cursor-pointer"
+        }`}
+        style={RADIO_BODY_STYLE}
+      >
+        <RadioRivets />
+
+        {/* top status row: lamp + label */}
+        <div className="relative flex items-center justify-between px-2.5 pt-2">
+          <span
+            aria-hidden
+            className="relative w-2 h-2 rounded-full"
+            style={{
+              background: dead
+                ? "rgba(60,55,40,0.9)"
+                : playing
+                  ? "radial-gradient(circle, rgba(255,180,80,1) 0%, rgba(220,80,30,0.95) 60%, rgba(120,30,10,0.95) 100%)"
+                  : "radial-gradient(circle, rgba(150,110,50,0.85) 0%, rgba(90,60,25,0.9) 70%, rgba(50,35,18,0.95) 100%)",
+              boxShadow: playing
+                ? "0 0 6px rgba(255,140,40,0.85), 0 0 14px rgba(220,80,30,0.55)"
+                : "0 0 2px rgba(120,80,30,0.4) inset",
+            }}
+          />
+          <span
+            className="font-mono text-[8px] tracking-[0.3em] uppercase"
+            style={{
+              color: "rgba(220,215,195,0.78)",
+              textShadow: "0 1px 0 rgba(0,0,0,0.7)",
+            }}
+          >
+            {statusLabel}
+          </span>
+        </div>
+
+        {/* speaker grille */}
+        <div
           aria-hidden
-          className="relative w-2 h-2 rounded-full"
+          className="mx-2.5 mt-2 h-8 rounded-sm"
           style={{
-            background: dead
-              ? "rgba(60,55,40,0.9)"
-              : playing
-                ? "radial-gradient(circle, rgba(255,180,80,1) 0%, rgba(220,80,30,0.95) 60%, rgba(120,30,10,0.95) 100%)"
-                : "radial-gradient(circle, rgba(150,110,50,0.85) 0%, rgba(90,60,25,0.9) 70%, rgba(50,35,18,0.95) 100%)",
-            boxShadow: playing
-              ? "0 0 6px rgba(255,140,40,0.85), 0 0 14px rgba(220,80,30,0.55)"
-              : "0 0 2px rgba(120,80,30,0.4) inset",
+            background:
+              "linear-gradient(180deg, rgba(18,22,12,0.95) 0%, rgba(8,10,5,1) 100%)",
+            backgroundImage:
+              "radial-gradient(circle, rgba(120,130,95,0.45) 0.6px, transparent 1.3px)",
+            backgroundSize: "4px 4px",
+            boxShadow:
+              "inset 0 1px 2px rgba(0,0,0,0.85), inset 0 -1px 0 rgba(160,170,130,0.10)",
           }}
         />
-        <span
-          className="font-mono text-[8px] tracking-[0.3em] uppercase"
-          style={{
-            color: "rgba(220,215,195,0.78)",
-            textShadow: "0 1px 0 rgba(0,0,0,0.7)",
-          }}
-        >
-          {playing ? "on net" : "stby"}
-        </span>
-      </div>
 
-      {/* speaker grille */}
-      <div
-        aria-hidden
-        className="mx-2.5 mt-2 h-8 rounded-sm"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(18,22,12,0.95) 0%, rgba(8,10,5,1) 100%)",
-          backgroundImage:
-            "radial-gradient(circle, rgba(120,130,95,0.45) 0.6px, transparent 1.3px)",
-          backgroundSize: "4px 4px",
-          boxShadow:
-            "inset 0 1px 2px rgba(0,0,0,0.85), inset 0 -1px 0 rgba(160,170,130,0.10)",
-        }}
-      />
-
-      {/* AUDIO stencil + small PTT mark */}
-      <div className="relative flex items-end justify-between px-2.5 pb-2 pt-2">
-        <span
-          className="font-mono text-[10px] tracking-[0.3em] uppercase font-semibold"
-          style={{
-            color: "rgba(225,220,200,0.85)",
-            textShadow: "0 1px 0 rgba(0,0,0,0.75)",
-          }}
-        >
-          audio
-        </span>
-        <span
-          className="font-mono text-[7px] tracking-[0.25em] uppercase"
-          style={{
-            color: "rgba(180,175,155,0.55)",
-            textShadow: "0 1px 0 rgba(0,0,0,0.7)",
-          }}
-        >
-          ptt
-        </span>
-      </div>
-    </button>
+        {/* AUDIO stencil + small PTT mark */}
+        <div className="relative flex items-end justify-between px-2.5 pb-2 pt-2">
+          <span
+            className="font-mono text-[10px] tracking-[0.3em] uppercase font-semibold"
+            style={{
+              color: "rgba(225,220,200,0.85)",
+              textShadow: "0 1px 0 rgba(0,0,0,0.75)",
+            }}
+          >
+            audio
+          </span>
+          <span
+            className="font-mono text-[7px] tracking-[0.25em] uppercase"
+            style={{
+              color: "rgba(180,175,155,0.55)",
+              textShadow: "0 1px 0 rgba(0,0,0,0.7)",
+            }}
+          >
+            ptt
+          </span>
+        </div>
+      </button>
+    </div>
   );
 }
 

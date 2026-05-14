@@ -1,8 +1,14 @@
 import { list } from "@vercel/blob";
+import { NextRequest } from "next/server";
 
 export const dynamic = "force-dynamic";
 
 const AUDIO_EXT = /\.(mp3|m4a|flac|ogg|aac|opus|wav)$/i;
+
+const CATEGORIES: Record<string, string> = {
+  tadashikeiji: "yiswmt-music/tadashikeiji/",
+  instrumental: "yiswmt-music/instrumental/",
+};
 
 function shuffle<T>(arr: T[]): T[] {
   const a = arr.slice();
@@ -13,21 +19,25 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const cat = searchParams.get("cat");
+  const prefix = cat && CATEGORIES[cat] ? CATEGORIES[cat] : "yiswmt-music/";
+
   let tracks: { name: string; url: string }[] = [];
   try {
-    const { blobs } = await list({ prefix: "yiswmt-music/" });
+    const { blobs } = await list({ prefix });
     tracks = blobs
       .filter((b) => AUDIO_EXT.test(b.pathname))
       .map((b) => ({
-        name: b.pathname.replace(/^yiswmt-music\//, ""),
+        name: b.pathname.replace(/^yiswmt-music\/(?:[^/]+\/)?/, ""),
         url: b.url,
       }));
   } catch (err) {
     console.error("yiswmt-music-list-error", err);
   }
   return Response.json(
-    { tracks: shuffle(tracks) },
+    { tracks: shuffle(tracks), category: cat ?? null },
     { headers: { "Cache-Control": "no-store" } },
   );
 }

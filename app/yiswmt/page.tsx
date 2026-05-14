@@ -113,6 +113,14 @@ export default function Yiswmt() {
                 }}
               />
             </div>
+            <footer className="absolute bottom-2 left-1/2 -translate-x-1/2 text-center pointer-events-none">
+              <p
+                className="font-mono text-[9px] tracking-[0.25em] uppercase pointer-events-auto"
+                style={{ color: "rgba(180,175,155,0.45)" }}
+              >
+                music: tadashikeiji · sonican · icsilviu · kaazoom · surprising media · music for videos · gregor quendel — via pixabay
+              </p>
+            </footer>
           </main>
         </ThemeShifter>
         </RadioProvider>
