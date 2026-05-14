@@ -256,6 +256,43 @@ export function IysTile() {
                   </p>
                 </div>
 
+                {/* personal note from the maker */}
+                <div
+                  className="mt-6 rounded-sm px-4 py-4"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, rgba(225,180,90,0.10) 0%, rgba(180,140,55,0.06) 100%)",
+                    border: "1px solid rgba(225,180,90,0.45)",
+                    boxShadow:
+                      "inset 0 1px 0 rgba(255,255,255,0.08), 0 0 18px rgba(225,180,90,0.12)",
+                  }}
+                >
+                  <p
+                    className="font-mono uppercase tracking-[0.30em] text-[8px] mb-2"
+                    style={{
+                      color: "rgba(245,210,140,0.95)",
+                      textShadow: "0 0 10px rgba(225,180,90,0.40)",
+                    }}
+                  >
+                    · a note from the maker ·
+                  </p>
+                  <p
+                    className="text-sm italic leading-relaxed"
+                    style={{ color: "rgba(245,235,215,0.92)" }}
+                  >
+                    this was made by someone never impacted by guns in a
+                    school, but has 2 teenage boys — and is aware of the fact
+                    that every name on this list once had a parent who said
+                    the exact same thing... until they didn&rsquo;t.
+                  </p>
+                  <p
+                    className="mt-3 text-sm italic leading-relaxed"
+                    style={{ color: "rgba(245,235,215,0.92)" }}
+                  >
+                    this is my receipt for not doing more to stop it sooner.
+                  </p>
+                </div>
+
                 <div
                   className="mt-6 pt-5 border-t text-center space-y-1"
                   style={{ borderColor: "rgba(245,235,215,0.12)" }}
