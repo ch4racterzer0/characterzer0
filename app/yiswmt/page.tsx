@@ -1,3 +1,4 @@
+import { CHARITIES, CharityTile } from "./charity-tile";
 import { MobileLanding } from "./mobile-landing";
 import { ArmyRadioTile, RadioProvider } from "./radio-tiles";
 import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
@@ -26,6 +27,11 @@ export default function Yiswmt() {
           <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center justify-end py-10 px-4">
             <div className="absolute bottom-8 left-8 sm:left-12">
               <ArmyRadioTile />
+            </div>
+            <div className="absolute bottom-8 right-8 sm:right-12 flex flex-row gap-2 sm:gap-3">
+              {CHARITIES.map((c) => (
+                <CharityTile key={c.short} charity={c} />
+              ))}
             </div>
             <div
               className="relative h-[28vh] aspect-[3/2]"
