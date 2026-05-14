@@ -1,4 +1,5 @@
-import { CHARITIES, CharityTile } from "./charity-tile";
+import { CHARITIES } from "./charity-data";
+import { CharityTile } from "./charity-tile";
 import { MobileLanding } from "./mobile-landing";
 import { ArmyRadioTile, RadioProvider } from "./radio-tiles";
 import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
