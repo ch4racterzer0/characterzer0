@@ -6,8 +6,8 @@ export const dynamic = "force-dynamic";
 const AUDIO_EXT = /\.(mp3|m4a|flac|ogg|aac|opus|wav)$/i;
 
 const CATEGORIES: Record<string, string> = {
-  memorial: "itsyoursphere-music/memorial/",
-  tribute: "itsyoursphere-music/tribute/",
+  sad: "itsyoursphere-music/sad/",
+  hope: "itsyoursphere-music/hope/",
 };
 
 function shuffle<T>(arr: T[]): T[] {

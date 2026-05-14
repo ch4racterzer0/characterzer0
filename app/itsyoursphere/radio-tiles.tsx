@@ -407,15 +407,47 @@ export function SchoolStereoTile() {
     <div ref={wrapperRef} className="relative inline-flex flex-col items-stretch w-[6.5rem] sm:w-28">
       {pickerOpen && (
         <div className="absolute bottom-full left-0 right-0 mb-2 flex flex-col gap-1.5 z-30">
+          <div
+            className="rounded-md px-2.5 py-2"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(28,26,24,0.92) 0%, rgba(14,14,16,0.92) 100%)",
+              border: "1px solid rgba(180,180,185,0.20)",
+              boxShadow:
+                "inset 0 1px 0 rgba(220,220,225,0.10), 0 4px 10px -4px rgba(0,0,0,0.75)",
+            }}
+          >
+            <p
+              className="font-mono text-[8px] tracking-[0.18em] leading-relaxed text-center"
+              style={{
+                color: "rgba(220,220,225,0.78)",
+                textShadow: "0 1px 0 rgba(0,0,0,0.85)",
+              }}
+            >
+              both have to exist.
+              <br />
+              it is okay to be sad —
+              <br />
+              this is not a happy thing.
+              <br />
+              it is also okay to need hope —
+              <br />
+              this page is also for that.
+              <br />
+              <span style={{ color: "rgba(255,180,80,0.85)" }}>
+                pick whichever you need.
+              </span>
+            </p>
+          </div>
           <ChannelTile
-            label="memorial"
-            sub="slow · quiet"
-            onClick={() => pick("memorial")}
+            label="sad"
+            sub="be sad with us"
+            onClick={() => pick("sad")}
           />
           <ChannelTile
-            label="tribute"
-            sub="songs · voices"
-            onClick={() => pick("tribute")}
+            label="hope"
+            sub="we still need this"
+            onClick={() => pick("hope")}
           />
           {playing && (
             <ChannelTile label="stop" sub="off the air" onClick={stop} />
