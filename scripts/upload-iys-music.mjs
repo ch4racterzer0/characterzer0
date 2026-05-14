@@ -22,9 +22,10 @@ if (!process.env.BLOB_READ_WRITE_TOKEN) {
 }
 
 const AUDIO_EXT = /\.(mp3|m4a|flac|ogg|aac|opus|wav)$/i;
-const SOURCE_BASE = process.env.IYS_SOURCE_BASE || join(homedir(), "Downloads");
-const CHANNELS = ["sad", "hope"];
-const PREFIX_BASE = "itsyoursphere-music/";
+const SOURCE_DIR =
+  process.env.IYS_MUSIC_SOURCE ||
+  join(homedir(), "OneDrive", "Desktop", "Chracterzer零号", "music");
+const PREFIX = "itsyoursphere-music/still-with-us/";
 
 async function walk(dir) {
   const out = [];
@@ -52,42 +53,35 @@ function contentTypeFor(name) {
   return "application/octet-stream";
 }
 
-let totalUploaded = 0;
-let totalSkipped = 0;
+const files = await walk(SOURCE_DIR);
+console.log(`local: ${files.length} audio files under ${SOURCE_DIR}`);
 
-for (const channel of CHANNELS) {
-  const localDir = join(SOURCE_BASE, channel);
-  const prefix = `${PREFIX_BASE}${channel}/`;
+const { blobs: existing } = await list({ prefix: PREFIX });
+const existingMap = new Map(existing.map((b) => [b.pathname, b.size]));
+console.log(`blob:  ${existing.length} already uploaded under ${PREFIX}`);
 
-  const files = await walk(localDir);
-  console.log(`\n[${channel}] local: ${files.length} audio files under ${localDir}`);
-
-  const { blobs: existing } = await list({ prefix });
-  const existingMap = new Map(existing.map((b) => [b.pathname, b.size]));
-  console.log(`[${channel}] blob:  ${existing.length} already uploaded under ${prefix}`);
-
-  for (const file of files) {
-    const rel = relative(localDir, file).split(sep).join("/");
-    const key = prefix + rel;
-    const localSize = (await stat(file)).size;
-    if (existingMap.get(key) === localSize) {
-      totalSkipped++;
-      continue;
-    }
-    const body = await readFile(file);
-    const r = await put(key, body, {
-      access: "public",
-      addRandomSuffix: false,
-      allowOverwrite: true,
-      contentType: contentTypeFor(rel),
-    });
-    totalUploaded++;
-    console.log(
-      `[${channel}]   + ${rel}  (${(localSize / 1024 / 1024).toFixed(2)} MB) -> ${r.url}`,
-    );
+let uploaded = 0;
+let skipped = 0;
+for (const file of files) {
+  const rel = relative(SOURCE_DIR, file).split(sep).join("/");
+  const key = PREFIX + rel;
+  const localSize = (await stat(file)).size;
+  if (existingMap.get(key) === localSize) {
+    skipped++;
+    continue;
   }
+  const body = await readFile(file);
+  const r = await put(key, body, {
+    access: "public",
+    addRandomSuffix: false,
+    allowOverwrite: true,
+    contentType: contentTypeFor(rel),
+  });
+  uploaded++;
+  console.log(
+    `  + ${rel}  (${(localSize / 1024 / 1024).toFixed(2)} MB) -> ${r.url}`,
+  );
 }
-
 console.log(
-  `\ndone — uploaded ${totalUploaded}, skipped ${totalSkipped} (already matching size)`,
+  `\ndone — uploaded ${uploaded}, skipped ${skipped} (already matching size)`,
 );

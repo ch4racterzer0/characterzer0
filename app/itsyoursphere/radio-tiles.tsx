@@ -372,10 +372,7 @@ export function SchoolStereoTile() {
   const { playing, category, playCategory, toggle } = useRadio();
   const [orbPlaying, setOrbPlaying] = useState(false);
   const [pickerOpen, setPickerOpen] = useState(false);
-  const [playlists, setPlaylists] = useState<{
-    sad?: Track[];
-    hope?: Track[];
-  }>({});
+  const [playlist, setPlaylist] = useState<Track[] | undefined>(undefined);
   const [isMobile, setIsMobile] = useState(false);
   const [mounted, setMounted] = useState(false);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
@@ -392,23 +389,21 @@ export function SchoolStereoTile() {
     return () => mq.removeEventListener("change", update);
   }, []);
 
-  // When the picker opens, fetch the full playlist for each channel in
-  // parallel. This serves two purposes: (1) the channel tiles can show
-  // accurate "N tracks" / "no tracks yet" counts, and (2) clicking a channel
-  // can hand the cached track list straight to playCategory, so audio.play()
-  // fires inside the same tick as the tap -- no await-fetch-then-play gap
-  // that mobile browsers sometimes treat as a non-gesture autoplay attempt.
+  // When the picker opens, fetch the still-with-us playlist so (1) the tile
+  // can show "N tracks" / "no tracks yet" and (2) tap-to-play hands the
+  // cached list straight to playCategory -- audio.play() fires in the same
+  // tick as the tap, so mobile browsers don't reject it as non-gesture.
   useEffect(() => {
     if (!pickerOpen) return;
     let cancelled = false;
-    const get = (cat: "sad" | "hope"): Promise<Track[]> =>
-      fetch(`/api/itsyoursphere-music/list?cat=${cat}`, { cache: "no-store" })
-        .then((r) => (r.ok ? r.json() : { tracks: [] }))
-        .then((d: { tracks?: Track[] }) => d.tracks ?? [])
-        .catch(() => []);
-    void Promise.all([get("sad"), get("hope")]).then(([sad, hope]) => {
-      if (!cancelled) setPlaylists({ sad, hope });
-    });
+    fetch("/api/itsyoursphere-music/list?cat=still", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : { tracks: [] }))
+      .then((d: { tracks?: Track[] }) => {
+        if (!cancelled) setPlaylist(d.tracks ?? []);
+      })
+      .catch(() => {
+        if (!cancelled) setPlaylist([]);
+      });
     return () => {
       cancelled = true;
     };
@@ -471,9 +466,9 @@ export function SchoolStereoTile() {
     void toggle();
   }
 
-  function pick(cat: "sad" | "hope") {
+  function play() {
     setPickerOpen(false);
-    void playCategory(cat, playlists[cat]);
+    void playCategory("still", playlist);
   }
 
   const statusLabel = playing
@@ -482,22 +477,15 @@ export function SchoolStereoTile() {
       : "on net"
     : "stby";
 
-  const sadCount = playlists.sad?.length;
-  const hopeCount = playlists.hope?.length;
+  const trackCount = playlist?.length;
 
   const pickerContent = (
     <>
       <ChannelTile
-        label="sad"
-        sub="be sad with us"
-        count={sadCount}
-        onClick={() => pick("sad")}
-      />
-      <ChannelTile
-        label="hope"
-        sub="we still need this"
-        count={hopeCount}
-        onClick={() => pick("hope")}
+        label="still with us"
+        sub="the soundtrack"
+        count={trackCount}
+        onClick={play}
       />
       {playing && (
         <ChannelTile label="stop" sub="off the air" onClick={stop} />
