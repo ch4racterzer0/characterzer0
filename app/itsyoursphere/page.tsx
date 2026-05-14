@@ -140,8 +140,7 @@ export default function ItsYourSphere() {
                 className="font-mono text-[9px] sm:text-[9px] tracking-[0.25em] uppercase leading-relaxed"
                 style={{ color: "rgba(180,175,155,0.45)" }}
               >
-                music: tadashikeiji · sonican · icsilviu · kaazoom · surprising
-                media · music for videos · gregor quendel — via pixabay
+                music: leberch — via pixabay
               </p>
             </footer>
           </main>
