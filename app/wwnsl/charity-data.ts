@@ -11,38 +11,37 @@ export type Charity = {
 
 export const CHARITIES: Charity[] = [
   {
-    short: "SHP",
-    name: "Sandy Hook Promise",
+    short: "NCM",
+    name: "National Center for Missing & Exploited Children",
     mission:
-      "Founded by family members of children and educators killed at Sandy Hook Elementary. Builds youth violence-prevention programs in schools across the country so kids see the warning signs before another child becomes a name.",
-    url: "https://www.sandyhookpromise.org/",
-    donateUrl: "https://www.sandyhookpromise.org/donate/",
-    tone: "teal",
-  },
-  {
-    short: "EVT",
-    name: "Everytown for Gun Safety",
-    mission:
-      "The largest gun-violence-prevention organization in the country. Out-organizes the gun lobby in statehouses and at the ballot box, funds research, supports survivors, and pushes the policy fights that make schools safer.",
-    url: "https://www.everytown.org/",
+      "The country's clearinghouse for missing-child cases. Runs the CyberTipline, the AMBER Alert system, and the 'Have You Seen Me?' poster program — 40 years of putting faces in mailboxes so the next person who sees the child knows. Recovers thousands of children every year.",
+    url: "https://www.missingkids.org/",
+    donateUrl: "https://www.missingkids.org/donate",
     tone: "red",
   },
   {
-    short: "BDY",
-    name: "Brady — United Against Gun Violence",
+    short: "CHP",
+    name: "The Charley Project",
     mission:
-      "Named for James Brady, Reagan's press secretary, who was shot and paralyzed in 1981. The longest-running national gun-violence-prevention organization, taking on the gun lobby in court, in Congress, and inside the industry itself.",
-    url: "https://www.bradyunited.org/",
-    donateUrl: "https://www.bradyunited.org/donate",
+      "A one-woman publicity vehicle for over 16,500 cold-case missing persons whose stories the press forgot. No tip line, no investigation — just visibility, kept alive year after year. The closest existing site in spirit to this one.",
+    url: "https://charleyproject.org/",
     tone: "cream",
   },
   {
-    short: "MFL",
-    name: "March For Our Lives",
+    short: "NMU",
+    name: "NamUs",
     mission:
-      "Founded by the surviving students of Marjory Stoneman Douglas High School after the 2018 Parkland shooting. A youth-led movement organizing voters, marches, and policy fights to end gun violence in their generation, not the next one.",
-    url: "https://marchforourlives.com/",
-    donateUrl: "https://marchforourlives.com/donate/",
+      "The federal government's free database of missing and unidentified persons, run through the Department of Justice. Connects families, law enforcement, and medical examiners across jurisdictional lines so the John and Jane Does can find their names and the missing can find their way home.",
+    url: "https://namus.nij.ojp.gov/",
+    tone: "teal",
+  },
+  {
+    short: "BMF",
+    name: "Black & Missing Foundation",
+    mission:
+      "Founded by sisters-in-law to address the press blackout on missing Black children and adults — cases that historically receive a fraction of the coverage and a fraction of the search. Brings their faces forward, demands the same urgency, gets the AMBER alerts issued.",
+    url: "https://blackandmissinginc.com/",
+    donateUrl: "https://blackandmissinginc.com/donate/",
     tone: "yellow",
   },
 ];
