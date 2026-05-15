@@ -1,6 +1,7 @@
 import { HoleInput } from "./hole-input";
 import { IframeTilePopup } from "./iframe-tile-popup";
 import { LinkTile } from "./link-tile";
+import { PodsButton } from "./pods-button";
 import {
   FigureWithTilesDesktop,
   RadioProvider,
@@ -31,7 +32,7 @@ export default function Home() {
         <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center justify-end gap-6 sm:gap-0 py-4 sm:py-10 px-4">
         {/* mobile only: pods + jamz, sitting just above the figure (orb + figure come from the root layout) */}
         <div className="sm:hidden flex flex-row items-end justify-center gap-4 min-h-screen pb-[28vh]">
-          <LinkTile label="Pods" href="https://www.thedelos.com" />
+          <PodsButton />
           <RadioTile label="Jamz" />
         </div>
 
