@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import { PodcastCoversModal } from "./hungersite/podcast-covers";
+import { useEffect, useState } from "react";
+import { TetheredPopup } from "./tethered-tile";
 
 export function PodsButton() {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   return (
     <>
@@ -28,7 +30,7 @@ export function PodsButton() {
           </span>
         </span>
       </button>
-      {open && <PodcastCoversModal onClose={() => setOpen(false)} />}
+      {open && mounted && <TetheredPopup onClose={() => setOpen(false)} />}
     </>
   );
 }
