@@ -51,7 +51,7 @@ export function TomomiTile() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="TOM — Tomomi Kato, the voice here"
-        className="relative inline-flex flex-col items-stretch w-14 sm:w-24 rounded-md overflow-hidden transition-transform hover:-translate-y-0.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/40"
+        className="relative inline-flex flex-col items-stretch w-12 sm:w-24 rounded-md overflow-hidden transition-transform hover:-translate-y-0.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/40"
         style={{
           background: BODY,
           border: `1px solid ${BORDER}`,
