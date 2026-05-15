@@ -19,12 +19,18 @@ export const dynamic = "force-dynamic";
 export default function Home() {
   return (
     <>
+      {/* mobile: pin the layout's CenterFigure to the bottom of the screen so he's "watching" from below */}
+      <style>{`
+        @media (max-width: 639px) {
+          .cz-orb-center { align-items: flex-end !important; padding-top: 0 !important; padding-bottom: 0 !important; }
+        }
+      `}</style>
       <RadioProvider>
         <ThemeShifter>
         <ThemeSwitch />
         <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center justify-end gap-6 sm:gap-0 py-4 sm:py-10 px-4">
-        {/* mobile only: pods + jamz. orb + figure come from the root layout. */}
-        <div className="sm:hidden flex flex-row items-end justify-center gap-4 min-h-screen pb-10">
+        {/* mobile only: pods + jamz, sitting just above the figure (orb + figure come from the root layout) */}
+        <div className="sm:hidden flex flex-row items-end justify-center gap-4 min-h-screen pb-[28vh]">
           <LinkTile label="Pods" href="https://www.thedelos.com" />
           <RadioTile label="Jamz" />
         </div>
