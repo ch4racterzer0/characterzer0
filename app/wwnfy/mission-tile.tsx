@@ -17,7 +17,7 @@ const BADGE_TEXT = "rgba(28,18,8,0.92)";
 const SCUFF =
   "radial-gradient(circle at 18% 22%, rgba(255,255,255,0.06) 0%, transparent 30%), radial-gradient(circle at 78% 75%, rgba(0,0,0,0.10) 0%, transparent 35%), radial-gradient(circle at 60% 30%, rgba(0,0,0,0.06) 0%, transparent 25%)";
 
-export function IysTile() {
+export function WwnfyTile() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -41,8 +41,8 @@ export function IysTile() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        aria-label="IYS — It's Your Sphere"
-        className="relative inline-flex flex-col items-stretch w-14 sm:w-24 rounded-md overflow-hidden transition-transform hover:-translate-y-0.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/40"
+        aria-label="WWNFY — We Will Never Forget You"
+        className="relative inline-flex flex-col items-stretch w-12 sm:w-24 rounded-md overflow-hidden transition-transform hover:-translate-y-0.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/40"
         style={{
           background: BODY,
           border: `1px solid ${BORDER}`,
@@ -76,15 +76,15 @@ export function IysTile() {
           />
         </span>
         <span
-          className="relative block px-1 sm:px-2 pt-2 pb-0.5 text-center font-mono font-bold uppercase text-[11px] sm:text-[14px]"
+          className="relative block px-1 sm:px-2 pt-2 pb-0.5 text-center font-mono font-bold uppercase text-[9px] sm:text-[12px]"
           style={{
             color: TEXT,
             textShadow:
               "0 1px 0 rgba(255,255,255,0.12), 0 -1px 0 rgba(0,0,0,0.45)",
-            letterSpacing: "0.18em",
+            letterSpacing: "0.12em",
           }}
         >
-          IYS
+          WWNFY
         </span>
         <span
           className="relative block px-1.5 pb-2 text-center font-mono uppercase tracking-[0.18em]"
@@ -95,7 +95,7 @@ export function IysTile() {
             lineHeight: 1.3,
           }}
         >
-          their sphere
+          their wall now
         </span>
       </button>
 
@@ -106,7 +106,7 @@ export function IysTile() {
             className="fixed inset-0 z-[80] flex items-center justify-center p-4 sm:p-8"
             role="dialog"
             aria-modal="true"
-            aria-label="It's Your Sphere"
+            aria-label="We Will Never Forget You"
           >
             <button
               type="button"
@@ -213,7 +213,7 @@ export function IysTile() {
                   className="font-mono uppercase tracking-[0.35em] text-[9px] mb-2"
                   style={{ color: SUB, textShadow: "0 1px 0 rgba(0,0,0,0.45)" }}
                 >
-                  · IYS ·
+                  · WWNFY ·
                 </p>
                 <h2
                   className="font-mono text-xl sm:text-2xl uppercase tracking-[0.12em] font-bold mb-5"
@@ -223,23 +223,25 @@ export function IysTile() {
                       "0 1px 0 rgba(255,255,255,0.16), 0 -1px 0 rgba(0,0,0,0.45)",
                   }}
                 >
-                  It&rsquo;s Your
+                  We Will
                   <br />
-                  Sphere
+                  Never Forget You
                 </h2>
 
                 <div className="space-y-4 text-sm leading-relaxed" style={{ color: TEXT }}>
                   <p>
-                    A place to remember anyone — child, teacher, staff,
-                    parent — killed by a gun inside a school in this country.
-                    Not a casualty count. A face, a name, a story their
-                    family wants the rest of us to know.
+                    One place for every missing child in this country.
+                    Trafficked. Abducted. Runaway. Cold case. Found as a
+                    body. Never identified at all. The faces that disappeared
+                    from the milk carton, fell off the news, never made it
+                    onto an AMBER Alert at all.
                   </p>
                   <p>
-                    Any family who lost someone this way can request a spot
-                    here. We post the picture, the dates, and anything you
-                    want said. Every grade. Every state. Every year. Until
-                    the year there is nothing new to add.
+                    Any family who has lost someone this way can request a
+                    spot here. We post the picture, the dates, anything you
+                    want said. Every state. Every year. The wall does not
+                    shrink when a case &ldquo;closes.&rdquo; Their face stays
+                    until you ask us to take it down.
                   </p>
                   <p
                     className="font-semibold tracking-[0.08em] uppercase text-center pt-2"
@@ -252,7 +254,7 @@ export function IysTile() {
                     no charge · no receipt needed
                   </p>
                   <p className="text-center text-sm italic" style={{ color: SUB }}>
-                    The promise is in the name. This is their sphere now.
+                    The promise is in the name. We will never forget them.
                   </p>
                 </div>
 
@@ -280,16 +282,17 @@ export function IysTile() {
                     className="text-sm italic leading-relaxed"
                     style={{ color: "rgba(245,235,215,0.92)" }}
                   >
-                    this was made by someone never impacted by guns in a
-                    school, but has 2 teenage boys — and is aware of the fact
-                    that every name on this list once had a parent who said
-                    the exact same thing... until they didn&rsquo;t.
+                    this was made by someone with no missing child of his
+                    own — only 2 teenage boys and the disbelief that the
+                    photos at the WalMart entrance keep getting older and
+                    older while we walk past them. some of those faces have
+                    been there longer than my 15-year-old has been alive.
                   </p>
                   <p
                     className="mt-3 text-sm italic leading-relaxed"
                     style={{ color: "rgba(245,235,215,0.92)" }}
                   >
-                    this is my receipt for not doing more to stop it sooner.
+                    this is my receipt for walking past too long.
                   </p>
                 </div>
 

@@ -42,7 +42,7 @@ export function ShareTile() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="SHARE — share your loved one's story"
-        className="relative inline-flex flex-col items-stretch w-14 sm:w-24 rounded-md overflow-hidden transition-transform hover:-translate-y-0.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/40"
+        className="relative inline-flex flex-col items-stretch w-12 sm:w-24 rounded-md overflow-hidden transition-transform hover:-translate-y-0.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/40"
         style={{
           background: BODY,
           border: `1px solid ${BORDER}`,
@@ -190,16 +190,17 @@ export function ShareTile() {
 
                 <div className="space-y-4 text-sm leading-relaxed" style={{ color: TEXT }}>
                   <p>
-                    This page was built by someone with no child of their own
-                    inside one of those classrooms — only the disbelief that
-                    we keep doing this, and the need to do something with it.
+                    This page was built by someone with no missing child of
+                    his own — only the disbelief that the photos at the
+                    WalMart entrance keep getting older and older while we
+                    walk past them.
                   </p>
                   <p>
                     Take what you have of the one you&rsquo;ve lost. Words,
-                    pictures, the joke they told at breakfast that morning,
-                    the drawing on the fridge. Put it where someone you have
-                    not met yet can find it. Make them a person again, not a
-                    body count.
+                    pictures, the joke they told at breakfast that day, the
+                    drawing on the fridge, the last text. Put it where
+                    someone you have not met yet can find it. Make them a
+                    person again, not a poster collecting dust.
                   </p>
                   <p>
                     <span className="font-semibold">sharethebyline.com</span> is
@@ -211,8 +212,8 @@ export function ShareTile() {
                     style={{ color: SUB }}
                   >
                     The ask is small. Leave a trace. Prove from the dark,
-                    from the anonymous, from the deep, that the next
-                    classroom door does not have to be the next headline.
+                    from the anonymous, from the deep, that the next photo on
+                    the wall does not have to fade.
                   </p>
                 </div>
 

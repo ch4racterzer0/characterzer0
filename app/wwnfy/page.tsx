@@ -1,7 +1,7 @@
 import { CHARITIES } from "./charity-data";
 import { CharityTile } from "./charity-tile";
 import { FlagOrb } from "./flag-orb";
-import { IysTile } from "./mission-tile";
+import { WwnfyTile } from "./mission-tile";
 import { RadioProvider, SchoolStereoTile } from "./radio-tiles";
 import { Scoreboard } from "./scoreboard";
 import { ShareTile } from "./share-tile";
@@ -26,13 +26,13 @@ export default function Wwnfy() {
       <style>{`.cz-chrome, .cz-orb-center { display: none !important; }`}</style>
       <RadioProvider>
         <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center px-2 sm:px-4 pt-3 sm:pt-6 pb-20 sm:pb-10">
-            {/* top tile row — 4 anti-gun-violence charities + SHARE + IYS, wraps on mobile */}
-            <div className="flex flex-row flex-wrap items-stretch justify-center gap-1 sm:gap-3 max-w-[95vw]">
+            {/* top tile row — 4 missing-children charities + SHARE + WWNFY + TOM, fits one row on mobile down to iPhone SE */}
+            <div className="flex flex-row flex-wrap items-stretch justify-center gap-0.5 sm:gap-3 max-w-[100vw]">
               {CHARITIES.slice(0, 2).map((c) => (
                 <CharityTile key={c.short} charity={c} />
               ))}
               <ShareTile />
-              <IysTile />
+              <WwnfyTile />
               <TomomiTile />
               {CHARITIES.slice(2).map((c) => (
                 <CharityTile key={c.short} charity={c} />
