@@ -1,9 +1,9 @@
 export const dynamic = "force-static";
 
 export const metadata = {
-  title: "We Will Not Stop Looking — a letter to Ivanka Trump",
+  title: "We Will Never Forget You — a letter to Ivanka Trump",
   description:
-    "An open letter offering /wwnsl to Ivanka Trump as her legacy work for every missing child in America.",
+    "An open letter offering /wwnfy to Ivanka Trump as her legacy work for every missing child in America.",
 };
 
 const PAPER =
@@ -101,7 +101,7 @@ export default function DearMelania() {
               >
                 <p>
                   I built this site this week. It is called{" "}
-                  <em>We Will Not Stop Looking</em>. It is one wall, one
+                  <em>We Will Never Forget You</em>. It is one wall, one
                   place, for every missing child in this country &mdash;
                   trafficked, abducted, runaway, never recovered, the cold
                   cases, the open files, the names that fell off the news.
@@ -149,7 +149,7 @@ export default function DearMelania() {
 
                 <p>
                   If you do not accept it, the site stays where it is. The
-                  offer was the point. We will not stop looking either way.
+                  offer was the point. We Will Never Forget You either way.
                 </p>
 
                 <p
@@ -187,7 +187,7 @@ export default function DearMelania() {
                   className="font-mono text-[10px] tracking-[0.25em] uppercase mt-1"
                   style={{ color: INK_SOFT }}
                 >
-                  the maker of wwnsl.com
+                  the maker of wwnfy.com
                 </p>
               </div>
 
@@ -218,7 +218,7 @@ export default function DearMelania() {
             className="mt-2 font-mono text-[9px] tracking-[0.3em] uppercase text-center"
             style={{ color: "rgba(245,235,215,0.45)" }}
           >
-            we will not stop looking · a gift, not a campaign
+            We Will Never Forget You · a gift, not a campaign
           </p>
         </div>
       </main>

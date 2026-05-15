@@ -6,8 +6,8 @@ import { NextRequest, NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
-const COOKIE_NAME = "wwnsl-upload-auth";
-const IMAGE_EXT = /\.(jpg|jpeg|png|webp|avif|gif)$/i;
+const COOKIE_NAME = "wwnfy-upload-auth";
+const AUDIO_EXT = /\.(mp3|m4a|flac|ogg|aac|opus|wav)$/i;
 
 function safeEqual(a: string, b: string): boolean {
   const aBuf = Buffer.from(a);
@@ -17,7 +17,7 @@ function safeEqual(a: string, b: string): boolean {
 }
 
 async function isAuthed(): Promise<boolean> {
-  const expected = process.env.WWNSL_UPLOAD_TOKEN;
+  const expected = process.env.WWNFY_UPLOAD_TOKEN;
   if (!expected) return false;
   const cookieStore = await cookies();
   const provided = cookieStore.get(COOKIE_NAME)?.value;
@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  if (!IMAGE_EXT.test(file.name)) {
+  if (!AUDIO_EXT.test(file.name)) {
     return NextResponse.json(
       { ok: false, reason: "bad-extension" },
       { status: 400 },
@@ -47,18 +47,18 @@ export async function POST(req: NextRequest) {
   }
 
   const safeName = file.name.replace(/[^\w.\- ]+/g, "_");
-  const key = `wwnsl-faces/${safeName}`;
+  const key = `wwnfy-music/still-with-us/${safeName}`;
 
   try {
     const blob = await put(key, file, {
       access: "public",
-      contentType: file.type || "image/jpeg",
+      contentType: file.type || "audio/mpeg",
       addRandomSuffix: false,
       allowOverwrite: true,
     });
     return NextResponse.json({ ok: true, url: blob.url, key });
   } catch (err) {
-    console.error("wwnsl-faces-upload-error", err);
+    console.error("wwnfy-music-upload-error", err);
     return NextResponse.json(
       { ok: false, reason: "blob-error" },
       { status: 500 },
@@ -82,7 +82,7 @@ export async function DELETE(req: NextRequest) {
     await del(url);
     return NextResponse.json({ ok: true });
   } catch (err) {
-    console.error("wwnsl-faces-delete-error", err);
+    console.error("wwnfy-music-delete-error", err);
     return NextResponse.json(
       { ok: false, reason: "blob-error" },
       { status: 500 },

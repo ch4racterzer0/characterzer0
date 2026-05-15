@@ -14,7 +14,7 @@ export function AuthForm() {
     setError(null);
 
     try {
-      const res = await fetch("/api/wwnsl-music/auth", {
+      const res = await fetch("/api/wwnfy-music/auth", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password: pw }),

@@ -3,7 +3,7 @@ import { list } from "@vercel/blob";
 export const dynamic = "force-dynamic";
 
 const IMAGE_EXT = /\.(jpg|jpeg|png|webp|avif|gif)$/i;
-const PREFIX = "wwnsl-faces/";
+const PREFIX = "wwnfy-faces/";
 
 export async function GET() {
   let faces: string[] = [];
@@ -13,7 +13,7 @@ export async function GET() {
       .filter((b) => IMAGE_EXT.test(b.pathname))
       .map((b) => b.url);
   } catch (err) {
-    console.error("wwnsl-faces-list-error", err);
+    console.error("wwnfy-faces-list-error", err);
   }
   return Response.json(
     { faces },

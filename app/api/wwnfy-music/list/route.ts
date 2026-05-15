@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 const AUDIO_EXT = /\.(mp3|m4a|flac|ogg|aac|opus|wav)$/i;
 
 const CATEGORIES: Record<string, string> = {
-  still: "wwnsl-music/still-with-us/",
+  still: "wwnfy-music/still-with-us/",
 };
 
 function shuffle<T>(arr: T[]): T[] {
@@ -30,11 +30,11 @@ export async function GET(req: NextRequest) {
     tracks = blobs
       .filter((b) => AUDIO_EXT.test(b.pathname))
       .map((b) => ({
-        name: b.pathname.replace(/^wwnsl-music\/(?:[^/]+\/)?/, ""),
+        name: b.pathname.replace(/^wwnfy-music\/(?:[^/]+\/)?/, ""),
         url: b.url,
       }));
   } catch (err) {
-    console.error("wwnsl-music-list-error", err);
+    console.error("wwnfy-music-list-error", err);
   }
   return Response.json(
     { tracks: shuffle(tracks), category: cat ?? null },

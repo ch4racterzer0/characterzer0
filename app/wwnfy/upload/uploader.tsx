@@ -29,7 +29,7 @@ export function Uploader() {
   const loadTracks = useCallback(async () => {
     setRefreshing(true);
     try {
-      const res = await fetch("/api/wwnsl-music/list", { cache: "no-store" });
+      const res = await fetch("/api/wwnfy-music/list", { cache: "no-store" });
       if (!res.ok) {
         setTracks([]);
         return;
@@ -57,7 +57,7 @@ export function Uploader() {
       form.append("file", item.file);
 
       try {
-        const res = await fetch("/api/wwnsl-music/upload", {
+        const res = await fetch("/api/wwnfy-music/upload", {
           method: "POST",
           body: form,
         });
@@ -122,14 +122,14 @@ export function Uploader() {
   );
 
   async function deleteTrack(url: string) {
-    const u = new URL("/api/wwnsl-music/upload", window.location.origin);
+    const u = new URL("/api/wwnfy-music/upload", window.location.origin);
     u.searchParams.set("url", url);
     const res = await fetch(u.toString(), { method: "DELETE" });
     if (res.ok) void loadTracks();
   }
 
   async function signOut() {
-    await fetch("/api/wwnsl-music/auth", { method: "DELETE" });
+    await fetch("/api/wwnfy-music/auth", { method: "DELETE" });
     window.location.reload();
   }
 
@@ -137,7 +137,7 @@ export function Uploader() {
     <div className="w-full max-w-2xl flex flex-col gap-6">
       <p className="text-[10px] tracking-[0.25em] uppercase text-stone-500">
         all uploads land in{" "}
-        <span className="text-stone-300">wwnsl-music/still-with-us/</span>{" "}
+        <span className="text-stone-300">wwnfy-music/still-with-us/</span>{" "}
         — single channel, single soundtrack.
       </p>
 
