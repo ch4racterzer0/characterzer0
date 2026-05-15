@@ -1,11 +1,11 @@
 import { CHARITIES } from "./charity-data";
 import { CharityTile } from "./charity-tile";
 import { FlagOrb } from "./flag-orb";
-import { LeberchTile } from "./leberch-tile";
 import { IysTile } from "./mission-tile";
 import { RadioProvider, SchoolStereoTile } from "./radio-tiles";
 import { Scoreboard } from "./scoreboard";
 import { ShareTile } from "./share-tile";
+import { TomomiTile } from "./tomomi-tile";
 
 export const dynamic = "force-dynamic";
 
@@ -33,7 +33,7 @@ export default function Wwnfy() {
               ))}
               <ShareTile />
               <IysTile />
-              <LeberchTile />
+              <TomomiTile />
               {CHARITIES.slice(2).map((c) => (
                 <CharityTile key={c.short} charity={c} />
               ))}
@@ -142,7 +142,7 @@ export default function Wwnfy() {
                 className="font-mono text-[9px] sm:text-[9px] tracking-[0.25em] uppercase leading-relaxed"
                 style={{ color: "rgba(180,175,155,0.45)" }}
               >
-                music: leberch — via pixabay
+                music: tomomi kato — via pixabay
               </p>
             </footer>
           </main>

@@ -17,7 +17,7 @@ const BADGE_TEXT = "rgba(248,238,218,0.95)";
 const SCUFF =
   "radial-gradient(circle at 18% 22%, rgba(255,255,255,0.10) 0%, transparent 30%), radial-gradient(circle at 78% 75%, rgba(80,55,25,0.10) 0%, transparent 35%), radial-gradient(circle at 60% 30%, rgba(80,55,25,0.06) 0%, transparent 25%)";
 
-export function LeberchTile() {
+export function TomomiTile() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -41,7 +41,7 @@ export function LeberchTile() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        aria-label="LEB — leberch, the voice here"
+        aria-label="TOM — Tomomi Kato, the voice here"
         className="relative inline-flex flex-col items-stretch w-14 sm:w-24 rounded-md overflow-hidden transition-transform hover:-translate-y-0.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/40"
         style={{
           background: BODY,
@@ -84,7 +84,7 @@ export function LeberchTile() {
             letterSpacing: "0.18em",
           }}
         >
-          LEB
+          TOM
         </span>
         <span
           className="relative block px-1.5 pb-2 text-center font-mono uppercase tracking-[0.18em]"
@@ -106,7 +106,7 @@ export function LeberchTile() {
             className="fixed inset-0 z-[80] flex items-center justify-center p-4 sm:p-8"
             role="dialog"
             aria-modal="true"
-            aria-label="leberch — the voice here"
+            aria-label="Tomomi Kato — the voice here"
           >
             <button
               type="button"
@@ -178,7 +178,7 @@ export function LeberchTile() {
                     textShadow: "0 1px 0 rgba(255,250,230,0.40)",
                   }}
                 >
-                  · LEB ·
+                  · TOM ·
                 </p>
                 <h2
                   className="font-mono text-xl sm:text-2xl uppercase tracking-[0.12em] font-bold mb-5"
@@ -188,7 +188,7 @@ export function LeberchTile() {
                       "0 1px 0 rgba(255,250,230,0.55), 0 -1px 0 rgba(120,80,40,0.30)",
                   }}
                 >
-                  leberch
+                  Tomomi Kato
                   <br />
                   the voice here
                 </h2>
@@ -198,32 +198,42 @@ export function LeberchTile() {
                   style={{ color: TEXT }}
                 >
                   <p>
-                    Every track on the stereo — sad and hope, both channels —
-                    is by an artist who goes by{" "}
-                    <span className="font-semibold">leberch</span>, posted on
-                    Pixabay under a license that lets anyone use the music for
-                    free. I am one of those anyones.
+                    Every track on the stereo is by{" "}
+                    <span className="font-semibold">Tomomi Kato</span>, a
+                    pianist from Aichi, Japan. She posts her music on Pixabay
+                    under a license that lets anyone use it for free. I am
+                    one of those anyones.
                   </p>
                   <p>
-                    I have not paid him. I cannot. I wrote to him to tell him
-                    that, and to tell him this site is what I have to offer
+                    I have not paid her. I cannot. I wrote to her to tell her
+                    that, and to tell her this site is what I have to offer
                     instead — that the music doing this work here is the
-                    closest thing to a payment I can give. This page is his
+                    closest thing to a payment I can give. This page is her
                     receipt.
                   </p>
                   <p
                     className="text-center italic pt-2"
                     style={{ color: SUB }}
                   >
-                    Until he finds me, no other artist plays here. The voice
-                    of every life this page is built around is being carried
-                    by his music alone. That is on purpose.
+                    In her own words, on her Pixabay page: &ldquo;I cherish
+                    the people who stop and listen to my music. And I
+                    promise to continue creating.&rdquo; That is exactly the
+                    promise this site is built on. Two strangers, one
+                    promise: keep going. Keep listening. Keep naming.
+                  </p>
+                  <p
+                    className="text-center text-sm italic pt-2"
+                    style={{ color: SUB }}
+                  >
+                    Until she finds me, no other artist plays here. The
+                    voice of every missing child this page is built around
+                    is being carried by her piano alone. That is on purpose.
                   </p>
                 </div>
 
                 <div className="mt-6">
                   <a
-                    href="https://pixabay.com/users/leberch-50293141/"
+                    href="https://pixabay.com/users/tomomi_kato-23634083/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block w-full text-center font-mono uppercase tracking-[0.3em] text-xs font-bold px-4 py-3 rounded-sm transition-transform hover:-translate-y-0.5"
@@ -237,7 +247,7 @@ export function LeberchTile() {
                         "0 1px 0 rgba(255,255,255,0.25), 0 -1px 0 rgba(0,0,0,0.20)",
                     }}
                   >
-                    Listen to leberch on Pixabay →
+                    Listen to Tomomi on Pixabay →
                   </a>
                   <p
                     className="mt-3 font-mono text-[9px] uppercase tracking-[0.25em] text-center"
