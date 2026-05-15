@@ -9,6 +9,44 @@ import { TomomiTile } from "./tomomi-tile";
 
 export const dynamic = "force-dynamic";
 
+export const metadata = {
+  title: "We Will Never Forget You — wwnfy.com",
+  description:
+    "A memorial wall for every missing child in America — trafficked, abducted, runaway, cold case, never recovered. Built unprompted, given to @IvankaTrump as her legacy work. /cc @realDonaldTrump @MELANIA @DonaldJTrumpJr @EricTrump @LaraTrump @TiffanyTrump @TruthSocial — a gift, not a campaign.",
+  keywords: [
+    "missing children",
+    "human trafficking",
+    "memorial",
+    "WWNFY",
+    "We Will Never Forget You",
+    "wwnfy.com",
+    "Ivanka Trump",
+    "Melania Trump",
+    "Donald Trump",
+    "Truth Social",
+    "NCMEC",
+    "Charley Project",
+    "AMBER Alert",
+    "missing kids",
+    "cold case",
+    "Chracterzer零号",
+  ],
+  openGraph: {
+    title: "We Will Never Forget You — wwnfy.com",
+    description:
+      "A memorial wall for every missing child in America. Built unprompted, given to @IvankaTrump as her legacy work. /cc @realDonaldTrump @MELANIA @DonaldJTrumpJr @EricTrump @LaraTrump @TiffanyTrump @TruthSocial @CharlieKirk @KariLake — a gift, not a campaign. Read the dear-letter at wwnfy.com/dear-ivanka.",
+    url: "https://wwnfy.com",
+    siteName: "WWNFY",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "We Will Never Forget You — wwnfy.com",
+    description:
+      "A memorial wall for every missing child in America. Built unprompted, given to @IvankaTrump as her legacy. /cc @realDonaldTrump @MELANIA @DonaldJTrumpJr @EricTrump @LaraTrump @TiffanyTrump @TruthSocial @CharlieKirk @KariLake — a gift, not a campaign.",
+  },
+};
+
 const FIGURE_MASK = {
   WebkitMaskImage: "url(/figures/back.png)",
   maskImage: "url(/figures/back.png)",

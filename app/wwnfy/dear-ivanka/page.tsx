@@ -1,9 +1,36 @@
 export const dynamic = "force-static";
 
 export const metadata = {
-  title: "We Will Never Forget You — a letter to Ivanka Trump",
+  title: "Dear Ivanka — a hand-delivered letter offering wwnfy.com",
   description:
-    "An open letter offering /wwnfy to Ivanka Trump as her legacy work for every missing child in America.",
+    "An open letter to @IvankaTrump offering wwnfy.com — a memorial wall for every missing child in America — as her legacy work, building on her UN human-trafficking platform. /cc @realDonaldTrump @MELANIA @DonaldJTrumpJr @EricTrump @LaraTrump @TiffanyTrump @TruthSocial @CharlieKirk @KariLake — a gift, not a campaign.",
+  keywords: [
+    "Ivanka Trump",
+    "human trafficking",
+    "missing children",
+    "WWNFY",
+    "We Will Never Forget You",
+    "Be Best",
+    "Trump family",
+    "memorial",
+    "wwnfy.com",
+    "Truth Social",
+    "Chracterzer零号",
+  ],
+  openGraph: {
+    title: "Dear Ivanka — a hand-delivered letter offering wwnfy.com",
+    description:
+      "An open letter to @IvankaTrump offering wwnfy.com — every missing child in America memorialized in one place — as her legacy work, building on her UN trafficking platform. /cc @realDonaldTrump @MELANIA @DonaldJTrumpJr @EricTrump @LaraTrump @TiffanyTrump @TruthSocial @CharlieKirk @KariLake @JackPosobiec @LizUSA — a gift, not a campaign.",
+    url: "https://wwnfy.com/dear-ivanka",
+    siteName: "WWNFY",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dear Ivanka — a hand-delivered letter offering wwnfy.com",
+    description:
+      "An open letter to @IvankaTrump offering wwnfy.com — every missing child memorialized — as her legacy. /cc @realDonaldTrump @MELANIA @DonaldJTrumpJr @EricTrump @LaraTrump @TiffanyTrump @TruthSocial @CharlieKirk @KariLake — a gift, not a campaign.",
+  },
 };
 
 const PAPER =
