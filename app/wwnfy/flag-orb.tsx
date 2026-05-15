@@ -26,11 +26,11 @@ export function FlagOrb() {
   const [overlayIdx, setOverlayIdx] = useState(0);
   const [faces, setFaces] = useState<string[]>([]);
 
-  // Pull face URLs from the wwnsl-faces Blob namespace.
+  // Pull face URLs from the wwnfy-faces Blob namespace.
   // Empty namespace = no faces, only words cycle.
   useEffect(() => {
     let cancelled = false;
-    fetch("/api/wwnsl-faces/list", { cache: "no-store" })
+    fetch("/api/wwnfy-faces/list", { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : { faces: [] }))
       .then((d: { faces?: string[] }) => {
         if (!cancelled) setFaces(d.faces ?? []);
@@ -112,7 +112,7 @@ export function FlagOrb() {
           }}
         />
 
-        {/* overlay fader — faces fill the orb (clipped to circle); words render center-anchored. Faces dynamically loaded from /api/wwnsl-faces/list. Empty list -> only words cycle. */}
+        {/* overlay fader — faces fill the orb (clipped to circle); words render center-anchored. Faces dynamically loaded from /api/wwnfy-faces/list. Empty list -> only words cycle. */}
         <div className="absolute inset-0">
           {overlay.map((item, i) => {
             const active = overlayIdx === i;

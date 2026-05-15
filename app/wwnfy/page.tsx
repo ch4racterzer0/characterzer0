@@ -20,7 +20,7 @@ const FIGURE_MASK = {
   maskPosition: "bottom center",
 } as const;
 
-export default function Wwnsl() {
+export default function Wwnfy() {
   return (
     <>
       <style>{`.cz-chrome, .cz-orb-center { display: none !important; }`}</style>

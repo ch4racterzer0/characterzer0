@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-const COOKIE_NAME = "wwnsl-upload-auth";
+const COOKIE_NAME = "wwnfy-upload-auth";
 
 function safeEqual(a: string, b: string): boolean {
   const aBuf = Buffer.from(a);
@@ -14,7 +14,7 @@ function safeEqual(a: string, b: string): boolean {
 }
 
 export async function POST(req: NextRequest) {
-  const expected = process.env.WWNSL_UPLOAD_TOKEN;
+  const expected = process.env.WWNFY_UPLOAD_TOKEN;
   if (!expected) {
     return NextResponse.json(
       { ok: false, reason: "not-configured" },

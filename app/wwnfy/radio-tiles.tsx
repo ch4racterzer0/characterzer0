@@ -40,7 +40,7 @@ export function RadioProvider({ children }: { children: ReactNode }) {
   const loadPlaylist = useCallback(async (cat: string): Promise<Track[]> => {
     try {
       const res = await fetch(
-        `/api/wwnsl-music/list?cat=${encodeURIComponent(cat)}`,
+        `/api/wwnfy-music/list?cat=${encodeURIComponent(cat)}`,
         { cache: "no-store" },
       );
       if (!res.ok) return [];
@@ -396,7 +396,7 @@ export function SchoolStereoTile() {
   useEffect(() => {
     if (!pickerOpen) return;
     let cancelled = false;
-    fetch("/api/wwnsl-music/list?cat=still", { cache: "no-store" })
+    fetch("/api/wwnfy-music/list?cat=still", { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : { tracks: [] }))
       .then((d: { tracks?: Track[] }) => {
         if (!cancelled) setPlaylist(d.tracks ?? []);

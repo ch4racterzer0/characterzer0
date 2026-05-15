@@ -6,7 +6,7 @@ import { Uploader } from "./uploader";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "wwnsl — upload",
+  title: "wwnfy — upload",
   robots: { index: false, follow: false },
 };
 
@@ -18,17 +18,17 @@ function safeEqual(a: string, b: string): boolean {
 }
 
 async function isAuthed(): Promise<boolean> {
-  const expected = process.env.WWNSL_UPLOAD_TOKEN;
+  const expected = process.env.WWNFY_UPLOAD_TOKEN;
   if (!expected) return false;
   const cookieStore = await cookies();
-  const provided = cookieStore.get("wwnsl-upload-auth")?.value;
+  const provided = cookieStore.get("wwnfy-upload-auth")?.value;
   if (!provided) return false;
   return safeEqual(provided, expected);
 }
 
 export default async function UploadPage() {
   const authed = await isAuthed();
-  const configured = Boolean(process.env.WWNSL_UPLOAD_TOKEN);
+  const configured = Boolean(process.env.WWNFY_UPLOAD_TOKEN);
 
   return (
     <>
@@ -36,14 +36,14 @@ export default async function UploadPage() {
       <main className="min-h-screen bg-black text-stone-100 flex flex-col items-center px-4 py-10 font-mono">
         <header className="w-full max-w-2xl mb-8">
           <p className="text-[10px] tracking-[0.35em] uppercase text-stone-500 mb-1">
-            · wwnsl · admin ·
+            · wwnfy · admin ·
           </p>
           <h1 className="text-2xl tracking-[0.18em] uppercase font-bold text-stone-200">
             soundtrack upload
           </h1>
           <p className="text-xs text-stone-500 mt-2 leading-relaxed">
-            files land in blob prefix <span className="text-stone-300">wwnsl-music/</span>{" "}
-            and stream through the radio on /wwnsl automatically. accepted:
+            files land in blob prefix <span className="text-stone-300">wwnfy-music/</span>{" "}
+            and stream through the radio on /wwnfy automatically. accepted:
             mp3, m4a, flac, ogg, aac, opus, wav.
           </p>
         </header>
@@ -54,7 +54,7 @@ export default async function UploadPage() {
               not configured
             </p>
             <p className="text-red-300/85 leading-relaxed">
-              Set <code className="text-stone-200">WWNSL_UPLOAD_TOKEN</code> in
+              Set <code className="text-stone-200">WWNFY_UPLOAD_TOKEN</code> in
               <code className="text-stone-200"> .env.local</code> (local) and in
               the Vercel project's Environment Variables (preview + production).
               Then redeploy and reload this page.
