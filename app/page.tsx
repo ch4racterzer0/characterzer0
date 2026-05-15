@@ -1,7 +1,6 @@
 import { HoleInput } from "./hole-input";
 import { IframeTilePopup } from "./iframe-tile-popup";
 import { LinkTile } from "./link-tile";
-import { MobileLanding } from "./mobile-landing";
 import {
   FigureWithTilesDesktop,
   RadioProvider,
@@ -20,12 +19,10 @@ export const dynamic = "force-dynamic";
 export default function Home() {
   return (
     <>
-      <MobileLanding />
-      <div className="hidden sm:block">
-        <RadioProvider>
-          <ThemeShifter>
-          <ThemeSwitch />
-          <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center justify-end gap-6 sm:gap-0 py-4 sm:py-10 px-4">
+      <RadioProvider>
+        <ThemeShifter>
+        <ThemeSwitch />
+        <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center justify-end gap-6 sm:gap-0 py-4 sm:py-10 px-4">
         <RadioTilesMobileTop />
 
         <div className="sm:hidden flex flex-row items-center justify-center gap-4 flex-wrap">
@@ -230,10 +227,9 @@ export default function Home() {
           }
         />
 
-          </main>
-          </ThemeShifter>
-        </RadioProvider>
-      </div>
+        </main>
+        </ThemeShifter>
+      </RadioProvider>
     </>
   );
 }
