@@ -373,120 +373,53 @@ export function TomomiTile() {
                     lineHeight: 1.75,
                   }}
                 >
-                  <p>hi,</p>
+                  <p>{`hi,`}</p>
                   <p>
-                    I am writing to say thank you for your music. I am sorry
-                    that I am not able to pay you anything for it, although
-                    I believe its value is worth more than perhaps even you
-                    realized until just now.
+                    {`I am writing to say thank you for your music. I am sorry that I am not able to pay you anything for it, although I believe its value is worth more than perhaps even you realized until just now.`}
                   </p>
                   <p>
-                    I am starting the first &ldquo;living memorial&rdquo;
-                    for victims of human trafficking. I wanted you to know,
-                    that the place I am creating, or more accurately hoping
-                    to create, is not just a place for people to put up a
-                    &ldquo;have you seen me&rdquo; poster. There are enough
-                    of those at the WalMart I shop in... I noticed the
-                    other day some of those pictures have been there longer
-                    than my 15 year old son has been alive... collecting
-                    dust... no body looking, nobody noticing... everyone,
-                    myself included, just forgetting them.
+                    {`I am starting the first "living memorial" for victims of human trafficking. I wanted you to know, that the place I am creating, or more accurately hoping to create, is not just a place for people to put up a "have you seen me" poster. There are enough of those at the WalMart I shop in... I noticed the other day some of those pictures have been there longer than my 15 year old son has been alive... collecting dust... no body looking, nobody noticing... everyone, myself included, just forgetting them.`}
                   </p>
                   <p>
-                    I am not going to forget anymore. I am making a
-                    &ldquo;hub&rdquo; for these families, who I think have
-                    not forgotten, to come together and remember together,
-                    strengthen together, heal and move forward... together..
+                    {`I am not going to forget anymore. I am making a "hub" for these families, who I think have not forgotten, to come together and remember together, strengthen together, heal and move forward... together..`}
                   </p>
                   <p>
-                    In my reality, music is everything. I play piano, i
-                    play guitar, i have my own recording studio upstairs
-                    right now. I thought to use my own, but that does not
-                    feel good. that feels selfish to me. i am making this
-                    site and then giving it away. I have 2 others today
-                    already. one for soldiers, one for kids that have been
-                    gunned down.. and now this one.
+                    {`In my reality, music is everything. I play piano, i play guitar, i have my own recording studio upstairs right now. I thought to use my own, but that does not feel good. that feels selfish to me. i am making this site and then giving it away. I have 2 others today already. one for soldiers, one for kids that have been gunned down.. and now this one.`}
                   </p>
                   <p>
-                    I have never been effected with any of those 3 things
-                    in my life, that is why I am the perfect messenger,
-                    and I wanted you to know.. in this new world, this
-                    place of healing, the soundtrack while they watch their
-                    children come back to them on my screen whenever they
-                    want to forever...
+                    {`I have never been effected with any of those 3 things in my life, that is why I am the perfect messenger, and I wanted you to know.. in this new world, this place of healing, the soundtrack while they watch their children come back to them on my screen whenever they want to forever...`}
                   </p>
+                  <p>
+                    {`you are their soundtrack. you, and only you. no other artist will ever take that spot from you.`}
+                  </p>
+                  <p>
+                    {`i cant afford to run my sites, and i certainly can not afford to pay any money. i truly am sorry...`}
+                  </p>
+                  <p>
+                    {`but this letter is my receipt to you. a man you will never meet, using music from a woman he will never meet.. together healing a community that we are not a part of (unless you are, i will not make that assumption), i am lucky to not know anyone ever... but that changes the day I do... and if that day happens, I want a place to go talk to someone..`}
+                  </p>
+                  <p>{`it will be your music i would hear`}</p>
+                  <p>{`thank you very much, from the bottom of my heart.`}</p>
+                  <p>
+                    {`the site is wwnfy.com if you ever want to visit. i am making it as i type this, you were just the first piece to the puzzle...`}
+                  </p>
+                  <p>
+                    {`WeWillNeverForgetYou wwnfy.com that title now applies not only to the victims... it applies TO YOU. when they gather online, offline, any line... they will hear your music. they will associate YOU, YOUR MUSIC, with their recovery. Your circle is complete. Your music did exactly what you dreamed it would the first time you ever found the courage to record yourself. The first time you found the courage to put that music online for the world. The first time you decided you didnt care what people thought if they liked it or not. The very first time you realized how special YOU were and how special YOUR MUSIC was. The first time you really believed your music could change the world... this is your receipt that it has, is going to.. more than you realized before you read this.`}
+                  </p>
+                  <p className="pt-2">{`thank you again`}</p>
+                  <p>
+                    {`i wish you much success... thank you for helping me pay a debt that you did not know you were paying.`}
+                  </p>
+                  <p>{`thats the only kind that count`}</p>
                   <p
+                    className="pt-4"
                     style={{
-                      color: "rgba(150,35,25,0.95)",
-                      fontStyle: "italic",
-                    }}
-                  >
-                    you are their soundtrack. you, and only you. no other
-                    artist will ever take that spot from you.
-                  </p>
-                  <p>
-                    i cant afford to run my sites, and i certainly can not
-                    afford to pay any money. i truly am sorry...
-                  </p>
-                  <p>
-                    but this letter is my receipt to you. a man you will
-                    never meet, using music from a woman he will never
-                    meet.. together healing a community that we are not a
-                    part of (unless you are, i will not make that
-                    assumption), i am lucky to not know anyone ever... but
-                    that changes the day I do... and if that day happens, I
-                    want a place to go talk to someone..
-                  </p>
-                  <p>it will be your music i would hear</p>
-                  <p>thank you very much, from the bottom of my heart.</p>
-                  <p>
-                    the site is{" "}
-                    <span className="font-semibold">wwnfy.com</span> if you
-                    ever want to visit. i am making it as i type this, you
-                    were just the first piece to the puzzle...
-                  </p>
-                  <p>
-                    <span className="font-semibold">WeWillNeverForgetYou</span>
-                    {"   "}
-                    <span className="font-semibold">wwnfy.com</span>{" "}
-                    that title now applies not only to the victims... it
-                    applies <em>TO YOU</em>. when they gather online,
-                    offline, any line... they will hear your music. they
-                    will associate <em>YOU, YOUR MUSIC</em>, with their
-                    recovery. Your circle is complete. Your music did
-                    exactly what you dreamed it would the first time you
-                    ever found the courage to record yourself. The first
-                    time you found the courage to put that music online for
-                    the world. The first time you decided you didnt care
-                    what people thought if they liked it or not. The very
-                    first time you realized how special <em>YOU</em> were
-                    and how special <em>YOUR MUSIC</em> was. The first
-                    time you really believed your music could change the
-                    world... this is your receipt that it has, is going
-                    to.. more than you realized before you read this.
-                  </p>
-                  <p>thank you again</p>
-                  <p>
-                    i wish you much success... thank you for helping me pay
-                    a debt that you did not know you were paying.
-                  </p>
-                  <p
-                    style={{
-                      color: "rgba(150,35,25,0.95)",
-                      fontStyle: "italic",
-                    }}
-                  >
-                    thats the only kind that count
-                  </p>
-                  <p
-                    className="pt-4 font-mono"
-                    style={{
-                      color: "rgba(40,28,18,0.95)",
-                      fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+                      fontFamily:
+                        "ui-monospace, SFMono-Regular, Menlo, monospace",
                       letterSpacing: "0.05em",
                     }}
                   >
-                    ~~ characterzer0
+                    {`~~ characterzer0`}
                   </p>
                 </div>
 
