@@ -8,7 +8,7 @@ import {
   dispatchTetheredEpisode,
 } from "./tethered-episodes";
 
-function TetheredPopup({ onClose }: { onClose: () => void }) {
+export function TetheredPopup({ onClose }: { onClose: () => void }) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
