@@ -4,7 +4,6 @@ import { LinkTile } from "./link-tile";
 import {
   FigureWithTilesDesktop,
   RadioProvider,
-  RadioTilesMobileTop,
   TurntableTile,
   VisualTile,
 } from "./radio-tiles";
@@ -23,15 +22,12 @@ export default function Home() {
         <ThemeShifter>
         <ThemeSwitch />
         <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center justify-end gap-6 sm:gap-0 py-4 sm:py-10 px-4">
-        <RadioTilesMobileTop />
-
-        <div className="sm:hidden flex flex-row items-center justify-center gap-4 flex-wrap">
-          <LinkTile label="Core4" href="/core4" />
-          <LinkTile label="Madhu" href="/madhu" />
-          <LinkTile label="US" href="/us" />
-          <LinkTile label="Your Own Anspach" href="/yoursphere" />
+        {/* mobile only: a single Podcasts button. orb + figure come from the root layout. */}
+        <div className="sm:hidden flex items-end justify-center min-h-screen pb-10">
+          <LinkTile label="Podcasts" href="https://www.thedelos.com" />
         </div>
 
+        <div className="hidden sm:contents">
         <FigureWithTilesDesktop
           leftTop={
             <div key="left-top-row" className="flex flex-row items-center gap-3">
@@ -226,6 +222,7 @@ export default function Home() {
             </div>
           }
         />
+        </div>
 
         </main>
         </ThemeShifter>
