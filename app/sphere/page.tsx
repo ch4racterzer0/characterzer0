@@ -12,6 +12,7 @@ import { McKinleyTile } from "../mckinley-tile";
 import { TetheredTile } from "../tethered-tile";
 import { YiswmtTile } from "../yiswmt-tile";
 import { ThemeShifter } from "../theme-shifter";
+import { MobileBottomControls } from "./mobile-bottom-controls";
 
 export const dynamic = "force-dynamic";
 
@@ -215,6 +216,7 @@ export default function Sphere() {
           }
         />
         </main>
+        <MobileBottomControls />
       </ThemeShifter>
     </RadioProvider>
   );
