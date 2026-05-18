@@ -12,6 +12,7 @@ import { K9Tile } from "./k9-tile";
 import { MorselsRibbon } from "./morsels-ribbon";
 import { SemperFiTile } from "./semper-fi-tile";
 import { SiteGhost } from "./site-ghost";
+import { HideOnHome } from "./hide-on-home";
 import {
   CenterFigure,
   ChannelBackground,
@@ -45,17 +46,19 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <VisualChannelProvider>
-          <ChannelBackground />
-          <McKinleyFlagBackdrop />
-          <OrbRearLight />
-          <OrbWallpapers />
-          <HomeSphere />
-          <OrbEpisodeNav />
-          <CenterFigure />
-          <MorselsRibbon />
-          <SemperFiTile />
-          <K9Tile />
-          <SiteGhost />
+          <HideOnHome>
+            <ChannelBackground />
+            <McKinleyFlagBackdrop />
+            <OrbRearLight />
+            <OrbWallpapers />
+            <HomeSphere />
+            <OrbEpisodeNav />
+            <CenterFigure />
+            <MorselsRibbon />
+            <SemperFiTile />
+            <K9Tile />
+            <SiteGhost />
+          </HideOnHome>
           <div className="relative z-20 flex-1 flex flex-col">
             {children}
           </div>
