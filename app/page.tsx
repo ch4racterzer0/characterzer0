@@ -13,6 +13,18 @@ export default function Home() {
         >
           Sphere
         </Link>
+        <Link
+          href="/sphere"
+          className="block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-5 text-center text-base tracking-[0.5em] uppercase font-light"
+        >
+          Music
+        </Link>
+        <Link
+          href="/sphere"
+          className="block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-5 text-center text-base tracking-[0.5em] uppercase font-light"
+        >
+          Podcasts
+        </Link>
         <a
           href="https://www.spotlightdispatch.com"
           className="block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-5 text-center text-base tracking-[0.5em] uppercase font-light"

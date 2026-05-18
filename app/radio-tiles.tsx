@@ -21,7 +21,7 @@ type RadioCtx = {
 
 const RadioContext = createContext<RadioCtx | null>(null);
 
-function useRadio(): RadioCtx {
+export function useRadio(): RadioCtx {
   const ctx = useContext(RadioContext);
   if (!ctx) throw new Error("useRadio must be used inside RadioProvider");
   return ctx;
