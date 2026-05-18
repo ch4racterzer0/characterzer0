@@ -12,6 +12,7 @@ import { McKinleyTile } from "../mckinley-tile";
 import { TetheredTile } from "../tethered-tile";
 import { YiswmtTile } from "../yiswmt-tile";
 import { ThemeShifter } from "../theme-shifter";
+import { LandingOrb } from "../landing-orb";
 import { MobileBottomControls } from "./mobile-bottom-controls";
 
 export const dynamic = "force-dynamic";
@@ -21,6 +22,9 @@ export default function Sphere() {
     <RadioProvider>
       <ThemeShifter>
         <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center justify-end gap-0 py-10 px-4">
+        <div className="flex items-center justify-center pb-6">
+          <LandingOrb />
+        </div>
         <FigureWithTilesDesktop
           leftTop={
             <div key="left-top-row" className="flex flex-row items-center gap-3">
