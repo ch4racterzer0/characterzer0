@@ -488,6 +488,56 @@ function FSTile() {
   );
 }
 
+function PodcastStopTile() {
+  const [playing, setPlaying] = useState(false);
+  useEffect(() => {
+    const onPlay = () => setPlaying(true);
+    const onPause = () => setPlaying(false);
+    const onEnded = () => setPlaying(false);
+    window.addEventListener("character-zero:orb-play", onPlay);
+    window.addEventListener("character-zero:orb-pause", onPause);
+    window.addEventListener("character-zero:orb-ended", onEnded);
+    return () => {
+      window.removeEventListener("character-zero:orb-play", onPlay);
+      window.removeEventListener("character-zero:orb-pause", onPause);
+      window.removeEventListener("character-zero:orb-ended", onEnded);
+    };
+  }, []);
+  if (!playing) return null;
+  const onClick = () => {
+    window.dispatchEvent(new Event("character-zero:close-show"));
+  };
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label="Stop podcast"
+      className="absolute right-[-3.5rem] sm:right-[-4rem] top-1/2 -translate-y-1/2 z-20 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/60 rounded-lg"
+    >
+      <span
+        aria-hidden
+        className="absolute -inset-3 rounded-full blur-2xl bg-indigo-400/35"
+      />
+      <span
+        className="relative flex flex-col items-center gap-1 rounded-lg border border-indigo-300/55 hover:border-indigo-200/85 bg-indigo-950/55 hover:bg-indigo-900/70 backdrop-blur-sm px-2.5 py-2 transition-colors"
+        style={{
+          boxShadow:
+            "0 0 22px rgba(129,140,248,0.55), 0 0 50px rgba(99,102,241,0.25), inset 0 1px 0 rgba(199,210,254,0.40)",
+        }}
+      >
+        <span
+          aria-hidden
+          className="block w-3 h-3 bg-indigo-100 rounded-[1px]"
+          style={{ boxShadow: "0 0 6px rgba(199,210,254,0.85)" }}
+        />
+        <span className="text-indigo-100/85 text-[7px] tracking-[0.35em] uppercase font-light">
+          stop
+        </span>
+      </span>
+    </button>
+  );
+}
+
 function RadioStopTile() {
   const { playing, toggle } = useRadio();
   if (!playing) return null;
@@ -583,6 +633,7 @@ export function FigureWithTilesDesktop({
         <div className="relative h-[28vh] aspect-[3/2]">
           <TetherClock />
           <RadioStopTile />
+          <PodcastStopTile />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/figures/back.png"
