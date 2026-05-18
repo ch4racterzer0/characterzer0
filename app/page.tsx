@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { DestinationTile } from "./destination-tile";
 import { MusicPodcastPair } from "./music-podcast-pair";
 import { RadioProvider } from "./radio-tiles";
 
@@ -9,88 +9,60 @@ export default function Home() {
         Chracterzer零号
       </h1>
       <div className="grid grid-cols-1 gap-4 w-full max-w-sm">
-        <Link
-          href="/sphere"
-          className="group block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-4 text-center"
-        >
-          <span className="block text-base tracking-[0.5em] uppercase font-light">
-            Sphere
-          </span>
-          <span className="block mt-1 text-[10px] tracking-[0.25em] uppercase text-black/55 group-hover:text-white/65">
-            podcast and music video viewer
-          </span>
-        </Link>
+        <DestinationTile
+          label="Sphere"
+          tagline="podcast and music video viewer"
+          modalTitle="Sphere"
+          description="The Sphere is the podcast and music video viewer — chapters of Tethered, the music orb, and the home of the figure himself. Step inside."
+          url="/sphere"
+        />
         <RadioProvider>
           <div className="flex flex-row items-center justify-center gap-3 w-full">
             <MusicPodcastPair showPodcasts={false} wide />
           </div>
         </RadioProvider>
-        <a
-          href="https://www.spotlightdispatch.com"
-          className="group block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-4 text-center"
-        >
-          <span className="block text-base tracking-[0.5em] uppercase font-light">
-            News
-          </span>
-          <span className="block mt-1 text-[10px] tracking-[0.25em] uppercase text-black/55 group-hover:text-white/65">
-            go to spotlightdispatch for the latest news
-          </span>
-        </a>
-        <a
-          href="https://www.sharethebyline.com"
-          className="group block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-4 text-center"
-        >
-          <span className="block text-base tracking-[0.5em] uppercase font-light">
-            Social
-          </span>
-          <span className="block mt-1 text-[10px] tracking-[0.25em] uppercase text-black/55 group-hover:text-white/65">
-            go to sharethebyline to create your own original bylines you can share
-          </span>
-        </a>
-        <a
-          href="https://www.uaptask.com"
-          className="group block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-4 text-center"
-        >
-          <span className="block text-base tracking-[0.5em] uppercase font-light">
-            UAPTASK
-          </span>
-          <span className="block mt-1 text-[10px] tracking-[0.25em] uppercase text-black/55 group-hover:text-white/65">
-            real time · live · sci-fi cosgame
-          </span>
-        </a>
-        <a
-          href="https://bliyf.com"
-          className="group block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-4 text-center"
-        >
-          <span className="block text-base tracking-[0.5em] uppercase font-light">
-            BLIYF
-          </span>
-          <span className="block mt-1 text-[10px] tracking-[0.25em] uppercase text-black/55 group-hover:text-white/65">
-            breathing life into your fantasies
-          </span>
-        </a>
-        <Link
-          href="/drop"
-          className="group block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-4 text-center"
-        >
-          <span className="block text-base tracking-[0.5em] uppercase font-light">
-            Merch
-          </span>
-          <span className="block mt-1 text-[10px] tracking-[0.25em] uppercase text-black/55 group-hover:text-white/65">
-            the only way we can make any money here
-          </span>
-        </Link>
-        <a
-          href="https://www.ibydo.com"
-          className="group block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-4 text-center"
-        >
-          <span className="block text-base tracking-[0.5em] uppercase font-light">
-            IBYDO
-          </span>
-          <span className="block mt-1 text-[10px] tracking-[0.25em] uppercase text-black/55 group-hover:text-white/65">
-            if you have a dream, I can make it
-          </span>
-        </a>
+        <DestinationTile
+          label="News"
+          tagline="go to spotlightdispatch for the latest news"
+          modalTitle="Spotlight Dispatch"
+          description="Spotlight Dispatch is our independent newsroom — original reporting and real bylines, written by people, not algorithms. Built and run alongside Chracterzer零号."
+          url="https://www.spotlightdispatch.com"
+        />
+        <DestinationTile
+          label="Social"
+          tagline="go to sharethebyline to create your own original bylines you can share"
+          modalTitle="Share the Byline"
+          description="Share the Byline is the social hub for original bylines — write your own, share them, and put your name on what you say. The opposite of an algorithm-fed feed."
+          url="https://www.sharethebyline.com"
+        />
+        <DestinationTile
+          label="UAPTASK"
+          tagline="real time · live · sci-fi cosgame"
+          modalTitle="UAPTASK"
+          description="UAPTASK is real-time, live, and active sci-fi cosgame play. Step into a world that's running whether you're watching or not."
+          url="https://www.uaptask.com"
+        />
+        <DestinationTile
+          label="BLIYF"
+          tagline="breathing life into your fantasies"
+          modalTitle="BLIYF"
+          description="BLIYF — Breathing Life Into Your Fantasies. The space where the things you imagine become the things you can step inside."
+          url="https://bliyf.com"
+        />
+        <DestinationTile
+          label="Merch"
+          tagline="the only way we can make any money here"
+          modalTitle="The Drop"
+          description="The Drop is our first run of branded gear — tees, hoodies, mugs, the works. It's also the only way we make any money here, so it keeps the lights on."
+          url="/drop"
+        />
+        <DestinationTile
+          label="IBYDO"
+          tagline="if you have a dream, I can make it"
+          modalTitle="IBYDO"
+          description="IBYDO designed and built this entire site. If you have a dream — for a site, a brand, a moving piece — they can make it."
+          url="https://www.ibydo.com"
+        />
       </div>
       <p className="text-[10px] tracking-[0.3em] uppercase text-black/50">
         Site by IBYDO
