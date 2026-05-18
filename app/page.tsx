@@ -11,13 +11,18 @@ export default function Home() {
       <div className="grid grid-cols-1 gap-4 w-full max-w-sm">
         <Link
           href="/sphere"
-          className="block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-5 text-center text-base tracking-[0.5em] uppercase font-light"
+          className="group block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-4 text-center"
         >
-          Sphere
+          <span className="block text-base tracking-[0.5em] uppercase font-light">
+            Sphere
+          </span>
+          <span className="block mt-1 text-[10px] tracking-[0.25em] uppercase text-black/55 group-hover:text-white/65">
+            podcast and music video viewer
+          </span>
         </Link>
         <RadioProvider>
           <div className="flex flex-row items-center justify-center gap-3 w-full">
-            <MusicPodcastPair />
+            <MusicPodcastPair showPodcasts={false} />
           </div>
         </RadioProvider>
         <a

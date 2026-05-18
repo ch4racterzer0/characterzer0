@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import { TetheredPopup } from "./tethered-tile";
 import { useRadio } from "./radio-tiles";
 
-export function MusicPodcastPair() {
+export function MusicPodcastPair({
+  showPodcasts = true,
+}: { showPodcasts?: boolean } = {}) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
@@ -45,16 +47,18 @@ export function MusicPodcastPair() {
       >
         {playing ? "Music · stop" : "Music"}
       </button>
-      <button
-        type="button"
-        onClick={onPodcasts}
-        aria-pressed={podPlaying}
-        aria-label={podPlaying ? "Stop podcast" : "Open podcast chapter picker"}
-        className="flex-1 max-w-[180px] rounded-md border border-white/35 bg-black/65 backdrop-blur-sm px-4 py-3 text-center text-xs tracking-[0.4em] uppercase font-light text-white hover:border-white/70 transition-colors"
-      >
-        {podPlaying ? "Podcasts · stop" : "Podcasts"}
-      </button>
-      {podsOpen && mounted && <TetheredPopup onClose={() => setPodsOpen(false)} />}
+      {showPodcasts && (
+        <button
+          type="button"
+          onClick={onPodcasts}
+          aria-pressed={podPlaying}
+          aria-label={podPlaying ? "Stop podcast" : "Open podcast chapter picker"}
+          className="flex-1 max-w-[180px] rounded-md border border-white/35 bg-black/65 backdrop-blur-sm px-4 py-3 text-center text-xs tracking-[0.4em] uppercase font-light text-white hover:border-white/70 transition-colors"
+        >
+          {podPlaying ? "Podcasts · stop" : "Podcasts"}
+        </button>
+      )}
+      {showPodcasts && podsOpen && mounted && <TetheredPopup onClose={() => setPodsOpen(false)} />}
     </>
   );
 }
