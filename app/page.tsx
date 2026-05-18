@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="flex-1 bg-white text-black flex flex-col items-center justify-center gap-12 px-6 py-16">
-      <h1 className="text-2xl tracking-[0.45em] uppercase font-light text-black/80">
+      <h1 className="whitespace-nowrap text-[clamp(0.95rem,4.5vw,1.5rem)] tracking-[0.35em] uppercase font-light text-black/80">
         Chracterzer零号
       </h1>
       <div className="grid grid-cols-1 gap-4 w-full max-w-sm">
