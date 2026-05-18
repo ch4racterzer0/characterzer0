@@ -3,6 +3,7 @@ import { CharityTile } from "./charity-tile";
 import { FlagOrb } from "./flag-orb";
 import { MissionTile } from "./mission-tile";
 import { ArmyRadioTile, RadioProvider } from "./radio-tiles";
+import { RememberedTile } from "./remembered-tile";
 import { ShareTile } from "./share-tile";
 
 export const dynamic = "force-dynamic";
@@ -31,6 +32,7 @@ export default function Yiswmt() {
               ))}
               <ShareTile />
               <MissionTile />
+              <RememberedTile />
               {CHARITIES.slice(2).map((c) => (
                 <CharityTile key={c.short} charity={c} />
               ))}

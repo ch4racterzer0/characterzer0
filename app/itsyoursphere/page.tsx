@@ -4,6 +4,7 @@ import { FlagOrb } from "./flag-orb";
 import { LeberchTile } from "./leberch-tile";
 import { IysTile } from "./mission-tile";
 import { RadioProvider, SchoolStereoTile } from "./radio-tiles";
+import { RememberedTile } from "./remembered-tile";
 import { Scoreboard } from "./scoreboard";
 import { ShareTile } from "./share-tile";
 
@@ -34,6 +35,7 @@ export default function ItsYourSphere() {
               <ShareTile />
               <IysTile />
               <LeberchTile />
+              <RememberedTile />
               {CHARITIES.slice(2).map((c) => (
                 <CharityTile key={c.short} charity={c} />
               ))}
