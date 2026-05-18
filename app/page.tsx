@@ -19,7 +19,18 @@ export default function Home() {
         >
           Merch
         </Link>
+        <a
+          href="https://www.ibydo.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-5 text-center text-base tracking-[0.5em] uppercase font-light"
+        >
+          IBYDO
+        </a>
       </div>
+      <p className="text-[10px] tracking-[0.3em] uppercase text-black/50">
+        Site by IBYDO
+      </p>
     </main>
   );
 }
