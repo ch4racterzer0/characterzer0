@@ -125,7 +125,7 @@ function HexBox({
           mixBlendMode: "screen",
           transformOrigin: "50% 50%",
           animation:
-            "figure-hue-cycle 90s linear infinite, drop-figure-turn-inward 9s ease-in-out 2s forwards",
+            "figure-hue-cycle 90s linear infinite, drop-figure-turn-inward 9s ease-in-out 2s infinite alternate",
         }}
       />
       <p
@@ -314,7 +314,7 @@ function FigureBox({
           mixBlendMode: "screen",
           transformOrigin: "50% 50%",
           animation:
-            "figure-hue-cycle 90s linear infinite, drop-figure-turn-inward 9s ease-in-out 2s forwards",
+            "figure-hue-cycle 90s linear infinite, drop-figure-turn-inward 9s ease-in-out 2s infinite alternate",
         }}
       />
       <p
