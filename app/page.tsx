@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { LandingOrb } from "./landing-orb";
 import { MusicPodcastPair } from "./music-podcast-pair";
 import { RadioProvider } from "./radio-tiles";
 
@@ -9,7 +8,6 @@ export default function Home() {
       <h1 className="whitespace-nowrap text-[clamp(0.95rem,4.5vw,1.5rem)] tracking-[0.35em] uppercase font-light text-black/80">
         Chracterzer零号
       </h1>
-      <LandingOrb />
       <div className="grid grid-cols-1 gap-4 w-full max-w-sm">
         <Link
           href="/sphere"
