@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { LandingOrb } from "./landing-orb";
+import { MusicPodcastPair } from "./music-podcast-pair";
+import { RadioProvider } from "./radio-tiles";
 
 export default function Home() {
   return (
@@ -15,20 +17,11 @@ export default function Home() {
         >
           Sphere
         </Link>
-        <div className="flex flex-row items-center justify-center gap-3">
-          <Link
-            href="/sphere"
-            className="flex-1 max-w-[180px] rounded-md border border-white/35 bg-black/85 backdrop-blur-sm px-4 py-3 text-center text-xs tracking-[0.4em] uppercase font-light text-white hover:bg-black transition-colors"
-          >
-            Music
-          </Link>
-          <Link
-            href="/sphere"
-            className="flex-1 max-w-[180px] rounded-md border border-white/35 bg-black/85 backdrop-blur-sm px-4 py-3 text-center text-xs tracking-[0.4em] uppercase font-light text-white hover:bg-black transition-colors"
-          >
-            Podcasts
-          </Link>
-        </div>
+        <RadioProvider>
+          <div className="flex flex-row items-center justify-center gap-3 w-full">
+            <MusicPodcastPair />
+          </div>
+        </RadioProvider>
         <a
           href="https://www.spotlightdispatch.com"
           className="block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-5 text-center text-base tracking-[0.5em] uppercase font-light"
