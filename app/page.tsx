@@ -13,6 +13,12 @@ export default function Home() {
         >
           Sphere
         </Link>
+        <Link
+          href="/drop"
+          className="block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-5 text-center text-base tracking-[0.5em] uppercase font-light"
+        >
+          Merch
+        </Link>
       </div>
     </main>
   );
