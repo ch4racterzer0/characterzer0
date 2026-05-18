@@ -11,7 +11,7 @@ import { ChracterzerTile } from "./chracterzer-tile";
 import { McKinleyTile } from "./mckinley-tile";
 import { TetheredTile } from "./tethered-tile";
 import { YiswmtTile } from "./yiswmt-tile";
-import { ThemeShifter, ThemeSwitch } from "./theme-shifter";
+import { ThemeShifter } from "./theme-shifter";
 
 export const dynamic = "force-dynamic";
 
@@ -19,7 +19,6 @@ export default function Home() {
   return (
     <RadioProvider>
       <ThemeShifter>
-        <ThemeSwitch />
         <main className="relative z-10 isolate min-h-screen bg-transparent flex flex-col items-center justify-end gap-0 py-10 px-4">
         <FigureWithTilesDesktop
           leftTop={
