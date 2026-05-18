@@ -41,7 +41,7 @@ export default function Home() {
             <IframeTilePopup
               ariaLabel="drop — first drop, tees and caps"
               src="/drop"
-              triggerClassName="group w-56 sm:w-64 backdrop-blur-[2px] bg-white/5 hover:bg-white/15 border border-white/45 hover:border-white/85 rounded-xl flex flex-row items-center justify-between gap-3 px-4 py-3 cursor-pointer transition-colors"
+              triggerClassName="group w-64 backdrop-blur-[2px] bg-white/5 hover:bg-white/15 border border-white/45 hover:border-white/85 rounded-xl flex flex-row items-center justify-between gap-3 px-4 py-3 cursor-pointer transition-colors"
               triggerStyle={{
                 boxShadow:
                   "0 0 22px rgba(255,255,255,0.18), 0 0 50px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.22)",
@@ -52,7 +52,7 @@ export default function Home() {
                     ↗ first drop
                   </span>
                   <span
-                    className="text-white text-lg sm:text-xl tracking-[0.35em] uppercase font-light"
+                    className="text-white text-xl tracking-[0.35em] uppercase font-light"
                     style={{
                       textShadow:
                         "0 0 14px rgba(255,255,255,0.8), 0 0 32px rgba(103,232,249,0.45)",
@@ -68,7 +68,7 @@ export default function Home() {
             />
           }
           rightSlot={
-            <div className="grid grid-cols-2 gap-3 items-stretch w-[22rem] sm:w-[24rem]">
+            <div className="grid grid-cols-2 gap-3 items-stretch w-[24rem]">
               <HoleInput />
               <IframeTilePopup
                 key="eliza"
@@ -85,7 +85,7 @@ export default function Home() {
                       ↗ file
                     </span>
                     <span
-                      className="text-red-100 text-base sm:text-lg tracking-[0.25em] uppercase font-light"
+                      className="text-red-100 text-lg tracking-[0.25em] uppercase font-light"
                       style={{
                         textShadow:
                           "0 0 10px rgba(254,202,202,0.85), 0 0 22px rgba(248,113,113,0.55)",
@@ -109,7 +109,7 @@ export default function Home() {
                 }}
                 trigger={
                   <span
-                    className="text-amber-100 text-xs sm:text-sm tracking-[0.45em] uppercase font-mono"
+                    className="text-amber-100 text-sm tracking-[0.45em] uppercase font-mono"
                     style={{
                       textShadow:
                         "0 0 8px rgba(253,230,138,0.75), 0 0 18px rgba(251,191,36,0.45)",
@@ -119,7 +119,7 @@ export default function Home() {
                   </span>
                 }
                 content={
-                  <div className="min-h-full w-full flex flex-row items-center justify-center gap-6 sm:gap-10 flex-wrap p-6">
+                  <div className="min-h-full w-full flex flex-row items-center justify-center gap-10 flex-wrap p-6">
                     <LinkTile label="Core4" href="/core4" large />
                     <LinkTile label="Madhu" href="/madhu" large />
                     <LinkTile label="Quest" href="/quest" large />
@@ -141,7 +141,7 @@ export default function Home() {
                       ↗ file
                     </span>
                     <span
-                      className="text-purple-100 text-base sm:text-lg tracking-[0.25em] uppercase font-light"
+                      className="text-purple-100 text-lg tracking-[0.25em] uppercase font-light"
                       style={{
                         textShadow:
                           "0 0 10px rgba(233,213,255,0.85), 0 0 22px rgba(192,132,252,0.55)",
@@ -198,7 +198,7 @@ export default function Home() {
                       ↗ skip
                     </span>
                     <span
-                      className="relative text-green-100 text-base sm:text-lg tracking-[0.25em] uppercase font-light"
+                      className="relative text-green-100 text-lg tracking-[0.25em] uppercase font-light"
                       style={{
                         textShadow:
                           "0 0 10px rgba(187,247,208,0.85), 0 0 22px rgba(74,222,128,0.55)",
