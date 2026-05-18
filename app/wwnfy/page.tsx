@@ -3,6 +3,7 @@ import { CharityTile } from "./charity-tile";
 import { FlagOrb } from "./flag-orb";
 import { WwnfyTile } from "./mission-tile";
 import { RadioProvider, SchoolStereoTile } from "./radio-tiles";
+import { RememberedTile } from "./remembered-tile";
 import { Scoreboard } from "./scoreboard";
 import { ShareTile } from "./share-tile";
 import { TomomiTile } from "./tomomi-tile";
@@ -72,6 +73,7 @@ export default function Wwnfy() {
               <ShareTile />
               <WwnfyTile />
               <TomomiTile />
+              <RememberedTile />
               {CHARITIES.slice(2).map((c) => (
                 <CharityTile key={c.short} charity={c} />
               ))}
