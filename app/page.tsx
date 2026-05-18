@@ -1,11 +1,13 @@
 import Link from "next/link";
+import { LandingOrb } from "./landing-orb";
 
 export default function Home() {
   return (
-    <main className="flex-1 bg-white text-black flex flex-col items-center justify-center gap-12 px-6 py-16">
+    <main className="flex-1 bg-white text-black flex flex-col items-center justify-center gap-10 px-6 py-16">
       <h1 className="whitespace-nowrap text-[clamp(0.95rem,4.5vw,1.5rem)] tracking-[0.35em] uppercase font-light text-black/80">
         Chracterzer零号
       </h1>
+      <LandingOrb />
       <div className="grid grid-cols-1 gap-4 w-full max-w-sm">
         <Link
           href="/sphere"
