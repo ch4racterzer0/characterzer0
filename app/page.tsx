@@ -22,20 +22,30 @@ export default function Home() {
         </Link>
         <RadioProvider>
           <div className="flex flex-row items-center justify-center gap-3 w-full">
-            <MusicPodcastPair showPodcasts={false} />
+            <MusicPodcastPair showPodcasts={false} wide />
           </div>
         </RadioProvider>
         <a
           href="https://www.spotlightdispatch.com"
-          className="block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-5 text-center text-base tracking-[0.5em] uppercase font-light"
+          className="group block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-4 text-center"
         >
-          News
+          <span className="block text-base tracking-[0.5em] uppercase font-light">
+            News
+          </span>
+          <span className="block mt-1 text-[10px] tracking-[0.25em] uppercase text-black/55 group-hover:text-white/65">
+            go to spotlightdispatch for the latest news
+          </span>
         </a>
         <a
           href="https://www.sharethebyline.com"
-          className="block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-5 text-center text-base tracking-[0.5em] uppercase font-light"
+          className="group block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-4 text-center"
         >
-          Social
+          <span className="block text-base tracking-[0.5em] uppercase font-light">
+            Social
+          </span>
+          <span className="block mt-1 text-[10px] tracking-[0.25em] uppercase text-black/55 group-hover:text-white/65">
+            go to sharethebyline to create your own original bylines you can share
+          </span>
         </a>
         <a
           href="https://www.uaptask.com"
@@ -61,15 +71,25 @@ export default function Home() {
         </a>
         <Link
           href="/drop"
-          className="block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-5 text-center text-base tracking-[0.5em] uppercase font-light"
+          className="group block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-4 text-center"
         >
-          Merch
+          <span className="block text-base tracking-[0.5em] uppercase font-light">
+            Merch
+          </span>
+          <span className="block mt-1 text-[10px] tracking-[0.25em] uppercase text-black/55 group-hover:text-white/65">
+            the only way we can make any money here
+          </span>
         </Link>
         <a
           href="https://www.ibydo.com"
-          className="block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-5 text-center text-base tracking-[0.5em] uppercase font-light"
+          className="group block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-4 text-center"
         >
-          IBYDO
+          <span className="block text-base tracking-[0.5em] uppercase font-light">
+            IBYDO
+          </span>
+          <span className="block mt-1 text-[10px] tracking-[0.25em] uppercase text-black/55 group-hover:text-white/65">
+            if you have a dream, I can make it
+          </span>
         </a>
       </div>
       <p className="text-[10px] tracking-[0.3em] uppercase text-black/50">

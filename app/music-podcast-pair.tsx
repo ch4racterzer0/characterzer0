@@ -6,7 +6,11 @@ import { useRadio } from "./radio-tiles";
 
 export function MusicPodcastPair({
   showPodcasts = true,
-}: { showPodcasts?: boolean } = {}) {
+  wide = false,
+}: { showPodcasts?: boolean; wide?: boolean } = {}) {
+  const buttonClass = wide
+    ? "w-full rounded-md border border-white/35 bg-black/65 backdrop-blur-sm px-4 py-3 text-center text-xs tracking-[0.4em] uppercase font-light text-white hover:border-white/70 transition-colors"
+    : "flex-1 max-w-[180px] rounded-md border border-white/35 bg-black/65 backdrop-blur-sm px-4 py-3 text-center text-xs tracking-[0.4em] uppercase font-light text-white hover:border-white/70 transition-colors";
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
@@ -43,7 +47,7 @@ export function MusicPodcastPair({
         onClick={toggle}
         aria-pressed={playing}
         aria-label={playing ? "Stop music" : "Play music"}
-        className="flex-1 max-w-[180px] rounded-md border border-white/35 bg-black/65 backdrop-blur-sm px-4 py-3 text-center text-xs tracking-[0.4em] uppercase font-light text-white hover:border-white/70 transition-colors"
+        className={buttonClass}
       >
         {playing ? "Music · stop" : "Music"}
       </button>
@@ -53,7 +57,7 @@ export function MusicPodcastPair({
           onClick={onPodcasts}
           aria-pressed={podPlaying}
           aria-label={podPlaying ? "Stop podcast" : "Open podcast chapter picker"}
-          className="flex-1 max-w-[180px] rounded-md border border-white/35 bg-black/65 backdrop-blur-sm px-4 py-3 text-center text-xs tracking-[0.4em] uppercase font-light text-white hover:border-white/70 transition-colors"
+          className={buttonClass}
         >
           {podPlaying ? "Podcasts · stop" : "Podcasts"}
         </button>
