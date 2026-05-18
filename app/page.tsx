@@ -15,24 +15,18 @@ export default function Home() {
         </Link>
         <a
           href="https://www.spotlightdispatch.com"
-          target="_blank"
-          rel="noopener noreferrer"
           className="block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-5 text-center text-base tracking-[0.5em] uppercase font-light"
         >
           News
         </a>
         <a
           href="https://www.sharethebyline.com"
-          target="_blank"
-          rel="noopener noreferrer"
           className="block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-5 text-center text-base tracking-[0.5em] uppercase font-light"
         >
           Social
         </a>
         <a
           href="https://www.uaptask.com"
-          target="_blank"
-          rel="noopener noreferrer"
           className="group block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-4 text-center"
         >
           <span className="block text-base tracking-[0.5em] uppercase font-light">
@@ -44,8 +38,6 @@ export default function Home() {
         </a>
         <a
           href="https://bliyf.com"
-          target="_blank"
-          rel="noopener noreferrer"
           className="group block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-4 text-center"
         >
           <span className="block text-base tracking-[0.5em] uppercase font-light">
@@ -63,8 +55,6 @@ export default function Home() {
         </Link>
         <a
           href="https://www.ibydo.com"
-          target="_blank"
-          rel="noopener noreferrer"
           className="block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-5 text-center text-base tracking-[0.5em] uppercase font-light"
         >
           IBYDO
