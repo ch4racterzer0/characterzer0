@@ -13,6 +13,48 @@ export default function Home() {
         >
           Sphere
         </Link>
+        <a
+          href="https://www.spotlightdispatch.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-5 text-center text-base tracking-[0.5em] uppercase font-light"
+        >
+          News
+        </a>
+        <a
+          href="https://www.sharethebyline.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-5 text-center text-base tracking-[0.5em] uppercase font-light"
+        >
+          Social
+        </a>
+        <a
+          href="https://www.uaptask.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-4 text-center"
+        >
+          <span className="block text-base tracking-[0.5em] uppercase font-light">
+            UAPTASK
+          </span>
+          <span className="block mt-1 text-[10px] tracking-[0.25em] uppercase text-black/55 group-hover:text-white/65">
+            real time · live · sci-fi cosgame
+          </span>
+        </a>
+        <a
+          href="https://bliyf.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-4 text-center"
+        >
+          <span className="block text-base tracking-[0.5em] uppercase font-light">
+            BLIYF
+          </span>
+          <span className="block mt-1 text-[10px] tracking-[0.25em] uppercase text-black/55 group-hover:text-white/65">
+            breathing life into your fantasies
+          </span>
+        </a>
         <Link
           href="/drop"
           className="block rounded-md border border-black/25 bg-white hover:bg-black hover:text-white transition-colors px-6 py-5 text-center text-base tracking-[0.5em] uppercase font-light"
