@@ -20,5 +20,5 @@ export function useOrbHidden(): boolean {
     return () => obs.disconnect();
   }, []);
 
-  return pathname !== "/" || popupOpen;
+  return pathname !== "/sphere" || popupOpen;
 }

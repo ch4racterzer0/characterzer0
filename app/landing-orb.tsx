@@ -3,7 +3,7 @@ export function LandingOrb() {
     <div
       aria-hidden
       className="relative pointer-events-none"
-      style={{ width: "min(60vw, 18rem)", aspectRatio: "1 / 1" }}
+      style={{ width: "min(60vw, 58vh, 40rem)", aspectRatio: "1 / 1" }}
     >
       {/* soft contact-shadow underneath */}
       <div
