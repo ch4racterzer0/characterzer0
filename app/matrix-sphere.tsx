@@ -889,7 +889,7 @@ export function OrbWallpapers() {
   return (
     <div
       aria-hidden
-      className="fixed inset-0 z-[25] pointer-events-none flex items-start justify-center pt-[3vh]"
+      className="fixed inset-0 z-[25] pointer-events-none flex items-start justify-center pt-0"
       style={{
         opacity: 0,
         animation: "home-sphere-place 30s linear forwards",
@@ -897,7 +897,7 @@ export function OrbWallpapers() {
       }}
     >
       <div
-        className="relative w-[28vh] h-[28vh] max-w-[360px] max-h-[360px] rounded-full overflow-hidden"
+        className="relative w-[42vh] h-[42vh] max-w-[540px] max-h-[540px] rounded-full overflow-hidden"
         style={{
           transformOrigin: "50% 0%",
           animation: "home-sphere-expand 35s ease-out 10s forwards",
