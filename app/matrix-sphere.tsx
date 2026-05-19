@@ -897,7 +897,7 @@ export function OrbWallpapers() {
       }}
     >
       <div
-        className="relative w-[42vh] h-[42vh] max-w-[540px] max-h-[540px] rounded-full overflow-hidden"
+        className="relative w-[58vh] h-[58vh] max-w-[720px] max-h-[720px] rounded-full overflow-hidden"
         style={{
           transformOrigin: "50% 0%",
           animation: "home-sphere-expand 35s ease-out 10s forwards",
