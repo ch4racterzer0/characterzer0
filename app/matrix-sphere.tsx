@@ -871,6 +871,21 @@ export function OrbWallpapers() {
     }
   };
 
+  const handleEnded = () => {
+    setPlaying(false);
+    if (currentSource === "tethered") {
+      const m = episode.title.match(/ch(\d{2})/);
+      if (m) {
+        const idx = TETHERED_EPISODES.findIndex((e) => e.chapter === m[1]);
+        if (idx >= 0 && idx < TETHERED_EPISODES.length - 1) {
+          dispatchTetheredEpisode(TETHERED_EPISODES[idx + 1]);
+          return;
+        }
+      }
+    }
+    window.dispatchEvent(new Event("character-zero:orb-ended"));
+  };
+
   return (
     <div
       aria-hidden
@@ -902,10 +917,7 @@ export function OrbWallpapers() {
               window.dispatchEvent(new Event("character-zero:orb-pause"));
             }
           }}
-          onEnded={() => {
-            setPlaying(false);
-            window.dispatchEvent(new Event("character-zero:orb-ended"));
-          }}
+          onEnded={handleEnded}
         />
         <video
           ref={videoRef}
@@ -928,10 +940,7 @@ export function OrbWallpapers() {
               window.dispatchEvent(new Event("character-zero:orb-pause"));
             }
           }}
-          onEnded={() => {
-            setPlaying(false);
-            window.dispatchEvent(new Event("character-zero:orb-ended"));
-          }}
+          onEnded={handleEnded}
         />
         {ORB_WALLPAPERS.map((src, i) => (
           // eslint-disable-next-line @next/next/no-img-element
